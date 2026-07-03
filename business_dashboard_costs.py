@@ -40,53 +40,50 @@ def _parse_cost(val) -> float:
         return 0.0
 
 
-def _latest_file(pattern: str):
+def _all_files(pattern: str):
+    """Sapo có thể tách file export thành nhiều phần (giới hạn số dòng/file),
+    nên đọc TẤT CẢ file khớp pattern, không chỉ file mới nhất."""
     if not EXPORT_DIR.exists():
-        return None
-    files = sorted(EXPORT_DIR.glob(pattern), key=lambda p: p.stat().st_mtime, reverse=True)
-    return files[0] if files else None
+        return []
+    return sorted(EXPORT_DIR.glob(pattern), key=lambda p: p.stat().st_mtime, reverse=True)
 
 
 def _load_regular_costs() -> dict:
-    """Đọc file products_export*.xlsx -> {sku: giá_vốn}."""
-    path = _latest_file("*products_export*.xlsx")
-    if not path:
-        return {}
-    df = pd.read_excel(path)
+    """Đọc TẤT CẢ file products_export*.xlsx -> {sku: giá_vốn} (gộp nếu Sapo tách nhiều file)."""
     costs = {}
-    if "Mã SKU" in df.columns and "Giá vốn" in df.columns:
-        for _, row in df.iterrows():
-            sku = str(row.get("Mã SKU") or "").strip()
-            if not sku or sku == "nan":
-                continue
-            costs[sku] = _parse_cost(row.get("Giá vốn"))
+    for path in _all_files("*products_export*.xlsx"):
+        df = pd.read_excel(path)
+        if "Mã SKU" in df.columns and "Giá vốn" in df.columns:
+            for _, row in df.iterrows():
+                sku = str(row.get("Mã SKU") or "").strip()
+                if not sku or sku == "nan":
+                    continue
+                costs[sku] = _parse_cost(row.get("Giá vốn"))
     return costs
 
 
 def _load_combo_bom() -> dict:
-    """Đọc file combos_export*.xlsx -> {combo_sku: [(component_sku, qty), ...]}."""
-    path = _latest_file("*combos_export*.xlsx")
-    if not path:
-        return {}
-    df = pd.read_excel(path)
-    required = {"Đường dẫn/Alias", "Mã SKU", "SKU tham chiếu", "Số lượng*"}
-    if not required.issubset(df.columns):
-        return {}
-
-    df["_combo_sku"] = df.groupby("Đường dẫn/Alias")["Mã SKU"].transform(lambda s: s.ffill().bfill())
-
+    """Đọc TẤT CẢ file combos_export*.xlsx -> {combo_sku: [(component_sku, qty), ...]}."""
     bom = {}
-    for combo_sku, grp in df.groupby("_combo_sku"):
-        combo_sku = str(combo_sku or "").strip()
-        if not combo_sku or combo_sku == "nan":
+    for path in _all_files("*combos_export*.xlsx"):
+        df = pd.read_excel(path)
+        required = {"Đường dẫn/Alias", "Mã SKU", "SKU tham chiếu", "Số lượng*"}
+        if not required.issubset(df.columns):
             continue
-        items = []
-        for _, row in grp.iterrows():
-            comp_sku = str(row.get("SKU tham chiếu") or "").strip()
-            qty = row.get("Số lượng*") or 0
-            if comp_sku and comp_sku != "nan":
-                items.append((comp_sku, float(qty)))
-        bom[combo_sku] = items
+
+        df["_combo_sku"] = df.groupby("Đường dẫn/Alias")["Mã SKU"].transform(lambda s: s.ffill().bfill())
+
+        for combo_sku, grp in df.groupby("_combo_sku"):
+            combo_sku = str(combo_sku or "").strip()
+            if not combo_sku or combo_sku == "nan":
+                continue
+            items = []
+            for _, row in grp.iterrows():
+                comp_sku = str(row.get("SKU tham chiếu") or "").strip()
+                qty = row.get("Số lượng*") or 0
+                if comp_sku and comp_sku != "nan":
+                    items.append((comp_sku, float(qty)))
+            bom[combo_sku] = items
     return bom
 
 
