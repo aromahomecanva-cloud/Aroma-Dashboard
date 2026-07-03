@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-03T18:29:31.764308",
-  "total_ads_spend": 1377513529.0,
+  "updated_at": "2026-07-03T18:34:33.420565",
+  "total_ads_spend": 1377515334.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
@@ -8,26 +8,26 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 6933,
       "gross_revenue": 1171779822.0,
-      "total_fee": 0.0,
-      "net_revenue": 1171779822.0,
+      "total_fee": 236824563.53,
+      "net_revenue": 934955258.47,
       "cogs": 461970386.543,
-      "gross_margin_amount": 709809435.457,
-      "gross_margin_pct": 60.6,
+      "gross_margin_amount": 472984871.92700005,
+      "gross_margin_pct": 50.6,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 709809435.457
+      "net_profit_after_ads": 472984871.92700005
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 3837,
       "gross_revenue": 845800488.0,
-      "total_fee": 0.0,
-      "net_revenue": 845800488.0,
+      "total_fee": 134401165.77,
+      "net_revenue": 711399322.23,
       "cogs": 149275071.637,
-      "gross_margin_amount": 696525416.363,
-      "gross_margin_pct": 82.4,
+      "gross_margin_amount": 562124250.593,
+      "gross_margin_pct": 79.0,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 696525416.363
+      "net_profit_after_ads": 562124250.593
     },
     {
       "channel": "facebook",
@@ -86,13 +86,13 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 259,
       "gross_revenue": 19304790.0,
-      "total_fee": 0.0,
-      "net_revenue": 19304790.0,
+      "total_fee": 4983313.0,
+      "net_revenue": 14321477.0,
       "cogs": 7716881.705,
-      "gross_margin_amount": 11587908.295,
-      "gross_margin_pct": 60.0,
+      "gross_margin_amount": 6604595.295,
+      "gross_margin_pct": 46.1,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 11587908.295
+      "net_profit_after_ads": 6604595.295
     },
     {
       "channel": "pos",
@@ -138,13 +138,13 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 32,
       "gross_revenue": 7047700.0,
-      "total_fee": 0.0,
-      "net_revenue": 7047700.0,
+      "total_fee": 4280780.0,
+      "net_revenue": 2766920.0,
       "cogs": 509632.284,
-      "gross_margin_amount": 6538067.716,
-      "gross_margin_pct": 92.8,
+      "gross_margin_amount": 2257287.716,
+      "gross_margin_pct": 81.6,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 6538067.716
+      "net_profit_after_ads": 2257287.716
     },
     {
       "channel": "instagram",
@@ -10597,10 +10597,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 280000.0,
-      "total_fee": 0.0,
-      "net_revenue": 280000.0,
+      "total_fee": 43969.0,
+      "net_revenue": 236031.0,
       "cogs": 0.0,
-      "gross_margin_amount": 280000.0,
+      "gross_margin_amount": 236031.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -10609,11 +10609,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 54,
       "gross_revenue": 10525296.0,
-      "total_fee": 0.0,
-      "net_revenue": 10525296.0,
+      "total_fee": 2167667.0,
+      "net_revenue": 8357629.0,
       "cogs": 533637.286,
-      "gross_margin_amount": 9991658.714,
-      "gross_margin_pct": 94.9
+      "gross_margin_amount": 7823991.714,
+      "gross_margin_pct": 93.6
     },
     {
       "date": "2026-03-11",
@@ -10621,11 +10621,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 51,
       "gross_revenue": 11881152.0,
-      "total_fee": 0.0,
-      "net_revenue": 11881152.0,
+      "total_fee": 2843020.0,
+      "net_revenue": 9038132.0,
       "cogs": 1863459.503,
-      "gross_margin_amount": 10017692.497,
-      "gross_margin_pct": 84.3
+      "gross_margin_amount": 7174672.4969999995,
+      "gross_margin_pct": 79.4
     },
     {
       "date": "2026-03-12",
@@ -10669,11 +10669,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 39,
       "gross_revenue": 8050093.0,
-      "total_fee": 0.0,
-      "net_revenue": 8050093.0,
+      "total_fee": 1696557.0,
+      "net_revenue": 6353536.0,
       "cogs": 658429.461,
-      "gross_margin_amount": 7391663.539,
-      "gross_margin_pct": 91.8
+      "gross_margin_amount": 5695106.539,
+      "gross_margin_pct": 89.6
     },
     {
       "date": "2026-03-12",
@@ -10681,11 +10681,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 46,
       "gross_revenue": 11808467.0,
-      "total_fee": 0.0,
-      "net_revenue": 11808467.0,
+      "total_fee": 3100344.0,
+      "net_revenue": 8708123.0,
       "cogs": 1103966.387,
-      "gross_margin_amount": 10704500.613,
-      "gross_margin_pct": 90.7
+      "gross_margin_amount": 7604156.613,
+      "gross_margin_pct": 87.3
     },
     {
       "date": "2026-03-12",
@@ -10741,11 +10741,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 35,
       "gross_revenue": 6668598.0,
-      "total_fee": 0.0,
-      "net_revenue": 6668598.0,
+      "total_fee": 1440270.0,
+      "net_revenue": 5228328.0,
       "cogs": 1332224.574,
-      "gross_margin_amount": 5336373.426,
-      "gross_margin_pct": 80.0
+      "gross_margin_amount": 3896103.426,
+      "gross_margin_pct": 74.5
     },
     {
       "date": "2026-03-13",
@@ -10753,11 +10753,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
       "gross_revenue": 10175752.0,
-      "total_fee": 0.0,
-      "net_revenue": 10175752.0,
+      "total_fee": 2713698.0,
+      "net_revenue": 7462054.0,
       "cogs": 2200970.124,
-      "gross_margin_amount": 7974781.876,
-      "gross_margin_pct": 78.4
+      "gross_margin_amount": 5261083.876,
+      "gross_margin_pct": 70.5
     },
     {
       "date": "2026-03-13",
@@ -10825,11 +10825,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
       "gross_revenue": 7691708.0,
-      "total_fee": 0.0,
-      "net_revenue": 7691708.0,
+      "total_fee": 1387161.0,
+      "net_revenue": 6304547.0,
       "cogs": 1914931.699,
-      "gross_margin_amount": 5776776.301,
-      "gross_margin_pct": 75.1
+      "gross_margin_amount": 4389615.301,
+      "gross_margin_pct": 69.6
     },
     {
       "date": "2026-03-14",
@@ -10837,11 +10837,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 49,
       "gross_revenue": 9400961.0,
-      "total_fee": 0.0,
-      "net_revenue": 9400961.0,
+      "total_fee": 2217967.0,
+      "net_revenue": 7182994.0,
       "cogs": 1679031.796,
-      "gross_margin_amount": 7721929.204,
-      "gross_margin_pct": 82.1
+      "gross_margin_amount": 5503962.204,
+      "gross_margin_pct": 76.6
     },
     {
       "date": "2026-03-15",
@@ -10861,11 +10861,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 50,
       "gross_revenue": 9086163.0,
-      "total_fee": 0.0,
-      "net_revenue": 9086163.0,
+      "total_fee": 1698965.0,
+      "net_revenue": 7387198.0,
       "cogs": 1745351.243,
-      "gross_margin_amount": 7340811.757,
-      "gross_margin_pct": 80.8
+      "gross_margin_amount": 5641846.757,
+      "gross_margin_pct": 76.4
     },
     {
       "date": "2026-03-15",
@@ -10873,11 +10873,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 55,
       "gross_revenue": 12863050.0,
-      "total_fee": 0.0,
-      "net_revenue": 12863050.0,
+      "total_fee": 2820327.0,
+      "net_revenue": 10042723.0,
       "cogs": 1999364.869,
-      "gross_margin_amount": 10863685.131000001,
-      "gross_margin_pct": 84.5
+      "gross_margin_amount": 8043358.131,
+      "gross_margin_pct": 80.1
     },
     {
       "date": "2026-03-16",
@@ -10921,11 +10921,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
       "gross_revenue": 5119041.0,
-      "total_fee": 0.0,
-      "net_revenue": 5119041.0,
+      "total_fee": 1037039.0,
+      "net_revenue": 4082002.0,
       "cogs": 733918.529,
-      "gross_margin_amount": 4385122.471,
-      "gross_margin_pct": 85.7
+      "gross_margin_amount": 3348083.471,
+      "gross_margin_pct": 82.0
     },
     {
       "date": "2026-03-16",
@@ -10933,11 +10933,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 45,
       "gross_revenue": 9592604.0,
-      "total_fee": 0.0,
-      "net_revenue": 9592604.0,
+      "total_fee": 2377631.0,
+      "net_revenue": 7214973.0,
       "cogs": 1671908.298,
-      "gross_margin_amount": 7920695.702,
-      "gross_margin_pct": 82.6
+      "gross_margin_amount": 5543064.702,
+      "gross_margin_pct": 76.8
     },
     {
       "date": "2026-03-17",
@@ -10993,11 +10993,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 47,
       "gross_revenue": 9940317.0,
-      "total_fee": 0.0,
-      "net_revenue": 9940317.0,
+      "total_fee": 1926516.0,
+      "net_revenue": 8013801.0,
       "cogs": 1917626.361,
-      "gross_margin_amount": 8022690.639,
-      "gross_margin_pct": 80.7
+      "gross_margin_amount": 6096174.639,
+      "gross_margin_pct": 76.1
     },
     {
       "date": "2026-03-17",
@@ -11005,11 +11005,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 28,
       "gross_revenue": 6533029.0,
-      "total_fee": 0.0,
-      "net_revenue": 6533029.0,
+      "total_fee": 1813847.0,
+      "net_revenue": 4719182.0,
       "cogs": 1140426.72,
-      "gross_margin_amount": 5392602.28,
-      "gross_margin_pct": 82.5
+      "gross_margin_amount": 3578755.2800000003,
+      "gross_margin_pct": 75.8
     },
     {
       "date": "2026-03-17",
@@ -11065,11 +11065,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
       "gross_revenue": 7517205.0,
-      "total_fee": 0.0,
-      "net_revenue": 7517205.0,
+      "total_fee": 1439940.0,
+      "net_revenue": 6077265.0,
       "cogs": 787127.166,
-      "gross_margin_amount": 6730077.834,
-      "gross_margin_pct": 89.5
+      "gross_margin_amount": 5290137.834,
+      "gross_margin_pct": 87.0
     },
     {
       "date": "2026-03-18",
@@ -11077,11 +11077,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 56,
       "gross_revenue": 11162693.0,
-      "total_fee": 0.0,
-      "net_revenue": 11162693.0,
+      "total_fee": 2427059.0,
+      "net_revenue": 8735634.0,
       "cogs": 2365966.113,
-      "gross_margin_amount": 8796726.887,
-      "gross_margin_pct": 78.8
+      "gross_margin_amount": 6369667.887,
+      "gross_margin_pct": 72.9
     },
     {
       "date": "2026-03-19",
@@ -11113,11 +11113,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 41,
       "gross_revenue": 8631094.0,
-      "total_fee": 0.0,
-      "net_revenue": 8631094.0,
+      "total_fee": 1728958.0,
+      "net_revenue": 6902136.0,
       "cogs": 1376968.507,
-      "gross_margin_amount": 7254125.493,
-      "gross_margin_pct": 84.0
+      "gross_margin_amount": 5525167.493,
+      "gross_margin_pct": 80.1
     },
     {
       "date": "2026-03-19",
@@ -11125,11 +11125,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 57,
       "gross_revenue": 14487676.0,
-      "total_fee": 0.0,
-      "net_revenue": 14487676.0,
+      "total_fee": 2947436.0,
+      "net_revenue": 11540240.0,
       "cogs": 3317922.716,
-      "gross_margin_amount": 11169753.284,
-      "gross_margin_pct": 77.1
+      "gross_margin_amount": 8222317.284,
+      "gross_margin_pct": 71.2
     },
     {
       "date": "2026-03-19",
@@ -11173,11 +11173,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
       "gross_revenue": 6773542.0,
-      "total_fee": 0.0,
-      "net_revenue": 6773542.0,
+      "total_fee": 1247531.0,
+      "net_revenue": 5526011.0,
       "cogs": 1297240.942,
-      "gross_margin_amount": 5476301.058,
-      "gross_margin_pct": 80.8
+      "gross_margin_amount": 4228770.058,
+      "gross_margin_pct": 76.5
     },
     {
       "date": "2026-03-20",
@@ -11185,11 +11185,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 48,
       "gross_revenue": 11096290.0,
-      "total_fee": 0.0,
-      "net_revenue": 11096290.0,
+      "total_fee": 2925762.0,
+      "net_revenue": 8170528.0,
       "cogs": 1927960.134,
-      "gross_margin_amount": 9168329.866,
-      "gross_margin_pct": 82.6
+      "gross_margin_amount": 6242567.866,
+      "gross_margin_pct": 76.4
     },
     {
       "date": "2026-03-21",
@@ -11245,11 +11245,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 43,
       "gross_revenue": 8346057.0,
-      "total_fee": 0.0,
-      "net_revenue": 8346057.0,
+      "total_fee": 1502108.0,
+      "net_revenue": 6843949.0,
       "cogs": 1410147.437,
-      "gross_margin_amount": 6935909.563,
-      "gross_margin_pct": 83.1
+      "gross_margin_amount": 5433801.563,
+      "gross_margin_pct": 79.4
     },
     {
       "date": "2026-03-21",
@@ -11257,11 +11257,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 35,
       "gross_revenue": 6709410.0,
-      "total_fee": 0.0,
-      "net_revenue": 6709410.0,
+      "total_fee": 1509436.0,
+      "net_revenue": 5199974.0,
       "cogs": 1608944.719,
-      "gross_margin_amount": 5100465.2809999995,
-      "gross_margin_pct": 76.0
+      "gross_margin_amount": 3591029.281,
+      "gross_margin_pct": 69.1
     },
     {
       "date": "2026-03-21",
@@ -11305,11 +11305,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 29,
       "gross_revenue": 7653141.0,
-      "total_fee": 0.0,
-      "net_revenue": 7653141.0,
+      "total_fee": 1426939.0,
+      "net_revenue": 6226202.0,
       "cogs": 1536428.9980000001,
-      "gross_margin_amount": 6116712.002,
-      "gross_margin_pct": 79.9
+      "gross_margin_amount": 4689773.002,
+      "gross_margin_pct": 75.3
     },
     {
       "date": "2026-03-22",
@@ -11317,11 +11317,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 24,
       "gross_revenue": 5032700.0,
-      "total_fee": 0.0,
-      "net_revenue": 5032700.0,
+      "total_fee": 1196680.0,
+      "net_revenue": 3836020.0,
       "cogs": 1012692.954,
-      "gross_margin_amount": 4020007.046,
-      "gross_margin_pct": 79.9
+      "gross_margin_amount": 2823327.046,
+      "gross_margin_pct": 73.6
     },
     {
       "date": "2026-03-22",
@@ -11353,11 +11353,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 22,
       "gross_revenue": 4663694.0,
-      "total_fee": 0.0,
-      "net_revenue": 4663694.0,
+      "total_fee": 887198.0,
+      "net_revenue": 3776496.0,
       "cogs": 939905.861,
-      "gross_margin_amount": 3723788.139,
-      "gross_margin_pct": 79.8
+      "gross_margin_amount": 2836590.139,
+      "gross_margin_pct": 75.1
     },
     {
       "date": "2026-03-23",
@@ -11365,11 +11365,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 27,
       "gross_revenue": 4841829.0,
-      "total_fee": 0.0,
-      "net_revenue": 4841829.0,
+      "total_fee": 1281055.0,
+      "net_revenue": 3560774.0,
       "cogs": 1178222.996,
-      "gross_margin_amount": 3663606.0039999997,
-      "gross_margin_pct": 75.7
+      "gross_margin_amount": 2382551.0039999997,
+      "gross_margin_pct": 66.9
     },
     {
       "date": "2026-03-24",
@@ -11413,11 +11413,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 48,
       "gross_revenue": 15012419.0,
-      "total_fee": 0.0,
-      "net_revenue": 15012419.0,
+      "total_fee": 1683456.0,
+      "net_revenue": 13328963.0,
       "cogs": 2477640.382,
-      "gross_margin_amount": 12534778.618,
-      "gross_margin_pct": 83.5
+      "gross_margin_amount": 10851322.618,
+      "gross_margin_pct": 81.4
     },
     {
       "date": "2026-03-24",
@@ -11425,11 +11425,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
       "gross_revenue": 9941599.0,
-      "total_fee": 0.0,
-      "net_revenue": 9941599.0,
+      "total_fee": 2125994.0,
+      "net_revenue": 7815605.0,
       "cogs": 1623291.649,
-      "gross_margin_amount": 8318307.351,
-      "gross_margin_pct": 83.7
+      "gross_margin_amount": 6192313.351,
+      "gross_margin_pct": 79.2
     },
     {
       "date": "2026-03-25",
@@ -11449,11 +11449,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 45,
       "gross_revenue": 8363059.0,
-      "total_fee": 0.0,
-      "net_revenue": 8363059.0,
+      "total_fee": 1263158.0,
+      "net_revenue": 7099901.0,
       "cogs": 1609753.73,
-      "gross_margin_amount": 6753305.27,
-      "gross_margin_pct": 80.8
+      "gross_margin_amount": 5490147.27,
+      "gross_margin_pct": 77.3
     },
     {
       "date": "2026-03-25",
@@ -11461,11 +11461,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 42,
       "gross_revenue": 8340128.0,
-      "total_fee": 0.0,
-      "net_revenue": 8340128.0,
+      "total_fee": 1832177.0,
+      "net_revenue": 6507951.0,
       "cogs": 1670207.916,
-      "gross_margin_amount": 6669920.084,
-      "gross_margin_pct": 80.0
+      "gross_margin_amount": 4837743.084,
+      "gross_margin_pct": 74.3
     },
     {
       "date": "2026-03-25",
@@ -11521,11 +11521,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 49,
       "gross_revenue": 12467672.0,
-      "total_fee": 0.0,
-      "net_revenue": 12467672.0,
+      "total_fee": 1176211.2,
+      "net_revenue": 11291460.8,
       "cogs": 2604184.908,
-      "gross_margin_amount": 9863487.092,
-      "gross_margin_pct": 79.1
+      "gross_margin_amount": 8687275.892,
+      "gross_margin_pct": 76.9
     },
     {
       "date": "2026-03-26",
@@ -11533,11 +11533,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
       "gross_revenue": 6921244.0,
-      "total_fee": 0.0,
-      "net_revenue": 6921244.0,
+      "total_fee": 889178.0,
+      "net_revenue": 6032066.0,
       "cogs": 1777572.2380000001,
-      "gross_margin_amount": 5143671.762,
-      "gross_margin_pct": 74.3
+      "gross_margin_amount": 4254493.762,
+      "gross_margin_pct": 70.5
     },
     {
       "date": "2026-03-27",
@@ -11569,11 +11569,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 27,
       "gross_revenue": 6110064.0,
-      "total_fee": 0.0,
-      "net_revenue": 6110064.0,
+      "total_fee": 256074.0,
+      "net_revenue": 5853990.0,
       "cogs": 937141.531,
-      "gross_margin_amount": 5172922.4690000005,
-      "gross_margin_pct": 84.7
+      "gross_margin_amount": 4916848.4690000005,
+      "gross_margin_pct": 84.0
     },
     {
       "date": "2026-03-27",
@@ -11581,11 +11581,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 42,
       "gross_revenue": 8596499.0,
-      "total_fee": 0.0,
-      "net_revenue": 8596499.0,
+      "total_fee": 781412.0,
+      "net_revenue": 7815087.0,
       "cogs": 1590797.541,
-      "gross_margin_amount": 7005701.459,
-      "gross_margin_pct": 81.5
+      "gross_margin_amount": 6224289.459,
+      "gross_margin_pct": 79.6
     },
     {
       "date": "2026-03-28",
@@ -11605,11 +11605,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
       "gross_revenue": 5711980.0,
-      "total_fee": 0.0,
-      "net_revenue": 5711980.0,
+      "total_fee": 214931.0,
+      "net_revenue": 5497049.0,
       "cogs": 905666.731,
-      "gross_margin_amount": 4806313.269,
-      "gross_margin_pct": 84.1
+      "gross_margin_amount": 4591382.269,
+      "gross_margin_pct": 83.5
     },
     {
       "date": "2026-03-28",
@@ -11617,11 +11617,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 29,
       "gross_revenue": 6389216.0,
-      "total_fee": 0.0,
-      "net_revenue": 6389216.0,
+      "total_fee": 374448.0,
+      "net_revenue": 6014768.0,
       "cogs": 1125837.474,
-      "gross_margin_amount": 5263378.526000001,
-      "gross_margin_pct": 82.4
+      "gross_margin_amount": 4888930.526000001,
+      "gross_margin_pct": 81.3
     },
     {
       "date": "2026-03-29",
@@ -11773,11 +11773,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
       "gross_revenue": 9663522.0,
-      "total_fee": 0.0,
-      "net_revenue": 9663522.0,
+      "total_fee": 167683.0,
+      "net_revenue": 9495839.0,
       "cogs": 1537096.75,
-      "gross_margin_amount": 8126425.25,
-      "gross_margin_pct": 84.1
+      "gross_margin_amount": 7958742.25,
+      "gross_margin_pct": 83.8
     },
     {
       "date": "2026-04-01",
@@ -11833,11 +11833,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
       "gross_revenue": 7812195.0,
-      "total_fee": 0.0,
-      "net_revenue": 7812195.0,
+      "total_fee": 132450.0,
+      "net_revenue": 7679745.0,
       "cogs": 1069095.904,
-      "gross_margin_amount": 6743099.096,
-      "gross_margin_pct": 86.3
+      "gross_margin_amount": 6610649.096,
+      "gross_margin_pct": 86.1
     },
     {
       "date": "2026-04-02",
@@ -11845,11 +11845,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 37,
       "gross_revenue": 6671427.0,
-      "total_fee": 0.0,
-      "net_revenue": 6671427.0,
+      "total_fee": 99486.0,
+      "net_revenue": 6571941.0,
       "cogs": 1675444.492,
-      "gross_margin_amount": 4995982.507999999,
-      "gross_margin_pct": 74.9
+      "gross_margin_amount": 4896496.507999999,
+      "gross_margin_pct": 74.5
     },
     {
       "date": "2026-04-02",
@@ -11857,11 +11857,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 525000.0,
-      "total_fee": 0.0,
-      "net_revenue": 525000.0,
+      "total_fee": 102750.0,
+      "net_revenue": 422250.0,
       "cogs": 136562.803,
-      "gross_margin_amount": 388437.197,
-      "gross_margin_pct": 74.0
+      "gross_margin_amount": 285687.197,
+      "gross_margin_pct": 67.7
     },
     {
       "date": "2026-04-03",
@@ -11893,11 +11893,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 62,
       "gross_revenue": 12523838.0,
-      "total_fee": 0.0,
-      "net_revenue": 12523838.0,
+      "total_fee": 574596.0,
+      "net_revenue": 11949242.0,
       "cogs": 2144244.7060000002,
-      "gross_margin_amount": 10379593.294,
-      "gross_margin_pct": 82.9
+      "gross_margin_amount": 9804997.294,
+      "gross_margin_pct": 82.1
     },
     {
       "date": "2026-04-03",
@@ -11905,11 +11905,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 51,
       "gross_revenue": 11653406.0,
-      "total_fee": 0.0,
-      "net_revenue": 11653406.0,
+      "total_fee": 655103.0,
+      "net_revenue": 10998303.0,
       "cogs": 1994576.877,
-      "gross_margin_amount": 9658829.123,
-      "gross_margin_pct": 82.9
+      "gross_margin_amount": 9003726.123,
+      "gross_margin_pct": 81.9
     },
     {
       "date": "2026-04-03",
@@ -11917,11 +11917,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 115000.0,
-      "total_fee": 0.0,
-      "net_revenue": 115000.0,
+      "total_fee": 42100.0,
+      "net_revenue": 72900.0,
       "cogs": 29000.0,
-      "gross_margin_amount": 86000.0,
-      "gross_margin_pct": 74.8
+      "gross_margin_amount": 43900.0,
+      "gross_margin_pct": 60.2
     },
     {
       "date": "2026-04-03",
@@ -11965,11 +11965,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 65,
       "gross_revenue": 15588424.0,
-      "total_fee": 0.0,
-      "net_revenue": 15588424.0,
+      "total_fee": 836926.0,
+      "net_revenue": 14751498.0,
       "cogs": 2340110.225,
-      "gross_margin_amount": 13248313.775,
-      "gross_margin_pct": 85.0
+      "gross_margin_amount": 12411387.775,
+      "gross_margin_pct": 84.1
     },
     {
       "date": "2026-04-04",
@@ -11977,11 +11977,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 41,
       "gross_revenue": 8854037.0,
-      "total_fee": 0.0,
-      "net_revenue": 8854037.0,
+      "total_fee": 570384.0,
+      "net_revenue": 8283653.0,
       "cogs": 2114136.97,
-      "gross_margin_amount": 6739900.029999999,
-      "gross_margin_pct": 76.1
+      "gross_margin_amount": 6169516.029999999,
+      "gross_margin_pct": 74.5
     },
     {
       "date": "2026-04-05",
@@ -12037,11 +12037,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 20,
       "gross_revenue": 3481553.0,
-      "total_fee": 0.0,
-      "net_revenue": 3481553.0,
+      "total_fee": 71800.0,
+      "net_revenue": 3409753.0,
       "cogs": 344774.012,
-      "gross_margin_amount": 3136778.988,
-      "gross_margin_pct": 90.1
+      "gross_margin_amount": 3064978.988,
+      "gross_margin_pct": 89.9
     },
     {
       "date": "2026-04-05",
@@ -12049,11 +12049,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 33,
       "gross_revenue": 6584017.0,
-      "total_fee": 0.0,
-      "net_revenue": 6584017.0,
+      "total_fee": 461043.0,
+      "net_revenue": 6122974.0,
       "cogs": 856306.484,
-      "gross_margin_amount": 5727710.516,
-      "gross_margin_pct": 87.0
+      "gross_margin_amount": 5266667.516,
+      "gross_margin_pct": 86.0
     },
     {
       "date": "2026-04-06",
@@ -12085,11 +12085,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 54,
       "gross_revenue": 9339113.0,
-      "total_fee": 0.0,
-      "net_revenue": 9339113.0,
+      "total_fee": 393239.0,
+      "net_revenue": 8945874.0,
       "cogs": 1675993.815,
-      "gross_margin_amount": 7663119.1850000005,
-      "gross_margin_pct": 82.1
+      "gross_margin_amount": 7269880.1850000005,
+      "gross_margin_pct": 81.3
     },
     {
       "date": "2026-04-06",
@@ -12097,11 +12097,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 36,
       "gross_revenue": 7231090.0,
-      "total_fee": 0.0,
-      "net_revenue": 7231090.0,
+      "total_fee": 607882.0,
+      "net_revenue": 6623208.0,
       "cogs": 1613479.035,
-      "gross_margin_amount": 5617610.965,
-      "gross_margin_pct": 77.7
+      "gross_margin_amount": 5009728.965,
+      "gross_margin_pct": 75.6
     },
     {
       "date": "2026-04-07",
@@ -12145,11 +12145,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
       "gross_revenue": 10405070.0,
-      "total_fee": 0.0,
-      "net_revenue": 10405070.0,
+      "total_fee": 151326.0,
+      "net_revenue": 10253744.0,
       "cogs": 998741.764,
-      "gross_margin_amount": 9406328.236,
-      "gross_margin_pct": 90.4
+      "gross_margin_amount": 9255002.236,
+      "gross_margin_pct": 90.3
     },
     {
       "date": "2026-04-07",
@@ -12157,11 +12157,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
       "gross_revenue": 7942661.0,
-      "total_fee": 0.0,
-      "net_revenue": 7942661.0,
+      "total_fee": 277874.0,
+      "net_revenue": 7664787.0,
       "cogs": 2167511.226,
-      "gross_margin_amount": 5775149.774,
-      "gross_margin_pct": 72.7
+      "gross_margin_amount": 5497275.774,
+      "gross_margin_pct": 71.7
     },
     {
       "date": "2026-04-07",
@@ -12169,11 +12169,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 14,
       "gross_revenue": 2990000.0,
-      "total_fee": 0.0,
-      "net_revenue": 2990000.0,
+      "total_fee": 724450.0,
+      "net_revenue": 2265550.0,
       "cogs": 850000.0,
-      "gross_margin_amount": 2140000.0,
-      "gross_margin_pct": 71.6
+      "gross_margin_amount": 1415550.0,
+      "gross_margin_pct": 62.5
     },
     {
       "date": "2026-04-08",
@@ -12205,11 +12205,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 51,
       "gross_revenue": 10438086.0,
-      "total_fee": 0.0,
-      "net_revenue": 10438086.0,
+      "total_fee": 163955.0,
+      "net_revenue": 10274131.0,
       "cogs": 1688673.441,
-      "gross_margin_amount": 8749412.559,
-      "gross_margin_pct": 83.8
+      "gross_margin_amount": 8585457.559,
+      "gross_margin_pct": 83.6
     },
     {
       "date": "2026-04-08",
@@ -12217,11 +12217,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 2134,
       "gross_revenue": 79646475.0,
-      "total_fee": 0.0,
-      "net_revenue": 79646475.0,
+      "total_fee": 291856.0,
+      "net_revenue": 79354619.0,
       "cogs": 257016457.597,
-      "gross_margin_amount": -177369982.597,
-      "gross_margin_pct": -222.7
+      "gross_margin_amount": -177661838.597,
+      "gross_margin_pct": -223.9
     },
     {
       "date": "2026-04-08",
@@ -12229,11 +12229,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 20,
       "gross_revenue": 0.0,
-      "total_fee": 0.0,
-      "net_revenue": 0.0,
+      "total_fee": 249300.0,
+      "net_revenue": -249300.0,
       "cogs": 572000.0,
-      "gross_margin_amount": -572000.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": -821300.0,
+      "gross_margin_pct": 329.4
     },
     {
       "date": "2026-04-08",
@@ -12277,11 +12277,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 43,
       "gross_revenue": 8092555.0,
-      "total_fee": 0.0,
-      "net_revenue": 8092555.0,
+      "total_fee": 148184.0,
+      "net_revenue": 7944371.0,
       "cogs": 1283524.009,
-      "gross_margin_amount": 6809030.991,
-      "gross_margin_pct": 84.1
+      "gross_margin_amount": 6660846.991,
+      "gross_margin_pct": 83.8
     },
     {
       "date": "2026-04-09",
@@ -12289,11 +12289,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 32,
       "gross_revenue": 8391157.0,
-      "total_fee": 0.0,
-      "net_revenue": 8391157.0,
+      "total_fee": 618444.75,
+      "net_revenue": 7772712.25,
       "cogs": 1372209.853,
-      "gross_margin_amount": 7018947.147,
-      "gross_margin_pct": 83.6
+      "gross_margin_amount": 6400502.397,
+      "gross_margin_pct": 82.3
     },
     {
       "date": "2026-04-10",
@@ -12349,11 +12349,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 37,
       "gross_revenue": 7500569.0,
-      "total_fee": 0.0,
-      "net_revenue": 7500569.0,
+      "total_fee": 500267.0,
+      "net_revenue": 7000302.0,
       "cogs": 1827389.062,
-      "gross_margin_amount": 5673179.938,
-      "gross_margin_pct": 75.6
+      "gross_margin_amount": 5172912.938,
+      "gross_margin_pct": 73.9
     },
     {
       "date": "2026-04-10",
@@ -12361,11 +12361,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 34,
       "gross_revenue": 8321060.0,
-      "total_fee": 0.0,
-      "net_revenue": 8321060.0,
+      "total_fee": 400995.0,
+      "net_revenue": 7920065.0,
       "cogs": 1126664.93,
-      "gross_margin_amount": 7194395.07,
-      "gross_margin_pct": 86.5
+      "gross_margin_amount": 6793400.07,
+      "gross_margin_pct": 85.8
     },
     {
       "date": "2026-04-10",
@@ -12421,11 +12421,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
       "gross_revenue": 7048969.0,
-      "total_fee": 0.0,
-      "net_revenue": 7048969.0,
+      "total_fee": 575833.0,
+      "net_revenue": 6473136.0,
       "cogs": 1431476.689,
-      "gross_margin_amount": 5617492.311,
-      "gross_margin_pct": 79.7
+      "gross_margin_amount": 5041659.311,
+      "gross_margin_pct": 77.9
     },
     {
       "date": "2026-04-11",
@@ -12433,11 +12433,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 18,
       "gross_revenue": 2523081.0,
-      "total_fee": 0.0,
-      "net_revenue": 2523081.0,
+      "total_fee": 308941.0,
+      "net_revenue": 2214140.0,
       "cogs": 588155.503,
-      "gross_margin_amount": 1934925.497,
-      "gross_margin_pct": 76.7
+      "gross_margin_amount": 1625984.497,
+      "gross_margin_pct": 73.4
     },
     {
       "date": "2026-04-11",
@@ -12493,11 +12493,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 36,
       "gross_revenue": 6303571.0,
-      "total_fee": 0.0,
-      "net_revenue": 6303571.0,
+      "total_fee": 988016.22,
+      "net_revenue": 5315554.78,
       "cogs": 635371.666,
-      "gross_margin_amount": 5668199.334,
-      "gross_margin_pct": 89.9
+      "gross_margin_amount": 4680183.114,
+      "gross_margin_pct": 88.0
     },
     {
       "date": "2026-04-12",
@@ -12505,11 +12505,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 16,
       "gross_revenue": 2382403.0,
-      "total_fee": 0.0,
-      "net_revenue": 2382403.0,
+      "total_fee": 450375.0,
+      "net_revenue": 1932028.0,
       "cogs": 396546.234,
-      "gross_margin_amount": 1985856.766,
-      "gross_margin_pct": 83.4
+      "gross_margin_amount": 1535481.766,
+      "gross_margin_pct": 79.5
     },
     {
       "date": "2026-04-13",
@@ -12529,11 +12529,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 37,
       "gross_revenue": 7065713.0,
-      "total_fee": 0.0,
-      "net_revenue": 7065713.0,
+      "total_fee": 1025071.38,
+      "net_revenue": 6040641.62,
       "cogs": 1422430.087,
-      "gross_margin_amount": 5643282.913,
-      "gross_margin_pct": 79.9
+      "gross_margin_amount": 4618211.533,
+      "gross_margin_pct": 76.5
     },
     {
       "date": "2026-04-13",
@@ -12541,11 +12541,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 34,
       "gross_revenue": 5980543.0,
-      "total_fee": 0.0,
-      "net_revenue": 5980543.0,
+      "total_fee": 1291056.0,
+      "net_revenue": 4689487.0,
       "cogs": 1320094.542,
-      "gross_margin_amount": 4660448.458000001,
-      "gross_margin_pct": 77.9
+      "gross_margin_amount": 3369392.458,
+      "gross_margin_pct": 71.8
     },
     {
       "date": "2026-04-13",
@@ -12589,11 +12589,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 49,
       "gross_revenue": 11925195.0,
-      "total_fee": 0.0,
-      "net_revenue": 11925195.0,
+      "total_fee": 1575413.56,
+      "net_revenue": 10349781.44,
       "cogs": 1761767.153,
-      "gross_margin_amount": 10163427.847,
-      "gross_margin_pct": 85.2
+      "gross_margin_amount": 8588014.287,
+      "gross_margin_pct": 83.0
     },
     {
       "date": "2026-04-14",
@@ -12601,11 +12601,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 38,
       "gross_revenue": 8828433.0,
-      "total_fee": 0.0,
-      "net_revenue": 8828433.0,
+      "total_fee": 1591215.1,
+      "net_revenue": 7237217.9,
       "cogs": 1739627.025,
-      "gross_margin_amount": 7088805.975,
-      "gross_margin_pct": 80.3
+      "gross_margin_amount": 5497590.875,
+      "gross_margin_pct": 76.0
     },
     {
       "date": "2026-04-15",
@@ -12637,11 +12637,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 59,
       "gross_revenue": 14201587.0,
-      "total_fee": 0.0,
-      "net_revenue": 14201587.0,
+      "total_fee": 1961973.0,
+      "net_revenue": 12239614.0,
       "cogs": 2690753.309,
-      "gross_margin_amount": 11510833.691,
-      "gross_margin_pct": 81.1
+      "gross_margin_amount": 9548860.691,
+      "gross_margin_pct": 78.0
     },
     {
       "date": "2026-04-15",
@@ -12649,11 +12649,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 51,
       "gross_revenue": 11636793.0,
-      "total_fee": 0.0,
-      "net_revenue": 11636793.0,
+      "total_fee": 2058575.0,
+      "net_revenue": 9578218.0,
       "cogs": 1959573.351,
-      "gross_margin_amount": 9677219.649,
-      "gross_margin_pct": 83.2
+      "gross_margin_amount": 7618644.649,
+      "gross_margin_pct": 79.5
     },
     {
       "date": "2026-04-15",
@@ -12697,11 +12697,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 35,
       "gross_revenue": 7746548.0,
-      "total_fee": 0.0,
-      "net_revenue": 7746548.0,
+      "total_fee": 573896.0,
+      "net_revenue": 7172652.0,
       "cogs": 1534953.538,
-      "gross_margin_amount": 6211594.462,
-      "gross_margin_pct": 80.2
+      "gross_margin_amount": 5637698.462,
+      "gross_margin_pct": 78.6
     },
     {
       "date": "2026-04-16",
@@ -12709,11 +12709,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 42,
       "gross_revenue": 8372550.0,
-      "total_fee": 0.0,
-      "net_revenue": 8372550.0,
+      "total_fee": 480537.0,
+      "net_revenue": 7892013.0,
       "cogs": 2115902.798,
-      "gross_margin_amount": 6256647.202,
-      "gross_margin_pct": 74.7
+      "gross_margin_amount": 5776110.202,
+      "gross_margin_pct": 73.2
     },
     {
       "date": "2026-04-17",
@@ -12745,11 +12745,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 39,
       "gross_revenue": 8273895.0,
-      "total_fee": 0.0,
-      "net_revenue": 8273895.0,
+      "total_fee": 565475.0,
+      "net_revenue": 7708420.0,
       "cogs": 1580533.32,
-      "gross_margin_amount": 6693361.68,
-      "gross_margin_pct": 80.9
+      "gross_margin_amount": 6127886.68,
+      "gross_margin_pct": 79.5
     },
     {
       "date": "2026-04-17",
@@ -12757,11 +12757,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 28,
       "gross_revenue": 5844850.0,
-      "total_fee": 0.0,
-      "net_revenue": 5844850.0,
+      "total_fee": 604834.0,
+      "net_revenue": 5240016.0,
       "cogs": 1508435.4510000001,
-      "gross_margin_amount": 4336414.549,
-      "gross_margin_pct": 74.2
+      "gross_margin_amount": 3731580.5489999996,
+      "gross_margin_pct": 71.2
     },
     {
       "date": "2026-04-17",
@@ -12817,11 +12817,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 43,
       "gross_revenue": 8494558.0,
-      "total_fee": 0.0,
-      "net_revenue": 8494558.0,
+      "total_fee": 445990.0,
+      "net_revenue": 8048568.0,
       "cogs": 1635683.7349999999,
-      "gross_margin_amount": 6858874.265000001,
-      "gross_margin_pct": 80.7
+      "gross_margin_amount": 6412884.265000001,
+      "gross_margin_pct": 79.7
     },
     {
       "date": "2026-04-18",
@@ -12829,11 +12829,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 30,
       "gross_revenue": 5328410.0,
-      "total_fee": 0.0,
-      "net_revenue": 5328410.0,
+      "total_fee": 243225.75,
+      "net_revenue": 5085184.25,
       "cogs": 1118471.097,
-      "gross_margin_amount": 4209938.903,
-      "gross_margin_pct": 79.0
+      "gross_margin_amount": 3966713.153,
+      "gross_margin_pct": 78.0
     },
     {
       "date": "2026-04-19",
@@ -12865,11 +12865,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
       "gross_revenue": 6548714.0,
-      "total_fee": 0.0,
-      "net_revenue": 6548714.0,
+      "total_fee": 857051.0,
+      "net_revenue": 5691663.0,
       "cogs": 931270.971,
-      "gross_margin_amount": 5617443.029,
-      "gross_margin_pct": 85.8
+      "gross_margin_amount": 4760392.029,
+      "gross_margin_pct": 83.6
     },
     {
       "date": "2026-04-19",
@@ -12877,11 +12877,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 26,
       "gross_revenue": 6283240.0,
-      "total_fee": 0.0,
-      "net_revenue": 6283240.0,
+      "total_fee": 1415848.0,
+      "net_revenue": 4867392.0,
       "cogs": 1114178.856,
-      "gross_margin_amount": 5169061.144,
-      "gross_margin_pct": 82.3
+      "gross_margin_amount": 3753213.1440000003,
+      "gross_margin_pct": 77.1
     },
     {
       "date": "2026-04-19",
@@ -12913,11 +12913,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 54,
       "gross_revenue": 9989874.0,
-      "total_fee": 0.0,
-      "net_revenue": 9989874.0,
+      "total_fee": 1447059.64,
+      "net_revenue": 8542814.36,
       "cogs": 1887881.66,
-      "gross_margin_amount": 8101992.34,
-      "gross_margin_pct": 81.1
+      "gross_margin_amount": 6654932.699999999,
+      "gross_margin_pct": 77.9
     },
     {
       "date": "2026-04-20",
@@ -12925,11 +12925,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 24,
       "gross_revenue": 6068050.0,
-      "total_fee": 0.0,
-      "net_revenue": 6068050.0,
+      "total_fee": 1358872.0,
+      "net_revenue": 4709178.0,
       "cogs": 1254043.933,
-      "gross_margin_amount": 4814006.067,
-      "gross_margin_pct": 79.3
+      "gross_margin_amount": 3455134.067,
+      "gross_margin_pct": 73.4
     },
     {
       "date": "2026-04-20",
@@ -12961,11 +12961,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 57,
       "gross_revenue": 10939196.0,
-      "total_fee": 0.0,
-      "net_revenue": 10939196.0,
+      "total_fee": 1847446.8,
+      "net_revenue": 9091749.2,
       "cogs": 1765361.781,
-      "gross_margin_amount": 9173834.219,
-      "gross_margin_pct": 83.9
+      "gross_margin_amount": 7326387.419,
+      "gross_margin_pct": 80.6
     },
     {
       "date": "2026-04-21",
@@ -12973,11 +12973,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 22,
       "gross_revenue": 4263680.0,
-      "total_fee": 0.0,
-      "net_revenue": 4263680.0,
+      "total_fee": 1119458.0,
+      "net_revenue": 3144222.0,
       "cogs": 1024749.958,
-      "gross_margin_amount": 3238930.042,
-      "gross_margin_pct": 76.0
+      "gross_margin_amount": 2119472.042,
+      "gross_margin_pct": 67.4
     },
     {
       "date": "2026-04-22",
@@ -13009,11 +13009,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 45,
       "gross_revenue": 9027779.0,
-      "total_fee": 0.0,
-      "net_revenue": 9027779.0,
+      "total_fee": 1693323.0,
+      "net_revenue": 7334456.0,
       "cogs": 1867479.294,
-      "gross_margin_amount": 7160299.706,
-      "gross_margin_pct": 79.3
+      "gross_margin_amount": 5466976.706,
+      "gross_margin_pct": 74.5
     },
     {
       "date": "2026-04-22",
@@ -13021,11 +13021,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 40,
       "gross_revenue": 10154270.0,
-      "total_fee": 0.0,
-      "net_revenue": 10154270.0,
+      "total_fee": 2733337.0,
+      "net_revenue": 7420933.0,
       "cogs": 1602178.449,
-      "gross_margin_amount": 8552091.550999999,
-      "gross_margin_pct": 84.2
+      "gross_margin_amount": 5818754.551,
+      "gross_margin_pct": 78.4
     },
     {
       "date": "2026-04-22",
@@ -13057,10 +13057,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 3,
       "gross_revenue": 1656000.0,
-      "total_fee": 0.0,
-      "net_revenue": 1656000.0,
+      "total_fee": 1387674.0,
+      "net_revenue": 268326.0,
       "cogs": 0.0,
-      "gross_margin_amount": 1656000.0,
+      "gross_margin_amount": 268326.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -13069,11 +13069,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 4873593.0,
-      "total_fee": 0.0,
-      "net_revenue": 4873593.0,
+      "total_fee": 853358.0,
+      "net_revenue": 4020235.0,
       "cogs": 1320485.68,
-      "gross_margin_amount": 3553107.3200000003,
-      "gross_margin_pct": 72.9
+      "gross_margin_amount": 2699749.3200000003,
+      "gross_margin_pct": 67.2
     },
     {
       "date": "2026-04-23",
@@ -13081,11 +13081,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 48,
       "gross_revenue": 10790060.0,
-      "total_fee": 0.0,
-      "net_revenue": 10790060.0,
+      "total_fee": 2671831.0,
+      "net_revenue": 8118229.0,
       "cogs": 1930901.011,
-      "gross_margin_amount": 8859158.989,
-      "gross_margin_pct": 82.1
+      "gross_margin_amount": 6187327.989,
+      "gross_margin_pct": 76.2
     },
     {
       "date": "2026-04-23",
@@ -13141,11 +13141,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
       "gross_revenue": 6010015.0,
-      "total_fee": 0.0,
-      "net_revenue": 6010015.0,
+      "total_fee": 1180300.0,
+      "net_revenue": 4829715.0,
       "cogs": 1262998.232,
-      "gross_margin_amount": 4747016.768,
-      "gross_margin_pct": 79.0
+      "gross_margin_amount": 3566716.768,
+      "gross_margin_pct": 73.8
     },
     {
       "date": "2026-04-24",
@@ -13153,11 +13153,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 52,
       "gross_revenue": 10691640.0,
-      "total_fee": 0.0,
-      "net_revenue": 10691640.0,
+      "total_fee": 2576342.0,
+      "net_revenue": 8115298.0,
       "cogs": 1697344.878,
-      "gross_margin_amount": 8994295.122,
-      "gross_margin_pct": 84.1
+      "gross_margin_amount": 6417953.1219999995,
+      "gross_margin_pct": 79.1
     },
     {
       "date": "2026-04-24",
@@ -13201,10 +13201,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 455000.0,
-      "total_fee": 0.0,
-      "net_revenue": 455000.0,
+      "total_fee": 381275.0,
+      "net_revenue": 73725.0,
       "cogs": 0.0,
-      "gross_margin_amount": 455000.0,
+      "gross_margin_amount": 73725.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -13225,11 +13225,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 33,
       "gross_revenue": 6817329.0,
-      "total_fee": 0.0,
-      "net_revenue": 6817329.0,
+      "total_fee": 1260452.72,
+      "net_revenue": 5556876.28,
       "cogs": 809697.66,
-      "gross_margin_amount": 6007631.34,
-      "gross_margin_pct": 88.1
+      "gross_margin_amount": 4747178.62,
+      "gross_margin_pct": 85.4
     },
     {
       "date": "2026-04-25",
@@ -13237,11 +13237,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 31,
       "gross_revenue": 6413770.0,
-      "total_fee": 0.0,
-      "net_revenue": 6413770.0,
+      "total_fee": 1737872.0,
+      "net_revenue": 4675898.0,
       "cogs": 1041696.938,
-      "gross_margin_amount": 5372073.062,
-      "gross_margin_pct": 83.8
+      "gross_margin_amount": 3634201.062,
+      "gross_margin_pct": 77.7
     },
     {
       "date": "2026-04-25",
@@ -13273,11 +13273,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 15,
       "gross_revenue": 3508713.0,
-      "total_fee": 0.0,
-      "net_revenue": 3508713.0,
+      "total_fee": 655009.0,
+      "net_revenue": 2853704.0,
       "cogs": 569456.881,
-      "gross_margin_amount": 2939256.119,
-      "gross_margin_pct": 83.8
+      "gross_margin_amount": 2284247.119,
+      "gross_margin_pct": 80.0
     },
     {
       "date": "2026-04-26",
@@ -13285,11 +13285,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 31,
       "gross_revenue": 8009822.0,
-      "total_fee": 0.0,
-      "net_revenue": 8009822.0,
+      "total_fee": 2065752.0,
+      "net_revenue": 5944070.0,
       "cogs": 790129.089,
-      "gross_margin_amount": 7219692.911,
-      "gross_margin_pct": 90.1
+      "gross_margin_amount": 5153940.911,
+      "gross_margin_pct": 86.7
     },
     {
       "date": "2026-04-26",
@@ -13333,11 +13333,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
       "gross_revenue": 9166493.0,
-      "total_fee": 0.0,
-      "net_revenue": 9166493.0,
+      "total_fee": 1653071.0,
+      "net_revenue": 7513422.0,
       "cogs": 1439941.464,
-      "gross_margin_amount": 7726551.536,
-      "gross_margin_pct": 84.3
+      "gross_margin_amount": 6073480.536,
+      "gross_margin_pct": 80.8
     },
     {
       "date": "2026-04-27",
@@ -13345,11 +13345,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 34,
       "gross_revenue": 11402719.0,
-      "total_fee": 0.0,
-      "net_revenue": 11402719.0,
+      "total_fee": 2197916.0,
+      "net_revenue": 9204803.0,
       "cogs": 1221038.939,
-      "gross_margin_amount": 10181680.061,
-      "gross_margin_pct": 89.3
+      "gross_margin_amount": 7983764.061,
+      "gross_margin_pct": 86.7
     },
     {
       "date": "2026-04-28",
@@ -13369,11 +13369,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
       "gross_revenue": 6777179.0,
-      "total_fee": 0.0,
-      "net_revenue": 6777179.0,
+      "total_fee": 1256698.0,
+      "net_revenue": 5520481.0,
       "cogs": 1144110.671,
-      "gross_margin_amount": 5633068.329,
-      "gross_margin_pct": 83.1
+      "gross_margin_amount": 4376370.329,
+      "gross_margin_pct": 79.3
     },
     {
       "date": "2026-04-28",
@@ -13381,11 +13381,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
       "gross_revenue": 9850880.0,
-      "total_fee": 0.0,
-      "net_revenue": 9850880.0,
+      "total_fee": 2595980.0,
+      "net_revenue": 7254900.0,
       "cogs": 1332762.1030000001,
-      "gross_margin_amount": 8518117.897,
-      "gross_margin_pct": 86.5
+      "gross_margin_amount": 5922137.897,
+      "gross_margin_pct": 81.6
     },
     {
       "date": "2026-04-28",
@@ -13417,11 +13417,11 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 175000.0,
-      "total_fee": 0.0,
-      "net_revenue": 175000.0,
+      "total_fee": 145835.0,
+      "net_revenue": 29165.0,
       "cogs": 66475.81,
-      "gross_margin_amount": 108524.19,
-      "gross_margin_pct": 62.0
+      "gross_margin_amount": -37310.81,
+      "gross_margin_pct": -127.9
     },
     {
       "date": "2026-04-29",
@@ -13429,11 +13429,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 5159575.0,
-      "total_fee": 0.0,
-      "net_revenue": 5159575.0,
+      "total_fee": 941567.0,
+      "net_revenue": 4218008.0,
       "cogs": 829560.204,
-      "gross_margin_amount": 4330014.796,
-      "gross_margin_pct": 83.9
+      "gross_margin_amount": 3388447.796,
+      "gross_margin_pct": 80.3
     },
     {
       "date": "2026-04-29",
@@ -13441,11 +13441,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
       "gross_revenue": 8360555.0,
-      "total_fee": 0.0,
-      "net_revenue": 8360555.0,
+      "total_fee": 1655784.0,
+      "net_revenue": 6704771.0,
       "cogs": 996617.794,
-      "gross_margin_amount": 7363937.206,
-      "gross_margin_pct": 88.1
+      "gross_margin_amount": 5708153.206,
+      "gross_margin_pct": 85.1
     },
     {
       "date": "2026-04-29",
@@ -13453,11 +13453,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 255000.0,
-      "total_fee": 0.0,
-      "net_revenue": 255000.0,
+      "total_fee": 65100.0,
+      "net_revenue": 189900.0,
       "cogs": 76000.0,
-      "gross_margin_amount": 179000.0,
-      "gross_margin_pct": 70.2
+      "gross_margin_amount": 113900.0,
+      "gross_margin_pct": 60.0
     },
     {
       "date": "2026-04-30",
@@ -13465,11 +13465,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 12,
       "gross_revenue": 2665189.0,
-      "total_fee": 0.0,
-      "net_revenue": 2665189.0,
+      "total_fee": 505897.75,
+      "net_revenue": 2159291.25,
       "cogs": 378940.784,
-      "gross_margin_amount": 2286248.216,
-      "gross_margin_pct": 85.8
+      "gross_margin_amount": 1780350.466,
+      "gross_margin_pct": 82.5
     },
     {
       "date": "2026-04-30",
@@ -13477,11 +13477,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 20,
       "gross_revenue": 4753146.0,
-      "total_fee": 0.0,
-      "net_revenue": 4753146.0,
+      "total_fee": 949127.0,
+      "net_revenue": 3804019.0,
       "cogs": 279850.618,
-      "gross_margin_amount": 4473295.382,
-      "gross_margin_pct": 94.1
+      "gross_margin_amount": 3524168.382,
+      "gross_margin_pct": 92.6
     },
     {
       "date": "2026-04-30",
@@ -13501,11 +13501,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 22,
       "gross_revenue": 4975201.0,
-      "total_fee": 0.0,
-      "net_revenue": 4975201.0,
+      "total_fee": 989804.25,
+      "net_revenue": 3985396.75,
       "cogs": 481866.855,
-      "gross_margin_amount": 4493334.145,
-      "gross_margin_pct": 90.3
+      "gross_margin_amount": 3503529.895,
+      "gross_margin_pct": 87.9
     },
     {
       "date": "2026-05-01",
@@ -13513,11 +13513,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 19,
       "gross_revenue": 4065365.0,
-      "total_fee": 0.0,
-      "net_revenue": 4065365.0,
+      "total_fee": 932465.0,
+      "net_revenue": 3132900.0,
       "cogs": 548630.961,
-      "gross_margin_amount": 3516734.039,
-      "gross_margin_pct": 86.5
+      "gross_margin_amount": 2584269.039,
+      "gross_margin_pct": 82.5
     },
     {
       "date": "2026-05-02",
@@ -13549,11 +13549,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 18,
       "gross_revenue": 3901086.0,
-      "total_fee": 0.0,
-      "net_revenue": 3901086.0,
+      "total_fee": 810659.0,
+      "net_revenue": 3090427.0,
       "cogs": 630074.143,
-      "gross_margin_amount": 3271011.857,
-      "gross_margin_pct": 83.8
+      "gross_margin_amount": 2460352.857,
+      "gross_margin_pct": 79.6
     },
     {
       "date": "2026-05-02",
@@ -13561,11 +13561,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 34,
       "gross_revenue": 7895527.0,
-      "total_fee": 0.0,
-      "net_revenue": 7895527.0,
+      "total_fee": 2063935.0,
+      "net_revenue": 5831592.0,
       "cogs": 1283066.866,
-      "gross_margin_amount": 6612460.134,
-      "gross_margin_pct": 83.7
+      "gross_margin_amount": 4548525.134,
+      "gross_margin_pct": 78.0
     },
     {
       "date": "2026-05-03",
@@ -13585,11 +13585,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
       "gross_revenue": 6527184.0,
-      "total_fee": 0.0,
-      "net_revenue": 6527184.0,
+      "total_fee": 1301070.0,
+      "net_revenue": 5226114.0,
       "cogs": 1234086.918,
-      "gross_margin_amount": 5293097.082,
-      "gross_margin_pct": 81.1
+      "gross_margin_amount": 3992027.082,
+      "gross_margin_pct": 76.4
     },
     {
       "date": "2026-05-03",
@@ -13597,11 +13597,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 31,
       "gross_revenue": 7286704.0,
-      "total_fee": 0.0,
-      "net_revenue": 7286704.0,
+      "total_fee": 1949434.0,
+      "net_revenue": 5337270.0,
       "cogs": 750903.1359999999,
-      "gross_margin_amount": 6535800.864,
-      "gross_margin_pct": 89.7
+      "gross_margin_amount": 4586366.864,
+      "gross_margin_pct": 85.9
     },
     {
       "date": "2026-05-03",
@@ -13609,11 +13609,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 170000.0,
-      "total_fee": 0.0,
-      "net_revenue": 170000.0,
+      "total_fee": 43673.0,
+      "net_revenue": 126327.0,
       "cogs": 58000.0,
-      "gross_margin_amount": 112000.0,
-      "gross_margin_pct": 65.9
+      "gross_margin_amount": 68327.0,
+      "gross_margin_pct": 54.1
     },
     {
       "date": "2026-05-03",
@@ -13645,11 +13645,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 46,
       "gross_revenue": 8507705.0,
-      "total_fee": 0.0,
-      "net_revenue": 8507705.0,
+      "total_fee": 1713631.26,
+      "net_revenue": 6794073.74,
       "cogs": 918488.777,
-      "gross_margin_amount": 7589216.223,
-      "gross_margin_pct": 89.2
+      "gross_margin_amount": 5875584.963,
+      "gross_margin_pct": 86.5
     },
     {
       "date": "2026-05-04",
@@ -13657,11 +13657,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
       "gross_revenue": 10269833.0,
-      "total_fee": 0.0,
-      "net_revenue": 10269833.0,
+      "total_fee": 2551631.28,
+      "net_revenue": 7718201.720000001,
       "cogs": 1462348.2820000001,
-      "gross_margin_amount": 8807484.718,
-      "gross_margin_pct": 85.8
+      "gross_margin_amount": 6255853.438000001,
+      "gross_margin_pct": 81.1
     },
     {
       "date": "2026-05-04",
@@ -13669,11 +13669,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 69000.0,
-      "total_fee": 0.0,
-      "net_revenue": 69000.0,
+      "total_fee": 24929.0,
+      "net_revenue": 44071.0,
       "cogs": 27784.0,
-      "gross_margin_amount": 41216.0,
-      "gross_margin_pct": 59.7
+      "gross_margin_amount": 16287.0,
+      "gross_margin_pct": 37.0
     },
     {
       "date": "2026-05-05",
@@ -13705,11 +13705,11 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 28000.0,
-      "total_fee": 0.0,
-      "net_revenue": 28000.0,
+      "total_fee": 22516.0,
+      "net_revenue": 5484.0,
       "cogs": 11000.0,
-      "gross_margin_amount": 17000.0,
-      "gross_margin_pct": 60.7
+      "gross_margin_amount": -5516.0,
+      "gross_margin_pct": -100.6
     },
     {
       "date": "2026-05-05",
@@ -13729,11 +13729,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 56,
       "gross_revenue": 12273244.0,
-      "total_fee": 0.0,
-      "net_revenue": 12273244.0,
+      "total_fee": 2294014.0,
+      "net_revenue": 9979230.0,
       "cogs": 1591103.785,
-      "gross_margin_amount": 10682140.215,
-      "gross_margin_pct": 87.0
+      "gross_margin_amount": 8388126.215,
+      "gross_margin_pct": 84.1
     },
     {
       "date": "2026-05-05",
@@ -13741,11 +13741,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 78,
       "gross_revenue": 21082725.0,
-      "total_fee": 0.0,
-      "net_revenue": 21082725.0,
+      "total_fee": 5076942.0,
+      "net_revenue": 16005783.0,
       "cogs": 4145750.916,
-      "gross_margin_amount": 16936974.084,
-      "gross_margin_pct": 80.3
+      "gross_margin_amount": 11860032.083999999,
+      "gross_margin_pct": 74.1
     },
     {
       "date": "2026-05-05",
@@ -13753,11 +13753,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 85000.0,
-      "total_fee": 0.0,
-      "net_revenue": 85000.0,
+      "total_fee": 34800.0,
+      "net_revenue": 50200.0,
       "cogs": 25000.0,
-      "gross_margin_amount": 60000.0,
-      "gross_margin_pct": 70.6
+      "gross_margin_amount": 25200.0,
+      "gross_margin_pct": 50.2
     },
     {
       "date": "2026-05-06",
@@ -13801,11 +13801,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
       "gross_revenue": 6007021.0,
-      "total_fee": 0.0,
-      "net_revenue": 6007021.0,
+      "total_fee": 1148299.06,
+      "net_revenue": 4858721.9399999995,
       "cogs": 1045339.4,
-      "gross_margin_amount": 4961681.6,
-      "gross_margin_pct": 82.6
+      "gross_margin_amount": 3813382.5399999996,
+      "gross_margin_pct": 78.5
     },
     {
       "date": "2026-05-06",
@@ -13813,11 +13813,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 47,
       "gross_revenue": 8556824.0,
-      "total_fee": 0.0,
-      "net_revenue": 8556824.0,
+      "total_fee": 2171620.0,
+      "net_revenue": 6385204.0,
       "cogs": 1615212.6770000001,
-      "gross_margin_amount": 6941611.323,
-      "gross_margin_pct": 81.1
+      "gross_margin_amount": 4769991.323,
+      "gross_margin_pct": 74.7
     },
     {
       "date": "2026-05-06",
@@ -13825,11 +13825,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 259300.0,
-      "total_fee": 0.0,
-      "net_revenue": 259300.0,
+      "total_fee": 100407.0,
+      "net_revenue": 158893.0,
       "cogs": 87000.0,
-      "gross_margin_amount": 172300.0,
-      "gross_margin_pct": 66.4
+      "gross_margin_amount": 71893.0,
+      "gross_margin_pct": 45.2
     },
     {
       "date": "2026-05-07",
@@ -13849,10 +13849,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 270000.0,
-      "total_fee": 0.0,
-      "net_revenue": 270000.0,
+      "total_fee": 226119.0,
+      "net_revenue": 43881.0,
       "cogs": 0.0,
-      "gross_margin_amount": 270000.0,
+      "gross_margin_amount": 43881.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -13861,11 +13861,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 7125447.0,
-      "total_fee": 0.0,
-      "net_revenue": 7125447.0,
+      "total_fee": 1598285.0,
+      "net_revenue": 5527162.0,
       "cogs": 1169970.656,
-      "gross_margin_amount": 5955476.3440000005,
-      "gross_margin_pct": 83.6
+      "gross_margin_amount": 4357191.3440000005,
+      "gross_margin_pct": 78.8
     },
     {
       "date": "2026-05-07",
@@ -13873,11 +13873,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 45,
       "gross_revenue": 9494034.0,
-      "total_fee": 0.0,
-      "net_revenue": 9494034.0,
+      "total_fee": 2032903.0,
+      "net_revenue": 7461131.0,
       "cogs": 1497966.027,
-      "gross_margin_amount": 7996067.973,
-      "gross_margin_pct": 84.2
+      "gross_margin_amount": 5963164.973,
+      "gross_margin_pct": 79.9
     },
     {
       "date": "2026-05-07",
@@ -13885,11 +13885,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 8,
       "gross_revenue": 79900.0,
-      "total_fee": 0.0,
-      "net_revenue": 79900.0,
+      "total_fee": 212882.0,
+      "net_revenue": -132982.0,
       "cogs": 216000.0,
-      "gross_margin_amount": -136100.0,
-      "gross_margin_pct": -170.3
+      "gross_margin_amount": -348982.0,
+      "gross_margin_pct": 262.4
     },
     {
       "date": "2026-05-08",
@@ -13909,11 +13909,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
       "gross_revenue": 7988411.0,
-      "total_fee": 0.0,
-      "net_revenue": 7988411.0,
+      "total_fee": 1562039.8399999999,
+      "net_revenue": 6426371.16,
       "cogs": 1839409.865,
-      "gross_margin_amount": 6149001.135,
-      "gross_margin_pct": 77.0
+      "gross_margin_amount": 4586961.295,
+      "gross_margin_pct": 71.4
     },
     {
       "date": "2026-05-08",
@@ -13921,11 +13921,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
       "gross_revenue": 11008613.0,
-      "total_fee": 0.0,
-      "net_revenue": 11008613.0,
+      "total_fee": 2562094.25,
+      "net_revenue": 8446518.75,
       "cogs": 1922927.155,
-      "gross_margin_amount": 9085685.845,
-      "gross_margin_pct": 82.5
+      "gross_margin_amount": 6523591.595,
+      "gross_margin_pct": 77.2
     },
     {
       "date": "2026-05-08",
@@ -13933,11 +13933,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 5,
       "gross_revenue": 489600.0,
-      "total_fee": 0.0,
-      "net_revenue": 489600.0,
+      "total_fee": 136898.0,
+      "net_revenue": 352702.0,
       "cogs": 116000.0,
-      "gross_margin_amount": 373600.0,
-      "gross_margin_pct": 76.3
+      "gross_margin_amount": 236702.0,
+      "gross_margin_pct": 67.1
     },
     {
       "date": "2026-05-08",
@@ -13969,11 +13969,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 17,
       "gross_revenue": 3447242.0,
-      "total_fee": 0.0,
-      "net_revenue": 3447242.0,
+      "total_fee": 729521.0,
+      "net_revenue": 2717721.0,
       "cogs": 390532.373,
-      "gross_margin_amount": 3056709.627,
-      "gross_margin_pct": 88.7
+      "gross_margin_amount": 2327188.627,
+      "gross_margin_pct": 85.6
     },
     {
       "date": "2026-05-09",
@@ -13981,11 +13981,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 35,
       "gross_revenue": 8938030.0,
-      "total_fee": 0.0,
-      "net_revenue": 8938030.0,
+      "total_fee": 2395528.0,
+      "net_revenue": 6542502.0,
       "cogs": 1174007.637,
-      "gross_margin_amount": 7764022.363,
-      "gross_margin_pct": 86.9
+      "gross_margin_amount": 5368494.363,
+      "gross_margin_pct": 82.1
     },
     {
       "date": "2026-05-09",
@@ -13993,11 +13993,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 4,
       "gross_revenue": 618900.0,
-      "total_fee": 0.0,
-      "net_revenue": 618900.0,
+      "total_fee": 111261.0,
+      "net_revenue": 507639.0,
       "cogs": 29000.0,
-      "gross_margin_amount": 589900.0,
-      "gross_margin_pct": 95.3
+      "gross_margin_amount": 478639.0,
+      "gross_margin_pct": 94.3
     },
     {
       "date": "2026-05-10",
@@ -14005,11 +14005,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 22,
       "gross_revenue": 6733456.0,
-      "total_fee": 0.0,
-      "net_revenue": 6733456.0,
+      "total_fee": 1422198.0,
+      "net_revenue": 5311258.0,
       "cogs": 1171085.161,
-      "gross_margin_amount": 5562370.839,
-      "gross_margin_pct": 82.6
+      "gross_margin_amount": 4140172.8389999997,
+      "gross_margin_pct": 78.0
     },
     {
       "date": "2026-05-10",
@@ -14017,11 +14017,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 30,
       "gross_revenue": 4823443.0,
-      "total_fee": 0.0,
-      "net_revenue": 4823443.0,
+      "total_fee": 1200031.0,
+      "net_revenue": 3623412.0,
       "cogs": 998549.648,
-      "gross_margin_amount": 3824893.352,
-      "gross_margin_pct": 79.3
+      "gross_margin_amount": 2624862.352,
+      "gross_margin_pct": 72.4
     },
     {
       "date": "2026-05-11",
@@ -14053,11 +14053,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 35,
       "gross_revenue": 8417244.0,
-      "total_fee": 0.0,
-      "net_revenue": 8417244.0,
+      "total_fee": 1725899.0,
+      "net_revenue": 6691345.0,
       "cogs": 1278281.449,
-      "gross_margin_amount": 7138962.551,
-      "gross_margin_pct": 84.8
+      "gross_margin_amount": 5413063.551,
+      "gross_margin_pct": 80.9
     },
     {
       "date": "2026-05-11",
@@ -14065,11 +14065,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
       "gross_revenue": 7835486.0,
-      "total_fee": 0.0,
-      "net_revenue": 7835486.0,
+      "total_fee": 2122338.0,
+      "net_revenue": 5713148.0,
       "cogs": 1517660.571,
-      "gross_margin_amount": 6317825.429,
-      "gross_margin_pct": 80.6
+      "gross_margin_amount": 4195487.429,
+      "gross_margin_pct": 73.4
     },
     {
       "date": "2026-05-11",
@@ -14077,11 +14077,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 6,
       "gross_revenue": 529000.0,
-      "total_fee": 0.0,
-      "net_revenue": 529000.0,
+      "total_fee": 186375.0,
+      "net_revenue": 342625.0,
       "cogs": 195000.0,
-      "gross_margin_amount": 334000.0,
-      "gross_margin_pct": 63.1
+      "gross_margin_amount": 147625.0,
+      "gross_margin_pct": 43.1
     },
     {
       "date": "2026-05-12",
@@ -14101,10 +14101,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 270000.0,
-      "total_fee": 0.0,
-      "net_revenue": 270000.0,
+      "total_fee": 226119.0,
+      "net_revenue": 43881.0,
       "cogs": 0.0,
-      "gross_margin_amount": 270000.0,
+      "gross_margin_amount": 43881.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -14125,11 +14125,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 4464000.0,
-      "total_fee": 0.0,
-      "net_revenue": 4464000.0,
+      "total_fee": 918433.0,
+      "net_revenue": 3545567.0,
       "cogs": 703546.707,
-      "gross_margin_amount": 3760453.293,
-      "gross_margin_pct": 84.2
+      "gross_margin_amount": 2842020.293,
+      "gross_margin_pct": 80.2
     },
     {
       "date": "2026-05-12",
@@ -14137,11 +14137,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
       "gross_revenue": 5860774.0,
-      "total_fee": 0.0,
-      "net_revenue": 5860774.0,
+      "total_fee": 1702920.0,
+      "net_revenue": 4157854.0,
       "cogs": 1142802.034,
-      "gross_margin_amount": 4717971.966,
-      "gross_margin_pct": 80.5
+      "gross_margin_amount": 3015051.966,
+      "gross_margin_pct": 72.5
     },
     {
       "date": "2026-05-12",
@@ -14149,11 +14149,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 8,
       "gross_revenue": 1010460.0,
-      "total_fee": 0.0,
-      "net_revenue": 1010460.0,
+      "total_fee": 334450.0,
+      "net_revenue": 676010.0,
       "cogs": 395069.896,
-      "gross_margin_amount": 615390.104,
-      "gross_margin_pct": 60.9
+      "gross_margin_amount": 280940.104,
+      "gross_margin_pct": 41.6
     },
     {
       "date": "2026-05-13",
@@ -14173,10 +14173,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 129000.0,
-      "total_fee": 0.0,
-      "net_revenue": 129000.0,
+      "total_fee": 107289.0,
+      "net_revenue": 21711.0,
       "cogs": 0.0,
-      "gross_margin_amount": 129000.0,
+      "gross_margin_amount": 21711.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -14197,11 +14197,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 4835292.0,
-      "total_fee": 0.0,
-      "net_revenue": 4835292.0,
+      "total_fee": 1039909.0,
+      "net_revenue": 3795383.0,
       "cogs": 1135937.809,
-      "gross_margin_amount": 3699354.191,
-      "gross_margin_pct": 76.5
+      "gross_margin_amount": 2659445.191,
+      "gross_margin_pct": 70.1
     },
     {
       "date": "2026-05-13",
@@ -14209,11 +14209,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 38,
       "gross_revenue": 11442164.0,
-      "total_fee": 0.0,
-      "net_revenue": 11442164.0,
+      "total_fee": 1624209.0,
+      "net_revenue": 9817955.0,
       "cogs": 2445545.17,
-      "gross_margin_amount": 8996618.83,
-      "gross_margin_pct": 78.6
+      "gross_margin_amount": 7372409.83,
+      "gross_margin_pct": 75.1
     },
     {
       "date": "2026-05-13",
@@ -14221,11 +14221,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 79900.0,
-      "total_fee": 0.0,
-      "net_revenue": 79900.0,
+      "total_fee": 43350.0,
+      "net_revenue": 36550.0,
       "cogs": 29000.0,
-      "gross_margin_amount": 50900.0,
-      "gross_margin_pct": 63.7
+      "gross_margin_amount": 7550.0,
+      "gross_margin_pct": 20.7
     },
     {
       "date": "2026-05-14",
@@ -14245,11 +14245,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
       "gross_revenue": 4964965.0,
-      "total_fee": 0.0,
-      "net_revenue": 4964965.0,
+      "total_fee": 930243.0,
+      "net_revenue": 4034722.0,
       "cogs": 1252413.475,
-      "gross_margin_amount": 3712551.525,
-      "gross_margin_pct": 74.8
+      "gross_margin_amount": 2782308.525,
+      "gross_margin_pct": 69.0
     },
     {
       "date": "2026-05-14",
@@ -14257,11 +14257,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 40,
       "gross_revenue": 8107845.0,
-      "total_fee": 0.0,
-      "net_revenue": 8107845.0,
+      "total_fee": 1901027.0,
+      "net_revenue": 6206818.0,
       "cogs": 1731385.564,
-      "gross_margin_amount": 6376459.436,
-      "gross_margin_pct": 78.6
+      "gross_margin_amount": 4475432.436,
+      "gross_margin_pct": 72.1
     },
     {
       "date": "2026-05-14",
@@ -14269,11 +14269,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 271960.0,
-      "total_fee": 0.0,
-      "net_revenue": 271960.0,
+      "total_fee": 43350.0,
+      "net_revenue": 228610.0,
       "cogs": 67404.18400000001,
-      "gross_margin_amount": 204555.816,
-      "gross_margin_pct": 75.2
+      "gross_margin_amount": 161205.816,
+      "gross_margin_pct": 70.5
     },
     {
       "date": "2026-05-14",
@@ -14305,11 +14305,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
       "gross_revenue": 14087432.0,
-      "total_fee": 0.0,
-      "net_revenue": 14087432.0,
+      "total_fee": 3098874.0,
+      "net_revenue": 10988558.0,
       "cogs": 2219608.546,
-      "gross_margin_amount": 11867823.454,
-      "gross_margin_pct": 84.2
+      "gross_margin_amount": 8768949.454,
+      "gross_margin_pct": 79.8
     },
     {
       "date": "2026-05-15",
@@ -14317,11 +14317,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
       "gross_revenue": 9908965.0,
-      "total_fee": 0.0,
-      "net_revenue": 9908965.0,
+      "total_fee": 2604136.0,
+      "net_revenue": 7304829.0,
       "cogs": 2108238.329,
-      "gross_margin_amount": 7800726.671,
-      "gross_margin_pct": 78.7
+      "gross_margin_amount": 5196590.671,
+      "gross_margin_pct": 71.1
     },
     {
       "date": "2026-05-15",
@@ -14329,11 +14329,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 377400.0,
-      "total_fee": 0.0,
-      "net_revenue": 377400.0,
+      "total_fee": 193584.0,
+      "net_revenue": 183816.0,
       "cogs": 150000.0,
-      "gross_margin_amount": 227400.0,
-      "gross_margin_pct": 60.3
+      "gross_margin_amount": 33816.0,
+      "gross_margin_pct": 18.4
     },
     {
       "date": "2026-05-15",
@@ -14377,11 +14377,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 5412763.0,
-      "total_fee": 0.0,
-      "net_revenue": 5412763.0,
+      "total_fee": 989458.0,
+      "net_revenue": 4423305.0,
       "cogs": 905961.768,
-      "gross_margin_amount": 4506801.232,
-      "gross_margin_pct": 83.3
+      "gross_margin_amount": 3517343.232,
+      "gross_margin_pct": 79.5
     },
     {
       "date": "2026-05-16",
@@ -14389,11 +14389,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 56,
       "gross_revenue": 25014469.0,
-      "total_fee": 0.0,
-      "net_revenue": 25014469.0,
+      "total_fee": 3985701.25,
+      "net_revenue": 21028767.75,
       "cogs": 6634523.901,
-      "gross_margin_amount": 18379945.099,
-      "gross_margin_pct": 73.5
+      "gross_margin_amount": 14394243.849,
+      "gross_margin_pct": 68.5
     },
     {
       "date": "2026-05-16",
@@ -14401,11 +14401,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 6,
       "gross_revenue": 860100.0,
-      "total_fee": 0.0,
-      "net_revenue": 860100.0,
+      "total_fee": 42500.0,
+      "net_revenue": 817600.0,
       "cogs": 253311.00400000002,
-      "gross_margin_amount": 606788.996,
-      "gross_margin_pct": 70.5
+      "gross_margin_amount": 564288.996,
+      "gross_margin_pct": 69.0
     },
     {
       "date": "2026-05-17",
@@ -14437,11 +14437,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 15,
       "gross_revenue": 4121999.0,
-      "total_fee": 0.0,
-      "net_revenue": 4121999.0,
+      "total_fee": 847862.0,
+      "net_revenue": 3274137.0,
       "cogs": 725323.169,
-      "gross_margin_amount": 3396675.8310000002,
-      "gross_margin_pct": 82.4
+      "gross_margin_amount": 2548813.8310000002,
+      "gross_margin_pct": 77.8
     },
     {
       "date": "2026-05-17",
@@ -14449,11 +14449,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 45,
       "gross_revenue": 9931955.0,
-      "total_fee": 0.0,
-      "net_revenue": 9931955.0,
+      "total_fee": 2593565.0,
+      "net_revenue": 7338390.0,
       "cogs": 2210259.733,
-      "gross_margin_amount": 7721695.267,
-      "gross_margin_pct": 77.7
+      "gross_margin_amount": 5128130.267,
+      "gross_margin_pct": 69.9
     },
     {
       "date": "2026-05-18",
@@ -14485,11 +14485,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 21,
       "gross_revenue": 4174918.0,
-      "total_fee": 0.0,
-      "net_revenue": 4174918.0,
+      "total_fee": 935292.0,
+      "net_revenue": 3239626.0,
       "cogs": 431844.878,
-      "gross_margin_amount": 3743073.122,
-      "gross_margin_pct": 89.7
+      "gross_margin_amount": 2807781.122,
+      "gross_margin_pct": 86.7
     },
     {
       "date": "2026-05-18",
@@ -14497,11 +14497,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 65,
       "gross_revenue": 11570301.0,
-      "total_fee": 0.0,
-      "net_revenue": 11570301.0,
+      "total_fee": 3073204.0,
+      "net_revenue": 8497097.0,
       "cogs": 2413848.217,
-      "gross_margin_amount": 9156452.783,
-      "gross_margin_pct": 79.1
+      "gross_margin_amount": 6083248.783,
+      "gross_margin_pct": 71.6
     },
     {
       "date": "2026-05-18",
@@ -14509,11 +14509,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 511660.0,
-      "total_fee": 0.0,
-      "net_revenue": 511660.0,
+      "total_fee": 143091.0,
+      "net_revenue": 368569.0,
       "cogs": 147912.32,
-      "gross_margin_amount": 363747.68,
-      "gross_margin_pct": 71.1
+      "gross_margin_amount": 220656.68,
+      "gross_margin_pct": 59.9
     },
     {
       "date": "2026-05-19",
@@ -14545,11 +14545,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 32,
       "gross_revenue": 6968792.0,
-      "total_fee": 0.0,
-      "net_revenue": 6968792.0,
+      "total_fee": 1481378.0,
+      "net_revenue": 5487414.0,
       "cogs": 1086509.355,
-      "gross_margin_amount": 5882282.645,
-      "gross_margin_pct": 84.4
+      "gross_margin_amount": 4400904.645,
+      "gross_margin_pct": 80.2
     },
     {
       "date": "2026-05-19",
@@ -14557,11 +14557,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 47,
       "gross_revenue": 8307340.0,
-      "total_fee": 0.0,
-      "net_revenue": 8307340.0,
+      "total_fee": 2266968.0,
+      "net_revenue": 6040372.0,
       "cogs": 1170620.57,
-      "gross_margin_amount": 7136719.43,
-      "gross_margin_pct": 85.9
+      "gross_margin_amount": 4869751.43,
+      "gross_margin_pct": 80.6
     },
     {
       "date": "2026-05-19",
@@ -14569,11 +14569,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 8,
       "gross_revenue": 0.0,
-      "total_fee": 0.0,
-      "net_revenue": 0.0,
+      "total_fee": 75200.0,
+      "net_revenue": -75200.0,
       "cogs": 213000.0,
-      "gross_margin_amount": -213000.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": -288200.0,
+      "gross_margin_pct": 383.2
     },
     {
       "date": "2026-05-19",
@@ -14605,11 +14605,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 46,
       "gross_revenue": 9326815.0,
-      "total_fee": 0.0,
-      "net_revenue": 9326815.0,
+      "total_fee": 1587011.0,
+      "net_revenue": 7739804.0,
       "cogs": 2025381.634,
-      "gross_margin_amount": 7301433.366,
-      "gross_margin_pct": 78.3
+      "gross_margin_amount": 5714422.366,
+      "gross_margin_pct": 73.8
     },
     {
       "date": "2026-05-20",
@@ -14617,11 +14617,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 51,
       "gross_revenue": 10307900.0,
-      "total_fee": 0.0,
-      "net_revenue": 10307900.0,
+      "total_fee": 2979607.0,
+      "net_revenue": 7328293.0,
       "cogs": 1931200.725,
-      "gross_margin_amount": 8376699.275,
-      "gross_margin_pct": 81.3
+      "gross_margin_amount": 5397092.275,
+      "gross_margin_pct": 73.6
     },
     {
       "date": "2026-05-20",
@@ -14629,11 +14629,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 5,
       "gross_revenue": 391600.0,
-      "total_fee": 0.0,
-      "net_revenue": 391600.0,
+      "total_fee": 83512.0,
+      "net_revenue": 308088.0,
       "cogs": 127000.0,
-      "gross_margin_amount": 264600.0,
-      "gross_margin_pct": 67.6
+      "gross_margin_amount": 181088.0,
+      "gross_margin_pct": 58.8
     },
     {
       "date": "2026-05-20",
@@ -14665,11 +14665,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
       "gross_revenue": 8942370.0,
-      "total_fee": 0.0,
-      "net_revenue": 8942370.0,
+      "total_fee": 1772563.0,
+      "net_revenue": 7169807.0,
       "cogs": 2113161.621,
-      "gross_margin_amount": 6829208.379000001,
-      "gross_margin_pct": 76.4
+      "gross_margin_amount": 5056645.379000001,
+      "gross_margin_pct": 70.5
     },
     {
       "date": "2026-05-21",
@@ -14677,11 +14677,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 55,
       "gross_revenue": 9937300.0,
-      "total_fee": 0.0,
-      "net_revenue": 9937300.0,
+      "total_fee": 2586395.0,
+      "net_revenue": 7350905.0,
       "cogs": 1896063.582,
-      "gross_margin_amount": 8041236.418,
-      "gross_margin_pct": 80.9
+      "gross_margin_amount": 5454841.418,
+      "gross_margin_pct": 74.2
     },
     {
       "date": "2026-05-21",
@@ -14689,11 +14689,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 7,
       "gross_revenue": 718250.0,
-      "total_fee": 0.0,
-      "net_revenue": 718250.0,
+      "total_fee": 139648.0,
+      "net_revenue": 578602.0,
       "cogs": 137000.0,
-      "gross_margin_amount": 581250.0,
-      "gross_margin_pct": 80.9
+      "gross_margin_amount": 441602.0,
+      "gross_margin_pct": 76.3
     },
     {
       "date": "2026-05-22",
@@ -14737,11 +14737,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 37,
       "gross_revenue": 6700451.0,
-      "total_fee": 0.0,
-      "net_revenue": 6700451.0,
+      "total_fee": 1204713.0,
+      "net_revenue": 5495738.0,
       "cogs": 1291933.437,
-      "gross_margin_amount": 5408517.563,
-      "gross_margin_pct": 80.7
+      "gross_margin_amount": 4203804.563,
+      "gross_margin_pct": 76.5
     },
     {
       "date": "2026-05-22",
@@ -14749,11 +14749,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 50,
       "gross_revenue": 9759200.0,
-      "total_fee": 0.0,
-      "net_revenue": 9759200.0,
+      "total_fee": 2581661.0,
+      "net_revenue": 7177539.0,
       "cogs": 1772416.148,
-      "gross_margin_amount": 7986783.852,
-      "gross_margin_pct": 81.8
+      "gross_margin_amount": 5405122.852,
+      "gross_margin_pct": 75.3
     },
     {
       "date": "2026-05-22",
@@ -14761,11 +14761,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 369200.0,
-      "total_fee": 0.0,
-      "net_revenue": 369200.0,
+      "total_fee": 134156.0,
+      "net_revenue": 235044.0,
       "cogs": 108000.0,
-      "gross_margin_amount": 261200.0,
-      "gross_margin_pct": 70.7
+      "gross_margin_amount": 127044.0,
+      "gross_margin_pct": 54.1
     },
     {
       "date": "2026-05-23",
@@ -14785,11 +14785,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 19,
       "gross_revenue": 3437335.0,
-      "total_fee": 0.0,
-      "net_revenue": 3437335.0,
+      "total_fee": 677603.0,
+      "net_revenue": 2759732.0,
       "cogs": 463143.778,
-      "gross_margin_amount": 2974191.222,
-      "gross_margin_pct": 86.5
+      "gross_margin_amount": 2296588.222,
+      "gross_margin_pct": 83.2
     },
     {
       "date": "2026-05-23",
@@ -14797,11 +14797,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 35,
       "gross_revenue": 7298680.0,
-      "total_fee": 0.0,
-      "net_revenue": 7298680.0,
+      "total_fee": 2054108.0,
+      "net_revenue": 5244572.0,
       "cogs": 920865.7170000001,
-      "gross_margin_amount": 6377814.283,
-      "gross_margin_pct": 87.4
+      "gross_margin_amount": 4323706.283,
+      "gross_margin_pct": 82.4
     },
     {
       "date": "2026-05-23",
@@ -14809,11 +14809,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 5,
       "gross_revenue": 151300.0,
-      "total_fee": 0.0,
-      "net_revenue": 151300.0,
+      "total_fee": 123833.0,
+      "net_revenue": 27467.0,
       "cogs": 134000.0,
-      "gross_margin_amount": 17300.0,
-      "gross_margin_pct": 11.4
+      "gross_margin_amount": -106533.0,
+      "gross_margin_pct": -387.9
     },
     {
       "date": "2026-05-24",
@@ -14833,11 +14833,11 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 2,
       "gross_revenue": 460000.0,
-      "total_fee": 0.0,
-      "net_revenue": 460000.0,
+      "total_fee": 372941.0,
+      "net_revenue": 87059.0,
       "cogs": 78731.48000000001,
-      "gross_margin_amount": 381268.52,
-      "gross_margin_pct": 82.9
+      "gross_margin_amount": 8327.51999999999,
+      "gross_margin_pct": 9.6
     },
     {
       "date": "2026-05-24",
@@ -14845,11 +14845,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 23,
       "gross_revenue": 3956659.0,
-      "total_fee": 0.0,
-      "net_revenue": 3956659.0,
+      "total_fee": 865621.0,
+      "net_revenue": 3091038.0,
       "cogs": 626816.553,
-      "gross_margin_amount": 3329842.447,
-      "gross_margin_pct": 84.2
+      "gross_margin_amount": 2464221.447,
+      "gross_margin_pct": 79.7
     },
     {
       "date": "2026-05-24",
@@ -14857,11 +14857,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 26,
       "gross_revenue": 4930290.0,
-      "total_fee": 0.0,
-      "net_revenue": 4930290.0,
+      "total_fee": 1281148.0,
+      "net_revenue": 3649142.0,
       "cogs": 869634.6290000001,
-      "gross_margin_amount": 4060655.371,
-      "gross_margin_pct": 82.4
+      "gross_margin_amount": 2779507.371,
+      "gross_margin_pct": 76.2
     },
     {
       "date": "2026-05-25",
@@ -14893,11 +14893,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 39,
       "gross_revenue": 8195769.0,
-      "total_fee": 0.0,
-      "net_revenue": 8195769.0,
+      "total_fee": 1800971.0,
+      "net_revenue": 6394798.0,
       "cogs": 1639516.92,
-      "gross_margin_amount": 6556252.08,
-      "gross_margin_pct": 80.0
+      "gross_margin_amount": 4755281.08,
+      "gross_margin_pct": 74.4
     },
     {
       "date": "2026-05-25",
@@ -14905,11 +14905,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 41,
       "gross_revenue": 10085710.0,
-      "total_fee": 0.0,
-      "net_revenue": 10085710.0,
+      "total_fee": 2710167.5,
+      "net_revenue": 7375542.5,
       "cogs": 1626895.882,
-      "gross_margin_amount": 8458814.118,
-      "gross_margin_pct": 83.9
+      "gross_margin_amount": 5748646.618,
+      "gross_margin_pct": 77.9
     },
     {
       "date": "2026-05-26",
@@ -14941,11 +14941,11 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 295000.0,
-      "total_fee": 0.0,
-      "net_revenue": 295000.0,
+      "total_fee": 243951.0,
+      "net_revenue": 51049.0,
       "cogs": 69682.0,
-      "gross_margin_amount": 225318.0,
-      "gross_margin_pct": 76.4
+      "gross_margin_amount": -18633.0,
+      "gross_margin_pct": -36.5
     },
     {
       "date": "2026-05-26",
@@ -14953,11 +14953,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 37,
       "gross_revenue": 6267104.0,
-      "total_fee": 0.0,
-      "net_revenue": 6267104.0,
+      "total_fee": 1622734.0,
+      "net_revenue": 4644370.0,
       "cogs": 1516367.07,
-      "gross_margin_amount": 4750736.93,
-      "gross_margin_pct": 75.8
+      "gross_margin_amount": 3128002.9299999997,
+      "gross_margin_pct": 67.4
     },
     {
       "date": "2026-05-26",
@@ -14965,11 +14965,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 35,
       "gross_revenue": 6295000.0,
-      "total_fee": 0.0,
-      "net_revenue": 6295000.0,
+      "total_fee": 1810169.0,
+      "net_revenue": 4484831.0,
       "cogs": 1409806.064,
-      "gross_margin_amount": 4885193.936,
-      "gross_margin_pct": 77.6
+      "gross_margin_amount": 3075024.9359999998,
+      "gross_margin_pct": 68.6
     },
     {
       "date": "2026-05-26",
@@ -14977,11 +14977,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 131110.0,
-      "total_fee": 0.0,
-      "net_revenue": 131110.0,
+      "total_fee": 35348.0,
+      "net_revenue": 95762.0,
       "cogs": 29020.715,
-      "gross_margin_amount": 102089.285,
-      "gross_margin_pct": 77.9
+      "gross_margin_amount": 66741.285,
+      "gross_margin_pct": 69.7
     },
     {
       "date": "2026-05-27",
@@ -15013,11 +15013,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 36,
       "gross_revenue": 8078191.0,
-      "total_fee": 0.0,
-      "net_revenue": 8078191.0,
+      "total_fee": 1728536.0,
+      "net_revenue": 6349655.0,
       "cogs": 1909834.737,
-      "gross_margin_amount": 6168356.263,
-      "gross_margin_pct": 76.4
+      "gross_margin_amount": 4439820.263,
+      "gross_margin_pct": 69.9
     },
     {
       "date": "2026-05-27",
@@ -15025,11 +15025,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
       "gross_revenue": 10075860.0,
-      "total_fee": 0.0,
-      "net_revenue": 10075860.0,
+      "total_fee": 2761937.0,
+      "net_revenue": 7313923.0,
       "cogs": 2103186.48,
-      "gross_margin_amount": 7972673.52,
-      "gross_margin_pct": 79.1
+      "gross_margin_amount": 5210736.52,
+      "gross_margin_pct": 71.2
     },
     {
       "date": "2026-05-27",
@@ -15037,11 +15037,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 370250.0,
-      "total_fee": 0.0,
-      "net_revenue": 370250.0,
+      "total_fee": 125390.0,
+      "net_revenue": 244860.0,
       "cogs": 83000.0,
-      "gross_margin_amount": 287250.0,
-      "gross_margin_pct": 77.6
+      "gross_margin_amount": 161860.0,
+      "gross_margin_pct": 66.1
     },
     {
       "date": "2026-05-28",
@@ -15073,11 +15073,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 19,
       "gross_revenue": 5228322.0,
-      "total_fee": 0.0,
-      "net_revenue": 5228322.0,
+      "total_fee": 1170240.0,
+      "net_revenue": 4058082.0,
       "cogs": 639681.184,
-      "gross_margin_amount": 4588640.816,
-      "gross_margin_pct": 87.8
+      "gross_margin_amount": 3418400.816,
+      "gross_margin_pct": 84.2
     },
     {
       "date": "2026-05-28",
@@ -15085,11 +15085,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 42,
       "gross_revenue": 9191550.0,
-      "total_fee": 0.0,
-      "net_revenue": 9191550.0,
+      "total_fee": 2286784.0,
+      "net_revenue": 6904766.0,
       "cogs": 1360343.559,
-      "gross_margin_amount": 7831206.441,
-      "gross_margin_pct": 85.2
+      "gross_margin_amount": 5544422.441,
+      "gross_margin_pct": 80.3
     },
     {
       "date": "2026-05-28",
@@ -15097,11 +15097,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 234800.0,
-      "total_fee": 0.0,
-      "net_revenue": 234800.0,
+      "total_fee": 110212.0,
+      "net_revenue": 124588.0,
       "cogs": 129000.0,
-      "gross_margin_amount": 105800.0,
-      "gross_margin_pct": 45.1
+      "gross_margin_amount": -4412.0,
+      "gross_margin_pct": -3.5
     },
     {
       "date": "2026-05-29",
@@ -15121,11 +15121,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
       "gross_revenue": 8497181.0,
-      "total_fee": 0.0,
-      "net_revenue": 8497181.0,
+      "total_fee": 1923141.84,
+      "net_revenue": 6574039.16,
       "cogs": 1697673.3029999998,
-      "gross_margin_amount": 6799507.697000001,
-      "gross_margin_pct": 80.0
+      "gross_margin_amount": 4876365.857000001,
+      "gross_margin_pct": 74.2
     },
     {
       "date": "2026-05-29",
@@ -15133,11 +15133,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 55,
       "gross_revenue": 15680140.0,
-      "total_fee": 0.0,
-      "net_revenue": 15680140.0,
+      "total_fee": 4115980.0,
+      "net_revenue": 11564160.0,
       "cogs": 2113840.341,
-      "gross_margin_amount": 13566299.659,
-      "gross_margin_pct": 86.5
+      "gross_margin_amount": 9450319.659,
+      "gross_margin_pct": 81.7
     },
     {
       "date": "2026-05-30",
@@ -15157,11 +15157,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 38,
       "gross_revenue": 9095469.0,
-      "total_fee": 0.0,
-      "net_revenue": 9095469.0,
+      "total_fee": 1991694.0,
+      "net_revenue": 7103775.0,
       "cogs": 2042638.257,
-      "gross_margin_amount": 7052830.743,
-      "gross_margin_pct": 77.5
+      "gross_margin_amount": 5061136.743,
+      "gross_margin_pct": 71.2
     },
     {
       "date": "2026-05-30",
@@ -15169,11 +15169,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 46,
       "gross_revenue": 10894740.0,
-      "total_fee": 0.0,
-      "net_revenue": 10894740.0,
+      "total_fee": 3210115.0,
+      "net_revenue": 7684625.0,
       "cogs": 1494548.378,
-      "gross_margin_amount": 9400191.622,
-      "gross_margin_pct": 86.3
+      "gross_margin_amount": 6190076.6219999995,
+      "gross_margin_pct": 80.6
     },
     {
       "date": "2026-05-30",
@@ -15181,11 +15181,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 151300.0,
-      "total_fee": 0.0,
-      "net_revenue": 151300.0,
+      "total_fee": 18736.0,
+      "net_revenue": 132564.0,
       "cogs": 58000.0,
-      "gross_margin_amount": 93300.0,
-      "gross_margin_pct": 61.7
+      "gross_margin_amount": 74564.0,
+      "gross_margin_pct": 56.2
     },
     {
       "date": "2026-05-31",
@@ -15205,10 +15205,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 44500.0,
-      "total_fee": 0.0,
-      "net_revenue": 44500.0,
+      "total_fee": 32676.0,
+      "net_revenue": 11824.0,
       "cogs": 0.0,
-      "gross_margin_amount": 44500.0,
+      "gross_margin_amount": 11824.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15217,11 +15217,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 13,
       "gross_revenue": 3057064.0,
-      "total_fee": 0.0,
-      "net_revenue": 3057064.0,
+      "total_fee": 742205.0,
+      "net_revenue": 2314859.0,
       "cogs": 287250.283,
-      "gross_margin_amount": 2769813.717,
-      "gross_margin_pct": 90.6
+      "gross_margin_amount": 2027608.717,
+      "gross_margin_pct": 87.6
     },
     {
       "date": "2026-05-31",
@@ -15229,11 +15229,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 26,
       "gross_revenue": 6802160.0,
-      "total_fee": 0.0,
-      "net_revenue": 6802160.0,
+      "total_fee": 2074948.0,
+      "net_revenue": 4727212.0,
       "cogs": 734569.001,
-      "gross_margin_amount": 6067590.999,
-      "gross_margin_pct": 89.2
+      "gross_margin_amount": 3992642.999,
+      "gross_margin_pct": 84.5
     },
     {
       "date": "2026-05-31",
@@ -15241,11 +15241,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 245650.0,
-      "total_fee": 0.0,
-      "net_revenue": 245650.0,
+      "total_fee": 55660.0,
+      "net_revenue": 189990.0,
       "cogs": 29000.0,
-      "gross_margin_amount": 216650.0,
-      "gross_margin_pct": 88.2
+      "gross_margin_amount": 160990.0,
+      "gross_margin_pct": 84.7
     },
     {
       "date": "2026-05-31",
@@ -15277,11 +15277,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 29,
       "gross_revenue": 6285372.0,
-      "total_fee": 0.0,
-      "net_revenue": 6285372.0,
+      "total_fee": 1410423.46,
+      "net_revenue": 4874948.54,
       "cogs": 867693.094,
-      "gross_margin_amount": 5417678.9059999995,
-      "gross_margin_pct": 86.2
+      "gross_margin_amount": 4007255.446,
+      "gross_margin_pct": 82.2
     },
     {
       "date": "2026-06-01",
@@ -15289,11 +15289,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 31,
       "gross_revenue": 6412350.0,
-      "total_fee": 0.0,
-      "net_revenue": 6412350.0,
+      "total_fee": 2011443.4,
+      "net_revenue": 4400906.6,
       "cogs": 975273.355,
-      "gross_margin_amount": 5437076.645,
-      "gross_margin_pct": 84.8
+      "gross_margin_amount": 3425633.2449999996,
+      "gross_margin_pct": 77.8
     },
     {
       "date": "2026-06-01",
@@ -15301,10 +15301,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 17750.0,
+      "net_revenue": 57900.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 57900.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15337,11 +15337,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
       "gross_revenue": 7145864.0,
-      "total_fee": 0.0,
-      "net_revenue": 7145864.0,
+      "total_fee": 1692039.92,
+      "net_revenue": 5453824.08,
       "cogs": 1746005.445,
-      "gross_margin_amount": 5399858.555,
-      "gross_margin_pct": 75.6
+      "gross_margin_amount": 3707818.635,
+      "gross_margin_pct": 68.0
     },
     {
       "date": "2026-06-02",
@@ -15349,11 +15349,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
       "gross_revenue": 7935226.0,
-      "total_fee": 0.0,
-      "net_revenue": 7935226.0,
+      "total_fee": 2388804.0,
+      "net_revenue": 5546422.0,
       "cogs": 1117931.781,
-      "gross_margin_amount": 6817294.2190000005,
-      "gross_margin_pct": 85.9
+      "gross_margin_amount": 4428490.2190000005,
+      "gross_margin_pct": 79.8
     },
     {
       "date": "2026-06-02",
@@ -15361,10 +15361,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 29798.0,
+      "net_revenue": 45852.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 45852.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15409,11 +15409,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 5974582.0,
-      "total_fee": 0.0,
-      "net_revenue": 5974582.0,
+      "total_fee": 1420052.0,
+      "net_revenue": 4554530.0,
       "cogs": 657221.85,
-      "gross_margin_amount": 5317360.15,
-      "gross_margin_pct": 89.0
+      "gross_margin_amount": 3897308.15,
+      "gross_margin_pct": 85.6
     },
     {
       "date": "2026-06-03",
@@ -15421,11 +15421,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 47,
       "gross_revenue": 10118050.0,
-      "total_fee": 0.0,
-      "net_revenue": 10118050.0,
+      "total_fee": 3125581.5,
+      "net_revenue": 6992468.5,
       "cogs": 1929953.863,
-      "gross_margin_amount": 8188096.137,
-      "gross_margin_pct": 80.9
+      "gross_margin_amount": 5062514.637,
+      "gross_margin_pct": 72.4
     },
     {
       "date": "2026-06-03",
@@ -15433,10 +15433,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 40516.0,
+      "net_revenue": 35134.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 35134.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15457,10 +15457,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 57000.0,
-      "total_fee": 0.0,
-      "net_revenue": 57000.0,
+      "total_fee": 41172.0,
+      "net_revenue": 15828.0,
       "cogs": 0.0,
-      "gross_margin_amount": 57000.0,
+      "gross_margin_amount": 15828.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15469,11 +15469,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 13,
       "gross_revenue": 2980178.0,
-      "total_fee": 0.0,
-      "net_revenue": 2980178.0,
+      "total_fee": 714128.0,
+      "net_revenue": 2266050.0,
       "cogs": 442489.748,
-      "gross_margin_amount": 2537688.252,
-      "gross_margin_pct": 85.2
+      "gross_margin_amount": 1823560.2519999999,
+      "gross_margin_pct": 80.5
     },
     {
       "date": "2026-06-04",
@@ -15481,11 +15481,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 27,
       "gross_revenue": 6690670.0,
-      "total_fee": 0.0,
-      "net_revenue": 6690670.0,
+      "total_fee": 1960455.6,
+      "net_revenue": 4730214.4,
       "cogs": 1020736.8,
-      "gross_margin_amount": 5669933.2,
-      "gross_margin_pct": 84.7
+      "gross_margin_amount": 3709477.6000000006,
+      "gross_margin_pct": 78.4
     },
     {
       "date": "2026-06-04",
@@ -15553,11 +15553,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 42,
       "gross_revenue": 9958062.0,
-      "total_fee": 0.0,
-      "net_revenue": 9958062.0,
+      "total_fee": 1887785.0,
+      "net_revenue": 8070277.0,
       "cogs": 1033136.787,
-      "gross_margin_amount": 8924925.213,
-      "gross_margin_pct": 89.6
+      "gross_margin_amount": 7037140.2129999995,
+      "gross_margin_pct": 87.2
     },
     {
       "date": "2026-06-05",
@@ -15565,11 +15565,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 49,
       "gross_revenue": 11496040.0,
-      "total_fee": 0.0,
-      "net_revenue": 11496040.0,
+      "total_fee": 3509041.25,
+      "net_revenue": 7986998.75,
       "cogs": 1635304.857,
-      "gross_margin_amount": 9860735.143,
-      "gross_margin_pct": 85.8
+      "gross_margin_amount": 6351693.893,
+      "gross_margin_pct": 79.5
     },
     {
       "date": "2026-06-05",
@@ -15577,10 +15577,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 17750.0,
+      "net_revenue": 57900.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 57900.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15613,10 +15613,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 55000.0,
-      "total_fee": 0.0,
-      "net_revenue": 55000.0,
+      "total_fee": 39625.0,
+      "net_revenue": 15375.0,
       "cogs": 0.0,
-      "gross_margin_amount": 55000.0,
+      "gross_margin_amount": 15375.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15625,11 +15625,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 36,
       "gross_revenue": 7197424.0,
-      "total_fee": 0.0,
-      "net_revenue": 7197424.0,
+      "total_fee": 1812560.0,
+      "net_revenue": 5384864.0,
       "cogs": 1215134.19,
-      "gross_margin_amount": 5982289.8100000005,
-      "gross_margin_pct": 83.1
+      "gross_margin_amount": 4169729.81,
+      "gross_margin_pct": 77.4
     },
     {
       "date": "2026-06-06",
@@ -15637,11 +15637,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
       "gross_revenue": 9466840.0,
-      "total_fee": 0.0,
-      "net_revenue": 9466840.0,
+      "total_fee": 2490761.0,
+      "net_revenue": 6976079.0,
       "cogs": 2111224.951,
-      "gross_margin_amount": 7355615.049000001,
-      "gross_margin_pct": 77.7
+      "gross_margin_amount": 4864854.049000001,
+      "gross_margin_pct": 69.7
     },
     {
       "date": "2026-06-06",
@@ -15649,10 +15649,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 40446.0,
+      "net_revenue": 35204.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 35204.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15685,11 +15685,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 23,
       "gross_revenue": 5504175.0,
-      "total_fee": 0.0,
-      "net_revenue": 5504175.0,
+      "total_fee": 1058979.0,
+      "net_revenue": 4445196.0,
       "cogs": 1312659.886,
-      "gross_margin_amount": 4191515.114,
-      "gross_margin_pct": 76.2
+      "gross_margin_amount": 3132536.114,
+      "gross_margin_pct": 70.5
     },
     {
       "date": "2026-06-07",
@@ -15697,11 +15697,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 38,
       "gross_revenue": 6121360.0,
-      "total_fee": 0.0,
-      "net_revenue": 6121360.0,
+      "total_fee": 1956373.0,
+      "net_revenue": 4164987.0,
       "cogs": 1054646.81,
-      "gross_margin_amount": 5066713.1899999995,
-      "gross_margin_pct": 82.8
+      "gross_margin_amount": 3110340.19,
+      "gross_margin_pct": 74.7
     },
     {
       "date": "2026-06-07",
@@ -15709,10 +15709,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 21533.0,
+      "net_revenue": 54117.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 54117.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15733,11 +15733,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
       "gross_revenue": 7792330.0,
-      "total_fee": 0.0,
-      "net_revenue": 7792330.0,
+      "total_fee": 1842242.0,
+      "net_revenue": 5950088.0,
       "cogs": 1215400.817,
-      "gross_margin_amount": 6576929.183,
-      "gross_margin_pct": 84.4
+      "gross_margin_amount": 4734687.183,
+      "gross_margin_pct": 79.6
     },
     {
       "date": "2026-06-08",
@@ -15745,11 +15745,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 36,
       "gross_revenue": 8861400.0,
-      "total_fee": 0.0,
-      "net_revenue": 8861400.0,
+      "total_fee": 2692790.0,
+      "net_revenue": 6168610.0,
       "cogs": 1591502.42,
-      "gross_margin_amount": 7269897.58,
-      "gross_margin_pct": 82.0
+      "gross_margin_amount": 4577107.58,
+      "gross_margin_pct": 74.2
     },
     {
       "date": "2026-06-08",
@@ -15757,10 +15757,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 21533.0,
+      "net_revenue": 54117.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 54117.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15781,11 +15781,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 19,
       "gross_revenue": 5499721.0,
-      "total_fee": 0.0,
-      "net_revenue": 5499721.0,
+      "total_fee": 1186011.0,
+      "net_revenue": 4313710.0,
       "cogs": 671814.97,
-      "gross_margin_amount": 4827906.03,
-      "gross_margin_pct": 87.8
+      "gross_margin_amount": 3641895.0300000003,
+      "gross_margin_pct": 84.4
     },
     {
       "date": "2026-06-09",
@@ -15793,11 +15793,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 36,
       "gross_revenue": 8460880.0,
-      "total_fee": 0.0,
-      "net_revenue": 8460880.0,
+      "total_fee": 2675234.0,
+      "net_revenue": 5785646.0,
       "cogs": 1170701.688,
-      "gross_margin_amount": 7290178.312,
-      "gross_margin_pct": 86.2
+      "gross_margin_amount": 4614944.312,
+      "gross_margin_pct": 79.8
     },
     {
       "date": "2026-06-09",
@@ -15805,11 +15805,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 218650.0,
-      "total_fee": 0.0,
-      "net_revenue": 218650.0,
+      "total_fee": 48635.0,
+      "net_revenue": 170015.0,
       "cogs": 20201.715,
-      "gross_margin_amount": 198448.285,
-      "gross_margin_pct": 90.8
+      "gross_margin_amount": 149813.285,
+      "gross_margin_pct": 88.1
     },
     {
       "date": "2026-06-10",
@@ -15853,11 +15853,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 42,
       "gross_revenue": 10341088.0,
-      "total_fee": 0.0,
-      "net_revenue": 10341088.0,
+      "total_fee": 2526849.0,
+      "net_revenue": 7814239.0,
       "cogs": 1899680.708,
-      "gross_margin_amount": 8441407.292,
-      "gross_margin_pct": 81.6
+      "gross_margin_amount": 5914558.291999999,
+      "gross_margin_pct": 75.7
     },
     {
       "date": "2026-06-10",
@@ -15865,11 +15865,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 36,
       "gross_revenue": 9695320.0,
-      "total_fee": 0.0,
-      "net_revenue": 9695320.0,
+      "total_fee": 3198720.0,
+      "net_revenue": 6496600.0,
       "cogs": 2040377.016,
-      "gross_margin_amount": 7654942.984,
-      "gross_margin_pct": 79.0
+      "gross_margin_amount": 4456222.984,
+      "gross_margin_pct": 68.6
     },
     {
       "date": "2026-06-10",
@@ -15877,11 +15877,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 878900.0,
-      "total_fee": 0.0,
-      "net_revenue": 878900.0,
+      "total_fee": 241283.0,
+      "net_revenue": 637617.0,
       "cogs": 102420.0,
-      "gross_margin_amount": 776480.0,
-      "gross_margin_pct": 88.3
+      "gross_margin_amount": 535197.0,
+      "gross_margin_pct": 83.9
     },
     {
       "date": "2026-06-10",
@@ -15925,11 +15925,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
       "gross_revenue": 7659013.0,
-      "total_fee": 0.0,
-      "net_revenue": 7659013.0,
+      "total_fee": 1850295.0,
+      "net_revenue": 5808718.0,
       "cogs": 806211.971,
-      "gross_margin_amount": 6852801.029,
-      "gross_margin_pct": 89.5
+      "gross_margin_amount": 5002506.029,
+      "gross_margin_pct": 86.1
     },
     {
       "date": "2026-06-11",
@@ -15937,11 +15937,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 52,
       "gross_revenue": 10599160.0,
-      "total_fee": 0.0,
-      "net_revenue": 10599160.0,
+      "total_fee": 3006048.0,
+      "net_revenue": 7593112.0,
       "cogs": 2354331.958,
-      "gross_margin_amount": 8244828.041999999,
-      "gross_margin_pct": 77.8
+      "gross_margin_amount": 5238780.041999999,
+      "gross_margin_pct": 69.0
     },
     {
       "date": "2026-06-12",
@@ -15961,10 +15961,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 227000.0,
-      "total_fee": 0.0,
-      "net_revenue": 227000.0,
+      "total_fee": 179320.0,
+      "net_revenue": 47680.0,
       "cogs": 0.0,
-      "gross_margin_amount": 227000.0,
+      "gross_margin_amount": 47680.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -15973,11 +15973,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 25,
       "gross_revenue": 7135360.0,
-      "total_fee": 0.0,
-      "net_revenue": 7135360.0,
+      "total_fee": 1619730.01,
+      "net_revenue": 5515629.99,
       "cogs": 573243.898,
-      "gross_margin_amount": 6562116.102,
-      "gross_margin_pct": 92.0
+      "gross_margin_amount": 4942386.092,
+      "gross_margin_pct": 89.6
     },
     {
       "date": "2026-06-12",
@@ -15985,11 +15985,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
       "gross_revenue": 12025440.0,
-      "total_fee": 0.0,
-      "net_revenue": 12025440.0,
+      "total_fee": 3852744.0,
+      "net_revenue": 8172696.0,
       "cogs": 1189037.886,
-      "gross_margin_amount": 10836402.114,
-      "gross_margin_pct": 90.1
+      "gross_margin_amount": 6983658.114,
+      "gross_margin_pct": 85.5
     },
     {
       "date": "2026-06-13",
@@ -16009,10 +16009,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 55000.0,
-      "total_fee": 0.0,
-      "net_revenue": 55000.0,
+      "total_fee": 38587.0,
+      "net_revenue": 16413.0,
       "cogs": 0.0,
-      "gross_margin_amount": 55000.0,
+      "gross_margin_amount": 16413.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16021,11 +16021,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 20,
       "gross_revenue": 4706929.0,
-      "total_fee": 0.0,
-      "net_revenue": 4706929.0,
+      "total_fee": 1076105.0,
+      "net_revenue": 3630824.0,
       "cogs": 575605.904,
-      "gross_margin_amount": 4131323.096,
-      "gross_margin_pct": 87.8
+      "gross_margin_amount": 3055218.096,
+      "gross_margin_pct": 84.1
     },
     {
       "date": "2026-06-13",
@@ -16033,11 +16033,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 33,
       "gross_revenue": 6796520.0,
-      "total_fee": 0.0,
-      "net_revenue": 6796520.0,
+      "total_fee": 2024675.0,
+      "net_revenue": 4771845.0,
       "cogs": 889830.292,
-      "gross_margin_amount": 5906689.708,
-      "gross_margin_pct": 86.9
+      "gross_margin_amount": 3882014.708,
+      "gross_margin_pct": 81.4
     },
     {
       "date": "2026-06-14",
@@ -16081,11 +16081,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
       "gross_revenue": 7351226.0,
-      "total_fee": 0.0,
-      "net_revenue": 7351226.0,
+      "total_fee": 1373870.0,
+      "net_revenue": 5977356.0,
       "cogs": 1381511.509,
-      "gross_margin_amount": 5969714.491,
-      "gross_margin_pct": 81.2
+      "gross_margin_amount": 4595844.491,
+      "gross_margin_pct": 76.9
     },
     {
       "date": "2026-06-14",
@@ -16093,11 +16093,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 55,
       "gross_revenue": 13933470.0,
-      "total_fee": 0.0,
-      "net_revenue": 13933470.0,
+      "total_fee": 3789057.9,
+      "net_revenue": 10144412.1,
       "cogs": 2084194.339,
-      "gross_margin_amount": 11849275.661,
-      "gross_margin_pct": 85.0
+      "gross_margin_amount": 8060217.761,
+      "gross_margin_pct": 79.5
     },
     {
       "date": "2026-06-14",
@@ -16105,10 +16105,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 40446.0,
+      "net_revenue": 35204.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 35204.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16141,10 +16141,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 325000.0,
-      "total_fee": 0.0,
-      "net_revenue": 325000.0,
+      "total_fee": 248872.0,
+      "net_revenue": 76128.0,
       "cogs": 0.0,
-      "gross_margin_amount": 325000.0,
+      "gross_margin_amount": 76128.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16153,11 +16153,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
       "gross_revenue": 8254319.0,
-      "total_fee": 0.0,
-      "net_revenue": 8254319.0,
+      "total_fee": 1723487.93,
+      "net_revenue": 6530831.07,
       "cogs": 1930976.206,
-      "gross_margin_amount": 6323342.794,
-      "gross_margin_pct": 76.6
+      "gross_margin_amount": 4599854.864,
+      "gross_margin_pct": 70.4
     },
     {
       "date": "2026-06-15",
@@ -16165,11 +16165,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 47,
       "gross_revenue": 11897520.0,
-      "total_fee": 0.0,
-      "net_revenue": 11897520.0,
+      "total_fee": 3669782.0,
+      "net_revenue": 8227738.0,
       "cogs": 2545498.659,
-      "gross_margin_amount": 9352021.341,
-      "gross_margin_pct": 78.6
+      "gross_margin_amount": 5682239.341,
+      "gross_margin_pct": 69.1
     },
     {
       "date": "2026-06-15",
@@ -16177,10 +16177,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 156400.0,
-      "total_fee": 0.0,
-      "net_revenue": 156400.0,
+      "total_fee": 42704.0,
+      "net_revenue": 113696.0,
       "cogs": 0.0,
-      "gross_margin_amount": 156400.0,
+      "gross_margin_amount": 113696.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16201,11 +16201,11 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 2,
       "gross_revenue": 600250.0,
-      "total_fee": 0.0,
-      "net_revenue": 600250.0,
+      "total_fee": 458654.0,
+      "net_revenue": 141596.0,
       "cogs": 72519.997,
-      "gross_margin_amount": 527730.003,
-      "gross_margin_pct": 87.9
+      "gross_margin_amount": 69076.003,
+      "gross_margin_pct": 48.8
     },
     {
       "date": "2026-06-16",
@@ -16225,11 +16225,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 36,
       "gross_revenue": 6853767.0,
-      "total_fee": 0.0,
-      "net_revenue": 6853767.0,
+      "total_fee": 1377070.0,
+      "net_revenue": 5476697.0,
       "cogs": 1317609.831,
-      "gross_margin_amount": 5536157.169,
-      "gross_margin_pct": 80.8
+      "gross_margin_amount": 4159087.1689999998,
+      "gross_margin_pct": 75.9
     },
     {
       "date": "2026-06-16",
@@ -16237,11 +16237,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 57,
       "gross_revenue": 11741172.0,
-      "total_fee": 0.0,
-      "net_revenue": 11741172.0,
+      "total_fee": 3737156.0,
+      "net_revenue": 8004016.0,
       "cogs": 1805297.094,
-      "gross_margin_amount": 9935874.906,
-      "gross_margin_pct": 84.6
+      "gross_margin_amount": 6198718.9059999995,
+      "gross_margin_pct": 77.4
     },
     {
       "date": "2026-06-16",
@@ -16249,10 +16249,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
       "gross_revenue": 442250.0,
-      "total_fee": 0.0,
-      "net_revenue": 442250.0,
+      "total_fee": 96019.0,
+      "net_revenue": 346231.0,
       "cogs": 0.0,
-      "gross_margin_amount": 442250.0,
+      "gross_margin_amount": 346231.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16297,11 +16297,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 38,
       "gross_revenue": 8486838.0,
-      "total_fee": 0.0,
-      "net_revenue": 8486838.0,
+      "total_fee": 1971855.0,
+      "net_revenue": 6514983.0,
       "cogs": 917276.934,
-      "gross_margin_amount": 7569561.066,
-      "gross_margin_pct": 89.2
+      "gross_margin_amount": 5597706.066,
+      "gross_margin_pct": 85.9
     },
     {
       "date": "2026-06-17",
@@ -16309,11 +16309,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 58,
       "gross_revenue": 13489182.0,
-      "total_fee": 0.0,
-      "net_revenue": 13489182.0,
+      "total_fee": 3878423.0,
+      "net_revenue": 9610759.0,
       "cogs": 2658996.295,
-      "gross_margin_amount": 10830185.705,
-      "gross_margin_pct": 80.3
+      "gross_margin_amount": 6951762.705,
+      "gross_margin_pct": 72.3
     },
     {
       "date": "2026-06-17",
@@ -16321,11 +16321,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 5,
       "gross_revenue": 0.0,
-      "total_fee": 0.0,
-      "net_revenue": 0.0,
+      "total_fee": 168200.0,
+      "net_revenue": -168200.0,
       "cogs": 248093.0,
-      "gross_margin_amount": -248093.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": -416293.0,
+      "gross_margin_pct": 247.5
     },
     {
       "date": "2026-06-17",
@@ -16357,11 +16357,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
       "gross_revenue": 5913461.0,
-      "total_fee": 0.0,
-      "net_revenue": 5913461.0,
+      "total_fee": 1426006.0,
+      "net_revenue": 4487455.0,
       "cogs": 578723.698,
-      "gross_margin_amount": 5334737.302,
-      "gross_margin_pct": 90.2
+      "gross_margin_amount": 3908731.302,
+      "gross_margin_pct": 87.1
     },
     {
       "date": "2026-06-18",
@@ -16369,11 +16369,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 63,
       "gross_revenue": 14515842.0,
-      "total_fee": 0.0,
-      "net_revenue": 14515842.0,
+      "total_fee": 3979519.0,
+      "net_revenue": 10536323.0,
       "cogs": 2390584.438,
-      "gross_margin_amount": 12125257.561999999,
-      "gross_margin_pct": 83.5
+      "gross_margin_amount": 8145738.562,
+      "gross_margin_pct": 77.3
     },
     {
       "date": "2026-06-18",
@@ -16381,10 +16381,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 5,
       "gross_revenue": 378250.0,
-      "total_fee": 0.0,
-      "net_revenue": 378250.0,
+      "total_fee": 104642.0,
+      "net_revenue": 273608.0,
       "cogs": 0.0,
-      "gross_margin_amount": 378250.0,
+      "gross_margin_amount": 273608.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16429,11 +16429,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
       "gross_revenue": 7865859.0,
-      "total_fee": 0.0,
-      "net_revenue": 7865859.0,
+      "total_fee": 1563262.0,
+      "net_revenue": 6302597.0,
       "cogs": 971820.009,
-      "gross_margin_amount": 6894038.991,
-      "gross_margin_pct": 87.6
+      "gross_margin_amount": 5330776.991,
+      "gross_margin_pct": 84.6
     },
     {
       "date": "2026-06-19",
@@ -16441,11 +16441,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 65,
       "gross_revenue": 14060520.0,
-      "total_fee": 0.0,
-      "net_revenue": 14060520.0,
+      "total_fee": 4232159.0,
+      "net_revenue": 9828361.0,
       "cogs": 2695972.801,
-      "gross_margin_amount": 11364547.199000001,
-      "gross_margin_pct": 80.8
+      "gross_margin_amount": 7132388.199,
+      "gross_margin_pct": 72.6
     },
     {
       "date": "2026-06-19",
@@ -16453,10 +16453,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 21533.0,
+      "net_revenue": 54117.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 54117.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16525,11 +16525,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 19,
       "gross_revenue": 3612103.0,
-      "total_fee": 0.0,
-      "net_revenue": 3612103.0,
+      "total_fee": 902776.0,
+      "net_revenue": 2709327.0,
       "cogs": 529600.895,
-      "gross_margin_amount": 3082502.105,
-      "gross_margin_pct": 85.3
+      "gross_margin_amount": 2179726.105,
+      "gross_margin_pct": 80.5
     },
     {
       "date": "2026-06-20",
@@ -16537,11 +16537,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 56,
       "gross_revenue": 11693000.0,
-      "total_fee": 0.0,
-      "net_revenue": 11693000.0,
+      "total_fee": 3612681.0,
+      "net_revenue": 8080319.0,
       "cogs": 2618395.694,
-      "gross_margin_amount": 9074604.306,
-      "gross_margin_pct": 77.6
+      "gross_margin_amount": 5461923.306,
+      "gross_margin_pct": 67.6
     },
     {
       "date": "2026-06-21",
@@ -16585,10 +16585,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 110000.0,
-      "total_fee": 0.0,
-      "net_revenue": 110000.0,
+      "total_fee": 82250.0,
+      "net_revenue": 27750.0,
       "cogs": 0.0,
-      "gross_margin_amount": 110000.0,
+      "gross_margin_amount": 27750.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16597,11 +16597,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
       "gross_revenue": 7058375.0,
-      "total_fee": 0.0,
-      "net_revenue": 7058375.0,
+      "total_fee": 1464149.0,
+      "net_revenue": 5594226.0,
       "cogs": 636605.718,
-      "gross_margin_amount": 6421769.282,
-      "gross_margin_pct": 91.0
+      "gross_margin_amount": 4957620.282,
+      "gross_margin_pct": 88.6
     },
     {
       "date": "2026-06-21",
@@ -16609,11 +16609,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 42,
       "gross_revenue": 10735762.0,
-      "total_fee": 0.0,
-      "net_revenue": 10735762.0,
+      "total_fee": 3236686.0,
+      "net_revenue": 7499076.0,
       "cogs": 2436562.809,
-      "gross_margin_amount": 8299199.191,
-      "gross_margin_pct": 77.3
+      "gross_margin_amount": 5062513.191,
+      "gross_margin_pct": 67.5
     },
     {
       "date": "2026-06-21",
@@ -16621,10 +16621,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 21533.0,
+      "net_revenue": 54117.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 54117.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16645,11 +16645,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
       "gross_revenue": 6922811.0,
-      "total_fee": 0.0,
-      "net_revenue": 6922811.0,
+      "total_fee": 1643753.93,
+      "net_revenue": 5279057.07,
       "cogs": 1541774.113,
-      "gross_margin_amount": 5381036.887,
-      "gross_margin_pct": 77.7
+      "gross_margin_amount": 3737282.9570000004,
+      "gross_margin_pct": 70.8
     },
     {
       "date": "2026-06-22",
@@ -16657,11 +16657,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 70,
       "gross_revenue": 16658720.0,
-      "total_fee": 0.0,
-      "net_revenue": 16658720.0,
+      "total_fee": 5261359.0,
+      "net_revenue": 11397361.0,
       "cogs": 3990084.982,
-      "gross_margin_amount": 12668635.018,
-      "gross_margin_pct": 76.0
+      "gross_margin_amount": 7407276.018,
+      "gross_margin_pct": 65.0
     },
     {
       "date": "2026-06-22",
@@ -16669,11 +16669,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
       "gross_revenue": 324850.0,
-      "total_fee": 0.0,
-      "net_revenue": 324850.0,
+      "total_fee": 91976.0,
+      "net_revenue": 232874.0,
       "cogs": 58000.0,
-      "gross_margin_amount": 266850.0,
-      "gross_margin_pct": 82.1
+      "gross_margin_amount": 174874.0,
+      "gross_margin_pct": 75.1
     },
     {
       "date": "2026-06-23",
@@ -16693,10 +16693,10 @@
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
       "gross_revenue": 8900.0,
-      "total_fee": 0.0,
-      "net_revenue": 8900.0,
+      "total_fee": 1936.0,
+      "net_revenue": 6964.0,
       "cogs": 0.0,
-      "gross_margin_amount": 8900.0,
+      "gross_margin_amount": 6964.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16717,11 +16717,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
       "gross_revenue": 7239051.0,
-      "total_fee": 0.0,
-      "net_revenue": 7239051.0,
+      "total_fee": 1580904.0,
+      "net_revenue": 5658147.0,
       "cogs": 1860258.616,
-      "gross_margin_amount": 5378792.384,
-      "gross_margin_pct": 74.3
+      "gross_margin_amount": 3797888.384,
+      "gross_margin_pct": 67.1
     },
     {
       "date": "2026-06-23",
@@ -16729,11 +16729,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 65,
       "gross_revenue": 18127780.0,
-      "total_fee": 0.0,
-      "net_revenue": 18127780.0,
+      "total_fee": 5243526.0,
+      "net_revenue": 12884254.0,
       "cogs": 4761243.913,
-      "gross_margin_amount": 13366536.087000001,
-      "gross_margin_pct": 73.7
+      "gross_margin_amount": 8123010.087,
+      "gross_margin_pct": 63.0
     },
     {
       "date": "2026-06-23",
@@ -16741,10 +16741,10 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 75650.0,
-      "total_fee": 0.0,
-      "net_revenue": 75650.0,
+      "total_fee": 21533.0,
+      "net_revenue": 54117.0,
       "cogs": 0.0,
-      "gross_margin_amount": 75650.0,
+      "gross_margin_amount": 54117.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -16777,11 +16777,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 38,
       "gross_revenue": 10735536.0,
-      "total_fee": 0.0,
-      "net_revenue": 10735536.0,
+      "total_fee": 2488837.0,
+      "net_revenue": 8246699.0,
       "cogs": 2218661.669,
-      "gross_margin_amount": 8516874.331,
-      "gross_margin_pct": 79.3
+      "gross_margin_amount": 6028037.331,
+      "gross_margin_pct": 73.1
     },
     {
       "date": "2026-06-24",
@@ -16789,11 +16789,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 64,
       "gross_revenue": 15822700.0,
-      "total_fee": 0.0,
-      "net_revenue": 15822700.0,
+      "total_fee": 4154802.0,
+      "net_revenue": 11667898.0,
       "cogs": 3527883.161,
-      "gross_margin_amount": 12294816.839,
-      "gross_margin_pct": 77.7
+      "gross_margin_amount": 8140014.839,
+      "gross_margin_pct": 69.8
     },
     {
       "date": "2026-06-24",
@@ -16801,11 +16801,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 7,
       "gross_revenue": 275900.0,
-      "total_fee": 0.0,
-      "net_revenue": 275900.0,
+      "total_fee": 137678.0,
+      "net_revenue": 138222.0,
       "cogs": 185852.0,
-      "gross_margin_amount": 90048.0,
-      "gross_margin_pct": 32.6
+      "gross_margin_amount": -47630.0,
+      "gross_margin_pct": -34.5
     },
     {
       "date": "2026-06-24",
@@ -16849,11 +16849,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 29,
       "gross_revenue": 6932020.0,
-      "total_fee": 0.0,
-      "net_revenue": 6932020.0,
+      "total_fee": 1356803.0,
+      "net_revenue": 5575217.0,
       "cogs": 1742098.014,
-      "gross_margin_amount": 5189921.986,
-      "gross_margin_pct": 74.9
+      "gross_margin_amount": 3833118.986,
+      "gross_margin_pct": 68.8
     },
     {
       "date": "2026-06-25",
@@ -16861,11 +16861,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 84,
       "gross_revenue": 22432300.0,
-      "total_fee": 0.0,
-      "net_revenue": 22432300.0,
+      "total_fee": 5346470.0,
+      "net_revenue": 17085830.0,
       "cogs": 4908530.075,
-      "gross_margin_amount": 17523769.925,
-      "gross_margin_pct": 78.1
+      "gross_margin_amount": 12177299.925,
+      "gross_margin_pct": 71.3
     },
     {
       "date": "2026-06-25",
@@ -16873,11 +16873,11 @@
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
       "gross_revenue": 94000.0,
-      "total_fee": 0.0,
-      "net_revenue": 94000.0,
+      "total_fee": 20860.0,
+      "net_revenue": 73140.0,
       "cogs": 25501.0,
-      "gross_margin_amount": 68499.0,
-      "gross_margin_pct": 72.9
+      "gross_margin_amount": 47639.0,
+      "gross_margin_pct": 65.1
     },
     {
       "date": "2026-06-25",
@@ -16921,11 +16921,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 45,
       "gross_revenue": 11411094.0,
-      "total_fee": 0.0,
-      "net_revenue": 11411094.0,
+      "total_fee": 1721782.0,
+      "net_revenue": 9689312.0,
       "cogs": 3135371.171,
-      "gross_margin_amount": 8275722.829,
-      "gross_margin_pct": 72.5
+      "gross_margin_amount": 6553940.829,
+      "gross_margin_pct": 67.6
     },
     {
       "date": "2026-06-26",
@@ -16933,11 +16933,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 57,
       "gross_revenue": 14685260.0,
-      "total_fee": 0.0,
-      "net_revenue": 14685260.0,
+      "total_fee": 3636620.0,
+      "net_revenue": 11048640.0,
       "cogs": 2904973.292,
-      "gross_margin_amount": 11780286.708,
-      "gross_margin_pct": 80.2
+      "gross_margin_amount": 8143666.708000001,
+      "gross_margin_pct": 73.7
     },
     {
       "date": "2026-06-27",
@@ -16969,11 +16969,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 33,
       "gross_revenue": 8808276.0,
-      "total_fee": 0.0,
-      "net_revenue": 8808276.0,
+      "total_fee": 1082312.0,
+      "net_revenue": 7725964.0,
       "cogs": 2585874.125,
-      "gross_margin_amount": 6222401.875,
-      "gross_margin_pct": 70.6
+      "gross_margin_amount": 5140089.875,
+      "gross_margin_pct": 66.5
     },
     {
       "date": "2026-06-27",
@@ -16981,11 +16981,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 50,
       "gross_revenue": 12531660.0,
-      "total_fee": 0.0,
-      "net_revenue": 12531660.0,
+      "total_fee": 1690613.0,
+      "net_revenue": 10841047.0,
       "cogs": 2932796.631,
-      "gross_margin_amount": 9598863.368999999,
-      "gross_margin_pct": 76.6
+      "gross_margin_amount": 7908250.369,
+      "gross_margin_pct": 72.9
     },
     {
       "date": "2026-06-28",
@@ -17017,11 +17017,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 35,
       "gross_revenue": 9087886.0,
-      "total_fee": 0.0,
-      "net_revenue": 9087886.0,
+      "total_fee": 729320.0,
+      "net_revenue": 8358566.0,
       "cogs": 2486064.8479999998,
-      "gross_margin_amount": 6601821.152000001,
-      "gross_margin_pct": 72.6
+      "gross_margin_amount": 5872501.152000001,
+      "gross_margin_pct": 70.3
     },
     {
       "date": "2026-06-28",
@@ -17029,11 +17029,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 20,
       "gross_revenue": 3357200.0,
-      "total_fee": 0.0,
-      "net_revenue": 3357200.0,
+      "total_fee": 265575.0,
+      "net_revenue": 3091625.0,
       "cogs": 764956.488,
-      "gross_margin_amount": 2592243.512,
-      "gross_margin_pct": 77.2
+      "gross_margin_amount": 2326668.512,
+      "gross_margin_pct": 75.3
     },
     {
       "date": "2026-06-28",
@@ -17089,11 +17089,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 17,
       "gross_revenue": 3627925.0,
-      "total_fee": 0.0,
-      "net_revenue": 3627925.0,
+      "total_fee": 15375.0,
+      "net_revenue": 3612550.0,
       "cogs": 888468.8200000001,
-      "gross_margin_amount": 2739456.1799999997,
-      "gross_margin_pct": 75.5
+      "gross_margin_amount": 2724081.1799999997,
+      "gross_margin_pct": 75.4
     },
     {
       "date": "2026-06-29",
@@ -17101,11 +17101,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 38,
       "gross_revenue": 8401000.0,
-      "total_fee": 0.0,
-      "net_revenue": 8401000.0,
+      "total_fee": 301266.0,
+      "net_revenue": 8099734.0,
       "cogs": 1492584.918,
-      "gross_margin_amount": 6908415.082,
-      "gross_margin_pct": 82.2
+      "gross_margin_amount": 6607149.082,
+      "gross_margin_pct": 81.6
     },
     {
       "date": "2026-06-29",
@@ -17149,11 +17149,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
       "gross_revenue": 7856571.0,
-      "total_fee": 0.0,
-      "net_revenue": 7856571.0,
+      "total_fee": 74494.0,
+      "net_revenue": 7782077.0,
       "cogs": 2029723.991,
-      "gross_margin_amount": 5826847.009,
-      "gross_margin_pct": 74.2
+      "gross_margin_amount": 5752353.009,
+      "gross_margin_pct": 73.9
     },
     {
       "date": "2026-06-30",
@@ -17161,11 +17161,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 57,
       "gross_revenue": 15528460.0,
-      "total_fee": 0.0,
-      "net_revenue": 15528460.0,
+      "total_fee": 365110.0,
+      "net_revenue": 15163350.0,
       "cogs": 3631075.123,
-      "gross_margin_amount": 11897384.877,
-      "gross_margin_pct": 76.6
+      "gross_margin_amount": 11532274.877,
+      "gross_margin_pct": 76.1
     },
     {
       "date": "2026-06-30",
@@ -19827,18 +19827,18 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2190620.0
+      "spend": 2190628.0
     },
     {
       "date": "2026-07-04",
-      "spend": 81482.0
+      "spend": 83279.0
     }
   ],
   "debug_fee_join": {
-    "settlement_rows": 0,
-    "matched": 0,
-    "match_rate_pct": null,
-    "total_fee_from_settlement_file": 0.0,
+    "settlement_rows": 6597,
+    "matched": 6140,
+    "match_rate_pct": 93.1,
+    "total_fee_from_settlement_file": 722759284.3,
     "sample_order_names": [
       "#1001",
       "260311S2E4BCM8",
@@ -19856,9 +19856,25 @@
       "260311STX9C3RE",
       "260311SWTJ01MG"
     ],
-    "sample_settlement_order_names": []
+    "sample_settlement_order_names": [
+      "137139334870",
+      "137231857616",
+      "137574095143",
+      "137716684828",
+      "139974290829",
+      "140060513086",
+      "140421025677",
+      "140604388188",
+      "141150593150",
+      "141721879359",
+      "142183866585",
+      "143297332719",
+      "144475623629",
+      "144475624539",
+      "144476353289"
+    ]
   },
   "debug_fee_match": {
-    "error": "Không đọc được file Chi phí nào trong settlement_files/."
+    "error": "cannot convert float infinity to integer"
   }
 }
