@@ -79,7 +79,7 @@ def load_settlement_fees() -> pd.DataFrame:
     if not files:
         return pd.DataFrame(columns=["order_name", "channel", "total_fee"])
 
-    frames = []
+    raw_frames = []
     for f in files:
         try:
             raw = _read_any_excel(f)
@@ -105,26 +105,33 @@ def load_settlement_fees() -> pd.DataFrame:
 
         df["Mã chứng từ"] = df["Mã chứng từ"].astype(str).str.strip()
         df["Giá trị ghi nhận"] = pd.to_numeric(df["Giá trị ghi nhận"], errors="coerce").fillna(0)
+        raw_frames.append(df)
 
-        if "Nguồn ghi nhận" in df.columns:
-            channel_series = df.groupby("Mã chứng từ")["Nguồn ghi nhận"].first()
-        else:
-            channel_series = pd.Series("", index=df["Mã chứng từ"].unique())
-
-        fee_series = df.groupby("Mã chứng từ")["Giá trị ghi nhận"].sum()
-        grouped = pd.DataFrame({
-            "order_name": fee_series.index,
-            "total_fee": fee_series.values,
-        })
-        grouped["channel"] = grouped["order_name"].map(channel_series).fillna("")
-        frames.append(grouped)
-
-    if not frames:
+    if not raw_frames:
         return pd.DataFrame(columns=["order_name", "channel", "total_fee"])
 
-    result = pd.concat(frames, ignore_index=True)
-    # Nếu 1 order_name xuất hiện ở nhiều file (export chồng lấn khoảng ngày) -> cộng dồn.
-    result = result.groupby(["order_name", "channel"], as_index=False)["total_fee"].sum()
+    all_rows = pd.concat(raw_frames, ignore_index=True)
+
+    # Nhiều file export có thể CHỒNG LẤN khoảng ngày (VD: xuất "tất cả nguồn" sau khi đã
+    # xuất riêng 1 khoảng ngày trước đó) -> khử trùng ở mức DÒNG (không phải mức order),
+    # tránh cộng dư total_fee nếu cùng 1 dòng phí xuất hiện ở > 1 file.
+    dedup_cols = [c for c in ["Ngày ghi nhận", "Mã chứng từ", "Tên chi phí", "Giá trị ghi nhận"] if c in all_rows.columns]
+    before = len(all_rows)
+    all_rows = all_rows.drop_duplicates(subset=dedup_cols)
+    if before != len(all_rows):
+        print(f"[Chi phí] Đã bỏ {before - len(all_rows)} dòng trùng lặp giữa các file export chồng lấn.")
+
+    if "Nguồn ghi nhận" in all_rows.columns:
+        channel_series = all_rows.groupby("Mã chứng từ")["Nguồn ghi nhận"].first()
+    else:
+        channel_series = pd.Series("", index=all_rows["Mã chứng từ"].unique())
+
+    fee_series = all_rows.groupby("Mã chứng từ")["Giá trị ghi nhận"].sum()
+    result = pd.DataFrame({
+        "order_name": fee_series.index,
+        "total_fee": fee_series.values,
+    })
+    result["channel"] = result["order_name"].map(channel_series).fillna("")
     return result
 
 
