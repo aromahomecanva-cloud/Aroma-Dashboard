@@ -31,17 +31,53 @@ def main():
     else:
         print("Không lấy được order nào.")
 
-    print("\n=== 1 PRODUCT MẪU (rút gọn) ===")
-    r2 = requests.get(f"{base}/products.json", auth=auth, params={"limit": 1}, timeout=30)
-    r2.raise_for_status()
-    products = r2.json().get("products", [])
-    if products:
-        p = products[0]
-        keep_keys = ["id", "name", "variants"]
-        slim = {k: p.get(k) for k in keep_keys if k in p}
-        print(json.dumps(slim, ensure_ascii=False, indent=2))
+    print("\n=== Quét nhiều trang PRODUCT - tìm field giá vốn + tìm sản phẩm COMBO ===")
+    cost_like_keywords = ["cost", "von", "gia_von", "purchase", "import", "avg"]
+    combo_like_keywords = ["combo", "component", "bundle", "child", "item_id", "included"]
+    found_cost = False
+    found_combo_product = None
+    variant_types = set()
+
+    page = 1
+    total_scanned = 0
+    while True:  # quét hết toàn bộ sản phẩm (hiện ~501, tương lai tới ~2000+)
+        r2 = requests.get(f"{base}/products.json", auth=auth, params={"limit": 250, "page": page}, timeout=30)
+        r2.raise_for_status()
+        products = r2.json().get("products", [])
+        if not products:
+            break
+        total_scanned += len(products)
+        for p in products:
+            # field lạ ở cấp product (ngoài id/name/variants) có thể liên quan tới combo
+            product_extra_keys = {k: v for k, v in p.items() if k not in ("id", "name", "variants")}
+            for k in product_extra_keys:
+                if any(kw in k.lower() for kw in combo_like_keywords) and found_combo_product is None:
+                    found_combo_product = p
+
+            for v in p.get("variants", []):
+                variant_types.add(v.get("type"))
+                cost_fields = {k: val for k, val in v.items() if any(kw in k.lower() for kw in cost_like_keywords)}
+                if cost_fields:
+                    found_cost = True
+                    print(f"[CÓ GIÁ VỐN] '{p.get('name')}' (product_id={p.get('id')}, sku={v.get('sku')}, type={v.get('type')}): {cost_fields}")
+                if v.get("type") and v.get("type") != "normal" and found_combo_product is None:
+                    found_combo_product = p
+
+        if len(products) < 250:
+            break  # trang cuối
+        page += 1
+        if page > 20:  # phòng hờ vòng lặp vô hạn, đủ cho ~5000 sản phẩm
+            break
+
+    print(f"\nTổng số sản phẩm đã quét: {total_scanned}")
+    print(f"Các giá trị 'type' của variant gặp phải: {variant_types}")
+    if not found_cost:
+        print("Không tìm thấy field giá vốn nào trong các trang đã quét.")
+    if found_combo_product:
+        print("\n=== 1 SẢN PHẨM COMBO MẪU (toàn bộ field) ===")
+        print(json.dumps(found_combo_product, ensure_ascii=False, indent=2))
     else:
-        print("Không lấy được product nào.")
+        print("\nChưa gặp sản phẩm nào có type khác 'normal' hoặc field liên quan combo trong các trang đã quét.")
 
 
 if __name__ == "__main__":
