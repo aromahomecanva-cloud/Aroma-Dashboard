@@ -1,33 +1,33 @@
 {
-  "updated_at": "2026-07-03T17:29:14.367892",
-  "total_ads_spend": 1377458719.0,
+  "updated_at": "2026-07-03T18:05:48.943454",
+  "total_ads_spend": 1377492937.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 6929,
-      "gross_revenue": 1171401822.0,
+      "orders": 6933,
+      "gross_revenue": 1171779822.0,
       "total_fee": 0.0,
-      "net_revenue": 1171401822.0,
-      "cogs": 461859822.619,
-      "gross_margin_amount": 709541999.381,
+      "net_revenue": 1171779822.0,
+      "cogs": 461970386.543,
+      "gross_margin_amount": 709809435.457,
       "gross_margin_pct": 60.6,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 709541999.381
+      "net_profit_after_ads": 709809435.457
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3835,
-      "gross_revenue": 845319280.0,
+      "orders": 3837,
+      "gross_revenue": 845800488.0,
       "total_fee": 0.0,
-      "net_revenue": 845319280.0,
+      "net_revenue": 845800488.0,
       "cogs": 149275071.637,
-      "gross_margin_amount": 696044208.363,
-      "gross_margin_pct": 82.3,
+      "gross_margin_amount": 696525416.363,
+      "gross_margin_pct": 82.4,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 696044208.363
+      "net_profit_after_ads": 696525416.363
     },
     {
       "channel": "facebook",
@@ -3947,10 +3947,10 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thuỷ Tinh 50g Little Forest",
       "sku": "NETH00145",
-      "quantity": 536,
-      "revenue": 48496338.0,
-      "cogs": 8956026.144000001,
-      "gross_margin_amount": 39540311.856,
+      "quantity": 537,
+      "revenue": 48575338.0,
+      "cogs": 8972735.148,
+      "gross_margin_amount": 39602602.852,
       "gross_margin_pct": 81.5
     },
     {
@@ -4101,11 +4101,11 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thuỷ Tinh 50g Midnight Garden",
       "sku": "NETH00144",
-      "quantity": 318,
-      "revenue": 28295702.0,
-      "cogs": 5581202.7360000005,
-      "gross_margin_amount": 22714499.264,
-      "gross_margin_pct": 80.3
+      "quantity": 322,
+      "revenue": 28611702.0,
+      "cogs": 5651406.544000001,
+      "gross_margin_amount": 22960295.456,
+      "gross_margin_pct": 80.2
     },
     {
       "channel": "shopee",
@@ -4453,10 +4453,10 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thuỷ Tinh 50g Beloved Summer",
       "sku": "NETH00146",
-      "quantity": 184,
-      "revenue": 15756003.0,
-      "cogs": 4351804.608,
-      "gross_margin_amount": 11404198.392,
+      "quantity": 185,
+      "revenue": 15835003.0,
+      "cogs": 4375455.72,
+      "gross_margin_amount": 11459547.280000001,
       "gross_margin_pct": 72.4
     },
     {
@@ -5386,6 +5386,17 @@
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nến Thơm 220g TEA GARDEN",
+      "sku": "NETH00211",
+      "quantity": 14,
+      "revenue": 5567461.0,
+      "cogs": 0.0,
+      "gross_margin_amount": 5567461.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Xịt Thơm Phòng Hương Night Essence 200ml",
       "sku": "XTQA00026",
       "quantity": 37,
@@ -5415,17 +5426,6 @@
       "cogs": 1214018.704,
       "gross_margin_amount": 4194369.296,
       "gross_margin_pct": 77.6
-    },
-    {
-      "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
-      "product": "Nến Thơm 220g TEA GARDEN",
-      "sku": "NETH00211",
-      "quantity": 13,
-      "revenue": 5167461.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 5167461.0,
-      "gross_margin_pct": 100.0
     },
     {
       "channel": "shopee",
@@ -8693,6 +8693,17 @@
       "cogs": 1500.0,
       "gross_margin_amount": 238500.0,
       "gross_margin_pct": 99.4
+    },
+    {
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Tinh Dầu Khuếch Tán Aroma Story Hương Trà Trắng Và Trái Sung True Grace Size 50ml/100ml/150ml",
+      "sku": "",
+      "quantity": 1,
+      "revenue": 235000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": 235000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "channel": "shopee",
@@ -17280,25 +17291,25 @@
       "date": "2026-07-03",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 15,
-      "gross_revenue": 2985423.0,
+      "orders": 17,
+      "gross_revenue": 3466631.0,
       "total_fee": 0.0,
-      "net_revenue": 2985423.0,
+      "net_revenue": 3466631.0,
       "cogs": 726717.3420000001,
-      "gross_margin_amount": 2258705.658,
-      "gross_margin_pct": 75.7
+      "gross_margin_amount": 2739913.658,
+      "gross_margin_pct": 79.0
     },
     {
       "date": "2026-07-03",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 27,
-      "gross_revenue": 6722340.0,
+      "orders": 31,
+      "gross_revenue": 7100340.0,
       "total_fee": 0.0,
-      "net_revenue": 6722340.0,
-      "cogs": 1511618.43,
-      "gross_margin_amount": 5210721.57,
-      "gross_margin_pct": 77.5
+      "net_revenue": 7100340.0,
+      "cogs": 1622182.354,
+      "gross_margin_amount": 5478157.646,
+      "gross_margin_pct": 77.2
     },
     {
       "date": "2026-07-03",
@@ -19816,11 +19827,11 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2185593.0
+      "spend": 2187100.0
     },
     {
       "date": "2026-07-04",
-      "spend": 31699.0
+      "spend": 64410.0
     }
   ]
 }
