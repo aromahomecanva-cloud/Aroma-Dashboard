@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-03T18:34:33.420565",
-  "total_ads_spend": 1377515334.0,
+  "updated_at": "2026-07-03T21:49:13.896251",
+  "total_ads_spend": 1377566098.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
@@ -19,15 +19,15 @@
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3837,
-      "gross_revenue": 845800488.0,
+      "orders": 3840,
+      "gross_revenue": 846372588.0,
       "total_fee": 134401165.77,
-      "net_revenue": 711399322.23,
-      "cogs": 149275071.637,
-      "gross_margin_amount": 562124250.593,
+      "net_revenue": 711971422.23,
+      "cogs": 149434548.513,
+      "gross_margin_amount": 562536873.717,
       "gross_margin_pct": 79.0,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 562124250.593
+      "net_profit_after_ads": 562536873.717
     },
     {
       "channel": "facebook",
@@ -4483,6 +4483,17 @@
     },
     {
       "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nến Thủy Tinh 100g Romantic Night",
+      "sku": "NETH00040",
+      "quantity": 74,
+      "revenue": 15005062.0,
+      "cogs": 3774338.032,
+      "gross_margin_amount": 11230723.968,
+      "gross_margin_pct": 74.8
+    },
+    {
+      "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Khuếch Tán Lemongrass",
       "sku": "TDKT00001",
@@ -4491,17 +4502,6 @@
       "cogs": 2366761.632,
       "gross_margin_amount": 12433238.368,
       "gross_margin_pct": 84.0
-    },
-    {
-      "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
-      "product": "Nến Thủy Tinh 100g Romantic Night",
-      "sku": "NETH00040",
-      "quantity": 73,
-      "revenue": 14785062.0,
-      "cogs": 3723333.464,
-      "gross_margin_amount": 11061728.536,
-      "gross_margin_pct": 74.8
     },
     {
       "channel": "shopee",
@@ -5487,10 +5487,10 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Nến Thuỷ Tinh 50g Ocean Dream",
       "sku": "NETH00147",
-      "quantity": 45,
-      "revenue": 4715903.0,
-      "cogs": 786530.88,
-      "gross_margin_amount": 3929372.12,
+      "quantity": 46,
+      "revenue": 4814903.0,
+      "cogs": 804009.344,
+      "gross_margin_amount": 4010893.656,
       "gross_margin_pct": 83.3
     },
     {
@@ -6178,6 +6178,17 @@
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Tinh Dầu Khuếch Tán True Grace",
+      "sku": "TDKT00028",
+      "quantity": 6,
+      "revenue": 2520000.0,
+      "cogs": 545963.064,
+      "gross_margin_amount": 1974036.936,
+      "gross_margin_pct": 78.3
+    },
+    {
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Nến Thuỷ Tinh 50g Coffee Holic",
       "sku": "NETH00148",
       "quantity": 27,
@@ -6449,17 +6460,6 @@
       "cogs": 0.0,
       "gross_margin_amount": 2115000.0,
       "gross_margin_pct": 100.0
-    },
-    {
-      "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
-      "product": "Tinh Dầu Khuếch Tán True Grace",
-      "sku": "TDKT00028",
-      "quantity": 5,
-      "revenue": 2100000.0,
-      "cogs": 454969.22,
-      "gross_margin_amount": 1645030.78,
-      "gross_margin_pct": 78.3
     },
     {
       "channel": "shopee",
@@ -17291,13 +17291,13 @@
       "date": "2026-07-03",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 17,
-      "gross_revenue": 3466631.0,
+      "orders": 20,
+      "gross_revenue": 4038731.0,
       "total_fee": 0.0,
-      "net_revenue": 3466631.0,
-      "cogs": 726717.3420000001,
-      "gross_margin_amount": 2739913.658,
-      "gross_margin_pct": 79.0
+      "net_revenue": 4038731.0,
+      "cogs": 886194.218,
+      "gross_margin_amount": 3152536.782,
+      "gross_margin_pct": 78.1
     },
     {
       "date": "2026-07-03",
@@ -19827,11 +19827,11 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2190628.0
+      "spend": 2191787.0
     },
     {
       "date": "2026-07-04",
-      "spend": 83279.0
+      "spend": 132884.0
     }
   ],
   "debug_fee_join": {
