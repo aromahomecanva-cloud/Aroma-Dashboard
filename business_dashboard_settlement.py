@@ -1,14 +1,30 @@
 """
-Parser đọc file đối soát (settlement) export từ Shopee / TikTok Shop Seller Center.
+Parser đọc file "Báo cáo chi phí bán hàng" export TRỰC TIẾP từ Sapo (mục "Chi phí"
+trong Sapo Admin — KHÔNG PHẢI file đối soát export từ Shopee/TikTok Seller Center).
+Sapo tự động tổng hợp các khoản: Phí cố định, Phí dịch vụ, Phí thanh toán,
+Thuế sàn thực tế, Phí tiếp thị liên kết (aff), Các phí khác, Hoàn thuế do phát sinh
+trả hàng... theo từng ĐƠN HÀNG.
 
-QUAN TRỌNG: mỗi sàn đặt tên cột khác nhau, nên phần map dưới đây là PLACEHOLDER
-— cần bạn gửi 1 file mẫu thật để mình chỉnh lại đúng tên cột.
+QUAN TRỌNG về join key: cột "Mã chứng từ" trong file này có CÙNG ĐỊNH DẠNG với field
+"name" của order trong Sapo Order API (VD: "260630EKV6WRY0", "260704Q53C8HS1") —
+KHÔNG PHẢI order["id"] (số). Nên total_fee được join vào order qua order["name"],
+không phải order["id"]. Nếu tỷ lệ khớp thấp (xem log "match rate" khi chạy
+export_json.py), có thể giả thuyết join-key này cần điều chỉnh lại.
 
 Cách dùng:
-1. Export file đối soát từ Shopee / TikTok Shop (định dạng .xlsx)
-2. Bỏ vào thư mục "settlement_files/" (tự tạo cạnh các file .py này), đặt tên có chứa
-   "shopee" hoặc "tiktok" để tool tự nhận diện kênh, vd: shopee_doi_soat_thang6.xlsx
-3. Chạy lại chương trình — tool sẽ tự đọc và cộng dồn các khoản phí theo order_id
+1. Vào Sapo -> mục "Chi phí" -> Xuất file báo cáo chi phí bán hàng (.xls/.xlsx)
+2. Bỏ vào thư mục "settlement_files/" (tự tạo cạnh các file .py này). Có thể xuất
+   nhiều lần / nhiều khoảng ngày khác nhau rồi bỏ TẤT CẢ vào cùng thư mục — tool tự
+   gộp hết, không bị trùng lặp (cộng dồn theo order_name nếu có xuất hiện ở nhiều file).
+3. Chạy lại chương trình — tool tự cộng "Giá trị ghi nhận" theo "Mã chứng từ" = total_fee.
+
+Về đơn "ngoại sàn" (Facebook/Zalo/POS/Website...): các đơn này thường CHỈ có 1 khoản
+"Phí vận chuyển thực tế" thay vì đủ bộ phí như Shopee (Phí cố định/dịch vụ/thanh toán/
+thuế sàn/aff). Code này KHÔNG cần chỉnh gì thêm cho việc đó — vì total_fee được tính
+bằng cách CỘNG TẤT CẢ dòng "Giá trị ghi nhận" theo từng "Mã chứng từ", bất kể "Tên chi
+phí" hay "Nguồn ghi nhận" là gì. Nghĩa là 1 đơn Shopee có 4-5 dòng phí sẽ được cộng
+đủ 4-5 dòng, còn 1 đơn ngoại sàn chỉ có 1 dòng "Phí vận chuyển thực tế" thì total_fee
+của đơn đó = đúng giá trị dòng đó. Không cần phân biệt loại phí hay nguồn khi tính tổng.
 """
 
 import random
@@ -18,67 +34,98 @@ import pandas as pd
 
 from business_dashboard_config import Config
 
-# Mapping tên cột trong file gốc -> tên chuẩn dùng nội bộ.
-# SỬA LẠI phần này theo đúng file đối soát thật của bạn.
-COLUMN_MAP = {
-    "shopee": {
-        "order_id": "Mã đơn hàng",
-        "platform_fee": "Phí cố định",          # + phí thanh toán, phí dịch vụ... tuỳ cấu trúc thật
-        "shipping_fee": "Phí vận chuyển",
-        "voucher": "Voucher người bán",
-        "aff_fee": "Phí hoa hồng Affiliate",
-        "co_funded_voucher": "Voucher đồng tài trợ",
-    },
-    "tiktok": {
-        "order_id": "Order ID",
-        "platform_fee": "Platform Fee",
-        "shipping_fee": "Shipping Fee",
-        "voucher": "Seller Voucher",
-        "aff_fee": "Affiliate Commission",
-        "co_funded_voucher": "Co-funded Voucher",
-    },
-}
+REQUIRED_COLS = {"Mã chứng từ", "Giá trị ghi nhận"}
 
-FEE_COLUMNS = ["platform_fee", "shipping_fee", "voucher", "aff_fee", "co_funded_voucher"]
+
+def _all_expense_files() -> list[Path]:
+    settlement_dir = Config.SETTLEMENT_DIR
+    if not settlement_dir.exists():
+        settlement_dir.mkdir(parents=True, exist_ok=True)
+        return []
+    return sorted(list(settlement_dir.glob("*.xls")) + list(settlement_dir.glob("*.xlsx")))
+
+
+def _read_any_excel(path: Path) -> pd.DataFrame:
+    """
+    File Sapo export .xls đôi khi là binary Excel thật (cần engine xlrd), đôi khi
+    thực chất là bảng HTML đội lốt .xls (cần html5lib) -> thử lần lượt các cách đọc.
+    """
+    try:
+        return pd.read_excel(path, engine="xlrd")
+    except Exception:
+        pass
+    try:
+        return pd.read_excel(path)
+    except Exception:
+        pass
+    try:
+        dfs = pd.read_html(path)
+        if dfs:
+            return dfs[0]
+    except Exception:
+        pass
+    raise RuntimeError(f"Không đọc được file {path.name} bằng bất kỳ cách nào (xlrd/openpyxl/html).")
 
 
 def load_settlement_fees() -> pd.DataFrame:
     """
-    Trả về DataFrame: order_id, channel, platform_fee, shipping_fee, voucher, aff_fee, co_funded_voucher, total_fee
+    Trả về DataFrame: order_name, channel, total_fee
+    order_name dùng để join với order["name"] (Sapo Order API) — xem docstring module.
     """
     if Config.DEMO_MODE:
         return _demo_settlement()
 
-    settlement_dir = Config.SETTLEMENT_DIR
-    if not settlement_dir.exists():
-        settlement_dir.mkdir(parents=True, exist_ok=True)
-
-    files = list(settlement_dir.glob("*.xlsx"))
+    files = _all_expense_files()
     if not files:
-        # Chưa có file đối soát nào -> trả về bảng rỗng, dashboard sẽ hiện fee = 0
-        return pd.DataFrame(columns=["order_id", "channel"] + FEE_COLUMNS + ["total_fee"])
+        return pd.DataFrame(columns=["order_name", "channel", "total_fee"])
 
     frames = []
     for f in files:
-        fname = f.name.lower()
-        channel_key = "shopee" if "shopee" in fname else ("tiktok" if "tiktok" in fname else None)
-        if channel_key is None:
-            continue  # bỏ qua file không nhận diện được kênh
-        col_map = COLUMN_MAP[channel_key]
-        raw = pd.read_excel(f)
-        df = pd.DataFrame()
-        df["order_id"] = raw[col_map["order_id"]].astype(str)
-        df["channel"] = "Shopee" if channel_key == "shopee" else "TikTok Shop"
-        for fee_col in FEE_COLUMNS:
-            src_col = col_map[fee_col]
-            df[fee_col] = pd.to_numeric(raw.get(src_col, 0), errors="coerce").fillna(0)
-        df["total_fee"] = df[FEE_COLUMNS].sum(axis=1)
-        frames.append(df)
+        try:
+            raw = _read_any_excel(f)
+        except Exception as e:
+            print(f"[Cảnh báo] Bỏ qua file {f.name}: {e}")
+            continue
+
+        if not REQUIRED_COLS.issubset(set(raw.columns)):
+            print(f"[Cảnh báo] File {f.name} thiếu cột cần thiết {REQUIRED_COLS} "
+                  f"(cột hiện có: {list(raw.columns)}), bỏ qua.")
+            continue
+
+        total_rows = len(raw)
+        df = raw.dropna(subset=["Mã chứng từ"]).copy()
+        dropped = total_rows - len(df)
+        print(f"[Chi phí] File {f.name}: {total_rows} dòng, giữ lại {len(df)} dòng có Mã chứng từ "
+              f"(bỏ {dropped} dòng — thường là 1 dòng 'Tổng' ở cuối; nếu > 1 dòng bị bỏ, kiểm tra "
+              f"lại xem có đơn nào (đặc biệt đơn ngoại sàn) thiếu Mã chứng từ không).")
+        if "Nguồn ghi nhận" in df.columns:
+            print(f"  Nguồn ghi nhận trong file này: {df['Nguồn ghi nhận'].value_counts().to_dict()}")
+        if "Tên chi phí" in df.columns:
+            print(f"  Loại phí trong file này: {df['Tên chi phí'].value_counts().to_dict()}")
+
+        df["Mã chứng từ"] = df["Mã chứng từ"].astype(str).str.strip()
+        df["Giá trị ghi nhận"] = pd.to_numeric(df["Giá trị ghi nhận"], errors="coerce").fillna(0)
+
+        if "Nguồn ghi nhận" in df.columns:
+            channel_series = df.groupby("Mã chứng từ")["Nguồn ghi nhận"].first()
+        else:
+            channel_series = pd.Series("", index=df["Mã chứng từ"].unique())
+
+        fee_series = df.groupby("Mã chứng từ")["Giá trị ghi nhận"].sum()
+        grouped = pd.DataFrame({
+            "order_name": fee_series.index,
+            "total_fee": fee_series.values,
+        })
+        grouped["channel"] = grouped["order_name"].map(channel_series).fillna("")
+        frames.append(grouped)
 
     if not frames:
-        return pd.DataFrame(columns=["order_id", "channel"] + FEE_COLUMNS + ["total_fee"])
+        return pd.DataFrame(columns=["order_name", "channel", "total_fee"])
 
-    return pd.concat(frames, ignore_index=True)
+    result = pd.concat(frames, ignore_index=True)
+    # Nếu 1 order_name xuất hiện ở nhiều file (export chồng lấn khoảng ngày) -> cộng dồn.
+    result = result.groupby(["order_name", "channel"], as_index=False)["total_fee"].sum()
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -90,19 +137,6 @@ def _demo_settlement() -> pd.DataFrame:
     rows = []
     for i in range(1, 181):
         channel = Config.CHANNELS[i % 2]
-        platform_fee = random.randint(5_000, 30_000)
-        shipping_fee = random.randint(0, 15_000)
-        voucher = random.randint(0, 20_000)
-        aff_fee = random.randint(0, 25_000)
-        co_funded = random.randint(0, 10_000)
-        rows.append({
-            "order_id": i,
-            "channel": channel,
-            "platform_fee": platform_fee,
-            "shipping_fee": shipping_fee,
-            "voucher": voucher,
-            "aff_fee": aff_fee,
-            "co_funded_voucher": co_funded,
-            "total_fee": platform_fee + shipping_fee + voucher + aff_fee + co_funded,
-        })
+        fee = random.randint(10_000, 90_000)
+        rows.append({"order_name": f"DEMO-{i}", "channel": channel.lower(), "total_fee": fee})
     return pd.DataFrame(rows)
