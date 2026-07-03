@@ -18,6 +18,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r business_dashboard_requirements.txt
 
+      - name: Debug - kiểm tra secrets có được nhận không
+        run: python business_dashboard_config.py
+        env:
+          SAPO_STORE: ${{ secrets.SAPO_STORE }}
+          SAPO_API_KEY: ${{ secrets.SAPO_API_KEY }}
+          SAPO_API_SECRET: ${{ secrets.SAPO_API_SECRET }}
+          META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
+          META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
+
       - name: Fetch data + build data.json
         run: python business_dashboard_export_json.py
         env:

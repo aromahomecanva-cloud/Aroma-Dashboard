@@ -61,5 +61,8 @@ class Config:
 
 if __name__ == "__main__":
     print("DEMO_MODE:", Config.DEMO_MODE)
-    print("SAPO_STORE:", Config.SAPO_STORE or "(chưa điền)")
-    print("META_AD_ACCOUNT_ID:", Config.META_AD_ACCOUNT_ID or "(chưa điền)")
+    print("--- Kiểm tra từng biến (chỉ báo có/thiếu, không in giá trị thật) ---")
+    for name in ["SAPO_STORE", "SAPO_API_KEY", "SAPO_API_SECRET", "META_ACCESS_TOKEN", "META_AD_ACCOUNT_ID"]:
+        val = getattr(Config, name)
+        status = f"OK (độ dài {len(val)} ký tự)" if val else "THIẾU / RỖNG"
+        print(f"  {name}: {status}")
