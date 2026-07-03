@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-03T16:47:34.829084",
-  "total_ads_spend": 1377401727.0,
+  "updated_at": "2026-07-03T17:06:25.805602",
+  "total_ads_spend": 1377423304.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
@@ -14099,7 +14099,7 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2160300.0
+      "spend": 2181408.0
     }
   ]
 }
