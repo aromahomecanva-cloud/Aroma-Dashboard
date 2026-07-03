@@ -50,12 +50,16 @@ def get_orders(days: int = 30) -> list[dict]:
     return orders
 
 
-def get_product_costs() -> dict:
-    """Trả về {product_id: cost_price} lấy từ Sapo (giá vốn sản phẩm)."""
+def get_variant_sku_map() -> dict:
+    """
+    Sapo API KHÔNG trả giá vốn (đã xác nhận quét 501 sản phẩm không có field này,
+    kể cả combo). Nên thay vì lấy giá vốn trực tiếp, hàm này chỉ lấy mapping
+    {variant_id: sku} để join với file product_costs.csv (do bạn tự duy trì).
+    """
     if Config.DEMO_MODE:
-        return _demo_product_costs()
+        return _demo_variant_sku_map()
 
-    costs = {}
+    mapping = {}
     page = 1
     while True:
         resp = requests.get(
@@ -69,14 +73,13 @@ def get_product_costs() -> dict:
         if not batch:
             break
         for p in batch:
-            # Sapo trả cost_price ở variant đầu tiên (product đơn giản 1 biến thể)
-            variants = p.get("variants", [])
-            cost_price = variants[0].get("cost_price") if variants else None
-            costs[p["id"]] = float(cost_price or 0)
+            for v in p.get("variants", []):
+                if v.get("id") is not None:
+                    mapping[v["id"]] = v.get("sku") or ""
         page += 1
         if len(batch) < 250:
             break
-    return costs
+    return mapping
 
 
 # ---------------------------------------------------------------------------
@@ -90,17 +93,17 @@ def _demo_orders(days: int) -> list[dict]:
     now = dt.datetime.now()
     for i in range(1, 181):
         channel = random.choice(channels)
+        variant_id = random.randint(101, 105)
         total = random.randint(150_000, 950_000)
         orders.append({
             "id": i,
             "created_on": (now - dt.timedelta(days=random.randint(0, days))).isoformat(),
             "total_price": total,
             "source_name": channel,
-            "line_items": [{"product_id": random.randint(1, 5), "quantity": random.randint(1, 3)}],
+            "line_items": [{"product_id": variant_id, "variant_id": variant_id, "quantity": random.randint(1, 3)}],
         })
     return orders
 
 
-def _demo_product_costs() -> dict:
-    # giá vốn giả định ~45-55% giá bán trung bình
-    return {1: 120_000, 2: 95_000, 3: 210_000, 4: 60_000, 5: 175_000}
+def _demo_variant_sku_map() -> dict:
+    return {101: "DEMO001", 102: "DEMO002", 103: "DEMO003", 104: "DEMO004", 105: "DEMO005"}
