@@ -19,7 +19,7 @@ def main():
     orders = r.json().get("orders", [])
     if orders:
         o = orders[0]
-        keep_keys = ["id", "name", "created_on", "total_price", "source_name", "line_items", "financial_status"]
+        keep_keys = ["id", "name", "created_on", "total_price", "source_name", "tags", "note", "line_items", "financial_status"]
         slim = {k: o.get(k) for k in keep_keys if k in o}
         # rút gọn line_items chỉ lấy vài field
         if "line_items" in slim:
@@ -165,12 +165,23 @@ def debug_order_full_fields():
 
     for ch, o in seen_channels.items():
         print(f"\n--- Kênh: {ch} (order id={o.get('id')}) ---")
+        print(f"tags: {o.get('tags')!r}")
+        print(f"note: {o.get('note')!r}")
         interesting = {k: v for k, v in o.items() if any(kw in k.lower() for kw in discount_keywords + shop_keywords)}
         if interesting:
             print(json.dumps(interesting, ensure_ascii=False, indent=2))
         else:
             print("Không thấy field discount/voucher/shop/page nào rõ ràng trong order này.")
         print("Toàn bộ field top-level của order này:", list(o.keys()))
+
+    # Kiểm tra riêng field "tags" trên NHIỀU order hơn (không chỉ 1 order/kênh),
+    # để xem tags có thật sự chứa tên shop/page cụ thể hay không (vd: "Fanpage A", "Shop B"...)
+    print("\n--- Mẫu 'tags' từ 20 order đầu tiên (bất kỳ kênh nào) ---")
+    resp = requests.get(f"{base}/orders.json", auth=auth, params={"page": 1, "limit": 20}, timeout=30)
+    resp.raise_for_status()
+    sample_orders = resp.json().get("orders", [])
+    for o in sample_orders:
+        print(f"  id={o.get('id')} source_name={o.get('source_name')} tags={o.get('tags')!r}")
 
 
 if __name__ == "__main__":
