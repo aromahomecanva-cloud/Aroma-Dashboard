@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-03T18:05:48.943454",
-  "total_ads_spend": 1377492937.0,
+  "updated_at": "2026-07-03T18:29:31.764308",
+  "total_ads_spend": 1377513529.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
@@ -19827,11 +19827,38 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2187100.0
+      "spend": 2190620.0
     },
     {
       "date": "2026-07-04",
-      "spend": 64410.0
+      "spend": 81482.0
     }
-  ]
+  ],
+  "debug_fee_join": {
+    "settlement_rows": 0,
+    "matched": 0,
+    "match_rate_pct": null,
+    "total_fee_from_settlement_file": 0.0,
+    "sample_order_names": [
+      "#1001",
+      "260311S2E4BCM8",
+      "260311S3FFFNRH",
+      "260311S3KCF4YJ",
+      "260311S3NNTW57",
+      "260311S5ER3DNA",
+      "260311S7Y8Y4DQ",
+      "260311S9B3TX26",
+      "260311SA5DXPXQ",
+      "260311SKESN2Q7",
+      "260311SKHXQD31",
+      "260311SSAQGNK1",
+      "260311SSV99RR7",
+      "260311STX9C3RE",
+      "260311SWTJ01MG"
+    ],
+    "sample_settlement_order_names": []
+  },
+  "debug_fee_match": {
+    "error": "Không đọc được file Chi phí nào trong settlement_files/."
+  }
 }
