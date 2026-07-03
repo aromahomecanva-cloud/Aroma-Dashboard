@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-07-03T12:24:19.193921",
+  "updated_at": "2026-07-03T12:31:38.582885",
   "channels": [
     {
       "channel": "shopee",
-      "orders": 2368,
-      "gross_revenue": 565030193.0,
+      "orders": 2369,
+      "gross_revenue": 565047193.0,
       "total_fee": 0,
-      "net_revenue": 565030193.0,
+      "net_revenue": 565047193.0,
       "cogs": 0.0,
-      "gross_margin_amount": 565030193.0,
+      "gross_margin_amount": 565047193.0,
       "gross_margin_pct": 100.0,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 565030193.0
+      "net_profit_after_ads": 565047193.0
     },
     {
       "channel": "facebook",
