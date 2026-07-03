@@ -1,19 +1,19 @@
 {
-  "updated_at": "2026-07-03T16:12:16.060785",
+  "updated_at": "2026-07-03T16:28:09.111947",
   "total_ads_spend": 38534009.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
       "channel": "shopee",
-      "orders": 2378,
-      "gross_revenue": 567899909.0,
+      "orders": 2380,
+      "gross_revenue": 568379589.0,
       "total_fee": 0,
-      "net_revenue": 567899909.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 567899909.0,
-      "gross_margin_pct": 100.0,
+      "net_revenue": 568379589.0,
+      "cogs": 110812872.924,
+      "gross_margin_amount": 457566716.076,
+      "gross_margin_pct": 80.5,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 567899909.0
+      "net_profit_after_ads": 457566716.076
     },
     {
       "channel": "facebook",
@@ -21,11 +21,11 @@
       "gross_revenue": 81749665.0,
       "total_fee": 0,
       "net_revenue": 81749665.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 81749665.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 20737484.369,
+      "gross_margin_amount": 61012180.631,
+      "gross_margin_pct": 74.6,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 81749665.0
+      "net_profit_after_ads": 61012180.631
     },
     {
       "channel": "instagram",
@@ -33,11 +33,11 @@
       "gross_revenue": 11441000.0,
       "total_fee": 0,
       "net_revenue": 11441000.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 11441000.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 3582475.015,
+      "gross_margin_amount": 7858524.984999999,
+      "gross_margin_pct": 68.7,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 11441000.0
+      "net_profit_after_ads": 7858524.984999999
     },
     {
       "channel": "tiktokshop",
@@ -45,11 +45,11 @@
       "gross_revenue": 4645350.0,
       "total_fee": 0,
       "net_revenue": 4645350.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 4645350.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 1386332.653,
+      "gross_margin_amount": 3259017.347,
+      "gross_margin_pct": 70.2,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 4645350.0
+      "net_profit_after_ads": 3259017.347
     },
     {
       "channel": "pos",
@@ -57,11 +57,11 @@
       "gross_revenue": 4074550.0,
       "total_fee": 0,
       "net_revenue": 4074550.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 4074550.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 1156021.929,
+      "gross_margin_amount": 2918528.071,
+      "gross_margin_pct": 71.6,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 4074550.0
+      "net_profit_after_ads": 2918528.071
     },
     {
       "channel": "zalo-oa",
@@ -69,11 +69,11 @@
       "gross_revenue": 3713000.0,
       "total_fee": 0,
       "net_revenue": 3713000.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 3713000.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 3000.0,
+      "gross_margin_amount": 3710000.0,
+      "gross_margin_pct": 99.9,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 3713000.0
+      "net_profit_after_ads": 3710000.0
     },
     {
       "channel": "admin",
@@ -81,11 +81,11 @@
       "gross_revenue": 3628250.0,
       "total_fee": 0,
       "net_revenue": 3628250.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 3628250.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 957781.997,
+      "gross_margin_amount": 2670468.003,
+      "gross_margin_pct": 73.6,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 3628250.0
+      "net_profit_after_ads": 2670468.003
     },
     {
       "channel": "lazada",
@@ -93,11 +93,11 @@
       "gross_revenue": 1948200.0,
       "total_fee": 0,
       "net_revenue": 1948200.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 1948200.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 212742.994,
+      "gross_margin_amount": 1735457.006,
+      "gross_margin_pct": 89.1,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 1948200.0
+      "net_profit_after_ads": 1735457.006
     },
     {
       "channel": "zalo",
@@ -105,11 +105,11 @@
       "gross_revenue": 1809000.0,
       "total_fee": 0,
       "net_revenue": 1809000.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 1809000.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 798349.994,
+      "gross_margin_amount": 1010650.006,
+      "gross_margin_pct": 55.9,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 1809000.0
+      "net_profit_after_ads": 1010650.006
     },
     {
       "channel": "web",
@@ -117,11 +117,11 @@
       "gross_revenue": 180000.0,
       "total_fee": 0,
       "net_revenue": 180000.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 180000.0,
-      "gross_margin_pct": 100.0,
+      "cogs": 35101.904,
+      "gross_margin_amount": 144898.096,
+      "gross_margin_pct": 80.5,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 180000.0
+      "net_profit_after_ads": 144898.096
     }
   ]
 }
