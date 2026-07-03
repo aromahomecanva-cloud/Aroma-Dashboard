@@ -1,3 +1,6 @@
 requests
 pandas
 openpyxl
+xlrd
+html5lib
+lxml
