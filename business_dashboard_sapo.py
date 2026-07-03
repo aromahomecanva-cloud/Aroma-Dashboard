@@ -21,24 +21,25 @@ def _auth():
     return (Config.SAPO_API_KEY, Config.SAPO_API_SECRET)
 
 
-def get_orders(days: int = 30) -> list[dict]:
+def get_orders(days: int | None = None) -> list[dict]:
     """
-    Trả về danh sách order trong N ngày gần nhất.
+    Trả về danh sách order. Nếu days=None -> lấy TOÀN BỘ lịch sử đơn hàng (không giới hạn ngày).
+    Nếu days=N -> chỉ lấy N ngày gần nhất.
     Mỗi order: {id, created_on, total_price, source_name, line_items:[{product_id, quantity}]}
     """
     if Config.DEMO_MODE:
-        return _demo_orders(days)
+        return _demo_orders(days or 90)
 
-    date_min = (dt.datetime.now() - dt.timedelta(days=days)).strftime("%Y-%m-%d")
+    params_base = {"page": 1, "limit": 250}
+    if days is not None:
+        params_base["created_on_min"] = (dt.datetime.now() - dt.timedelta(days=days)).strftime("%Y-%m-%d")
+
     orders = []
     page = 1
     while True:
-        resp = requests.get(
-            f"{_base_url()}/orders.json",
-            auth=_auth(),
-            params={"created_on_min": date_min, "page": page, "limit": 250},
-            timeout=30,
-        )
+        params = dict(params_base)
+        params["page"] = page
+        resp = requests.get(f"{_base_url()}/orders.json", auth=_auth(), params=params, timeout=30)
         resp.raise_for_status()
         batch = resp.json().get("orders", [])
         if not batch:
@@ -95,12 +96,16 @@ def _demo_orders(days: int) -> list[dict]:
         channel = random.choice(channels)
         variant_id = random.randint(101, 105)
         total = random.randint(150_000, 950_000)
+        qty = random.randint(1, 3)
         orders.append({
             "id": i,
             "created_on": (now - dt.timedelta(days=random.randint(0, days))).isoformat(),
             "total_price": total,
             "source_name": channel,
-            "line_items": [{"product_id": variant_id, "variant_id": variant_id, "quantity": random.randint(1, 3)}],
+            "line_items": [{
+                "product_id": variant_id, "variant_id": variant_id, "quantity": qty,
+                "price": round(total / qty, 0), "title": f"Sản phẩm demo {variant_id}",
+            }],
         })
     return orders
 

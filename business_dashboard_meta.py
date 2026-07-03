@@ -11,9 +11,26 @@ import requests
 from business_dashboard_config import Config
 
 
-def get_ads_spend(days: int = 30) -> dict:
+def _get_paginated(url: str, params: dict) -> list:
+    """Gọi Graph API và tự động lấy hết các trang (paging.next) nếu có."""
+    all_rows = []
+    next_url, next_params = url, params
+    for _ in range(200):  # giới hạn an toàn, đủ cho vài năm dữ liệu theo ngày
+        resp = requests.get(next_url, params=next_params, timeout=30)
+        resp.raise_for_status()
+        body = resp.json()
+        all_rows.extend(body.get("data", []))
+        next_link = body.get("paging", {}).get("next")
+        if not next_link:
+            break
+        next_url, next_params = next_link, None  # next đã có sẵn full query string
+    return all_rows
+
+
+def get_ads_spend(days: int | None = None) -> dict:
     """
-    Trả về {"total_spend": float, "campaigns": [{"name":.., "spend":.., "impressions":.., "clicks":..}]}
+    Trả về {"total_spend": float, "campaigns": [...]}. days=None -> lấy TOÀN BỘ lịch sử
+    có thể (date_preset="maximum", Meta thường giữ tối đa ~37 tháng dữ liệu insights).
     """
     if Config.DEMO_MODE:
         return _demo_ads_spend()
@@ -22,12 +39,10 @@ def get_ads_spend(days: int = 30) -> dict:
     params = {
         "level": "campaign",
         "fields": "campaign_name,spend,impressions,clicks,ctr,cpc",
-        "date_preset": f"last_{days}d" if days != 30 else "last_30d",
+        "date_preset": "maximum" if days is None else f"last_{days}d",
         "access_token": Config.META_ACCESS_TOKEN,
     }
-    resp = requests.get(url, params=params, timeout=30)
-    resp.raise_for_status()
-    data = resp.json().get("data", [])
+    data = _get_paginated(url, params)
 
     campaigns = []
     total_spend = 0.0
@@ -43,6 +58,33 @@ def get_ads_spend(days: int = 30) -> dict:
             "cpc": float(row.get("cpc", 0)),
         })
     return {"total_spend": total_spend, "campaigns": campaigns}
+
+
+def get_ads_spend_daily(days: int | None = None) -> list:
+    """
+    Trả về [{"date": "YYYY-MM-DD", "spend": float}] theo từng ngày.
+    days=None -> lấy TOÀN BỘ lịch sử có thể (date_preset="maximum").
+    """
+    if Config.DEMO_MODE:
+        return _demo_ads_spend_daily(days or 90)
+
+    url = f"https://graph.facebook.com/{Config.META_API_VERSION}/{Config.META_AD_ACCOUNT_ID}/insights"
+    params = {
+        "level": "account",
+        "fields": "spend",
+        "time_increment": 1,
+        "access_token": Config.META_ACCESS_TOKEN,
+    }
+    if days is None:
+        params["date_preset"] = "maximum"
+    else:
+        import datetime as dt
+        since = (dt.datetime.now() - dt.timedelta(days=days)).strftime("%Y-%m-%d")
+        until = dt.datetime.now().strftime("%Y-%m-%d")
+        params["time_range"] = f'{{"since":"{since}","until":"{until}"}}'
+
+    data = _get_paginated(url, params)
+    return [{"date": row.get("date_start"), "spend": float(row.get("spend", 0))} for row in data]
 
 
 # ---------------------------------------------------------------------------
@@ -66,3 +108,13 @@ def _demo_ads_spend() -> dict:
             "cpc": round(spend / max(random.randint(1_000, 9_000), 1), 0),
         })
     return {"total_spend": total, "campaigns": campaigns}
+
+
+def _demo_ads_spend_daily(days: int) -> list:
+    import datetime as dt
+    random.seed(11)
+    now = dt.datetime.now()
+    return [
+        {"date": (now - dt.timedelta(days=i)).strftime("%Y-%m-%d"), "spend": round(random.uniform(300_000, 1_200_000), 0)}
+        for i in range(days)
+    ]

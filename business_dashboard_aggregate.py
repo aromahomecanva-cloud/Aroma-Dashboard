@@ -19,6 +19,12 @@ cùng payload khi xuất data.json, lấy trực tiếp từ ads_data['total_spe
 import pandas as pd
 
 
+def _order_date(o: dict) -> str:
+    """Lấy ngày (YYYY-MM-DD) từ created_on của order."""
+    created = o.get("created_on") or ""
+    return str(created)[:10]
+
+
 def _line_item_cost(li: dict, variant_sku_map: dict, cost_map: dict) -> float:
     variant_id = li.get("variant_id")
     sku = variant_sku_map.get(variant_id)
@@ -68,3 +74,93 @@ def build_summary(
     cols = ["channel", "orders", "gross_revenue", "total_fee", "net_revenue",
             "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend", "net_profit_after_ads"]
     return summary[cols].sort_values("gross_revenue", ascending=False).reset_index(drop=True)
+
+
+def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict) -> pd.DataFrame:
+    """
+    Bảng chi tiết theo SẢN PHẨM x KÊNH: số lượng bán, doanh thu, giá vốn, gross margin.
+    Dùng title trong line_items làm tên sản phẩm hiển thị, sku để join giá vốn.
+    """
+    rows = []
+    for o in orders:
+        channel = o.get("source_name")
+        for li in o.get("line_items", []):
+            variant_id = li.get("variant_id")
+            sku = variant_sku_map.get(variant_id, "")
+            qty = li.get("quantity", 0)
+            revenue = li.get("price", 0) * qty
+            cost = cost_map.get(sku, 0.0) * qty
+            rows.append({
+                "channel": channel,
+                "product": li.get("title") or sku or "(không tên)",
+                "sku": sku,
+                "quantity": qty,
+                "revenue": revenue,
+                "cogs": cost,
+            })
+
+    if not rows:
+        return pd.DataFrame(columns=["channel", "product", "sku", "quantity", "revenue", "cogs",
+                                      "gross_margin_amount", "gross_margin_pct"])
+
+    df = pd.DataFrame(rows)
+    grouped = df.groupby(["channel", "product", "sku"]).agg(
+        quantity=("quantity", "sum"),
+        revenue=("revenue", "sum"),
+        cogs=("cogs", "sum"),
+    ).reset_index()
+    grouped["gross_margin_amount"] = grouped["revenue"] - grouped["cogs"]
+    grouped["gross_margin_pct"] = grouped.apply(
+        lambda r: round(r["gross_margin_amount"] / r["revenue"] * 100, 1) if r["revenue"] else 0.0, axis=1
+    )
+    return grouped.sort_values(["channel", "revenue"], ascending=[True, False]).reset_index(drop=True)
+
+
+def build_daily_summary(
+    orders: list,
+    variant_sku_map: dict,
+    cost_map: dict,
+    settlement_df: pd.DataFrame,
+) -> pd.DataFrame:
+    """
+    Giống build_summary nhưng tách thêm theo NGÀY (date) — dùng để dashboard
+    lọc theo khoảng thời gian mà không cần gọi lại API mỗi lần đổi filter.
+    Trả về: date, channel, orders, gross_revenue, total_fee, net_revenue, cogs,
+            gross_margin_amount, gross_margin_pct
+    """
+    if not orders:
+        return pd.DataFrame(columns=["date", "channel", "orders", "gross_revenue", "total_fee",
+                                      "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct"])
+
+    orders_df = pd.DataFrame(orders)
+    orders_df["date"] = orders_df.apply(_order_date, axis=1)
+    orders_df["cogs"] = orders_df["line_items"].apply(
+        lambda items: sum(_line_item_cost(li, variant_sku_map, cost_map) for li in items)
+    )
+    orders_df["order_id"] = orders_df["id"].astype(str)
+
+    gross = orders_df.groupby(["date", "source_name"]).agg(
+        gross_revenue=("total_price", "sum"),
+        orders=("id", "count"),
+        cogs=("cogs", "sum"),
+    ).rename_axis(["date", "channel"]).reset_index()
+
+    if settlement_df is not None and not settlement_df.empty:
+        settlement_df = settlement_df.copy()
+        settlement_df["order_id"] = settlement_df["order_id"].astype(str)
+        # Nếu settlement có ngày thì join theo (date, channel); hiện tại chưa có nên gộp theo channel
+        fees = settlement_df.groupby("channel").agg(total_fee=("total_fee", "sum")).reset_index()
+        gross = gross.merge(fees, on="channel", how="left")
+        gross["total_fee"] = gross["total_fee"].fillna(0)
+    else:
+        gross["total_fee"] = 0.0
+
+    gross["net_revenue"] = gross["gross_revenue"] - gross["total_fee"]
+    gross["gross_margin_amount"] = gross["net_revenue"] - gross["cogs"]
+    gross["gross_margin_pct"] = gross.apply(
+        lambda r: round(r["gross_margin_amount"] / r["net_revenue"] * 100, 1) if r["net_revenue"] else 0.0, axis=1
+    )
+
+    cols = ["date", "channel", "orders", "gross_revenue", "total_fee", "net_revenue",
+            "cogs", "gross_margin_amount", "gross_margin_pct"]
+    return gross[cols].sort_values(["date", "channel"]).reset_index(drop=True)
