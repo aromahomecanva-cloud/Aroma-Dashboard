@@ -49,9 +49,10 @@ def main():
     print(f"Lấy TOÀN BỘ lịch sử — {len(orders)} đơn hàng.")
     print(f"Tổng ads spend (Meta, chưa gán kênh): {ads_data.get('total_spend', 0):,.0f}đ")
     print(f"Số SKU có giá vốn trong file: {len(cost_map)}")
-    print(f"Số dòng breakdown theo sản phẩm x kênh: {len(product_breakdown)}")
-    print(f"Số dòng dữ liệu theo ngày x kênh: {len(daily_summary)}")
+    print(f"Số dòng breakdown theo sản phẩm x kênh x shop/page: {len(product_breakdown)}")
+    print(f"Số dòng dữ liệu theo ngày x kênh x shop/page: {len(daily_summary)}")
     print(f"Số ngày có dữ liệu ads: {len(ads_daily)}")
+    print(f"Số tổ hợp channel x shop/page nhận diện được: {len(summary)}")
 
 
 if __name__ == "__main__":

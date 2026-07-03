@@ -49,7 +49,8 @@ def main():
     step(5, "Tổng hợp: doanh thu gộp / thực nhận / COGS / gross margin theo kênh...")
     summary = build_summary(orders, variant_sku_map, cost_map, ads_data, settlement_df)
     for _, r in summary.iterrows():
-        print(f"   • {r['channel']}: DT gộp {r['gross_revenue']:,.0f}đ | "
+        label = f"{r['channel']} / {r['shop_page']}" if r['shop_page'] else r['channel']
+        print(f"   • {label}: DT gộp {r['gross_revenue']:,.0f}đ | "
               f"DT thực nhận {r['net_revenue']:,.0f}đ | "
               f"Gross margin {r['gross_margin_amount']:,.0f}đ ({r['gross_margin_pct']}%) | "
               f"Ads {r['ads_spend']:,.0f}đ | LN sau ads {r['net_profit_after_ads']:,.0f}đ")
