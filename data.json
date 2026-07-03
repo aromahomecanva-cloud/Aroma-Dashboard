@@ -1,29 +1,31 @@
 {
-  "updated_at": "2026-07-03T12:54:20.460177",
+  "updated_at": "2026-07-03T16:12:16.060785",
+  "total_ads_spend": 38534009.0,
+  "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
       "channel": "shopee",
-      "orders": 2369,
-      "gross_revenue": 565047193.0,
+      "orders": 2378,
+      "gross_revenue": 567899909.0,
       "total_fee": 0,
-      "net_revenue": 565047193.0,
+      "net_revenue": 567899909.0,
       "cogs": 0.0,
-      "gross_margin_amount": 565047193.0,
+      "gross_margin_amount": 567899909.0,
       "gross_margin_pct": 100.0,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 565047193.0
+      "net_profit_after_ads": 567899909.0
     },
     {
       "channel": "facebook",
-      "orders": 101,
-      "gross_revenue": 81229665.0,
+      "orders": 102,
+      "gross_revenue": 81749665.0,
       "total_fee": 0,
-      "net_revenue": 81229665.0,
+      "net_revenue": 81749665.0,
       "cogs": 0.0,
-      "gross_margin_amount": 81229665.0,
+      "gross_margin_amount": 81749665.0,
       "gross_margin_pct": 100.0,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 81229665.0
+      "net_profit_after_ads": 81749665.0
     },
     {
       "channel": "instagram",
@@ -58,8 +60,8 @@
       "cogs": 0.0,
       "gross_margin_amount": 4074550.0,
       "gross_margin_pct": 100.0,
-      "ads_spend": 26460387.0,
-      "net_profit_after_ads": -22385837.0
+      "ads_spend": 0.0,
+      "net_profit_after_ads": 4074550.0
     },
     {
       "channel": "zalo-oa",
