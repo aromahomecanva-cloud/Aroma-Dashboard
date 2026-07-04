@@ -122,7 +122,7 @@ def run_diagnostics(orders: list) -> dict:
                 ival = str(int(float(val)))
                 if ival in son_values:
                     son_field_counts[path] = son_field_counts.get(path, 0) + 1
-            except (ValueError, TypeError):
+            except (ValueError, TypeError, OverflowError):
                 pass
 
     top_waybill = sorted(waybill_field_counts.items(), key=lambda kv: -kv[1])[:20]
