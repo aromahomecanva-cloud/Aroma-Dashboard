@@ -5,8 +5,10 @@ Auth: Basic Auth (username = API Key, password = API Secret)
 Base URL: https://{store}.mysapo.net/admin/...
 """
 
+import json
 import random
 import datetime as dt
+from pathlib import Path
 
 import requests
 
@@ -49,6 +51,56 @@ def get_orders(days: int | None = None) -> list[dict]:
         if len(batch) < 250:
             break
     return orders
+
+
+def get_orders_cached(cache_path: Path | str, incremental_days: int = 60) -> list[dict]:
+    """
+    Bản CÓ CACHE của get_orders() — tránh phải kéo lại TOÀN BỘ lịch sử đơn hàng mỗi lần
+    workflow chạy (mỗi 3 tiếng), vì phần lớn đơn CŨ không hề thay đổi. Theo đề xuất của bạn:
+    lần đầu kéo TOÀN BỘ và lưu lại (cache), các lần sau chỉ kéo `incremental_days` ngày gần
+    nhất (mặc định 60 — đủ rộng để bắt các đơn được sửa/hoàn tiền muộn) rồi GHI ĐÈ (upsert
+    theo order id) lên cache — đơn cũ hơn incremental_days ngày giữ nguyên, không bị đụng tới.
+
+    Cache lưu ở file JSON `cache_path`, dạng {"orders_by_id": {id: order, ...}, "last_updated_at": ...}.
+    File này cần được COMMIT lại vào repo (giống data.json) để lần chạy SAU đọc lại được — xem
+    workflow YAML (đã thêm cache_*.json vào bước "git add").
+
+    Muốn ép tải lại TOÀN BỘ (VD nghi ngờ cache lệch, hoặc mới đổi công thức tính) -> XÓA file
+    cache_path rồi chạy lại; hàm sẽ tự nhận ra cache rỗng và tự làm full pull như lần đầu.
+    """
+    if Config.DEMO_MODE:
+        return get_orders(days=None)
+
+    cache_path = Path(cache_path)
+    cache = {}
+    if cache_path.exists():
+        try:
+            cache = json.loads(cache_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            cache = {}
+    orders_by_id = cache.get("orders_by_id", {})
+
+    if not orders_by_id:
+        print("[Sapo cache] Không có cache (hoặc cache rỗng) -> kéo TOÀN BỘ lịch sử đơn hàng.")
+        fresh = get_orders(days=None)
+    else:
+        print(f"[Sapo cache] Đã có {len(orders_by_id)} đơn trong cache -> chỉ kéo "
+              f"{incremental_days} ngày gần nhất để cập nhật (đơn cũ hơn giữ nguyên).")
+        fresh = get_orders(days=incremental_days)
+
+    for o in fresh:
+        oid = o.get("id")
+        if oid is None:
+            continue
+        orders_by_id[str(oid)] = o
+
+    cache["orders_by_id"] = orders_by_id
+    cache["last_updated_at"] = dt.datetime.now().isoformat()
+    cache_path.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+
+    print(f"[Sapo cache] Lần này lấy mới/cập nhật {len(fresh)} đơn -> tổng cộng "
+          f"{len(orders_by_id)} đơn trong cache.")
+    return list(orders_by_id.values())
 
 
 def get_variant_sku_map() -> dict:

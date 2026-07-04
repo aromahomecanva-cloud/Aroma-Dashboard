@@ -5,25 +5,48 @@ Giống business_dashboard_main.py, nhưng xuất thêm data.json (dùng cho Git
 Lấy TOÀN BỘ lịch sử có thể (không giới hạn ngày) để dashboard lọc theo bất kỳ khoảng
 thời gian nào (7 ngày / 30 ngày / theo năm...) mà không cần gọi lại API mỗi lần đổi filter.
 
-Sapo: get_orders(days=None) lấy hết toàn bộ đơn hàng từ trước đến nay.
-Meta: get_ads_spend*(days=None) dùng date_preset="maximum" (Meta thường giữ tối đa ~37
-tháng dữ liệu insights - đây là giới hạn của Meta, không phải giới hạn code).
+VÒNG MỚI — CACHE + KÉO INCREMENTAL (theo đề xuất của bạn để job chạy nhanh hơn, tránh
+rate limit Meta): thay vì kéo lại TOÀN BỘ lịch sử mỗi lần workflow chạy (mỗi 3 tiếng),
+giờ:
+  - Sapo orders: cache TOÀN BỘ vào cache_sapo_orders.json, mỗi lần chạy chỉ kéo lại 60
+    ngày gần nhất rồi ghi đè (upsert theo order id) — xem get_orders_cached().
+  - Meta ads (daily spend, daily theo kênh, chi tiết ad-level): cache theo NGÀY vào các
+    file cache_meta_*.json, mỗi lần chạy chỉ kéo lại 3 ngày gần nhất rồi ghi đè đúng những
+    ngày đó — xem get_ads_spend_daily_cached()/get_ads_spend_daily_by_channel_cached()/
+    get_ads_detail_cached() trong business_dashboard_meta.py.
+  - Các file cache_*.json PHẢI được commit lại vào repo (xem workflow YAML) để lần chạy
+    sau đọc lại được — nếu không, mỗi lần vẫn sẽ tưởng cache rỗng và tự full-pull lại.
+  - Muốn ép tải lại TOÀN BỘ (VD nghi ngờ cache lệch số) -> XÓA (các) file cache_*.json
+    tương ứng trong repo rồi chạy lại; code tự nhận ra cache rỗng và tự full-pull.
 """
 
 import json
 import datetime as dt
 from pathlib import Path
 
-from business_dashboard_sapo import get_orders, get_variant_sku_map
+from business_dashboard_sapo import get_orders_cached, get_variant_sku_map
 from business_dashboard_costs import load_cost_map
-from business_dashboard_meta import get_ads_spend, get_ads_spend_daily, get_ads_detail, get_ads_spend_daily_by_channel
+from business_dashboard_meta import (
+    get_ads_spend, get_ads_spend_daily_cached, get_ads_detail_cached, get_ads_spend_daily_by_channel_cached,
+)
 from business_dashboard_settlement import load_settlement_fees, load_settlement_fee_breakdown
 from business_dashboard_aggregate import build_summary, build_product_breakdown, build_daily_summary, fee_join_diagnostics
 from business_dashboard_debug_fee_match import run_diagnostics as run_fee_match_diagnostics
 from business_dashboard_debug_revenue import run_check as run_revenue_check
 from business_dashboard_ads_rules import RULES_CONFIG, evaluate_rules, any_rule_active
 
-OUT_PATH = Path(__file__).resolve().parent / "data.json"
+BASE_DIR = Path(__file__).resolve().parent
+OUT_PATH = BASE_DIR / "data.json"
+
+# File cache — commit lại vào repo cùng data.json (xem workflow YAML). Xóa file tương ứng
+# để ép full-pull lại từ đầu.
+SAPO_ORDERS_CACHE = BASE_DIR / "cache_sapo_orders.json"
+META_ADS_DAILY_CACHE = BASE_DIR / "cache_meta_ads_daily.json"
+META_ADS_DAILY_BY_CHANNEL_CACHE = BASE_DIR / "cache_meta_ads_daily_by_channel.json"
+META_ADS_DETAIL_CACHE = BASE_DIR / "cache_meta_ads_detail.json"
+
+SAPO_INCREMENTAL_DAYS = 60
+META_INCREMENTAL_DAYS = 3
 
 
 def main():
@@ -32,12 +55,12 @@ def main():
     # Sapo KHÔNG loại đơn nào khỏi báo cáo này theo status/cancelled_on. "orders_raw" == "orders"
     # dùng thẳng cho mọi hàm build_*, giữ tên orders_raw để business_dashboard_debug_revenue vẫn
     # chạy được ma trận đối chiếu như trước.
-    orders_raw = get_orders(days=None)
+    orders_raw = get_orders_cached(SAPO_ORDERS_CACHE, incremental_days=SAPO_INCREMENTAL_DAYS)
     orders = orders_raw
     variant_sku_map = get_variant_sku_map()
     cost_map = load_cost_map()
-    ads_data = get_ads_spend(days=None)
-    ads_daily = get_ads_spend_daily(days=None)
+    ads_data = get_ads_spend(days=None)  # lifetime theo campaign, ít dòng -> vẫn full-pull mỗi lần, rẻ
+    ads_daily = get_ads_spend_daily_cached(META_ADS_DAILY_CACHE, incremental_days=META_INCREMENTAL_DAYS)
     settlement_df = load_settlement_fees()
     fee_breakdown_df = load_settlement_fee_breakdown()
 
@@ -46,17 +69,17 @@ def main():
     # tên campaign, và business_dashboard_aggregate._allocate_ads_spend*() để biết cách
     # phân bổ tổng chi phí theo kênh về từng shop/page (theo tỷ lệ doanh thu).
     #
-    # QUAN TRỌNG: bọc try/except RIÊNG cho phần này — đây là tính năng MỚI (gọi level="ad",
-    # granularity cao hơn hẳn level="campaign"/"account" mà get_ads_spend()/get_ads_spend_daily()
-    # ở trên vẫn dùng ổn định từ trước). Nếu Meta API lỗi ở ĐÂY (hết quyền riêng cho level="ad",
-    # rate limit, token hết hạn giữa chừng phân trang...) THÌ TUYỆT ĐỐI KHÔNG được để crash toàn
-    # bộ job — báo cáo doanh thu/COGS/phí (đã chạy ổn định, là phần quan trọng nhất) vẫn phải
-    # được tính và commit data.json bình thường. Lỗi thật (nếu có) được lưu vào ads_detail_error
+    # QUAN TRỌNG: bọc try/except RIÊNG cho phần này — nếu Meta API lỗi ở ĐÂY (rate limit,
+    # token hết hạn giữa chừng phân trang...) THÌ TUYỆT ĐỐI KHÔNG được để crash toàn bộ job —
+    # báo cáo doanh thu/COGS/phí (đã chạy ổn định, là phần quan trọng nhất) vẫn phải được
+    # tính và commit data.json bình thường. Lỗi thật (nếu có) được lưu vào ads_detail_error
     # trong payload để xem trực tiếp trên data.json mà debug, không cần đào log Actions.
     ads_detail_error = None
     try:
-        ads_detail = get_ads_detail(days=None)
-        ads_daily_by_channel = get_ads_spend_daily_by_channel(days=None)
+        ads_detail = get_ads_detail_cached(META_ADS_DETAIL_CACHE, incremental_days=META_INCREMENTAL_DAYS)
+        ads_daily_by_channel = get_ads_spend_daily_by_channel_cached(
+            META_ADS_DAILY_BY_CHANNEL_CACHE, incremental_days=META_INCREMENTAL_DAYS
+        )
     except Exception as e:
         ads_detail_error = str(e)
         print(f"[LỖI Meta Ads chi tiết - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {ads_detail_error}")

@@ -21,8 +21,12 @@ VÒNG MỚI - kết nối chi phí Meta Ads ở 3 CẤP ĐỘ (campaign / ad set
     rule (xem business_dashboard_ads_rules.py).
 """
 
+import datetime as dt
+import json
 import random
 import re
+import time
+from pathlib import Path
 
 import requests
 
@@ -61,7 +65,15 @@ def _rollup(ads: list, group_keys: list) -> list:
     return out
 
 
-def _get_paginated(url: str, params: dict) -> list:
+# Mã lỗi Meta hay dùng cho rate limit / lỗi TẠM THỜI (nên thử lại), theo docs Meta:
+# https://developers.facebook.com/docs/marketing-api/error-reference — code 4 = "Application
+# request limit reached" (app-level, KHÁC với hết quyền/token sai), 17 = user request limit,
+# 32 = page rate limit, 613 = custom rate limit. Meta cũng tự đánh dấu "is_transient": true
+# trong body lỗi khi đây là lỗi NÊN thử lại (không phải lỗi cấu hình/quyền vĩnh viễn).
+_RETRYABLE_META_CODES = {4, 17, 32, 613}
+
+
+def _get_paginated(url: str, params: dict, max_retries: int = 4) -> list:
     """Gọi Graph API và tự động lấy hết các trang (paging.next) nếu có.
 
     QUAN TRỌNG: requests' resp.raise_for_status() mặc định KHÔNG in ra nội dung lỗi thật
@@ -69,9 +81,16 @@ def _get_paginated(url: str, params: dict) -> list:
     -> khi crash chỉ thấy "403 Forbidden for url: ..." mà KHÔNG biết lý do thật (hết quyền?
     token hết hạn? rate limit? level="ad" cần quyền khác level="campaign"?). Bắt riêng lỗi
     HTTP để in kèm body thật, giúp chẩn đoán được ngay từ log GitHub Actions lần sau.
+
+    ĐÃ XÁC NHẬN qua log GitHub Actions thật: lỗi 403 khi gọi level="ad" (nhiều trang, tài
+    khoản có nhiều ads) là "Application request limit reached" (code 4, is_transient=True)
+    — TỨC LÀ RATE LIMIT của Meta theo APP, không phải thiếu quyền. Đây là lỗi TẠM THỜI, tự
+    hết sau một lúc -> tự động chờ (backoff tăng dần) rồi thử lại vài lần trước khi bỏ cuộc,
+    thay vì bỏ cuộc ngay ở lần lỗi đầu tiên.
     """
     all_rows = []
     next_url, next_params = url, params
+    retries_left = max_retries
     for _ in range(200):  # giới hạn an toàn, đủ cho vài năm dữ liệu theo ngày
         resp = requests.get(next_url, params=next_params, timeout=30)
         try:
@@ -81,6 +100,15 @@ def _get_paginated(url: str, params: dict) -> list:
                 err_body = resp.json()
             except ValueError:
                 err_body = resp.text[:500]
+            meta_err = err_body.get("error", {}) if isinstance(err_body, dict) else {}
+            is_retryable = meta_err.get("is_transient") or meta_err.get("code") in _RETRYABLE_META_CODES
+            if is_retryable and retries_left > 0:
+                wait_s = 30 * (max_retries - retries_left + 1)  # 30s, 60s, 90s, 120s
+                print(f"[Meta rate limit - lỗi tạm thời, chờ {wait_s}s rồi thử lại "
+                      f"({retries_left} lượt còn lại)] {meta_err.get('message')}")
+                time.sleep(wait_s)
+                retries_left -= 1
+                continue  # thử lại CHÍNH trang này (không đổi next_url/next_params)
             raise requests.exceptions.HTTPError(
                 f"{e} | Meta trả về: {err_body}", response=resp
             ) from e
@@ -90,6 +118,7 @@ def _get_paginated(url: str, params: dict) -> list:
         if not next_link:
             break
         next_url, next_params = next_link, None  # next đã có sẵn full query string
+        retries_left = max_retries  # reset số lượt thử lại khi đã sang trang mới thành công
     return all_rows
 
 
@@ -237,6 +266,205 @@ def get_ads_spend_daily_by_channel(days: int | None = None) -> list:
         by_date_channel[key] = by_date_channel.get(key, 0.0) + spend
 
     return [{"date": d, "channel": ch, "spend": round(s, 2)} for (d, ch), s in by_date_channel.items()]
+
+
+# ---------------------------------------------------------------------------
+# CACHE — tránh phải kéo lại TOÀN BỘ lịch sử Meta Ads mỗi lần workflow chạy (mỗi 3 tiếng).
+# Theo đề xuất của user: lần đầu kéo "maximum" và lưu lại, các lần sau chỉ kéo vài ngày gần
+# nhất rồi GHI ĐÈ lên đúng những ngày đó (số liệu cũ hơn giữ nguyên). Điều này còn giúp
+# TRÁNH rate limit "Application request limit reached" đã gặp phải (xem _get_paginated) vì
+# hầu hết các lần chạy giờ chỉ cần vài trang thay vì kéo lại toàn bộ nhiều năm dữ liệu.
+#
+# LƯU Ý về get_ads_detail() cũ: hàm đó lấy TỔNG CỘNG (lifetime) mỗi ad qua toàn bộ
+# date_preset="maximum", KHÔNG tách theo ngày -> không thể cache kiểu "ghi đè 3 ngày gần
+# nhất" một cách an toàn (sẽ bị đè mất số liệu các ngày cũ, hoặc cộng trùng nếu ghi đè sai
+# cách). Vì vậy bản CÓ CACHE (get_ads_detail_cached) đổi sang lấy dữ liệu THEO NGÀY x ad
+# (time_increment=1), cache theo key (ad_id, date), rồi CỘNG DỒN lại thành lifetime totals
+# ở bước cuối — đầu ra (ads/adsets/campaigns) vẫn giữ NGUYÊN FORMAT như get_ads_detail() cũ,
+# nên các phần dùng nó (build_summary, dashboard...) không cần đổi gì.
+# ---------------------------------------------------------------------------
+
+def _load_cache(cache_path) -> dict:
+    cache_path = Path(cache_path)
+    if cache_path.exists():
+        try:
+            return json.loads(cache_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            return {}
+    return {}
+
+
+def _save_cache(cache_path, cache: dict) -> None:
+    Path(cache_path).write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+
+
+def get_ads_spend_daily_cached(cache_path, incremental_days: int = 3) -> list:
+    """Bản CÓ CACHE của get_ads_spend_daily() — cache theo NGÀY, mặc định chỉ kéo lại
+    `incremental_days` ngày gần nhất mỗi lần chạy (Meta vẫn có thể điều chỉnh spend của vài
+    ngày gần đây do attribution window, nên KHÔNG dùng số ngày quá nhỏ như 1)."""
+    if Config.DEMO_MODE:
+        return _demo_ads_spend_daily(90)
+
+    cache = _load_cache(cache_path)
+    by_date = cache.get("by_date", {})
+
+    if not by_date:
+        print("[Meta ads_spend_daily cache] Không có cache -> kéo TOÀN BỘ lịch sử.")
+        fresh = get_ads_spend_daily(days=None)
+    else:
+        print(f"[Meta ads_spend_daily cache] Đã có {len(by_date)} ngày trong cache -> "
+              f"chỉ kéo {incremental_days} ngày gần nhất.")
+        fresh = get_ads_spend_daily(days=incremental_days)
+
+    for row in fresh:
+        if row.get("date"):
+            by_date[row["date"]] = row["spend"]
+
+    cache["by_date"] = by_date
+    cache["last_updated_at"] = dt.datetime.now().isoformat()
+    _save_cache(cache_path, cache)
+
+    return [{"date": d, "spend": s} for d, s in sorted(by_date.items())]
+
+
+def get_ads_spend_daily_by_channel_cached(cache_path, incremental_days: int = 3) -> list:
+    """Bản CÓ CACHE của get_ads_spend_daily_by_channel() — cache theo (ngày, kênh)."""
+    if Config.DEMO_MODE:
+        return _demo_ads_spend_daily_by_channel(90)
+
+    cache = _load_cache(cache_path)
+    by_key = cache.get("by_date_channel", {})
+
+    if not by_key:
+        print("[Meta ads_daily_by_channel cache] Không có cache -> kéo TOÀN BỘ lịch sử.")
+        fresh = get_ads_spend_daily_by_channel(days=None)
+    else:
+        print(f"[Meta ads_daily_by_channel cache] Đã có {len(by_key)} (ngày,kênh) trong cache -> "
+              f"chỉ kéo {incremental_days} ngày gần nhất.")
+        fresh = get_ads_spend_daily_by_channel(days=incremental_days)
+
+    for row in fresh:
+        key = f"{row['date']}|{row['channel']}"
+        by_key[key] = {"date": row["date"], "channel": row["channel"], "spend": row["spend"]}
+
+    cache["by_date_channel"] = by_key
+    cache["last_updated_at"] = dt.datetime.now().isoformat()
+    _save_cache(cache_path, cache)
+
+    return list(by_key.values())
+
+
+def _get_ads_detail_rows_range(since: str | None, until: str | None) -> list:
+    """Gọi Graph API level="ad" + time_increment=1 (MỖI DÒNG = 1 ad x 1 ngày). since/until=None
+    -> lấy TOÀN BỘ lịch sử (date_preset="maximum"); ngược lại lấy đúng khoảng [since, until].
+    Trả về list dòng THÔ (chưa gộp lifetime) — dùng để CACHE theo (ad_id, date)."""
+    url = f"https://graph.facebook.com/{Config.META_API_VERSION}/{Config.META_AD_ACCOUNT_ID}/insights"
+    params = {
+        "level": "ad",
+        "fields": "ad_id,ad_name,adset_id,adset_name,campaign_id,campaign_name,"
+                  "spend,impressions,clicks,actions",
+        "time_increment": 1,
+        "access_token": Config.META_ACCESS_TOKEN,
+    }
+    if since is None and until is None:
+        params["date_preset"] = "maximum"
+    else:
+        params["time_range"] = f'{{"since":"{since}","until":"{until}"}}'
+    data = _get_paginated(url, params)
+
+    rows = []
+    for row in data:
+        spend = float(row.get("spend", 0))
+        results = 0.0
+        for a in (row.get("actions") or []):
+            try:
+                results += float(a.get("value", 0))
+            except (TypeError, ValueError):
+                pass
+        campaign_name = row.get("campaign_name")
+        rows.append({
+            "ad_id": row.get("ad_id"), "ad_name": row.get("ad_name"),
+            "adset_id": row.get("adset_id"), "adset_name": row.get("adset_name"),
+            "campaign_id": row.get("campaign_id"), "campaign_name": campaign_name,
+            "channel": _infer_channel(campaign_name),
+            "date": row.get("date_start"),
+            "spend": spend,
+            "impressions": int(row.get("impressions", 0)),
+            "clicks": int(row.get("clicks", 0)),
+            "results": results,
+        })
+    return rows
+
+
+def _rows_to_ads(rows: list) -> list:
+    """Gộp các dòng (ad_id, date) lại thành 1 dòng LIFETIME cho mỗi ad_id (cộng dồn spend/
+    impressions/clicks/results qua MỌI ngày có trong cache), tính lại ctr/cpc/cpa SAU KHI cộng.
+    Output CÙNG FORMAT với get_ads_detail() cũ (không cần đổi gì ở nơi dùng nó)."""
+    by_ad = {}
+    for r in rows:
+        aid = r.get("ad_id")
+        g = by_ad.setdefault(aid, {
+            "ad_id": aid, "ad_name": r.get("ad_name"),
+            "adset_id": r.get("adset_id"), "adset_name": r.get("adset_name"),
+            "campaign_id": r.get("campaign_id"), "campaign_name": r.get("campaign_name"),
+            "channel": r.get("channel"),
+            "spend": 0.0, "impressions": 0, "clicks": 0, "results": 0.0,
+        })
+        g["spend"] += r.get("spend", 0.0)
+        g["impressions"] += r.get("impressions", 0)
+        g["clicks"] += r.get("clicks", 0)
+        g["results"] += r.get("results", 0.0)
+        if r.get("ad_name"):  # ưu tiên tên mới nhất nếu ad có đổi tên
+            g["ad_name"] = r.get("ad_name")
+            g["campaign_name"] = r.get("campaign_name")
+            g["channel"] = r.get("channel")
+    out = []
+    for g in by_ad.values():
+        g["ctr"] = round(g["clicks"] / g["impressions"] * 100, 2) if g["impressions"] else 0.0
+        g["cpc"] = round(g["spend"] / g["clicks"], 2) if g["clicks"] else 0.0
+        g["cpa"] = round(g["spend"] / g["results"], 2) if g["results"] else None
+        g["actions_raw"] = []  # đã cộng vào "results", không giữ actions_raw thô ở mức lifetime
+        out.append(g)
+    return out
+
+
+def get_ads_detail_cached(cache_path, incremental_days: int = 3) -> dict:
+    """
+    Bản CÓ CACHE của get_ads_detail() — xem ghi chú lớn ở đầu phần CACHE. Cache lưu THEO NGÀY
+    (ad_id, date) trong file cache_path, mặc định mỗi lần chạy chỉ kéo lại `incremental_days`
+    ngày gần nhất rồi GHI ĐÈ đúng những ngày đó (ngày cũ hơn giữ nguyên từ cache).
+    """
+    if Config.DEMO_MODE:
+        return _demo_ads_detail()
+
+    cache = _load_cache(cache_path)
+    rows_by_key = cache.get("rows", {})
+
+    if not rows_by_key:
+        print("[Meta ads_detail cache] Không có cache -> kéo TOÀN BỘ lịch sử (level=ad, theo ngày).")
+        fresh_rows = _get_ads_detail_rows_range(None, None)
+    else:
+        since = (dt.datetime.now() - dt.timedelta(days=incremental_days)).strftime("%Y-%m-%d")
+        until = dt.datetime.now().strftime("%Y-%m-%d")
+        print(f"[Meta ads_detail cache] Đã có {len(rows_by_key)} dòng (ad x ngày) trong cache -> "
+              f"chỉ kéo lại {incremental_days} ngày gần nhất ({since} -> {until}).")
+        fresh_rows = _get_ads_detail_rows_range(since, until)
+
+    for r in fresh_rows:
+        key = f"{r.get('ad_id')}|{r.get('date')}"
+        rows_by_key[key] = r
+
+    cache["rows"] = rows_by_key
+    cache["last_updated_at"] = dt.datetime.now().isoformat()
+    _save_cache(cache_path, cache)
+
+    all_rows = list(rows_by_key.values())
+    ads = _rows_to_ads(all_rows)
+    campaigns = _rollup(ads, ["campaign_id", "campaign_name", "channel"])
+    adsets = _rollup(ads, ["adset_id", "adset_name", "campaign_id", "campaign_name", "channel"])
+    print(f"[Meta ads_detail cache] Tổng: {len(rows_by_key)} dòng (ad x ngày) trong cache -> "
+          f"{len(ads)} ads, {len(adsets)} ad set, {len(campaigns)} campaign.")
+    return {"ads": ads, "adsets": adsets, "campaigns": campaigns}
 
 
 # ---------------------------------------------------------------------------
