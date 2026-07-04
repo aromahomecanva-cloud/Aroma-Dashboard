@@ -21,16 +21,30 @@ Cách nhận diện SHOP/PAGE: Sapo lưu thông tin này trong field "tags" củ
   - Facebook: "..., page_<Tên page>, page_id_<id>, ..." -> lấy phần sau "page_" (không phải "page_id_")
 Nếu không tìm thấy pattern nào phù hợp (VD: pos, admin, zalo, web) -> shop_page để rỗng "".
 
-Cách join total_fee (từ file "Chi phí" export của Sapo, xem business_dashboard_settlement.py):
-  Mỗi order có field "name" (mã đơn dạng "260630EKV6WRY0") — file Chi phí có cột "Mã chứng từ"
-  cùng định dạng. Join total_fee vào TỪNG ORDER qua order["name"] == "Mã chứng từ", rồi mới
-  groupby theo channel/shop_page/date như các số liệu khác (không còn merge dàn đều theo channel
-  như bản trước — join theo order chính xác hơn nhiều).
+Cách join total_fee (từ file "Chi phí" export của Sapo, xem business_dashboard_settlement.py) —
+ĐÃ XÁC NHẬN qua business_dashboard_debug_fee_match.py chạy trên dữ liệu thật:
+  - Đơn SÀN (shopee/tiktokshop/lazada): "Mã chứng từ" == order["name"]
+  - Đơn NGOẠI SÀN (facebook/instagram/zalo/...): phần số trong "Tham chiếu" (VD "SON12345"
+    -> "12345") == str(order["order_number"])
+  settlement_df trả về 2 nhóm dòng (join_field="name" hoặc "order_number"), mỗi order được
+  join total_fee bằng CẢ HAI map cộng lại (trên thực tế 1 order chỉ khớp đúng 1 trong 2, nên
+  cộng lại tương đương "hoặc cái này hoặc cái kia").
+
+Về SẢN PHẨM COMBO trong build_product_breakdown(): Sapo tách 1 dòng combo trong order
+thành NHIỀU line_items riêng theo từng sản phẩm THÀNH TỐ (component), làm mất view
+"đã bán bao nhiêu combo". Hàm build_product_breakdown() dùng BOM (business_dashboard_costs
+.get_combo_bom()) để GHÉP LẠI: với mỗi order, nếu số lượng các SKU thành tố có mặt đủ theo
+đúng tỉ lệ của 1 combo đã biết (số lượng là bội số nguyên của tỉ lệ BOM), gộp N phần đó
+thành N dòng combo (doanh thu = tổng doanh thu đã phân bổ theo tỉ lệ dùng, giá vốn =
+cost_map[combo_sku] * N), phần dư (nếu component còn thừa ngoài combo) vẫn giữ nguyên là
+dòng sản phẩm thường.
 """
 
 import re
 
 import pandas as pd
+
+from business_dashboard_costs import get_combo_bom, get_combo_names
 
 _SHOP_TAG_RE = re.compile(r"^(?:Shopee|Tiktok|Lazada)_(.+)$", re.IGNORECASE)
 _PAGE_TAG_RE = re.compile(r"^page_(?!id_)(.+)$", re.IGNORECASE)
@@ -66,44 +80,65 @@ def _line_item_cost(li: dict, variant_sku_map: dict, cost_map: dict) -> float:
     return cost_map.get(sku, 0.0) * li.get("quantity", 0)
 
 
-def _build_fee_map(settlement_df: pd.DataFrame) -> dict:
-    """{order_name: total_fee} từ file Chi phí Sapo (business_dashboard_settlement.py)."""
-    if settlement_df is None or settlement_df.empty or "order_name" not in settlement_df.columns:
-        return {}
-    return dict(zip(settlement_df["order_name"].astype(str), settlement_df["total_fee"]))
+def _build_fee_maps(settlement_df: pd.DataFrame) -> tuple[dict, dict]:
+    """
+    Trả về (fee_map_by_name, fee_map_by_order_number) từ file Chi phí Sapo.
+    Xem business_dashboard_settlement.py — mỗi dòng settlement_df có join_field
+    là "name" (đơn sàn) hoặc "order_number" (đơn ngoại sàn).
+    """
+    if settlement_df is None or settlement_df.empty:
+        return {}, {}
+    by_name = settlement_df[settlement_df["join_field"] == "name"]
+    by_number = settlement_df[settlement_df["join_field"] == "order_number"]
+    fee_map_by_name = dict(zip(by_name["join_key"].astype(str), by_name["total_fee"]))
+    fee_map_by_order_number = dict(zip(by_number["join_key"].astype(str), by_number["total_fee"]))
+    return fee_map_by_name, fee_map_by_order_number
 
 
 def fee_join_diagnostics(orders: list, settlement_df: pd.DataFrame) -> dict:
     """
-    Thống kê tỷ lệ khớp giữa order['name'] thật và 'Mã chứng từ' trong file Chi phí,
-    để phát hiện sớm nếu giả thuyết join-key sai (xem docstring module).
+    Thống kê tỷ lệ khớp giữa order thật và file Chi phí, tách riêng cho từng nhánh
+    join (name / order_number), để phát hiện sớm nếu 1 trong 2 giả thuyết join-key sai.
     """
     if settlement_df is None or settlement_df.empty:
-        return {"settlement_rows": 0, "matched": 0, "match_rate": None}
+        return {"settlement_rows": 0, "matched": 0, "match_rate": None,
+                "by_name": {}, "by_order_number": {}}
+
     order_names = {str(o.get("name")) for o in orders if o.get("name")}
-    settlement_names = set(settlement_df["order_name"].astype(str))
-    matched = len(order_names & settlement_names)
-    total = len(settlement_names)
+    order_numbers = {str(o.get("order_number")) for o in orders if o.get("order_number") is not None}
+
+    by_name = settlement_df[settlement_df["join_field"] == "name"]
+    by_number = settlement_df[settlement_df["join_field"] == "order_number"]
+
+    name_keys = set(by_name["join_key"].astype(str))
+    number_keys = set(by_number["join_key"].astype(str))
+
+    matched_name = len(order_names & name_keys)
+    matched_number = len(order_numbers & number_keys)
+    total = len(name_keys) + len(number_keys)
+    matched = matched_name + matched_number
+
     return {
         "settlement_rows": total,
         "matched": matched,
         "match_rate": round(matched / total * 100, 1) if total else None,
+        "by_name": {"total": len(name_keys), "matched": matched_name},
+        "by_order_number": {"total": len(number_keys), "matched": matched_number},
     }
 
 
-def _prep_orders_df(orders: list, fee_map: dict) -> pd.DataFrame:
-    """Tạo DataFrame từ orders, thêm cột shop_page (parse từ tags) và total_fee (join qua name)."""
+def _prep_orders_df(orders: list, fee_map_by_name: dict, fee_map_by_order_number: dict) -> pd.DataFrame:
+    """Tạo DataFrame từ orders, thêm cột shop_page (parse từ tags) và total_fee (join 2 nhánh)."""
     df = pd.DataFrame(orders)
     if "tags" in df.columns:
         df["shop_page"] = df["tags"].apply(_extract_shop_page)
     else:
         df["shop_page"] = ""
-    if "name" in df.columns:
-        df["order_name"] = df["name"].astype(str)
-        df["total_fee"] = df["order_name"].map(fee_map).fillna(0.0)
-    else:
-        df["order_name"] = ""
-        df["total_fee"] = 0.0
+
+    fee_from_name = df["name"].astype(str).map(fee_map_by_name).fillna(0.0) if "name" in df.columns else 0.0
+    fee_from_number = df["order_number"].astype(str).map(fee_map_by_order_number).fillna(0.0) \
+        if "order_number" in df.columns else 0.0
+    df["total_fee"] = fee_from_name + fee_from_number
     return df
 
 
@@ -114,8 +149,8 @@ def build_summary(
     ads_data: dict,
     settlement_df: pd.DataFrame,
 ) -> pd.DataFrame:
-    fee_map = _build_fee_map(settlement_df)
-    orders_df = _prep_orders_df(orders, fee_map)
+    fee_map_by_name, fee_map_by_order_number = _build_fee_maps(settlement_df)
+    orders_df = _prep_orders_df(orders, fee_map_by_name, fee_map_by_order_number)
     orders_df["cogs"] = orders_df["line_items"].apply(
         lambda items: sum(_line_item_cost(li, variant_sku_map, cost_map) for li in items)
     )
@@ -141,30 +176,105 @@ def build_summary(
     return summary[cols].sort_values("gross_revenue", ascending=False).reset_index(drop=True)
 
 
+def _reconcile_combo_lines(sku_agg: dict, combo_bom_sorted: list) -> list:
+    """
+    sku_agg: {sku: {"qty": float, "revenue": float, "title": str}} — TỔNG theo sku trong 1 ĐƠN.
+    Với mỗi combo (đã biết BOM), tìm N lớn nhất sao cho TẤT CẢ sku thành tố có đủ số lượng
+    theo đúng tỉ lệ (bội số nguyên) -> gộp N phần đó thành 1 dòng combo, trừ bớt số lượng/doanh
+    thu tương ứng (phân bổ theo tỉ lệ) khỏi các sku thành tố. Phần dư (nếu có, VD mua thêm lẻ)
+    vẫn giữ nguyên trong sku_agg để hiển thị như sản phẩm thường.
+    Trả về list các dòng combo được ghép (sku, qty, revenue).
+    """
+    combo_rows = []
+    for combo_sku, items in combo_bom_sorted:
+        if not items:
+            continue
+        n_candidates = []
+        feasible = True
+        for comp_sku, qty_per in items:
+            if qty_per <= 0:
+                feasible = False
+                break
+            avail = sku_agg.get(comp_sku, {}).get("qty", 0)
+            if avail < qty_per:
+                feasible = False
+                break
+            n_candidates.append(int(avail // qty_per))
+        if not feasible or not n_candidates:
+            continue
+        n = min(n_candidates)
+        if n < 1:
+            continue
+
+        combo_revenue = 0.0
+        for comp_sku, qty_per in items:
+            comp = sku_agg[comp_sku]
+            used_qty = n * qty_per
+            revenue_share = comp["revenue"] * (used_qty / comp["qty"]) if comp["qty"] else 0.0
+            comp["revenue"] -= revenue_share
+            comp["qty"] -= used_qty
+            if comp["qty"] <= 1e-9:
+                del sku_agg[comp_sku]
+            combo_revenue += revenue_share
+
+        combo_rows.append({"sku": combo_sku, "qty": n, "revenue": combo_revenue})
+    return combo_rows
+
+
 def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict) -> pd.DataFrame:
     """
     Bảng chi tiết theo SẢN PHẨM x KÊNH x SHOP/PAGE: số lượng bán, doanh thu, giá vốn, gross margin.
     Dùng title trong line_items làm tên sản phẩm hiển thị, sku để join giá vốn.
     (total_fee KHÔNG áp dụng ở mức sản phẩm vì file Chi phí chỉ có granularity theo order.)
+
+    Sapo tách 1 combo trong order thành NHIỀU line_items theo sản phẩm thành tố -> hàm này
+    GHÉP LẠI thành 1 dòng combo (xem _reconcile_combo_lines + docstring module) để không mất
+    view "đã bán bao nhiêu combo".
     """
+    combo_bom = get_combo_bom()
+    combo_names = get_combo_names()
+    combo_bom_sorted = sorted(combo_bom.items(), key=lambda kv: -len(kv[1]))
+
     rows = []
     for o in orders:
         channel = o.get("source_name")
         shop_page = _extract_shop_page(o.get("tags"))
+
+        sku_agg = {}
         for li in o.get("line_items", []):
             variant_id = li.get("variant_id")
             sku = variant_sku_map.get(variant_id, "")
             qty = li.get("quantity", 0)
             revenue = li.get("price", 0) * qty
-            cost = cost_map.get(sku, 0.0) * qty
+            title = li.get("title") or sku or "(không tên)"
+            entry = sku_agg.setdefault(sku, {"qty": 0.0, "revenue": 0.0, "title": title})
+            entry["qty"] += qty
+            entry["revenue"] += revenue
+
+        combo_rows = _reconcile_combo_lines(sku_agg, combo_bom_sorted) if combo_bom_sorted else []
+
+        for cr in combo_rows:
             rows.append({
                 "channel": channel,
                 "shop_page": shop_page,
-                "product": li.get("title") or sku or "(không tên)",
+                "product": combo_names.get(cr["sku"], f"Combo {cr['sku']}"),
+                "sku": cr["sku"],
+                "quantity": cr["qty"],
+                "revenue": cr["revenue"],
+                "cogs": cost_map.get(cr["sku"], 0.0) * cr["qty"],
+            })
+
+        for sku, agg in sku_agg.items():
+            if agg["qty"] <= 1e-9:
+                continue
+            rows.append({
+                "channel": channel,
+                "shop_page": shop_page,
+                "product": agg["title"],
                 "sku": sku,
-                "quantity": qty,
-                "revenue": revenue,
-                "cogs": cost,
+                "quantity": agg["qty"],
+                "revenue": agg["revenue"],
+                "cogs": cost_map.get(sku, 0.0) * agg["qty"],
             })
 
     if not rows:
@@ -200,8 +310,8 @@ def build_daily_summary(
         return pd.DataFrame(columns=["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee",
                                       "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct"])
 
-    fee_map = _build_fee_map(settlement_df)
-    orders_df = _prep_orders_df(orders, fee_map)
+    fee_map_by_name, fee_map_by_order_number = _build_fee_maps(settlement_df)
+    orders_df = _prep_orders_df(orders, fee_map_by_name, fee_map_by_order_number)
     orders_df["date"] = orders_df.apply(_order_date, axis=1)
     orders_df["cogs"] = orders_df["line_items"].apply(
         lambda items: sum(_line_item_cost(li, variant_sku_map, cost_map) for li in items)

@@ -37,11 +37,11 @@ def main():
     daily_summary = build_daily_summary(orders, variant_sku_map, cost_map, settlement_df)
 
     diag = fee_join_diagnostics(orders, settlement_df)
-    # Ghi kèm mẫu order["name"] thật + mẫu "Mã chứng từ" trong file Chi phí vào chính
-    # data.json (thay vì chỉ in ra log Actions, vì log Actions không lấy lại được từ
-    # sandbox của Claude) -> để so sánh định dạng, chẩn đoán vì sao join có thể lệch.
+    # Ghi kèm mẫu order["name"]/order["order_number"] thật + mẫu join_key trong file Chi phí
+    # vào chính data.json (thay vì chỉ in ra log Actions, vì log Actions không lấy lại được
+    # từ sandbox của Claude) -> để so sánh định dạng, chẩn đoán vì sao join có thể lệch.
     sample_order_names = sorted({str(o.get("name")) for o in orders if o.get("name")})[:15]
-    sample_settlement_names = sorted(settlement_df["order_name"].astype(str).unique().tolist())[:15] \
+    sample_settlement_names = sorted(settlement_df["join_key"].astype(str).unique().tolist())[:15] \
         if not settlement_df.empty else []
 
     # Chẩn đoán TỰ ĐỘNG tìm field nào trong order thật khớp với "Mã chứng từ" (mã vận đơn,
@@ -64,6 +64,8 @@ def main():
             "settlement_rows": diag["settlement_rows"],
             "matched": diag["matched"],
             "match_rate_pct": diag["match_rate"],
+            "by_name": diag["by_name"],
+            "by_order_number": diag["by_order_number"],
             "total_fee_from_settlement_file": float(settlement_df["total_fee"].sum()) if not settlement_df.empty else 0.0,
             "sample_order_names": sample_order_names,
             "sample_settlement_order_names": sample_settlement_names,

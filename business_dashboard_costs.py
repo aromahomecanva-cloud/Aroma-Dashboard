@@ -87,6 +87,47 @@ def _load_combo_bom() -> dict:
     return bom
 
 
+def _load_combo_names() -> dict:
+    """Đọc TẤT CẢ file combos_export*.xlsx -> {combo_sku: tên hiển thị (cột 'Tên sản phẩm*')}."""
+    names = {}
+    for path in _all_files("*combos_export*.xlsx"):
+        df = pd.read_excel(path)
+        if "Đường dẫn/Alias" not in df.columns or "Mã SKU" not in df.columns:
+            continue
+        name_col = "Tên sản phẩm*" if "Tên sản phẩm*" in df.columns else None
+        if name_col is None:
+            continue
+        df["_combo_sku"] = df.groupby("Đường dẫn/Alias")["Mã SKU"].transform(lambda s: s.ffill().bfill())
+        df["_combo_name"] = df.groupby("Đường dẫn/Alias")[name_col].transform(lambda s: s.ffill().bfill())
+        for combo_sku, grp in df.groupby("_combo_sku"):
+            combo_sku = str(combo_sku or "").strip()
+            if not combo_sku or combo_sku == "nan":
+                continue
+            nm = grp["_combo_name"].dropna()
+            if not nm.empty:
+                names[combo_sku] = str(nm.iloc[0])
+    return names
+
+
+def get_combo_bom() -> dict:
+    """
+    Public accessor: {combo_sku: [(component_sku, qty), ...]}.
+    Dùng ở build_product_breakdown (business_dashboard_aggregate.py) để GHÉP LẠI các
+    dòng sản phẩm thành tố (Sapo tách order combo thành line_items riêng lẻ theo từng
+    thành phần) trở về đúng 1 dòng combo — tránh mất view "đã bán bao nhiêu combo".
+    """
+    if Config.DEMO_MODE:
+        return {}
+    return _load_combo_bom()
+
+
+def get_combo_names() -> dict:
+    """Public accessor: {combo_sku: tên sản phẩm hiển thị}."""
+    if Config.DEMO_MODE:
+        return {}
+    return _load_combo_names()
+
+
 def load_cost_map() -> dict:
     """Trả về {sku: giá_vốn (float)} — gộp sản phẩm thường + combo (tự tính từ BOM)."""
     if Config.DEMO_MODE:
