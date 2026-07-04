@@ -1,13 +1,14 @@
 {
-  "updated_at": "2026-07-04T06:43:14.308772",
-  "total_ads_spend": 1378382599.0,
-  "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
+  "updated_at": "2026-07-04T07:55:04.458586",
+  "total_ads_spend": 1378514185.0,
+  "ads_note": "Ads spend giờ ĐÃ gán theo kênh facebook/instagram (suy ra từ tên campaign), phân bổ về shop/page theo tỷ lệ doanh thu — xem ads_spend_by_channel.",
+  "ads_spend_by_channel": {},
   "channels": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 6948,
-      "gross_revenue": 956322171.0,
+      "orders": 6956,
+      "gross_revenue": 958312371.0,
       "total_fee": 236824563.53,
       "fee_breakdown": {
         "Phí cố định": 132342674.0,
@@ -23,18 +24,18 @@
         "Thuế (Đơn hoàn thành)": 1558996.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -18495.0
       },
-      "net_revenue": 719497607.47,
-      "cogs": 462638714.915,
-      "gross_margin_amount": 256858892.555,
-      "gross_margin_pct": 35.7,
+      "net_revenue": 721487807.47,
+      "cogs": 463185316.653,
+      "gross_margin_amount": 258302490.81700003,
+      "gross_margin_pct": 35.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 256858892.555
+      "net_profit_after_ads": 258302490.81700003
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3861,
-      "gross_revenue": 756104420.0,
+      "orders": 3865,
+      "gross_revenue": 757262682.0,
       "total_fee": 134401165.77,
       "fee_breakdown": {
         "Phí cố định": 81355467.0,
@@ -50,12 +51,12 @@
         "Thuế (Đơn hoàn thành)": 1320948.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -15135.0
       },
-      "net_revenue": 621703254.23,
-      "cogs": 150429817.065,
-      "gross_margin_amount": 471273437.165,
+      "net_revenue": 622861516.23,
+      "cogs": 150713207.164,
+      "gross_margin_amount": 472148309.066,
       "gross_margin_pct": 75.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 471273437.165
+      "net_profit_after_ads": 472148309.066
     },
     {
       "channel": "facebook",
@@ -92,18 +93,18 @@
     {
       "channel": "zalo",
       "shop_page": "",
-      "orders": 17,
-      "gross_revenue": 33115750.0,
+      "orders": 18,
+      "gross_revenue": 33770750.0,
       "total_fee": 589648.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 589648.0
       },
-      "net_revenue": 32526102.0,
-      "cogs": 3187029.534,
-      "gross_margin_amount": 29339072.466,
-      "gross_margin_pct": 90.2,
+      "net_revenue": 33181102.0,
+      "cogs": 3319237.493,
+      "gross_margin_amount": 29861864.507,
+      "gross_margin_pct": 90.0,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 29339072.466
+      "net_profit_after_ads": 29861864.507
     },
     {
       "channel": "pos",
@@ -278,7 +279,7 @@
       "net_revenue": 0.0,
       "cogs": 52070.002,
       "gross_margin_amount": -52070.002,
-      "gross_margin_pct": -Infinity,
+      "gross_margin_pct": 0.0,
       "ads_spend": 0.0,
       "net_profit_after_ads": -52070.002
     }
@@ -112547,6 +112548,18 @@
     {
       "date": "2026-07-04",
       "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Tinh Dầu Khuếch Tán Lemongrass",
+      "sku": "TDKT00001",
+      "quantity": 8.0,
+      "revenue": 1650000.0,
+      "cogs": 239672.064,
+      "gross_margin_amount": 1410327.936,
+      "gross_margin_pct": 85.5
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Khuếch Tán Roasted Coffee",
       "sku": "TDKT00199",
@@ -112571,14 +112584,26 @@
     {
       "date": "2026-07-04",
       "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Khuếch Tán Lemongrass",
       "sku": "TDKT00001",
+      "quantity": 4.0,
+      "revenue": 775000.0,
+      "cogs": 119836.032,
+      "gross_margin_amount": 655163.968,
+      "gross_margin_pct": 84.5
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Tinh Dầu Khuếch Tán True Grace",
+      "sku": "TDKT00010",
       "quantity": 3.0,
-      "revenue": 750000.0,
-      "cogs": 89877.024,
-      "gross_margin_amount": 660122.976,
-      "gross_margin_pct": 88.0
+      "revenue": 755000.0,
+      "cogs": 156210.006,
+      "gross_margin_amount": 598789.994,
+      "gross_margin_pct": 79.3
     },
     {
       "date": "2026-07-04",
@@ -112608,18 +112633,6 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "product": "Tinh Dầu Khuếch Tán True Grace",
-      "sku": "TDKT00010",
-      "quantity": 2.0,
-      "revenue": 520000.0,
-      "cogs": 104140.004,
-      "gross_margin_amount": 415859.996,
-      "gross_margin_pct": 80.0
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Nến Thuỷ Tinh 50g Midnight Garden",
       "sku": "NETH00144",
       "quantity": 4.0,
@@ -112639,6 +112652,42 @@
       "cogs": 0.0,
       "gross_margin_amount": 470000.0,
       "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán True Grace",
+      "sku": "TDKT00010",
+      "quantity": 2.0,
+      "revenue": 470000.0,
+      "cogs": 104140.004,
+      "gross_margin_amount": 365859.996,
+      "gross_margin_pct": 77.8
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán After The Rain",
+      "sku": "TDKT00036",
+      "quantity": 1.0,
+      "revenue": 425000.0,
+      "cogs": 96260.115,
+      "gross_margin_amount": 328739.885,
+      "gross_margin_pct": 77.4
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán Bamboo Forest",
+      "sku": "TDKT00026",
+      "quantity": 1.0,
+      "revenue": 425000.0,
+      "cogs": 112400.0,
+      "gross_margin_amount": 312600.0,
+      "gross_margin_pct": 73.6
     },
     {
       "date": "2026-07-04",
@@ -112679,6 +112728,18 @@
     {
       "date": "2026-07-04",
       "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thuỷ Tinh 50g Midnight Garden",
+      "sku": "NETH00144",
+      "quantity": 5.0,
+      "revenue": 415000.0,
+      "cogs": 87754.76000000001,
+      "gross_margin_amount": 327245.24,
+      "gross_margin_pct": 78.9
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Nến Thơm 220g TEA GARDEN",
       "sku": "NETH00211",
@@ -112691,6 +112752,18 @@
     {
       "date": "2026-07-04",
       "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Combo Quà Tặng Set 5",
+      "sku": "CBQT00075",
+      "quantity": 1.0,
+      "revenue": 350000.0,
+      "cogs": 52525.057,
+      "gross_margin_amount": 297474.94299999997,
+      "gross_margin_pct": 85.0
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thơm 220g New Year 2026",
       "sku": "PVN586",
@@ -112699,6 +112772,18 @@
       "cogs": 80000.0,
       "gross_margin_amount": 270000.0,
       "gross_margin_pct": 77.1
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thuỷ Tinh 50g Little Forest",
+      "sku": "NETH00145",
+      "quantity": 4.0,
+      "revenue": 346000.0,
+      "cogs": 66836.016,
+      "gross_margin_amount": 279163.984,
+      "gross_margin_pct": 80.7
     },
     {
       "date": "2026-07-04",
@@ -112735,18 +112820,6 @@
       "cogs": 49496.92,
       "gross_margin_amount": 285503.08,
       "gross_margin_pct": 85.2
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Nến Thuỷ Tinh 50g Midnight Garden",
-      "sku": "NETH00144",
-      "quantity": 4.0,
-      "revenue": 316000.0,
-      "cogs": 70203.808,
-      "gross_margin_amount": 245796.19199999998,
-      "gross_margin_pct": 77.8
     },
     {
       "date": "2026-07-04",
@@ -112799,18 +112872,6 @@
     {
       "date": "2026-07-04",
       "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Nến Thuỷ Tinh 50g Little Forest",
-      "sku": "NETH00145",
-      "quantity": 3.0,
-      "revenue": 247000.0,
-      "cogs": 50127.012,
-      "gross_margin_amount": 196872.988,
-      "gross_margin_pct": 79.7
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Tinh Dầu Khuếch Tán Fresh Mint",
       "sku": "TDKT00195",
@@ -112824,6 +112885,30 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán Fresh Mint",
+      "sku": "TDKT00195",
+      "quantity": 1.0,
+      "revenue": 235000.0,
+      "cogs": 3510.71,
+      "gross_margin_amount": 231489.29,
+      "gross_margin_pct": 98.5
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán London Dreamer",
+      "sku": "TDKT00017",
+      "quantity": 1.0,
+      "revenue": 235000.0,
+      "cogs": 50771.056,
+      "gross_margin_amount": 184228.94400000002,
+      "gross_margin_pct": 78.4
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Khuếch Tán Romantic Night",
       "sku": "TDKT00007",
       "quantity": 1.0,
@@ -112831,18 +112916,6 @@
       "cogs": 0.0,
       "gross_margin_amount": 235000.0,
       "gross_margin_pct": 100.0
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Tinh Dầu Khuếch Tán True Grace",
-      "sku": "TDKT00010",
-      "quantity": 1.0,
-      "revenue": 235000.0,
-      "cogs": 52070.002,
-      "gross_margin_amount": 182929.998,
-      "gross_margin_pct": 77.8
     },
     {
       "date": "2026-07-04",
@@ -112884,6 +112957,18 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thuỷ Tinh 100g After The Rain",
+      "sku": "NETH00157",
+      "quantity": 1.0,
+      "revenue": 200000.0,
+      "cogs": 66475.81,
+      "gross_margin_amount": 133524.19,
+      "gross_margin_pct": 66.8
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thủy Tinh 100g Free Soul",
       "sku": "NETH00043",
       "quantity": 1.0,
@@ -112908,13 +112993,25 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Tinh Dầu Khuếch Tán Lemongrass",
-      "sku": "TDKT00001",
-      "quantity": 1.0,
-      "revenue": 180000.0,
-      "cogs": 29959.008,
-      "gross_margin_amount": 150040.992,
-      "gross_margin_pct": 83.4
+      "product": "Nến Thuỷ Tinh 50g Another Sunday",
+      "sku": "NETH00149",
+      "quantity": 2.0,
+      "revenue": 178000.0,
+      "cogs": 34651.906,
+      "gross_margin_amount": 143348.09399999998,
+      "gross_margin_pct": 80.5
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thuỷ Tinh 50g Beloved Summer",
+      "sku": "NETH00146",
+      "quantity": 2.0,
+      "revenue": 178000.0,
+      "cogs": 47302.224,
+      "gross_margin_amount": 130697.776,
+      "gross_margin_pct": 73.4
     },
     {
       "date": "2026-07-04",
@@ -112927,6 +113024,18 @@
       "cogs": 50800.0,
       "gross_margin_amount": 99200.0,
       "gross_margin_pct": 66.1
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Xịt Thơm Phòng Hương Night Essence 200ml",
+      "sku": "XTQA00026",
+      "quantity": 1.0,
+      "revenue": 149000.0,
+      "cogs": 29000.0,
+      "gross_margin_amount": 120000.0,
+      "gross_margin_pct": 80.5
     },
     {
       "date": "2026-07-04",
@@ -112999,30 +113108,6 @@
       "cogs": 17478.464,
       "gross_margin_amount": 81521.536,
       "gross_margin_pct": 82.3
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Nến Thuỷ Tinh 50g Another Sunday",
-      "sku": "NETH00149",
-      "quantity": 1.0,
-      "revenue": 79000.0,
-      "cogs": 17325.953,
-      "gross_margin_amount": 61674.047,
-      "gross_margin_pct": 78.1
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Nến Thuỷ Tinh 50g Beloved Summer",
-      "sku": "NETH00146",
-      "quantity": 1.0,
-      "revenue": 79000.0,
-      "cogs": 23651.112,
-      "gross_margin_amount": 55348.888,
-      "gross_margin_pct": 70.1
     },
     {
       "date": "2026-07-04",
@@ -113107,6 +113192,42 @@
       "cogs": 53225.0,
       "gross_margin_amount": -53225.0,
       "gross_margin_pct": 0.0
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "zalo",
+      "shop_page": "",
+      "product": "Nến Xi Măng 250gr - Chanh Đào Bạc Hà",
+      "sku": "NETH00212",
+      "quantity": 1.0,
+      "revenue": 355000.0,
+      "cogs": 70914.0,
+      "gross_margin_amount": 284086.0,
+      "gross_margin_pct": 80.0
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "zalo",
+      "shop_page": "",
+      "product": "Khắc Hình Chibi",
+      "sku": "PVN555",
+      "quantity": 1.0,
+      "revenue": 150000.0,
+      "cogs": 1.0,
+      "gross_margin_amount": 149999.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "zalo",
+      "shop_page": "",
+      "product": "Set S9 -Nến thơm & Thông Điệp Ẩn",
+      "sku": "SET9",
+      "quantity": 1.0,
+      "revenue": 150000.0,
+      "cogs": 61292.959,
+      "gross_margin_amount": 88707.041,
+      "gross_margin_pct": 59.1
     }
   ],
   "daily": [
@@ -113121,7 +113242,8 @@
       "net_revenue": 475000.0,
       "cogs": 0.0,
       "gross_margin_amount": 475000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-11",
@@ -113136,7 +113258,8 @@
       "net_revenue": 1326603.0,
       "cogs": 75915.139,
       "gross_margin_amount": 1250687.861,
-      "gross_margin_pct": 94.3
+      "gross_margin_pct": 94.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-11",
@@ -113151,7 +113274,8 @@
       "net_revenue": 371603.0,
       "cogs": 77520.997,
       "gross_margin_amount": 294082.003,
-      "gross_margin_pct": 79.1
+      "gross_margin_pct": 79.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-11",
@@ -113167,7 +113291,8 @@
       "net_revenue": 236031.0,
       "cogs": 0.0,
       "gross_margin_amount": 236031.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-11",
@@ -113186,7 +113311,8 @@
       "net_revenue": 7274138.0,
       "cogs": 473483.286,
       "gross_margin_amount": 6800654.714,
-      "gross_margin_pct": 93.5
+      "gross_margin_pct": 93.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-11",
@@ -113207,7 +113333,8 @@
       "net_revenue": 7568613.0,
       "cogs": 1806207.503,
       "gross_margin_amount": 5762405.4969999995,
-      "gross_margin_pct": 76.1
+      "gross_margin_pct": 76.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-12",
@@ -113220,7 +113347,8 @@
       "net_revenue": 1110000.0,
       "cogs": 147584.014,
       "gross_margin_amount": 962415.986,
-      "gross_margin_pct": 86.7
+      "gross_margin_pct": 86.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-12",
@@ -113235,7 +113363,8 @@
       "net_revenue": 2804781.0,
       "cogs": 148435.136,
       "gross_margin_amount": 2656345.864,
-      "gross_margin_pct": 94.7
+      "gross_margin_pct": 94.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-12",
@@ -113248,7 +113377,8 @@
       "net_revenue": 285000.0,
       "cogs": 59933.178,
       "gross_margin_amount": 225066.822,
-      "gross_margin_pct": 79.0
+      "gross_margin_pct": 79.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-12",
@@ -113269,7 +113399,8 @@
       "net_revenue": 5601733.0,
       "cogs": 692846.455,
       "gross_margin_amount": 4908886.545,
-      "gross_margin_pct": 87.6
+      "gross_margin_pct": 87.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-12",
@@ -113289,7 +113420,8 @@
       "net_revenue": 6998108.0,
       "cogs": 1134218.387,
       "gross_margin_amount": 5863889.613,
-      "gross_margin_pct": 83.8
+      "gross_margin_pct": 83.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-12",
@@ -113304,7 +113436,8 @@
       "net_revenue": 9495496.0,
       "cogs": 5000.0,
       "gross_margin_amount": 9490496.0,
-      "gross_margin_pct": 99.9
+      "gross_margin_pct": 99.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-13",
@@ -113317,7 +113450,8 @@
       "net_revenue": -1110000.0,
       "cogs": 0.0,
       "gross_margin_amount": -1110000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-13",
@@ -113332,7 +113466,8 @@
       "net_revenue": 741603.0,
       "cogs": 214914.139,
       "gross_margin_amount": 526688.861,
-      "gross_margin_pct": 71.0
+      "gross_margin_pct": 71.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-13",
@@ -113347,7 +113482,8 @@
       "net_revenue": 2500889.0,
       "cogs": 998708.317,
       "gross_margin_amount": 1502180.683,
-      "gross_margin_pct": 60.1
+      "gross_margin_pct": 60.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-13",
@@ -113360,7 +113496,8 @@
       "net_revenue": 455000.0,
       "cogs": 0.0,
       "gross_margin_amount": 455000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-13",
@@ -113379,7 +113516,8 @@
       "net_revenue": 5925340.0,
       "cogs": 1357961.58,
       "gross_margin_amount": 4567378.42,
-      "gross_margin_pct": 77.1
+      "gross_margin_pct": 77.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-13",
@@ -113398,7 +113536,8 @@
       "net_revenue": 7727200.0,
       "cogs": 1982111.124,
       "gross_margin_amount": 5745088.876,
-      "gross_margin_pct": 74.3
+      "gross_margin_pct": 74.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-13",
@@ -113413,7 +113552,8 @@
       "net_revenue": 2098000.0,
       "cogs": 1779673.096,
       "gross_margin_amount": 318326.9040000001,
-      "gross_margin_pct": 15.2
+      "gross_margin_pct": 15.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-14",
@@ -113426,7 +113566,8 @@
       "net_revenue": 0.0,
       "cogs": 111292.959,
       "gross_margin_amount": -111292.959,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-14",
@@ -113441,7 +113582,8 @@
       "net_revenue": 1266603.0,
       "cogs": 245106.915,
       "gross_margin_amount": 1021496.085,
-      "gross_margin_pct": 80.6
+      "gross_margin_pct": 80.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-14",
@@ -113454,7 +113596,8 @@
       "net_revenue": 1085000.0,
       "cogs": 244873.147,
       "gross_margin_amount": 840126.853,
-      "gross_margin_pct": 77.4
+      "gross_margin_pct": 77.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-14",
@@ -113469,7 +113612,8 @@
       "net_revenue": 1895714.0,
       "cogs": 446685.404,
       "gross_margin_amount": 1449028.596,
-      "gross_margin_pct": 76.4
+      "gross_margin_pct": 76.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-14",
@@ -113488,7 +113632,8 @@
       "net_revenue": 4888179.0,
       "cogs": 1672413.821,
       "gross_margin_amount": 3215765.179,
-      "gross_margin_pct": 65.8
+      "gross_margin_pct": 65.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-14",
@@ -113507,7 +113652,8 @@
       "net_revenue": 5802625.0,
       "cogs": 1519750.8429999999,
       "gross_margin_amount": 4282874.157,
-      "gross_margin_pct": 73.8
+      "gross_margin_pct": 73.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-15",
@@ -113522,7 +113668,8 @@
       "net_revenue": 864476.0,
       "cogs": 232333.953,
       "gross_margin_amount": 632142.047,
-      "gross_margin_pct": 73.1
+      "gross_margin_pct": 73.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-15",
@@ -113535,7 +113682,8 @@
       "net_revenue": -455000.0,
       "cogs": 0.0,
       "gross_margin_amount": -455000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-15",
@@ -113554,7 +113702,8 @@
       "net_revenue": 5865126.0,
       "cogs": 1887869.121,
       "gross_margin_amount": 3977256.8789999997,
-      "gross_margin_pct": 67.8
+      "gross_margin_pct": 67.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-15",
@@ -113574,7 +113723,8 @@
       "net_revenue": 7803598.0,
       "cogs": 2121282.79,
       "gross_margin_amount": 5682315.21,
-      "gross_margin_pct": 72.8
+      "gross_margin_pct": 72.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-16",
@@ -113589,7 +113739,8 @@
       "net_revenue": 1902698.0,
       "cogs": 379228.095,
       "gross_margin_amount": 1523469.905,
-      "gross_margin_pct": 80.1
+      "gross_margin_pct": 80.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-16",
@@ -113604,7 +113755,8 @@
       "net_revenue": -23397.0,
       "cogs": 0.0,
       "gross_margin_amount": -23397.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-16",
@@ -113617,7 +113769,8 @@
       "net_revenue": 710000.0,
       "cogs": 101600.0,
       "gross_margin_amount": 608400.0,
-      "gross_margin_pct": 85.7
+      "gross_margin_pct": 85.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-16",
@@ -113636,7 +113789,8 @@
       "net_revenue": 3788111.0,
       "cogs": 763716.4720000001,
       "gross_margin_amount": 3024394.528,
-      "gross_margin_pct": 79.8
+      "gross_margin_pct": 79.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-16",
@@ -113655,7 +113809,8 @@
       "net_revenue": 5348585.0,
       "cogs": 1755502.132,
       "gross_margin_amount": 3593082.868,
-      "gross_margin_pct": 67.2
+      "gross_margin_pct": 67.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-17",
@@ -113670,7 +113825,8 @@
       "net_revenue": 5686095.0,
       "cogs": 116180.0,
       "gross_margin_amount": 5569915.0,
-      "gross_margin_pct": 98.0
+      "gross_margin_pct": 98.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-17",
@@ -113685,7 +113841,8 @@
       "net_revenue": 617000.0,
       "cogs": 185914.139,
       "gross_margin_amount": 431085.86100000003,
-      "gross_margin_pct": 69.9
+      "gross_margin_pct": 69.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-17",
@@ -113700,7 +113857,8 @@
       "net_revenue": 4693699.0,
       "cogs": 1191112.38,
       "gross_margin_amount": 3502586.62,
-      "gross_margin_pct": 74.6
+      "gross_margin_pct": 74.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-17",
@@ -113713,7 +113871,8 @@
       "net_revenue": 510000.0,
       "cogs": 0.0,
       "gross_margin_amount": 510000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-17",
@@ -113732,7 +113891,8 @@
       "net_revenue": 7141827.0,
       "cogs": 1904874.54,
       "gross_margin_amount": 5236952.46,
-      "gross_margin_pct": 73.3
+      "gross_margin_pct": 73.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-17",
@@ -113751,7 +113911,8 @@
       "net_revenue": 4663811.0,
       "cogs": 1138671.798,
       "gross_margin_amount": 3525139.202,
-      "gross_margin_pct": 75.6
+      "gross_margin_pct": 75.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-17",
@@ -113766,7 +113927,8 @@
       "net_revenue": 344476.0,
       "cogs": 111040.0,
       "gross_margin_amount": 233436.0,
-      "gross_margin_pct": 67.8
+      "gross_margin_pct": 67.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-18",
@@ -113779,7 +113941,8 @@
       "net_revenue": -396000.0,
       "cogs": 0.0,
       "gross_margin_amount": -396000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-18",
@@ -113794,7 +113957,8 @@
       "net_revenue": 817300.0,
       "cogs": 246673.959,
       "gross_margin_amount": 570626.041,
-      "gross_margin_pct": 69.8
+      "gross_margin_pct": 69.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-18",
@@ -113809,7 +113973,8 @@
       "net_revenue": 555476.0,
       "cogs": 551358.894,
       "gross_margin_amount": 4117.106000000029,
-      "gross_margin_pct": 0.7
+      "gross_margin_pct": 0.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-18",
@@ -113822,7 +113987,8 @@
       "net_revenue": 185000.0,
       "cogs": 0.0,
       "gross_margin_amount": 185000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-18",
@@ -113843,7 +114009,8 @@
       "net_revenue": 5553500.0,
       "cogs": 750888.044,
       "gross_margin_amount": 4802611.956,
-      "gross_margin_pct": 86.5
+      "gross_margin_pct": 86.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-18",
@@ -113862,7 +114029,8 @@
       "net_revenue": 6629732.0,
       "cogs": 2293928.045,
       "gross_margin_amount": 4335803.955,
-      "gross_margin_pct": 65.4
+      "gross_margin_pct": 65.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-19",
@@ -113875,7 +114043,8 @@
       "net_revenue": 369000.0,
       "cogs": 140525.0,
       "gross_margin_amount": 228475.0,
-      "gross_margin_pct": 61.9
+      "gross_margin_pct": 61.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-19",
@@ -113890,7 +114059,8 @@
       "net_revenue": 1514698.0,
       "cogs": 340828.278,
       "gross_margin_amount": 1173869.722,
-      "gross_margin_pct": 77.5
+      "gross_margin_pct": 77.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-19",
@@ -113909,7 +114079,8 @@
       "net_revenue": 6561559.0,
       "cogs": 1337055.165,
       "gross_margin_amount": 5224503.835,
-      "gross_margin_pct": 79.6
+      "gross_margin_pct": 79.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-19",
@@ -113928,7 +114099,8 @@
       "net_revenue": 6007437.0,
       "cogs": 3081973.966,
       "gross_margin_amount": 2925463.034,
-      "gross_margin_pct": 48.7
+      "gross_margin_pct": 48.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-19",
@@ -113943,7 +114115,8 @@
       "net_revenue": 3244046.0,
       "cogs": 0.0,
       "gross_margin_amount": 3244046.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-20",
@@ -113958,7 +114131,8 @@
       "net_revenue": 1069476.0,
       "cogs": 195107.915,
       "gross_margin_amount": 874368.085,
-      "gross_margin_pct": 81.8
+      "gross_margin_pct": 81.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-20",
@@ -113973,7 +114147,8 @@
       "net_revenue": 1099000.0,
       "cogs": 293915.13899999997,
       "gross_margin_amount": 805084.861,
-      "gross_margin_pct": 73.3
+      "gross_margin_pct": 73.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-20",
@@ -113992,7 +114167,8 @@
       "net_revenue": 4860175.0,
       "cogs": 1410089.284,
       "gross_margin_amount": 3450085.716,
-      "gross_margin_pct": 71.0
+      "gross_margin_pct": 71.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-20",
@@ -114013,7 +114189,8 @@
       "net_revenue": 7943018.0,
       "cogs": 2179392.437,
       "gross_margin_amount": 5763625.563,
-      "gross_margin_pct": 72.6
+      "gross_margin_pct": 72.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-21",
@@ -114026,7 +114203,8 @@
       "net_revenue": 0.0,
       "cogs": 172340.049,
       "gross_margin_amount": -172340.049,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-21",
@@ -114041,7 +114219,8 @@
       "net_revenue": 519000.0,
       "cogs": 172340.049,
       "gross_margin_amount": 346659.951,
-      "gross_margin_pct": 66.8
+      "gross_margin_pct": 66.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-21",
@@ -114056,7 +114235,8 @@
       "net_revenue": 842300.0,
       "cogs": 206516.956,
       "gross_margin_amount": 635783.044,
-      "gross_margin_pct": 75.5
+      "gross_margin_pct": 75.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-21",
@@ -114069,7 +114249,8 @@
       "net_revenue": 479750.0,
       "cogs": 410001.0,
       "gross_margin_amount": 69749.0,
-      "gross_margin_pct": 14.5
+      "gross_margin_pct": 14.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-21",
@@ -114089,7 +114270,8 @@
       "net_revenue": 6355534.0,
       "cogs": 1456405.437,
       "gross_margin_amount": 4899128.563,
-      "gross_margin_pct": 77.1
+      "gross_margin_pct": 77.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-21",
@@ -114111,7 +114293,8 @@
       "net_revenue": 4263220.0,
       "cogs": 1495517.719,
       "gross_margin_amount": 2767702.281,
-      "gross_margin_pct": 64.9
+      "gross_margin_pct": 64.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-21",
@@ -114126,7 +114309,8 @@
       "net_revenue": 68000.0,
       "cogs": 29045.0,
       "gross_margin_amount": 38955.0,
-      "gross_margin_pct": 57.3
+      "gross_margin_pct": 57.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-22",
@@ -114141,7 +114325,8 @@
       "net_revenue": 1934563.0,
       "cogs": 575349.2749999999,
       "gross_margin_amount": 1359213.725,
-      "gross_margin_pct": 70.3
+      "gross_margin_pct": 70.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-22",
@@ -114154,7 +114339,8 @@
       "net_revenue": 1010000.0,
       "cogs": 231803.0,
       "gross_margin_amount": 778197.0,
-      "gross_margin_pct": 77.0
+      "gross_margin_pct": 77.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-22",
@@ -114174,7 +114360,8 @@
       "net_revenue": 5426279.0,
       "cogs": 1440500.656,
       "gross_margin_amount": 3985778.344,
-      "gross_margin_pct": 73.5
+      "gross_margin_pct": 73.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-22",
@@ -114194,7 +114381,8 @@
       "net_revenue": 3695222.0,
       "cogs": 1274479.532,
       "gross_margin_amount": 2420742.4680000003,
-      "gross_margin_pct": 65.5
+      "gross_margin_pct": 65.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-22",
@@ -114207,7 +114395,8 @@
       "net_revenue": 185000.0,
       "cogs": 2512.321,
       "gross_margin_amount": 182487.679,
-      "gross_margin_pct": 98.6
+      "gross_margin_pct": 98.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-23",
@@ -114222,7 +114411,8 @@
       "net_revenue": 2971474.0,
       "cogs": 858969.569,
       "gross_margin_amount": 2112504.431,
-      "gross_margin_pct": 71.1
+      "gross_margin_pct": 71.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-23",
@@ -114242,7 +114432,8 @@
       "net_revenue": 2875531.0,
       "cogs": 883984.968,
       "gross_margin_amount": 1991546.0320000001,
-      "gross_margin_pct": 69.3
+      "gross_margin_pct": 69.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-23",
@@ -114264,7 +114455,8 @@
       "net_revenue": 3390236.0,
       "cogs": 1257175.996,
       "gross_margin_amount": 2133060.0039999997,
-      "gross_margin_pct": 62.9
+      "gross_margin_pct": 62.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-24",
@@ -114277,7 +114469,8 @@
       "net_revenue": 655000.0,
       "cogs": 177207.098,
       "gross_margin_amount": 477792.902,
-      "gross_margin_pct": 72.9
+      "gross_margin_pct": 72.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-24",
@@ -114292,7 +114485,8 @@
       "net_revenue": 3414887.0,
       "cogs": 869813.287,
       "gross_margin_amount": 2545073.713,
-      "gross_margin_pct": 74.5
+      "gross_margin_pct": 74.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-24",
@@ -114305,7 +114499,8 @@
       "net_revenue": 508000.0,
       "cogs": 155454.01,
       "gross_margin_amount": 352545.99,
-      "gross_margin_pct": 69.4
+      "gross_margin_pct": 69.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-24",
@@ -114325,7 +114520,8 @@
       "net_revenue": 7339640.0,
       "cogs": 2285972.617,
       "gross_margin_amount": 5053667.382999999,
-      "gross_margin_pct": 68.9
+      "gross_margin_pct": 68.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-24",
@@ -114345,7 +114541,8 @@
       "net_revenue": 5700775.0,
       "cogs": 1194952.522,
       "gross_margin_amount": 4505822.478,
-      "gross_margin_pct": 79.0
+      "gross_margin_pct": 79.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-25",
@@ -114360,7 +114557,8 @@
       "net_revenue": 4528623.0,
       "cogs": 396628.912,
       "gross_margin_amount": 4131994.088,
-      "gross_margin_pct": 91.2
+      "gross_margin_pct": 91.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-25",
@@ -114380,7 +114578,8 @@
       "net_revenue": 6472831.0,
       "cogs": 1707491.92,
       "gross_margin_amount": 4765339.08,
-      "gross_margin_pct": 73.6
+      "gross_margin_pct": 73.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-25",
@@ -114400,7 +114599,8 @@
       "net_revenue": 5835423.0,
       "cogs": 2055311.245,
       "gross_margin_amount": 3780111.755,
-      "gross_margin_pct": 64.8
+      "gross_margin_pct": 64.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-25",
@@ -114415,7 +114615,8 @@
       "net_revenue": 2636914.0,
       "cogs": 0.0,
       "gross_margin_amount": 2636914.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-26",
@@ -114428,7 +114629,8 @@
       "net_revenue": 645000.0,
       "cogs": 795900.0,
       "gross_margin_amount": -150900.0,
-      "gross_margin_pct": -23.4
+      "gross_margin_pct": -23.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-26",
@@ -114443,7 +114645,8 @@
       "net_revenue": 3371000.0,
       "cogs": 795900.0,
       "gross_margin_amount": 2575100.0,
-      "gross_margin_pct": 76.4
+      "gross_margin_pct": 76.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-26",
@@ -114458,7 +114661,8 @@
       "net_revenue": 728000.0,
       "cogs": 184939.049,
       "gross_margin_amount": 543060.951,
-      "gross_margin_pct": 74.6
+      "gross_margin_pct": 74.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-26",
@@ -114481,7 +114685,8 @@
       "net_revenue": 9426613.8,
       "cogs": 2508166.33,
       "gross_margin_amount": 6918447.470000001,
-      "gross_margin_pct": 73.4
+      "gross_margin_pct": 73.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-26",
@@ -114500,7 +114705,8 @@
       "net_revenue": 4969603.0,
       "cogs": 1851433.093,
       "gross_margin_amount": 3118169.9069999997,
-      "gross_margin_pct": 62.7
+      "gross_margin_pct": 62.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-27",
@@ -114515,7 +114721,8 @@
       "net_revenue": 1068000.0,
       "cogs": 75915.139,
       "gross_margin_amount": 992084.861,
-      "gross_margin_pct": 92.9
+      "gross_margin_pct": 92.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-27",
@@ -114530,7 +114737,8 @@
       "net_revenue": 515296.0,
       "cogs": 170520.997,
       "gross_margin_amount": 344775.003,
-      "gross_margin_pct": 66.9
+      "gross_margin_pct": 66.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-27",
@@ -114549,7 +114757,8 @@
       "net_revenue": 5858027.0,
       "cogs": 1278938.919,
       "gross_margin_amount": 4579088.081,
-      "gross_margin_pct": 78.2
+      "gross_margin_pct": 78.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-27",
@@ -114568,7 +114777,8 @@
       "net_revenue": 6740357.0,
       "cogs": 1465524.524,
       "gross_margin_amount": 5274832.476,
-      "gross_margin_pct": 78.3
+      "gross_margin_pct": 78.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-28",
@@ -114581,7 +114791,8 @@
       "net_revenue": 615000.0,
       "cogs": 180921.816,
       "gross_margin_amount": 434078.184,
-      "gross_margin_pct": 70.6
+      "gross_margin_pct": 70.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-28",
@@ -114599,7 +114810,8 @@
       "net_revenue": 4345433.0,
       "cogs": 832670.619,
       "gross_margin_amount": 3512762.381,
-      "gross_margin_pct": 80.8
+      "gross_margin_pct": 80.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-28",
@@ -114618,7 +114830,8 @@
       "net_revenue": 5245243.0,
       "cogs": 1072674.437,
       "gross_margin_amount": 4172568.563,
-      "gross_margin_pct": 79.5
+      "gross_margin_pct": 79.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-29",
@@ -114631,7 +114844,8 @@
       "net_revenue": 6033321.0,
       "cogs": 1424621.412,
       "gross_margin_amount": 4608699.5879999995,
-      "gross_margin_pct": 76.4
+      "gross_margin_pct": 76.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-29",
@@ -114644,7 +114858,8 @@
       "net_revenue": 4116102.0,
       "cogs": 833898.858,
       "gross_margin_amount": 3282203.142,
-      "gross_margin_pct": 79.7
+      "gross_margin_pct": 79.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-30",
@@ -114657,7 +114872,8 @@
       "net_revenue": -1290000.0,
       "cogs": 0.0,
       "gross_margin_amount": -1290000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-30",
@@ -114670,7 +114886,8 @@
       "net_revenue": 174000.0,
       "cogs": 16.772,
       "gross_margin_amount": 173983.228,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-30",
@@ -114685,7 +114902,8 @@
       "net_revenue": 2123605.0,
       "cogs": 824325.963,
       "gross_margin_amount": 1299279.037,
-      "gross_margin_pct": 61.2
+      "gross_margin_pct": 61.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-30",
@@ -114698,7 +114916,8 @@
       "net_revenue": 3840026.0,
       "cogs": 1126626.725,
       "gross_margin_amount": 2713399.275,
-      "gross_margin_pct": 70.7
+      "gross_margin_pct": 70.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-30",
@@ -114711,7 +114930,8 @@
       "net_revenue": 15619473.0,
       "cogs": 3050724.335,
       "gross_margin_amount": 12568748.665,
-      "gross_margin_pct": 80.5
+      "gross_margin_pct": 80.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-31",
@@ -114724,7 +114944,8 @@
       "net_revenue": -615000.0,
       "cogs": 0.0,
       "gross_margin_amount": -615000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-31",
@@ -114739,7 +114960,8 @@
       "net_revenue": 2005197.0,
       "cogs": 565816.846,
       "gross_margin_amount": 1439380.154,
-      "gross_margin_pct": 71.8
+      "gross_margin_pct": 71.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-31",
@@ -114754,7 +114976,8 @@
       "net_revenue": 74737.0,
       "cogs": 38045.0,
       "gross_margin_amount": 36692.0,
-      "gross_margin_pct": 49.1
+      "gross_margin_pct": 49.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-31",
@@ -114767,7 +114990,8 @@
       "net_revenue": 5464065.0,
       "cogs": 1354291.112,
       "gross_margin_amount": 4109773.8880000003,
-      "gross_margin_pct": 75.2
+      "gross_margin_pct": 75.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-03-31",
@@ -114780,7 +115004,8 @@
       "net_revenue": 9397589.0,
       "cogs": 2062899.253,
       "gross_margin_amount": 7334689.7469999995,
-      "gross_margin_pct": 78.0
+      "gross_margin_pct": 78.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-01",
@@ -114793,7 +115018,8 @@
       "net_revenue": 655000.0,
       "cogs": 0.0,
       "gross_margin_amount": 655000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-01",
@@ -114808,7 +115034,8 @@
       "net_revenue": 2806445.0,
       "cogs": 1022087.0800000001,
       "gross_margin_amount": 1784357.92,
-      "gross_margin_pct": 63.6
+      "gross_margin_pct": 63.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-01",
@@ -114827,7 +115054,8 @@
       "net_revenue": 7771340.0,
       "cogs": 1151885.214,
       "gross_margin_amount": 6619454.786,
-      "gross_margin_pct": 85.2
+      "gross_margin_pct": 85.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-01",
@@ -114840,7 +115068,8 @@
       "net_revenue": 6321923.0,
       "cogs": 1640610.832,
       "gross_margin_amount": 4681312.168,
-      "gross_margin_pct": 74.0
+      "gross_margin_pct": 74.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-02",
@@ -114855,7 +115084,8 @@
       "net_revenue": 4116989.0,
       "cogs": 1504594.294,
       "gross_margin_amount": 2612394.7060000002,
-      "gross_margin_pct": 63.5
+      "gross_margin_pct": 63.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-02",
@@ -114870,7 +115100,8 @@
       "net_revenue": 380737.0,
       "cogs": 109119.997,
       "gross_margin_amount": 271617.003,
-      "gross_margin_pct": 71.3
+      "gross_margin_pct": 71.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-02",
@@ -114883,7 +115114,8 @@
       "net_revenue": 355000.0,
       "cogs": 100391.007,
       "gross_margin_amount": 254608.99300000002,
-      "gross_margin_pct": 71.7
+      "gross_margin_pct": 71.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-02",
@@ -114901,7 +115133,8 @@
       "net_revenue": 8387659.0,
       "cogs": 1580007.44,
       "gross_margin_amount": 6807651.5600000005,
-      "gross_margin_pct": 81.2
+      "gross_margin_pct": 81.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-02",
@@ -114920,7 +115153,8 @@
       "net_revenue": 6111881.0,
       "cogs": 1624075.3960000002,
       "gross_margin_amount": 4487805.604,
-      "gross_margin_pct": 73.4
+      "gross_margin_pct": 73.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-02",
@@ -114937,7 +115171,8 @@
       "net_revenue": 422250.0,
       "cogs": 136562.803,
       "gross_margin_amount": 285687.197,
-      "gross_margin_pct": 67.7
+      "gross_margin_pct": 67.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-03",
@@ -114952,7 +115187,8 @@
       "net_revenue": 2010547.0,
       "cogs": 491075.038,
       "gross_margin_amount": 1519471.962,
-      "gross_margin_pct": 75.6
+      "gross_margin_pct": 75.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-03",
@@ -114967,7 +115203,8 @@
       "net_revenue": 154000.0,
       "cogs": 62225.057,
       "gross_margin_amount": 91774.943,
-      "gross_margin_pct": 59.6
+      "gross_margin_pct": 59.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-03",
@@ -114986,7 +115223,8 @@
       "net_revenue": 8229688.0,
       "cogs": 1359249.702,
       "gross_margin_amount": 6870438.298,
-      "gross_margin_pct": 83.5
+      "gross_margin_pct": 83.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-03",
@@ -115005,7 +115243,8 @@
       "net_revenue": 6848571.0,
       "cogs": 1416463.078,
       "gross_margin_amount": 5432107.922,
-      "gross_margin_pct": 79.3
+      "gross_margin_pct": 79.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-03",
@@ -115020,7 +115259,8 @@
       "net_revenue": 713991.0,
       "cogs": 161292.959,
       "gross_margin_amount": 552698.041,
-      "gross_margin_pct": 77.4
+      "gross_margin_pct": 77.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-04",
@@ -115033,7 +115273,8 @@
       "net_revenue": 495000.0,
       "cogs": 0.0,
       "gross_margin_amount": 495000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-04",
@@ -115048,7 +115289,8 @@
       "net_revenue": 2734385.0,
       "cogs": 987935.09,
       "gross_margin_amount": 1746449.9100000001,
-      "gross_margin_pct": 63.9
+      "gross_margin_pct": 63.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-04",
@@ -115067,7 +115309,8 @@
       "net_revenue": 17336620.0,
       "cogs": 3125105.229,
       "gross_margin_amount": 14211514.771,
-      "gross_margin_pct": 82.0
+      "gross_margin_pct": 82.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-04",
@@ -115086,7 +115329,8 @@
       "net_revenue": 10085094.0,
       "cogs": 2747668.927,
       "gross_margin_amount": 7337425.073,
-      "gross_margin_pct": 72.8
+      "gross_margin_pct": 72.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-04",
@@ -115104,7 +115348,8 @@
       "net_revenue": 72900.0,
       "cogs": 29000.0,
       "gross_margin_amount": 43900.0,
-      "gross_margin_pct": 60.2
+      "gross_margin_pct": 60.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-05",
@@ -115117,7 +115362,8 @@
       "net_revenue": -495000.0,
       "cogs": 0.0,
       "gross_margin_amount": -495000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-05",
@@ -115132,7 +115378,8 @@
       "net_revenue": 2469000.0,
       "cogs": 944300.9450000001,
       "gross_margin_amount": 1524699.055,
-      "gross_margin_pct": 61.8
+      "gross_margin_pct": 61.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-05",
@@ -115147,7 +115394,8 @@
       "net_revenue": 3061706.0,
       "cogs": 940782.064,
       "gross_margin_amount": 2120923.9359999998,
-      "gross_margin_pct": 69.3
+      "gross_margin_pct": 69.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-05",
@@ -115162,7 +115410,8 @@
       "net_revenue": 463524.0,
       "cogs": 61293.959,
       "gross_margin_amount": 402230.04099999997,
-      "gross_margin_pct": 86.8
+      "gross_margin_pct": 86.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-05",
@@ -115175,7 +115424,8 @@
       "net_revenue": 295000.0,
       "cogs": 68791.007,
       "gross_margin_amount": 226208.99300000002,
-      "gross_margin_pct": 76.7
+      "gross_margin_pct": 76.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-05",
@@ -115193,7 +115443,8 @@
       "net_revenue": 1879386.0,
       "cogs": 292570.012,
       "gross_margin_amount": 1586815.988,
-      "gross_margin_pct": 84.4
+      "gross_margin_pct": 84.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-05",
@@ -115212,7 +115463,8 @@
       "net_revenue": 4863670.0,
       "cogs": 864282.375,
       "gross_margin_amount": 3999387.625,
-      "gross_margin_pct": 82.2
+      "gross_margin_pct": 82.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-06",
@@ -115227,7 +115479,8 @@
       "net_revenue": 2509877.0,
       "cogs": 1310017.956,
       "gross_margin_amount": 1199859.044,
-      "gross_margin_pct": 47.8
+      "gross_margin_pct": 47.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-06",
@@ -115240,7 +115493,8 @@
       "net_revenue": 158000.0,
       "cogs": 50000.0,
       "gross_margin_amount": 108000.0,
-      "gross_margin_pct": 68.4
+      "gross_margin_pct": 68.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-06",
@@ -115259,7 +115513,8 @@
       "net_revenue": 7531434.0,
       "cogs": 1641177.631,
       "gross_margin_amount": 5890256.369,
-      "gross_margin_pct": 78.2
+      "gross_margin_pct": 78.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-06",
@@ -115278,7 +115533,8 @@
       "net_revenue": 5652659.0,
       "cogs": 1447134.547,
       "gross_margin_amount": 4205524.453,
-      "gross_margin_pct": 74.4
+      "gross_margin_pct": 74.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-07",
@@ -115291,7 +115547,8 @@
       "net_revenue": 1581750.0,
       "cogs": 457542.417,
       "gross_margin_amount": 1124207.583,
-      "gross_margin_pct": 71.1
+      "gross_margin_pct": 71.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-07",
@@ -115306,7 +115563,8 @@
       "net_revenue": 2491803.0,
       "cogs": 714033.2409999999,
       "gross_margin_amount": 1777769.759,
-      "gross_margin_pct": 71.3
+      "gross_margin_pct": 71.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-07",
@@ -115321,7 +115579,8 @@
       "net_revenue": 590000.0,
       "cogs": 111292.959,
       "gross_margin_amount": 478707.04099999997,
-      "gross_margin_pct": 81.1
+      "gross_margin_pct": 81.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-07",
@@ -115339,7 +115598,8 @@
       "net_revenue": 10044469.0,
       "cogs": 1036761.948,
       "gross_margin_amount": 9007707.052,
-      "gross_margin_pct": 89.7
+      "gross_margin_pct": 89.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-07",
@@ -115358,7 +115618,8 @@
       "net_revenue": 6557807.0,
       "cogs": 2082060.776,
       "gross_margin_amount": 4475746.223999999,
-      "gross_margin_pct": 68.3
+      "gross_margin_pct": 68.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-07",
@@ -115377,7 +115638,8 @@
       "net_revenue": 1460550.0,
       "cogs": 850000.0,
       "gross_margin_amount": 610550.0,
-      "gross_margin_pct": 41.8
+      "gross_margin_pct": 41.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-08",
@@ -115390,7 +115652,8 @@
       "net_revenue": 0.0,
       "cogs": 0.0,
       "gross_margin_amount": 0.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-08",
@@ -115405,7 +115668,8 @@
       "net_revenue": 786529.0,
       "cogs": 236293.959,
       "gross_margin_amount": 550235.041,
-      "gross_margin_pct": 70.0
+      "gross_margin_pct": 70.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-08",
@@ -115423,7 +115687,8 @@
       "net_revenue": 7359808.0,
       "cogs": 1555057.122,
       "gross_margin_amount": 5804750.8780000005,
-      "gross_margin_pct": 78.9
+      "gross_margin_pct": 78.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-08",
@@ -115442,7 +115707,8 @@
       "net_revenue": 63243697.0,
       "cogs": 255978225.455,
       "gross_margin_amount": -192734528.455,
-      "gross_margin_pct": -304.7
+      "gross_margin_pct": -304.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-08",
@@ -115457,7 +115723,8 @@
       "net_revenue": -249300.0,
       "cogs": 572000.0,
       "gross_margin_amount": -821300.0,
-      "gross_margin_pct": 329.4
+      "gross_margin_pct": 329.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-08",
@@ -115472,7 +115739,8 @@
       "net_revenue": 650000.0,
       "cogs": 150114.34600000002,
       "gross_margin_amount": 499885.654,
-      "gross_margin_pct": 76.9
+      "gross_margin_pct": 76.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-09",
@@ -115485,7 +115753,8 @@
       "net_revenue": 495000.0,
       "cogs": 61293.959,
       "gross_margin_amount": 433706.04099999997,
-      "gross_margin_pct": 87.6
+      "gross_margin_pct": 87.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-09",
@@ -115500,7 +115769,8 @@
       "net_revenue": 3464353.0,
       "cogs": 1238520.63,
       "gross_margin_amount": 2225832.37,
-      "gross_margin_pct": 64.2
+      "gross_margin_pct": 64.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-09",
@@ -115520,7 +115790,8 @@
       "net_revenue": 7149761.0,
       "cogs": 1044922.2370000001,
       "gross_margin_amount": 6104838.763,
-      "gross_margin_pct": 85.4
+      "gross_margin_pct": 85.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-09",
@@ -115539,7 +115810,8 @@
       "net_revenue": 4033901.25,
       "cogs": 2614537.042,
       "gross_margin_amount": 1419364.208,
-      "gross_margin_pct": 35.2
+      "gross_margin_pct": 35.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-10",
@@ -115552,7 +115824,8 @@
       "net_revenue": 270000.0,
       "cogs": 135915.139,
       "gross_margin_amount": 134084.861,
-      "gross_margin_pct": 49.7
+      "gross_margin_pct": 49.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-10",
@@ -115567,7 +115840,8 @@
       "net_revenue": 8556753.0,
       "cogs": 1250877.278,
       "gross_margin_amount": 7305875.722,
-      "gross_margin_pct": 85.4
+      "gross_margin_pct": 85.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-10",
@@ -115582,7 +115856,8 @@
       "net_revenue": 1695651.0,
       "cogs": 118840.959,
       "gross_margin_amount": 1576810.041,
-      "gross_margin_pct": 93.0
+      "gross_margin_pct": 93.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-10",
@@ -115595,7 +115870,8 @@
       "net_revenue": 600000.0,
       "cogs": 94299.16500000001,
       "gross_margin_amount": 505700.83499999996,
-      "gross_margin_pct": 84.3
+      "gross_margin_pct": 84.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-10",
@@ -115614,7 +115890,8 @@
       "net_revenue": 6728757.0,
       "cogs": 1941239.435,
       "gross_margin_amount": 4787517.5649999995,
-      "gross_margin_pct": 71.2
+      "gross_margin_pct": 71.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-10",
@@ -115633,7 +115910,8 @@
       "net_revenue": 5164780.0,
       "cogs": 1226409.821,
       "gross_margin_amount": 3938370.179,
-      "gross_margin_pct": 76.3
+      "gross_margin_pct": 76.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-10",
@@ -115646,7 +115924,8 @@
       "net_revenue": 185000.0,
       "cogs": 0.0,
       "gross_margin_amount": 185000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-11",
@@ -115659,7 +115938,8 @@
       "net_revenue": -765000.0,
       "cogs": 0.0,
       "gross_margin_amount": -765000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-11",
@@ -115674,7 +115954,8 @@
       "net_revenue": 711000.0,
       "cogs": 0.0,
       "gross_margin_amount": 711000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-11",
@@ -115689,7 +115970,8 @@
       "net_revenue": 2501605.0,
       "cogs": 996415.196,
       "gross_margin_amount": 1505189.804,
-      "gross_margin_pct": 60.2
+      "gross_margin_pct": 60.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-11",
@@ -115704,7 +115986,8 @@
       "net_revenue": 680737.0,
       "cogs": 165001.0,
       "gross_margin_amount": 515736.0,
-      "gross_margin_pct": 75.8
+      "gross_margin_pct": 75.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-11",
@@ -115723,7 +116006,8 @@
       "net_revenue": 5304303.0,
       "cogs": 1540247.817,
       "gross_margin_amount": 3764055.183,
-      "gross_margin_pct": 71.0
+      "gross_margin_pct": 71.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-11",
@@ -115742,7 +116026,8 @@
       "net_revenue": 1270570.0,
       "cogs": 445290.503,
       "gross_margin_amount": 825279.497,
-      "gross_margin_pct": 65.0
+      "gross_margin_pct": 65.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-11",
@@ -115755,7 +116040,8 @@
       "net_revenue": 115000.0,
       "cogs": 245000.0,
       "gross_margin_amount": -130000.0,
-      "gross_margin_pct": -113.0
+      "gross_margin_pct": -113.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-12",
@@ -115770,7 +116056,8 @@
       "net_revenue": 2277210.0,
       "cogs": 564958.192,
       "gross_margin_amount": 1712251.808,
-      "gross_margin_pct": 75.2
+      "gross_margin_pct": 75.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-12",
@@ -115783,7 +116070,8 @@
       "net_revenue": 424000.0,
       "cogs": 21000.0,
       "gross_margin_amount": 403000.0,
-      "gross_margin_pct": 95.0
+      "gross_margin_pct": 95.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-12",
@@ -115796,7 +116084,8 @@
       "net_revenue": 355000.0,
       "cogs": 101714.346,
       "gross_margin_amount": 253285.65399999998,
-      "gross_margin_pct": 71.3
+      "gross_margin_pct": 71.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-12",
@@ -115816,7 +116105,8 @@
       "net_revenue": 5218436.78,
       "cogs": 722579.091,
       "gross_margin_amount": 4495857.689,
-      "gross_margin_pct": 86.2
+      "gross_margin_pct": 86.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-12",
@@ -115837,7 +116127,8 @@
       "net_revenue": -47687648.0,
       "cogs": 542911.2339999999,
       "gross_margin_amount": -48230559.234,
-      "gross_margin_pct": 101.1
+      "gross_margin_pct": 101.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-13",
@@ -115852,7 +116143,8 @@
       "net_revenue": 2251342.0,
       "cogs": 470753.098,
       "gross_margin_amount": 1780588.902,
-      "gross_margin_pct": 79.1
+      "gross_margin_pct": 79.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-13",
@@ -115874,7 +116166,8 @@
       "net_revenue": 5728435.62,
       "cogs": 1494978.252,
       "gross_margin_amount": 4233457.368,
-      "gross_margin_pct": 73.9
+      "gross_margin_pct": 73.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-13",
@@ -115893,7 +116186,8 @@
       "net_revenue": 1389152.0,
       "cogs": 1158562.542,
       "gross_margin_amount": 230589.4580000001,
-      "gross_margin_pct": 16.6
+      "gross_margin_pct": 16.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-13",
@@ -115908,7 +116202,8 @@
       "net_revenue": 10965370.0,
       "cogs": 0.0,
       "gross_margin_amount": 10965370.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-14",
@@ -115921,7 +116216,8 @@
       "net_revenue": 1140000.0,
       "cogs": 211520.997,
       "gross_margin_amount": 928479.003,
-      "gross_margin_pct": 81.4
+      "gross_margin_pct": 81.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-14",
@@ -115936,7 +116232,8 @@
       "net_revenue": 3683490.0,
       "cogs": 1428955.3260000001,
       "gross_margin_amount": 2254534.6739999996,
-      "gross_margin_pct": 61.2
+      "gross_margin_pct": 61.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-14",
@@ -115955,7 +116252,8 @@
       "net_revenue": 6517916.0,
       "cogs": 1604886.099,
       "gross_margin_amount": 4913029.901000001,
-      "gross_margin_pct": 75.4
+      "gross_margin_pct": 75.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-14",
@@ -115976,7 +116274,8 @@
       "net_revenue": 5329549.9,
       "cogs": 1462640.2280000001,
       "gross_margin_amount": 3866909.6720000003,
-      "gross_margin_pct": 72.6
+      "gross_margin_pct": 72.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-15",
@@ -115991,7 +116290,8 @@
       "net_revenue": 4345050.0,
       "cogs": 1452641.152,
       "gross_margin_amount": 2892408.848,
-      "gross_margin_pct": 66.6
+      "gross_margin_pct": 66.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-15",
@@ -116004,7 +116304,8 @@
       "net_revenue": 768000.0,
       "cogs": 180140.011,
       "gross_margin_amount": 587859.9890000001,
-      "gross_margin_pct": 76.5
+      "gross_margin_pct": 76.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-15",
@@ -116024,7 +116325,8 @@
       "net_revenue": 13310747.44,
       "cogs": 2878475.363,
       "gross_margin_amount": 10432272.077,
-      "gross_margin_pct": 78.4
+      "gross_margin_pct": 78.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-15",
@@ -116043,7 +116345,8 @@
       "net_revenue": 8450592.0,
       "cogs": 2215651.335,
       "gross_margin_amount": 6234940.665,
-      "gross_margin_pct": 73.8
+      "gross_margin_pct": 73.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-15",
@@ -116056,7 +116359,8 @@
       "net_revenue": 115000.0,
       "cogs": 445000.0,
       "gross_margin_amount": -330000.0,
-      "gross_margin_pct": -287.0
+      "gross_margin_pct": -287.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-16",
@@ -116069,7 +116373,8 @@
       "net_revenue": 555000.0,
       "cogs": 144214.77500000002,
       "gross_margin_amount": 410785.225,
-      "gross_margin_pct": 74.0
+      "gross_margin_pct": 74.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-16",
@@ -116084,7 +116389,8 @@
       "net_revenue": 571222.0,
       "cogs": 273834.955,
       "gross_margin_amount": 297387.045,
-      "gross_margin_pct": 52.1
+      "gross_margin_pct": 52.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-16",
@@ -116103,7 +116409,8 @@
       "net_revenue": 5829321.0,
       "cogs": 1551953.538,
       "gross_margin_amount": 4277367.462,
-      "gross_margin_pct": 73.4
+      "gross_margin_pct": 73.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-16",
@@ -116124,7 +116431,8 @@
       "net_revenue": 7546963.0,
       "cogs": 2128462.611,
       "gross_margin_amount": 5418500.389,
-      "gross_margin_pct": 71.8
+      "gross_margin_pct": 71.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-17",
@@ -116139,7 +116447,8 @@
       "net_revenue": 778000.0,
       "cogs": 137920.816,
       "gross_margin_amount": 640079.184,
-      "gross_margin_pct": 82.3
+      "gross_margin_pct": 82.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-17",
@@ -116154,7 +116463,8 @@
       "net_revenue": 1388714.0,
       "cogs": 424818.13899999997,
       "gross_margin_amount": 963895.861,
-      "gross_margin_pct": 69.4
+      "gross_margin_pct": 69.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-17",
@@ -116173,7 +116483,8 @@
       "net_revenue": 6527746.0,
       "cogs": 1276325.946,
       "gross_margin_amount": 5251420.054,
-      "gross_margin_pct": 80.4
+      "gross_margin_pct": 80.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-17",
@@ -116192,7 +116503,8 @@
       "net_revenue": 4299835.0,
       "cogs": 1335501.048,
       "gross_margin_amount": 2964333.952,
-      "gross_margin_pct": 68.9
+      "gross_margin_pct": 68.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-17",
@@ -116207,7 +116519,8 @@
       "net_revenue": 1389000.0,
       "cogs": 166000.0,
       "gross_margin_amount": 1223000.0,
-      "gross_margin_pct": 88.0
+      "gross_margin_pct": 88.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-18",
@@ -116222,7 +116535,8 @@
       "net_revenue": 1727222.0,
       "cogs": 416427.098,
       "gross_margin_amount": 1310794.902,
-      "gross_margin_pct": 75.9
+      "gross_margin_pct": 75.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-18",
@@ -116235,7 +116549,8 @@
       "net_revenue": 424000.0,
       "cogs": 38045.0,
       "gross_margin_amount": 385955.0,
-      "gross_margin_pct": 91.0
+      "gross_margin_pct": 91.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-18",
@@ -116254,7 +116569,8 @@
       "net_revenue": 8178169.0,
       "cogs": 1732363.109,
       "gross_margin_amount": 6445805.891,
-      "gross_margin_pct": 78.8
+      "gross_margin_pct": 78.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-18",
@@ -116273,7 +116589,8 @@
       "net_revenue": 4694802.0,
       "cogs": 1280276.468,
       "gross_margin_amount": 3414525.5319999997,
-      "gross_margin_pct": 72.7
+      "gross_margin_pct": 72.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-18",
@@ -116286,7 +116603,8 @@
       "net_revenue": 175000.0,
       "cogs": 54933.178,
       "gross_margin_amount": 120066.822,
-      "gross_margin_pct": 68.6
+      "gross_margin_pct": 68.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-19",
@@ -116299,7 +116617,8 @@
       "net_revenue": -555000.0,
       "cogs": 0.0,
       "gross_margin_amount": -555000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-19",
@@ -116314,7 +116633,8 @@
       "net_revenue": 1167250.0,
       "cogs": 319534.136,
       "gross_margin_amount": 847715.8640000001,
-      "gross_margin_pct": 72.6
+      "gross_margin_pct": 72.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-19",
@@ -116327,7 +116647,8 @@
       "net_revenue": 350000.0,
       "cogs": 81629.625,
       "gross_margin_amount": 268370.375,
-      "gross_margin_pct": 76.7
+      "gross_margin_pct": 76.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-19",
@@ -116346,7 +116667,8 @@
       "net_revenue": 4707701.0,
       "cogs": 1109798.971,
       "gross_margin_amount": 3597902.029,
-      "gross_margin_pct": 76.4
+      "gross_margin_pct": 76.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-19",
@@ -116367,7 +116689,8 @@
       "net_revenue": 3734427.25,
       "cogs": 1091283.3,
       "gross_margin_amount": 2643143.95,
-      "gross_margin_pct": 70.8
+      "gross_margin_pct": 70.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-19",
@@ -116380,7 +116703,8 @@
       "net_revenue": 0.0,
       "cogs": 29000.0,
       "gross_margin_amount": -29000.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-20",
@@ -116395,7 +116719,8 @@
       "net_revenue": 1964576.0,
       "cogs": 757122.237,
       "gross_margin_amount": 1207453.763,
-      "gross_margin_pct": 61.5
+      "gross_margin_pct": 61.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-20",
@@ -116416,7 +116741,8 @@
       "net_revenue": 6812782.36,
       "cogs": 1520325.092,
       "gross_margin_amount": 5292457.268,
-      "gross_margin_pct": 77.7
+      "gross_margin_pct": 77.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-20",
@@ -116435,7 +116761,8 @@
       "net_revenue": 4274420.0,
       "cogs": 1245446.711,
       "gross_margin_amount": 3028973.289,
-      "gross_margin_pct": 70.9
+      "gross_margin_pct": 70.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-20",
@@ -116448,7 +116775,8 @@
       "net_revenue": 0.0,
       "cogs": 116000.0,
       "gross_margin_amount": -116000.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-21",
@@ -116463,7 +116791,8 @@
       "net_revenue": 5058306.0,
       "cogs": 1824344.8050000002,
       "gross_margin_amount": 3233961.195,
-      "gross_margin_pct": 63.9
+      "gross_margin_pct": 63.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-21",
@@ -116485,7 +116814,8 @@
       "net_revenue": 8253675.2,
       "cogs": 1768861.636,
       "gross_margin_amount": 6484813.564,
-      "gross_margin_pct": 78.6
+      "gross_margin_pct": 78.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-21",
@@ -116504,7 +116834,8 @@
       "net_revenue": 3156572.0,
       "cogs": 1126871.966,
       "gross_margin_amount": 2029700.034,
-      "gross_margin_pct": 64.3
+      "gross_margin_pct": 64.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-22",
@@ -116519,7 +116850,8 @@
       "net_revenue": 3058031.0,
       "cogs": 755285.866,
       "gross_margin_amount": 2302745.134,
-      "gross_margin_pct": 75.3
+      "gross_margin_pct": 75.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-22",
@@ -116534,7 +116866,8 @@
       "net_revenue": 525000.0,
       "cogs": 175921.816,
       "gross_margin_amount": 349078.184,
-      "gross_margin_pct": 66.5
+      "gross_margin_pct": 66.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-22",
@@ -116553,7 +116886,8 @@
       "net_revenue": 6609660.0,
       "cogs": 1976592.142,
       "gross_margin_amount": 4633067.858,
-      "gross_margin_pct": 70.1
+      "gross_margin_pct": 70.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-22",
@@ -116572,7 +116906,8 @@
       "net_revenue": 6404098.0,
       "cogs": 1635834.194,
       "gross_margin_amount": 4768263.806,
-      "gross_margin_pct": 74.5
+      "gross_margin_pct": 74.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-22",
@@ -116585,7 +116920,8 @@
       "net_revenue": 95000.0,
       "cogs": 29000.0,
       "gross_margin_amount": 66000.0,
-      "gross_margin_pct": 69.5
+      "gross_margin_pct": 69.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-23",
@@ -116600,7 +116936,8 @@
       "net_revenue": 1393726.0,
       "cogs": 263123.23699999996,
       "gross_margin_amount": 1130602.763,
-      "gross_margin_pct": 81.1
+      "gross_margin_pct": 81.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-23",
@@ -116618,7 +116955,8 @@
       "net_revenue": 268326.0,
       "cogs": 0.0,
       "gross_margin_amount": 268326.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-23",
@@ -116637,7 +116975,8 @@
       "net_revenue": 2951612.0,
       "cogs": 1412999.545,
       "gross_margin_amount": 1538612.455,
-      "gross_margin_pct": 52.1
+      "gross_margin_pct": 52.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-23",
@@ -116657,7 +116996,8 @@
       "net_revenue": 7503750.0,
       "cogs": 1987426.068,
       "gross_margin_amount": 5516323.932,
-      "gross_margin_pct": 73.5
+      "gross_margin_pct": 73.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-24",
@@ -116672,7 +117012,8 @@
       "net_revenue": 339000.0,
       "cogs": 0.0,
       "gross_margin_amount": 339000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-24",
@@ -116687,7 +117028,8 @@
       "net_revenue": 2570603.0,
       "cogs": 475308.73400000005,
       "gross_margin_amount": 2095294.2659999998,
-      "gross_margin_pct": 81.5
+      "gross_margin_pct": 81.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-24",
@@ -116700,7 +117042,8 @@
       "net_revenue": 175000.0,
       "cogs": 39700.0,
       "gross_margin_amount": 135300.0,
-      "gross_margin_pct": 77.3
+      "gross_margin_pct": 77.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-24",
@@ -116719,7 +117062,8 @@
       "net_revenue": 3612903.0,
       "cogs": 1142811.954,
       "gross_margin_amount": 2470091.046,
-      "gross_margin_pct": 68.4
+      "gross_margin_pct": 68.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-24",
@@ -116738,7 +117082,8 @@
       "net_revenue": 4846168.0,
       "cogs": 1477519.969,
       "gross_margin_amount": 3368648.031,
-      "gross_margin_pct": 69.5
+      "gross_margin_pct": 69.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-24",
@@ -116751,7 +117096,8 @@
       "net_revenue": 184000.0,
       "cogs": 340000.0,
       "gross_margin_amount": -156000.0,
-      "gross_margin_pct": -84.8
+      "gross_margin_pct": -84.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-25",
@@ -116766,7 +117112,8 @@
       "net_revenue": 1436763.0,
       "cogs": 383829.278,
       "gross_margin_amount": 1052933.722,
-      "gross_margin_pct": 73.3
+      "gross_margin_pct": 73.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-25",
@@ -116781,7 +117128,8 @@
       "net_revenue": 531603.0,
       "cogs": 120914.139,
       "gross_margin_amount": 410688.86100000003,
-      "gross_margin_pct": 77.3
+      "gross_margin_pct": 77.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-25",
@@ -116794,7 +117142,8 @@
       "net_revenue": 220000.0,
       "cogs": 39716.772,
       "gross_margin_amount": 180283.228,
-      "gross_margin_pct": 81.9
+      "gross_margin_pct": 81.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-25",
@@ -116813,7 +117162,8 @@
       "net_revenue": 5804457.0,
       "cogs": 1099813.938,
       "gross_margin_amount": 4704643.062,
-      "gross_margin_pct": 81.1
+      "gross_margin_pct": 81.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-25",
@@ -116832,7 +117182,8 @@
       "net_revenue": 5065452.0,
       "cogs": 1110970.735,
       "gross_margin_amount": 3954481.2649999997,
-      "gross_margin_pct": 78.1
+      "gross_margin_pct": 78.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-25",
@@ -116845,7 +117196,8 @@
       "net_revenue": 511000.0,
       "cogs": 130000.0,
       "gross_margin_amount": 381000.0,
-      "gross_margin_pct": 74.6
+      "gross_margin_pct": 74.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-26",
@@ -116858,7 +117210,8 @@
       "net_revenue": 645000.0,
       "cogs": 0.0,
       "gross_margin_amount": 645000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-26",
@@ -116876,7 +117229,8 @@
       "net_revenue": 73725.0,
       "cogs": 0.0,
       "gross_margin_amount": 73725.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-26",
@@ -116897,7 +117251,8 @@
       "net_revenue": 1731262.28,
       "cogs": 303657.341,
       "gross_margin_amount": 1427604.939,
-      "gross_margin_pct": 82.5
+      "gross_margin_pct": 82.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-26",
@@ -116916,7 +117271,8 @@
       "net_revenue": 6384874.0,
       "cogs": 960880.201,
       "gross_margin_amount": 5423993.799,
-      "gross_margin_pct": 85.0
+      "gross_margin_pct": 85.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-26",
@@ -116929,7 +117285,8 @@
       "net_revenue": 347000.0,
       "cogs": 174000.0,
       "gross_margin_amount": 173000.0,
-      "gross_margin_pct": 49.9
+      "gross_margin_pct": 49.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-27",
@@ -116942,7 +117299,8 @@
       "net_revenue": 765000.0,
       "cogs": 0.0,
       "gross_margin_amount": 765000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-27",
@@ -116957,7 +117315,8 @@
       "net_revenue": 1127549.0,
       "cogs": 81600.0,
       "gross_margin_amount": 1045949.0,
-      "gross_margin_pct": 92.8
+      "gross_margin_pct": 92.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-27",
@@ -116976,7 +117335,8 @@
       "net_revenue": 6710904.0,
       "cogs": 1573201.01,
       "gross_margin_amount": 5137702.99,
-      "gross_margin_pct": 76.6
+      "gross_margin_pct": 76.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-27",
@@ -116997,7 +117357,8 @@
       "net_revenue": 5448771.0,
       "cogs": 1051234.895,
       "gross_margin_amount": 4397536.105,
-      "gross_margin_pct": 80.7
+      "gross_margin_pct": 80.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-27",
@@ -117010,7 +117371,8 @@
       "net_revenue": -89000.0,
       "cogs": 0.0,
       "gross_margin_amount": -89000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-28",
@@ -117023,7 +117385,8 @@
       "net_revenue": -765000.0,
       "cogs": 0.0,
       "gross_margin_amount": -765000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-28",
@@ -117036,7 +117399,8 @@
       "net_revenue": -645000.0,
       "cogs": 0.0,
       "gross_margin_amount": -645000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-28",
@@ -117051,7 +117415,8 @@
       "net_revenue": 3072317.0,
       "cogs": 968977.189,
       "gross_margin_amount": 2103339.8109999998,
-      "gross_margin_pct": 68.5
+      "gross_margin_pct": 68.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-28",
@@ -117071,7 +117436,8 @@
       "net_revenue": 4556334.0,
       "cogs": 1119918.735,
       "gross_margin_amount": 3436415.2649999997,
-      "gross_margin_pct": 75.4
+      "gross_margin_pct": 75.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-28",
@@ -117090,7 +117456,8 @@
       "net_revenue": 7147150.0,
       "cogs": 1466545.432,
       "gross_margin_amount": 5680604.568,
-      "gross_margin_pct": 79.5
+      "gross_margin_pct": 79.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-28",
@@ -117103,7 +117470,8 @@
       "net_revenue": 89000.0,
       "cogs": 131000.0,
       "gross_margin_amount": -42000.0,
-      "gross_margin_pct": -47.2
+      "gross_margin_pct": -47.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-29",
@@ -117118,7 +117486,8 @@
       "net_revenue": 2055381.0,
       "cogs": 516951.555,
       "gross_margin_amount": 1538429.445,
-      "gross_margin_pct": 74.8
+      "gross_margin_pct": 74.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-29",
@@ -117136,7 +117505,8 @@
       "net_revenue": 29165.0,
       "cogs": 66475.81,
       "gross_margin_amount": -37310.81,
-      "gross_margin_pct": -127.9
+      "gross_margin_pct": -127.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-29",
@@ -117155,7 +117525,8 @@
       "net_revenue": 4428689.0,
       "cogs": 990792.134,
       "gross_margin_amount": 3437896.866,
-      "gross_margin_pct": 77.6
+      "gross_margin_pct": 77.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-29",
@@ -117174,7 +117545,8 @@
       "net_revenue": 4872449.0,
       "cogs": 986093.509,
       "gross_margin_amount": 3886355.491,
-      "gross_margin_pct": 79.8
+      "gross_margin_pct": 79.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-29",
@@ -117189,7 +117561,8 @@
       "net_revenue": 189900.0,
       "cogs": 76000.0,
       "gross_margin_amount": 113900.0,
-      "gross_margin_pct": 60.0
+      "gross_margin_pct": 60.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-30",
@@ -117210,7 +117583,8 @@
       "net_revenue": 1202310.25,
       "cogs": 329464.974,
       "gross_margin_amount": 872845.2760000001,
-      "gross_margin_pct": 72.6
+      "gross_margin_pct": 72.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-30",
@@ -117229,7 +117603,8 @@
       "net_revenue": 2390769.0,
       "cogs": 326395.618,
       "gross_margin_amount": 2064373.382,
-      "gross_margin_pct": 86.3
+      "gross_margin_pct": 86.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-04-30",
@@ -117242,7 +117617,8 @@
       "net_revenue": 279500.0,
       "cogs": 100550.952,
       "gross_margin_amount": 178949.048,
-      "gross_margin_pct": 64.0
+      "gross_margin_pct": 64.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-01",
@@ -117261,7 +117637,8 @@
       "net_revenue": 3445333.0,
       "cogs": 413881.81,
       "gross_margin_amount": 3031451.19,
-      "gross_margin_pct": 88.0
+      "gross_margin_pct": 88.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-01",
@@ -117282,7 +117659,8 @@
       "net_revenue": 2567646.0,
       "cogs": 456786.023,
       "gross_margin_amount": 2110859.977,
-      "gross_margin_pct": 82.2
+      "gross_margin_pct": 82.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-01",
@@ -117295,7 +117673,8 @@
       "net_revenue": 85000.0,
       "cogs": 29000.0,
       "gross_margin_amount": 56000.0,
-      "gross_margin_pct": 65.9
+      "gross_margin_pct": 65.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-02",
@@ -117310,7 +117689,8 @@
       "net_revenue": 923317.0,
       "cogs": 397121.23699999996,
       "gross_margin_amount": 526195.763,
-      "gross_margin_pct": 57.0
+      "gross_margin_pct": 57.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-02",
@@ -117325,7 +117705,8 @@
       "net_revenue": 450603.0,
       "cogs": 137754.024,
       "gross_margin_amount": 312848.976,
-      "gross_margin_pct": 69.4
+      "gross_margin_pct": 69.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-02",
@@ -117346,7 +117727,8 @@
       "net_revenue": 3287533.75,
       "cogs": 692015.001,
       "gross_margin_amount": 2595518.749,
-      "gross_margin_pct": 79.0
+      "gross_margin_pct": 79.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-02",
@@ -117365,7 +117747,8 @@
       "net_revenue": 4543412.0,
       "cogs": 1351260.692,
       "gross_margin_amount": 3192151.308,
-      "gross_margin_pct": 70.3
+      "gross_margin_pct": 70.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-03",
@@ -117380,7 +117763,8 @@
       "net_revenue": 2317206.0,
       "cogs": 510322.23699999996,
       "gross_margin_amount": 1806883.763,
-      "gross_margin_pct": 78.0
+      "gross_margin_pct": 78.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-03",
@@ -117399,7 +117783,8 @@
       "net_revenue": 4627144.0,
       "cogs": 1005180.588,
       "gross_margin_amount": 3621963.412,
-      "gross_margin_pct": 78.3
+      "gross_margin_pct": 78.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-03",
@@ -117418,7 +117803,8 @@
       "net_revenue": 5796910.0,
       "cogs": 691633.432,
       "gross_margin_amount": 5105276.568,
-      "gross_margin_pct": 88.1
+      "gross_margin_pct": 88.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-03",
@@ -117435,7 +117821,8 @@
       "net_revenue": 126327.0,
       "cogs": 58000.0,
       "gross_margin_amount": 68327.0,
-      "gross_margin_pct": 54.1
+      "gross_margin_pct": 54.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-03",
@@ -117450,7 +117837,8 @@
       "net_revenue": 576714.0,
       "cogs": 152514.139,
       "gross_margin_amount": 424199.86100000003,
-      "gross_margin_pct": 73.6
+      "gross_margin_pct": 73.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-04",
@@ -117465,7 +117853,8 @@
       "net_revenue": 681603.0,
       "cogs": 293500.05700000003,
       "gross_margin_amount": 388102.94299999997,
-      "gross_margin_pct": 56.9
+      "gross_margin_pct": 56.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-04",
@@ -117487,7 +117876,8 @@
       "net_revenue": 3801232.99,
       "cogs": 791673.978,
       "gross_margin_amount": 3009559.012,
-      "gross_margin_pct": 79.2
+      "gross_margin_pct": 79.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-04",
@@ -117508,7 +117898,8 @@
       "net_revenue": 3259911.7199999997,
       "cogs": 699127.258,
       "gross_margin_amount": 2560784.462,
-      "gross_margin_pct": 78.6
+      "gross_margin_pct": 78.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-04",
@@ -117526,7 +117917,8 @@
       "net_revenue": 44071.0,
       "cogs": 27784.0,
       "gross_margin_amount": 16287.0,
-      "gross_margin_pct": 37.0
+      "gross_margin_pct": 37.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-05",
@@ -117541,7 +117933,8 @@
       "net_revenue": 6713896.0,
       "cogs": 0.0,
       "gross_margin_amount": 6713896.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-05",
@@ -117556,7 +117949,8 @@
       "net_revenue": 1185762.0,
       "cogs": 294830.524,
       "gross_margin_amount": 890931.476,
-      "gross_margin_pct": 75.1
+      "gross_margin_pct": 75.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-05",
@@ -117574,7 +117968,8 @@
       "net_revenue": 5484.0,
       "cogs": 11000.0,
       "gross_margin_amount": -5516.0,
-      "gross_margin_pct": -100.6
+      "gross_margin_pct": -100.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-05",
@@ -117587,7 +117982,8 @@
       "net_revenue": 455000.0,
       "cogs": 162200.0,
       "gross_margin_amount": 292800.0,
-      "gross_margin_pct": 64.4
+      "gross_margin_pct": 64.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-05",
@@ -117607,7 +118003,8 @@
       "net_revenue": 9456143.75,
       "cogs": 1818453.674,
       "gross_margin_amount": 7637690.075999999,
-      "gross_margin_pct": 80.8
+      "gross_margin_pct": 80.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-05",
@@ -117626,7 +118023,8 @@
       "net_revenue": 15476366.0,
       "cogs": 4590800.992,
       "gross_margin_amount": 10885565.008000001,
-      "gross_margin_pct": 70.3
+      "gross_margin_pct": 70.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-05",
@@ -117641,7 +118039,8 @@
       "net_revenue": 50200.0,
       "cogs": 25000.0,
       "gross_margin_amount": 25200.0,
-      "gross_margin_pct": 50.2
+      "gross_margin_pct": 50.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-06",
@@ -117656,7 +118055,8 @@
       "net_revenue": 4833170.0,
       "cogs": 971664.664,
       "gross_margin_amount": 3861505.336,
-      "gross_margin_pct": 79.9
+      "gross_margin_pct": 79.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-06",
@@ -117669,7 +118069,8 @@
       "net_revenue": 355000.0,
       "cogs": 82920.816,
       "gross_margin_amount": 272079.184,
-      "gross_margin_pct": 76.6
+      "gross_margin_pct": 76.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-06",
@@ -117682,7 +118083,8 @@
       "net_revenue": 0.0,
       "cogs": 52070.002,
       "gross_margin_amount": -52070.002,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-06",
@@ -117705,7 +118107,8 @@
       "net_revenue": 3292591.94,
       "cogs": 1229230.637,
       "gross_margin_amount": 2063361.3029999998,
-      "gross_margin_pct": 62.7
+      "gross_margin_pct": 62.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-06",
@@ -117724,7 +118127,8 @@
       "net_revenue": 6434824.0,
       "cogs": 1904302.1430000002,
       "gross_margin_amount": 4530521.857,
-      "gross_margin_pct": 70.4
+      "gross_margin_pct": 70.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-06",
@@ -117742,7 +118146,8 @@
       "net_revenue": 94024.0,
       "cogs": 58000.0,
       "gross_margin_amount": 36024.0,
-      "gross_margin_pct": 38.3
+      "gross_margin_pct": 38.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-07",
@@ -117757,7 +118162,8 @@
       "net_revenue": 997000.0,
       "cogs": 255999.10499999998,
       "gross_margin_amount": 741000.895,
-      "gross_margin_pct": 74.3
+      "gross_margin_pct": 74.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-07",
@@ -117775,7 +118181,8 @@
       "net_revenue": 43881.0,
       "cogs": 0.0,
       "gross_margin_amount": 43881.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-07",
@@ -117794,7 +118201,8 @@
       "net_revenue": 3012838.0,
       "cogs": 696608.6849999999,
       "gross_margin_amount": 2316229.315,
-      "gross_margin_pct": 76.9
+      "gross_margin_pct": 76.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-07",
@@ -117813,7 +118221,8 @@
       "net_revenue": 4118597.0,
       "cogs": 1360941.929,
       "gross_margin_amount": 2757655.071,
-      "gross_margin_pct": 67.0
+      "gross_margin_pct": 67.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-07",
@@ -117831,7 +118240,8 @@
       "net_revenue": -68113.0,
       "cogs": 245000.0,
       "gross_margin_amount": -313113.0,
-      "gross_margin_pct": 459.7
+      "gross_margin_pct": 459.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-08",
@@ -117846,7 +118256,8 @@
       "net_revenue": 3132512.0,
       "cogs": 574727.017,
       "gross_margin_amount": 2557784.983,
-      "gross_margin_pct": 81.7
+      "gross_margin_pct": 81.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-08",
@@ -117867,7 +118278,8 @@
       "net_revenue": 7119215.16,
       "cogs": 2115346.836,
       "gross_margin_amount": 5003868.324,
-      "gross_margin_pct": 70.3
+      "gross_margin_pct": 70.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-08",
@@ -117889,7 +118301,8 @@
       "net_revenue": 5819044.75,
       "cogs": 2059321.208,
       "gross_margin_amount": 3759723.542,
-      "gross_margin_pct": 64.6
+      "gross_margin_pct": 64.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-08",
@@ -117907,7 +118320,8 @@
       "net_revenue": 212282.0,
       "cogs": 87000.0,
       "gross_margin_amount": 125282.0,
-      "gross_margin_pct": 59.0
+      "gross_margin_pct": 59.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-08",
@@ -117922,7 +118336,8 @@
       "net_revenue": 241000.0,
       "cogs": 0.0,
       "gross_margin_amount": 241000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-09",
@@ -117937,7 +118352,8 @@
       "net_revenue": 1908476.0,
       "cogs": 252961.252,
       "gross_margin_amount": 1655514.748,
-      "gross_margin_pct": 86.7
+      "gross_margin_pct": 86.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-09",
@@ -117957,7 +118373,8 @@
       "net_revenue": 2870648.0,
       "cogs": 584755.658,
       "gross_margin_amount": 2285892.342,
-      "gross_margin_pct": 79.6
+      "gross_margin_pct": 79.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-09",
@@ -117978,7 +118395,8 @@
       "net_revenue": 4667474.0,
       "cogs": 948486.377,
       "gross_margin_amount": 3718987.623,
-      "gross_margin_pct": 79.7
+      "gross_margin_pct": 79.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-09",
@@ -117996,7 +118414,8 @@
       "net_revenue": 98548.0,
       "cogs": 58000.0,
       "gross_margin_amount": 40548.0,
-      "gross_margin_pct": 41.1
+      "gross_margin_pct": 41.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-10",
@@ -118015,7 +118434,8 @@
       "net_revenue": 4253758.0,
       "cogs": 1070881.021,
       "gross_margin_amount": 3182876.9790000003,
-      "gross_margin_pct": 74.8
+      "gross_margin_pct": 74.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-10",
@@ -118034,7 +118454,8 @@
       "net_revenue": 4303773.0,
       "cogs": 1199312.254,
       "gross_margin_amount": 3104460.7460000003,
-      "gross_margin_pct": 72.1
+      "gross_margin_pct": 72.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-10",
@@ -118052,7 +118473,8 @@
       "net_revenue": 127611.0,
       "cogs": 0.0,
       "gross_margin_amount": 127611.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-11",
@@ -118067,7 +118489,8 @@
       "net_revenue": 1394988.0,
       "cogs": 324298.74100000004,
       "gross_margin_amount": 1070689.259,
-      "gross_margin_pct": 76.8
+      "gross_margin_pct": 76.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-11",
@@ -118080,7 +118503,8 @@
       "net_revenue": 455000.0,
       "cogs": 75915.139,
       "gross_margin_amount": 379084.86100000003,
-      "gross_margin_pct": 83.3
+      "gross_margin_pct": 83.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-11",
@@ -118099,7 +118523,8 @@
       "net_revenue": 7086466.0,
       "cogs": 1369687.304,
       "gross_margin_amount": 5716778.696,
-      "gross_margin_pct": 80.7
+      "gross_margin_pct": 80.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-11",
@@ -118118,7 +118543,8 @@
       "net_revenue": 4559921.0,
       "cogs": 1449580.104,
       "gross_margin_amount": 3110340.8959999997,
-      "gross_margin_pct": 68.2
+      "gross_margin_pct": 68.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-11",
@@ -118136,7 +118562,8 @@
       "net_revenue": 182154.0,
       "cogs": 112000.0,
       "gross_margin_amount": 70154.0,
-      "gross_margin_pct": 38.5
+      "gross_margin_pct": 38.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-12",
@@ -118151,7 +118578,8 @@
       "net_revenue": 2183253.0,
       "cogs": 521955.95,
       "gross_margin_amount": 1661297.05,
-      "gross_margin_pct": 76.1
+      "gross_margin_pct": 76.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-12",
@@ -118169,7 +118597,8 @@
       "net_revenue": 43881.0,
       "cogs": 0.0,
       "gross_margin_amount": 43881.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-12",
@@ -118182,7 +118611,8 @@
       "net_revenue": 195000.0,
       "cogs": 72990.0,
       "gross_margin_amount": 122010.0,
-      "gross_margin_pct": 62.6
+      "gross_margin_pct": 62.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-12",
@@ -118201,7 +118631,8 @@
       "net_revenue": 2497419.0,
       "cogs": 553746.4,
       "gross_margin_amount": 1943672.6,
-      "gross_margin_pct": 77.8
+      "gross_margin_pct": 77.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-12",
@@ -118220,7 +118651,8 @@
       "net_revenue": 4685348.0,
       "cogs": 1265339.498,
       "gross_margin_amount": 3420008.5020000003,
-      "gross_margin_pct": 73.0
+      "gross_margin_pct": 73.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-12",
@@ -118239,7 +118671,8 @@
       "net_revenue": 836481.0,
       "cogs": 478069.896,
       "gross_margin_amount": 358411.104,
-      "gross_margin_pct": 42.8
+      "gross_margin_pct": 42.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-13",
@@ -118254,7 +118687,8 @@
       "net_revenue": 580456.0,
       "cogs": 403439.106,
       "gross_margin_amount": 177016.89399999997,
-      "gross_margin_pct": 30.5
+      "gross_margin_pct": 30.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-13",
@@ -118272,7 +118706,8 @@
       "net_revenue": 21711.0,
       "cogs": 0.0,
       "gross_margin_amount": 21711.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-13",
@@ -118285,7 +118720,8 @@
       "net_revenue": 305000.0,
       "cogs": 71700.0,
       "gross_margin_amount": 233300.0,
-      "gross_margin_pct": 76.5
+      "gross_margin_pct": 76.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-13",
@@ -118304,7 +118740,8 @@
       "net_revenue": 3650884.0,
       "cogs": 1142297.303,
       "gross_margin_amount": 2508586.6969999997,
-      "gross_margin_pct": 68.7
+      "gross_margin_pct": 68.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-13",
@@ -118325,7 +118762,8 @@
       "net_revenue": 4000065.0,
       "cogs": 2487277.106,
       "gross_margin_amount": 1512787.8939999999,
-      "gross_margin_pct": 37.8
+      "gross_margin_pct": 37.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-13",
@@ -118343,7 +118781,8 @@
       "net_revenue": -43350.0,
       "cogs": 29000.0,
       "gross_margin_amount": -72350.0,
-      "gross_margin_pct": 166.9
+      "gross_margin_pct": 166.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-14",
@@ -118358,7 +118797,8 @@
       "net_revenue": 1023476.0,
       "cogs": 124201.0,
       "gross_margin_amount": 899275.0,
-      "gross_margin_pct": 87.9
+      "gross_margin_pct": 87.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-14",
@@ -118377,7 +118817,8 @@
       "net_revenue": 2532700.0,
       "cogs": 908302.01,
       "gross_margin_amount": 1624397.99,
-      "gross_margin_pct": 64.1
+      "gross_margin_pct": 64.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-14",
@@ -118396,7 +118837,8 @@
       "net_revenue": 3112080.0,
       "cogs": 929973.488,
       "gross_margin_amount": 2182106.512,
-      "gross_margin_pct": 70.1
+      "gross_margin_pct": 70.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-14",
@@ -118414,7 +118856,8 @@
       "net_revenue": 36550.0,
       "cogs": 67404.18400000001,
       "gross_margin_amount": -30854.18400000001,
-      "gross_margin_pct": -84.4
+      "gross_margin_pct": -84.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-14",
@@ -118429,7 +118872,8 @@
       "net_revenue": 273603.0,
       "cogs": 0.0,
       "gross_margin_amount": 273603.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-15",
@@ -118444,7 +118888,8 @@
       "net_revenue": 815698.0,
       "cogs": 510793.0,
       "gross_margin_amount": 304905.0,
-      "gross_margin_pct": 37.4
+      "gross_margin_pct": 37.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-15",
@@ -118463,7 +118908,8 @@
       "net_revenue": 9284545.0,
       "cogs": 2430671.9560000002,
       "gross_margin_amount": 6853873.044,
-      "gross_margin_pct": 73.8
+      "gross_margin_pct": 73.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-15",
@@ -118482,7 +118928,8 @@
       "net_revenue": 6906482.0,
       "cogs": 2552420.9990000003,
       "gross_margin_amount": 4354061.001,
-      "gross_margin_pct": 63.0
+      "gross_margin_pct": 63.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-15",
@@ -118500,7 +118947,8 @@
       "net_revenue": 183816.0,
       "cogs": 150000.0,
       "gross_margin_amount": 33816.0,
-      "gross_margin_pct": 18.4
+      "gross_margin_pct": 18.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-15",
@@ -118515,7 +118963,8 @@
       "net_revenue": 403000.0,
       "cogs": 100619.997,
       "gross_margin_amount": 302380.003,
-      "gross_margin_pct": 75.0
+      "gross_margin_pct": 75.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-16",
@@ -118528,7 +118977,8 @@
       "net_revenue": 0.0,
       "cogs": 87920.816,
       "gross_margin_amount": -87920.816,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-16",
@@ -118543,7 +118993,8 @@
       "net_revenue": 321603.0,
       "cogs": 73791.007,
       "gross_margin_amount": 247811.99300000002,
-      "gross_margin_pct": 77.1
+      "gross_margin_pct": 77.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-16",
@@ -118562,7 +119013,8 @@
       "net_revenue": 6055552.0,
       "cogs": 1001040.6900000001,
       "gross_margin_amount": 5054511.31,
-      "gross_margin_pct": 83.5
+      "gross_margin_pct": 83.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-16",
@@ -118583,7 +119035,8 @@
       "net_revenue": 11074815.75,
       "cogs": 6698432.370999999,
       "gross_margin_amount": 4376383.379000001,
-      "gross_margin_pct": 39.5
+      "gross_margin_pct": 39.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-16",
@@ -118598,7 +119051,8 @@
       "net_revenue": -42500.0,
       "cogs": 112000.0,
       "gross_margin_amount": -154500.0,
-      "gross_margin_pct": 363.5
+      "gross_margin_pct": 363.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-17",
@@ -118611,7 +119065,8 @@
       "net_revenue": 590000.0,
       "cogs": 141311.00400000002,
       "gross_margin_amount": 448688.996,
-      "gross_margin_pct": 76.0
+      "gross_margin_pct": 76.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-17",
@@ -118626,7 +119081,8 @@
       "net_revenue": 2467685.0,
       "cogs": 735083.076,
       "gross_margin_amount": 1732601.924,
-      "gross_margin_pct": 70.2
+      "gross_margin_pct": 70.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-17",
@@ -118645,7 +119101,8 @@
       "net_revenue": 2640377.0,
       "cogs": 841698.115,
       "gross_margin_amount": 1798678.885,
-      "gross_margin_pct": 68.1
+      "gross_margin_pct": 68.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-17",
@@ -118666,7 +119123,8 @@
       "net_revenue": 5337757.0,
       "cogs": 2285114.471,
       "gross_margin_amount": 3052642.529,
-      "gross_margin_pct": 57.2
+      "gross_margin_pct": 57.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-17",
@@ -118679,7 +119137,8 @@
       "net_revenue": 305500.0,
       "cogs": 141311.00400000002,
       "gross_margin_amount": 164188.99599999998,
-      "gross_margin_pct": 53.7
+      "gross_margin_pct": 53.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-18",
@@ -118694,7 +119153,8 @@
       "net_revenue": 581000.0,
       "cogs": 125914.139,
       "gross_margin_amount": 455085.86100000003,
-      "gross_margin_pct": 78.3
+      "gross_margin_pct": 78.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-18",
@@ -118709,7 +119169,8 @@
       "net_revenue": 1362905.0,
       "cogs": 399637.005,
       "gross_margin_amount": 963267.995,
-      "gross_margin_pct": 70.7
+      "gross_margin_pct": 70.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-18",
@@ -118730,7 +119191,8 @@
       "net_revenue": 3180078.0,
       "cogs": 525879.878,
       "gross_margin_amount": 2654198.122,
-      "gross_margin_pct": 83.5
+      "gross_margin_pct": 83.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-18",
@@ -118750,7 +119212,8 @@
       "net_revenue": 6976176.0,
       "cogs": 2232509.039,
       "gross_margin_amount": 4743666.961,
-      "gross_margin_pct": 68.0
+      "gross_margin_pct": 68.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-18",
@@ -118768,7 +119231,8 @@
       "net_revenue": 63069.0,
       "cogs": 147912.32,
       "gross_margin_amount": -84843.32,
-      "gross_margin_pct": -134.5
+      "gross_margin_pct": -134.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-19",
@@ -118783,7 +119247,8 @@
       "net_revenue": 4193865.0,
       "cogs": 1425301.75,
       "gross_margin_amount": 2768563.25,
-      "gross_margin_pct": 66.0
+      "gross_margin_pct": 66.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-19",
@@ -118796,7 +119261,8 @@
       "net_revenue": 117000.0,
       "cogs": 45222.0,
       "gross_margin_amount": 71778.0,
-      "gross_margin_pct": 61.3
+      "gross_margin_pct": 61.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-19",
@@ -118815,7 +119281,8 @@
       "net_revenue": 4679155.0,
       "cogs": 1006320.417,
       "gross_margin_amount": 3672834.583,
-      "gross_margin_pct": 78.5
+      "gross_margin_pct": 78.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-19",
@@ -118834,7 +119301,8 @@
       "net_revenue": 5825765.0,
       "cogs": 1532404.946,
       "gross_margin_amount": 4293360.054,
-      "gross_margin_pct": 73.7
+      "gross_margin_pct": 73.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-19",
@@ -118849,7 +119317,8 @@
       "net_revenue": -75200.0,
       "cogs": 213000.0,
       "gross_margin_amount": -288200.0,
-      "gross_margin_pct": 383.2
+      "gross_margin_pct": 383.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-19",
@@ -118862,7 +119331,8 @@
       "net_revenue": 555000.0,
       "cogs": 0.0,
       "gross_margin_amount": 555000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-20",
@@ -118877,7 +119347,8 @@
       "net_revenue": 1514174.0,
       "cogs": 248502.057,
       "gross_margin_amount": 1265671.943,
-      "gross_margin_pct": 83.6
+      "gross_margin_pct": 83.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-20",
@@ -118896,7 +119367,8 @@
       "net_revenue": 5765861.0,
       "cogs": 2040819.952,
       "gross_margin_amount": 3725041.048,
-      "gross_margin_pct": 64.6
+      "gross_margin_pct": 64.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-20",
@@ -118916,7 +119388,8 @@
       "net_revenue": 6508770.0,
       "cogs": 1825050.127,
       "gross_margin_amount": 4683719.873,
-      "gross_margin_pct": 72.0
+      "gross_margin_pct": 72.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-20",
@@ -118933,7 +119406,8 @@
       "net_revenue": 272884.0,
       "cogs": 98000.0,
       "gross_margin_amount": 174884.0,
-      "gross_margin_pct": 64.1
+      "gross_margin_pct": 64.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-20",
@@ -118948,7 +119422,8 @@
       "net_revenue": 531603.0,
       "cogs": 170520.997,
       "gross_margin_amount": 361082.003,
-      "gross_margin_pct": 67.9
+      "gross_margin_pct": 67.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-21",
@@ -118961,7 +119436,8 @@
       "net_revenue": 620000.0,
       "cogs": 167623.816,
       "gross_margin_amount": 452376.184,
-      "gross_margin_pct": 73.0
+      "gross_margin_pct": 73.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-21",
@@ -118980,7 +119456,8 @@
       "net_revenue": 6507086.0,
       "cogs": 2158631.931,
       "gross_margin_amount": 4348454.069,
-      "gross_margin_pct": 66.8
+      "gross_margin_pct": 66.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-21",
@@ -119002,7 +119479,8 @@
       "net_revenue": 7056737.0,
       "cogs": 1905839.428,
       "gross_margin_amount": 5150897.572,
-      "gross_margin_pct": 73.0
+      "gross_margin_pct": 73.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-21",
@@ -119020,7 +119498,8 @@
       "net_revenue": 311242.0,
       "cogs": 141000.0,
       "gross_margin_amount": 170242.0,
-      "gross_margin_pct": 54.7
+      "gross_margin_pct": 54.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-22",
@@ -119035,7 +119514,8 @@
       "net_revenue": 4560000.0,
       "cogs": 4766416.0,
       "gross_margin_amount": -206416.0,
-      "gross_margin_pct": -4.5
+      "gross_margin_pct": -4.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-22",
@@ -119050,7 +119530,8 @@
       "net_revenue": 2294286.0,
       "cogs": 631141.87,
       "gross_margin_amount": 1663144.13,
-      "gross_margin_pct": 72.5
+      "gross_margin_pct": 72.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-22",
@@ -119063,7 +119544,8 @@
       "net_revenue": 1270000.0,
       "cogs": 221349.782,
       "gross_margin_amount": 1048650.2179999999,
-      "gross_margin_pct": 82.6
+      "gross_margin_pct": 82.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-22",
@@ -119084,7 +119566,8 @@
       "net_revenue": 4371283.0,
       "cogs": 1130647.829,
       "gross_margin_amount": 3240635.171,
-      "gross_margin_pct": 74.1
+      "gross_margin_pct": 74.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-22",
@@ -119104,7 +119587,8 @@
       "net_revenue": 5847151.0,
       "cogs": 1747947.956,
       "gross_margin_amount": 4099203.0439999998,
-      "gross_margin_pct": 70.1
+      "gross_margin_pct": 70.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-22",
@@ -119122,7 +119606,8 @@
       "net_revenue": 291958.0,
       "cogs": 133000.0,
       "gross_margin_amount": 158958.0,
-      "gross_margin_pct": 54.4
+      "gross_margin_pct": 54.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-23",
@@ -119135,7 +119620,8 @@
       "net_revenue": 175000.0,
       "cogs": 51004.568,
       "gross_margin_amount": 123995.432,
-      "gross_margin_pct": 70.9
+      "gross_margin_pct": 70.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-23",
@@ -119154,7 +119640,8 @@
       "net_revenue": 1583354.0,
       "cogs": 627465.696,
       "gross_margin_amount": 955888.304,
-      "gross_margin_pct": 60.4
+      "gross_margin_pct": 60.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-23",
@@ -119173,7 +119660,8 @@
       "net_revenue": 5003480.0,
       "cogs": 1003636.157,
       "gross_margin_amount": 3999843.843,
-      "gross_margin_pct": 79.9
+      "gross_margin_pct": 79.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-23",
@@ -119191,7 +119679,8 @@
       "net_revenue": -48183.0,
       "cogs": 134000.0,
       "gross_margin_amount": -182183.0,
-      "gross_margin_pct": 378.1
+      "gross_margin_pct": 378.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-24",
@@ -119206,7 +119695,8 @@
       "net_revenue": 3589080.0,
       "cogs": 1679796.016,
       "gross_margin_amount": 1909283.984,
-      "gross_margin_pct": 53.2
+      "gross_margin_pct": 53.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-24",
@@ -119224,7 +119714,8 @@
       "net_revenue": 87059.0,
       "cogs": 78731.48000000001,
       "gross_margin_amount": 8327.51999999999,
-      "gross_margin_pct": 9.6
+      "gross_margin_pct": 9.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-24",
@@ -119243,7 +119734,8 @@
       "net_revenue": 2115721.0,
       "cogs": 456470.553,
       "gross_margin_amount": 1659250.447,
-      "gross_margin_pct": 78.4
+      "gross_margin_pct": 78.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-24",
@@ -119262,7 +119754,8 @@
       "net_revenue": 2541799.0,
       "cogs": 785906.2930000001,
       "gross_margin_amount": 1755892.707,
-      "gross_margin_pct": 69.1
+      "gross_margin_pct": 69.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-25",
@@ -119277,7 +119770,8 @@
       "net_revenue": 11842257.0,
       "cogs": 3360260.0,
       "gross_margin_amount": 8481997.0,
-      "gross_margin_pct": 71.6
+      "gross_margin_pct": 71.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-25",
@@ -119292,7 +119786,8 @@
       "net_revenue": 2249031.0,
       "cogs": 588471.2,
       "gross_margin_amount": 1660559.8,
-      "gross_margin_pct": 73.8
+      "gross_margin_pct": 73.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-25",
@@ -119311,7 +119806,8 @@
       "net_revenue": 5946192.0,
       "cogs": 1826106.92,
       "gross_margin_amount": 4120085.08,
-      "gross_margin_pct": 69.3
+      "gross_margin_pct": 69.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-25",
@@ -119333,7 +119829,8 @@
       "net_revenue": 6436017.5,
       "cogs": 1754306.833,
       "gross_margin_amount": 4681710.666999999,
-      "gross_margin_pct": 72.7
+      "gross_margin_pct": 72.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-26",
@@ -119348,7 +119845,8 @@
       "net_revenue": 4122000.0,
       "cogs": 741548.761,
       "gross_margin_amount": 3380451.239,
-      "gross_margin_pct": 82.0
+      "gross_margin_pct": 82.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-26",
@@ -119363,7 +119861,8 @@
       "net_revenue": 519905.0,
       "cogs": 98001.0,
       "gross_margin_amount": 421904.0,
-      "gross_margin_pct": 81.2
+      "gross_margin_pct": 81.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-26",
@@ -119381,7 +119880,8 @@
       "net_revenue": 51049.0,
       "cogs": 69682.0,
       "gross_margin_amount": -18633.0,
-      "gross_margin_pct": -36.5
+      "gross_margin_pct": -36.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-26",
@@ -119400,7 +119900,8 @@
       "net_revenue": 3911245.0,
       "cogs": 1199483.839,
       "gross_margin_amount": 2711761.1610000003,
-      "gross_margin_pct": 69.3
+      "gross_margin_pct": 69.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-26",
@@ -119419,7 +119920,8 @@
       "net_revenue": 3865701.0,
       "cogs": 1483419.017,
       "gross_margin_amount": 2382281.983,
-      "gross_margin_pct": 61.6
+      "gross_margin_pct": 61.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-26",
@@ -119436,7 +119938,8 @@
       "net_revenue": 95762.0,
       "cogs": 29020.715,
       "gross_margin_amount": 66741.285,
-      "gross_margin_pct": 69.7
+      "gross_margin_pct": 69.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-27",
@@ -119451,7 +119954,8 @@
       "net_revenue": 2150889.0,
       "cogs": 887833.959,
       "gross_margin_amount": 1263055.041,
-      "gross_margin_pct": 58.7
+      "gross_margin_pct": 58.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-27",
@@ -119464,7 +119968,8 @@
       "net_revenue": 996550.0,
       "cogs": 326303.391,
       "gross_margin_amount": 670246.6089999999,
-      "gross_margin_pct": 67.3
+      "gross_margin_pct": 67.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-27",
@@ -119483,7 +119988,8 @@
       "net_revenue": 5635660.0,
       "cogs": 2066470.651,
       "gross_margin_amount": 3569189.349,
-      "gross_margin_pct": 63.3
+      "gross_margin_pct": 63.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-27",
@@ -119505,7 +120011,8 @@
       "net_revenue": 6208495.0,
       "cogs": 1919516.507,
       "gross_margin_amount": 4288978.493,
-      "gross_margin_pct": 69.1
+      "gross_margin_pct": 69.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-27",
@@ -119523,7 +120030,8 @@
       "net_revenue": 186960.0,
       "cogs": 58000.0,
       "gross_margin_amount": 128960.0,
-      "gross_margin_pct": 69.0
+      "gross_margin_pct": 69.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-28",
@@ -119538,7 +120046,8 @@
       "net_revenue": 1717639.0,
       "cogs": 712127.914,
       "gross_margin_amount": 1005511.086,
-      "gross_margin_pct": 58.5
+      "gross_margin_pct": 58.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-28",
@@ -119551,7 +120060,8 @@
       "net_revenue": 343000.0,
       "cogs": 0.0,
       "gross_margin_amount": 343000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-28",
@@ -119570,7 +120080,8 @@
       "net_revenue": 3505490.0,
       "cogs": 799928.501,
       "gross_margin_amount": 2705561.499,
-      "gross_margin_pct": 77.2
+      "gross_margin_pct": 77.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-28",
@@ -119589,7 +120100,8 @@
       "net_revenue": 5363524.0,
       "cogs": 1513546.5320000001,
       "gross_margin_amount": 3849977.468,
-      "gross_margin_pct": 71.8
+      "gross_margin_pct": 71.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-28",
@@ -119608,7 +120120,8 @@
       "net_revenue": 182488.0,
       "cogs": 154000.0,
       "gross_margin_amount": 28488.0,
-      "gross_margin_pct": 15.6
+      "gross_margin_pct": 15.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-29",
@@ -119621,7 +120134,8 @@
       "net_revenue": 1050000.0,
       "cogs": 298159.13899999997,
       "gross_margin_amount": 751840.861,
-      "gross_margin_pct": 71.6
+      "gross_margin_pct": 71.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-29",
@@ -119642,7 +120156,8 @@
       "net_revenue": 4727736.16,
       "cogs": 1470632.3059999999,
       "gross_margin_amount": 3257103.8540000003,
-      "gross_margin_pct": 68.9
+      "gross_margin_pct": 68.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-29",
@@ -119663,7 +120178,8 @@
       "net_revenue": 7617159.0,
       "cogs": 1780151.691,
       "gross_margin_amount": 5837007.309,
-      "gross_margin_pct": 76.6
+      "gross_margin_pct": 76.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-30",
@@ -119678,7 +120194,8 @@
       "net_revenue": 2225095.0,
       "cogs": 777498.1880000001,
       "gross_margin_amount": 1447596.812,
-      "gross_margin_pct": 65.1
+      "gross_margin_pct": 65.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-30",
@@ -119698,7 +120215,8 @@
       "net_revenue": 6330389.0,
       "cogs": 2039544.257,
       "gross_margin_amount": 4290844.743,
-      "gross_margin_pct": 67.8
+      "gross_margin_pct": 67.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-30",
@@ -119717,7 +120235,8 @@
       "net_revenue": 6270319.0,
       "cogs": 1815363.028,
       "gross_margin_amount": 4454955.972,
-      "gross_margin_pct": 71.0
+      "gross_margin_pct": 71.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-30",
@@ -119734,7 +120253,8 @@
       "net_revenue": 56914.0,
       "cogs": 58000.0,
       "gross_margin_amount": -1086.0,
-      "gross_margin_pct": -1.9
+      "gross_margin_pct": -1.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-31",
@@ -119749,7 +120269,8 @@
       "net_revenue": 654698.0,
       "cogs": 175218.139,
       "gross_margin_amount": 479479.86100000003,
-      "gross_margin_pct": 73.2
+      "gross_margin_pct": 73.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-31",
@@ -119767,7 +120288,8 @@
       "net_revenue": 11824.0,
       "cogs": 0.0,
       "gross_margin_amount": 11824.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-31",
@@ -119786,7 +120308,8 @@
       "net_revenue": 2607462.0,
       "cogs": 517385.28,
       "gross_margin_amount": 2090076.72,
-      "gross_margin_pct": 80.2
+      "gross_margin_pct": 80.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-31",
@@ -119805,7 +120328,8 @@
       "net_revenue": 4443418.0,
       "cogs": 746565.001,
       "gross_margin_amount": 3696852.999,
-      "gross_margin_pct": 83.2
+      "gross_margin_pct": 83.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-31",
@@ -119822,7 +120346,8 @@
       "net_revenue": 189990.0,
       "cogs": 29000.0,
       "gross_margin_amount": 160990.0,
-      "gross_margin_pct": 84.7
+      "gross_margin_pct": 84.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-05-31",
@@ -119835,7 +120360,8 @@
       "net_revenue": 594000.0,
       "cogs": 507540.0,
       "gross_margin_amount": 86460.0,
-      "gross_margin_pct": 14.6
+      "gross_margin_pct": 14.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-01",
@@ -119850,7 +120376,8 @@
       "net_revenue": 1642000.0,
       "cogs": 409227.912,
       "gross_margin_amount": 1232772.088,
-      "gross_margin_pct": 75.1
+      "gross_margin_pct": 75.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-01",
@@ -119871,7 +120398,8 @@
       "net_revenue": 4188578.54,
       "cogs": 867693.094,
       "gross_margin_amount": 3320885.446,
-      "gross_margin_pct": 79.3
+      "gross_margin_pct": 79.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-01",
@@ -119892,7 +120420,8 @@
       "net_revenue": 4265089.6,
       "cogs": 1006618.355,
       "gross_margin_amount": 3258471.2449999996,
-      "gross_margin_pct": 76.4
+      "gross_margin_pct": 76.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-01",
@@ -119909,7 +120438,8 @@
       "net_revenue": 57900.0,
       "cogs": 0.0,
       "gross_margin_amount": 57900.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-01",
@@ -119924,7 +120454,8 @@
       "net_revenue": 1221000.0,
       "cogs": 570675.0,
       "gross_margin_amount": 650325.0,
-      "gross_margin_pct": 53.3
+      "gross_margin_pct": 53.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-02",
@@ -119939,7 +120470,8 @@
       "net_revenue": 3339714.0,
       "cogs": 870259.828,
       "gross_margin_amount": 2469454.1720000003,
-      "gross_margin_pct": 73.9
+      "gross_margin_pct": 73.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-02",
@@ -119958,7 +120490,8 @@
       "net_revenue": 4270863.0,
       "cogs": 1429845.499,
       "gross_margin_amount": 2841017.501,
-      "gross_margin_pct": 66.5
+      "gross_margin_pct": 66.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-02",
@@ -119977,7 +120510,8 @@
       "net_revenue": 4067001.0,
       "cogs": 953206.854,
       "gross_margin_amount": 3113794.1459999997,
-      "gross_margin_pct": 76.6
+      "gross_margin_pct": 76.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-02",
@@ -119995,7 +120529,8 @@
       "net_revenue": 45852.0,
       "cogs": 0.0,
       "gross_margin_amount": 45852.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-03",
@@ -120008,7 +120543,8 @@
       "net_revenue": 0.0,
       "cogs": 631350.0,
       "gross_margin_amount": -631350.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-03",
@@ -120023,7 +120559,8 @@
       "net_revenue": 1932000.0,
       "cogs": 631350.0,
       "gross_margin_amount": 1300650.0,
-      "gross_margin_pct": 67.3
+      "gross_margin_pct": 67.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-03",
@@ -120038,7 +120575,8 @@
       "net_revenue": 1871476.0,
       "cogs": 818997.959,
       "gross_margin_amount": 1052478.041,
-      "gross_margin_pct": 56.2
+      "gross_margin_pct": 56.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-03",
@@ -120059,7 +120597,8 @@
       "net_revenue": 5406569.08,
       "cogs": 973381.796,
       "gross_margin_amount": 4433187.284,
-      "gross_margin_pct": 82.0
+      "gross_margin_pct": 82.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-03",
@@ -120080,7 +120619,8 @@
       "net_revenue": 6437581.5,
       "cogs": 1921388.781,
       "gross_margin_amount": 4516192.7190000005,
-      "gross_margin_pct": 70.2
+      "gross_margin_pct": 70.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-03",
@@ -120098,7 +120638,8 @@
       "net_revenue": 35134.0,
       "cogs": 0.0,
       "gross_margin_amount": 35134.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-04",
@@ -120113,7 +120654,8 @@
       "net_revenue": 1047000.0,
       "cogs": 235034.136,
       "gross_margin_amount": 811965.8640000001,
-      "gross_margin_pct": 77.6
+      "gross_margin_pct": 77.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-04",
@@ -120132,7 +120674,8 @@
       "net_revenue": 1858044.0,
       "cogs": 392489.748,
       "gross_margin_amount": 1465554.2519999999,
-      "gross_margin_pct": 78.9
+      "gross_margin_pct": 78.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-04",
@@ -120153,7 +120696,8 @@
       "net_revenue": 4692800.4,
       "cogs": 1152824.745,
       "gross_margin_amount": 3539975.6550000003,
-      "gross_margin_pct": 75.4
+      "gross_margin_pct": 75.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-04",
@@ -120168,7 +120712,8 @@
       "net_revenue": 770403.0,
       "cogs": 0.0,
       "gross_margin_amount": 770403.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120181,7 +120726,8 @@
       "net_revenue": 0.0,
       "cogs": 155912.0,
       "gross_margin_amount": -155912.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120196,7 +120742,8 @@
       "net_revenue": 729476.0,
       "cogs": 125915.139,
       "gross_margin_amount": 603560.861,
-      "gross_margin_pct": 82.7
+      "gross_margin_pct": 82.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120211,7 +120758,8 @@
       "net_revenue": -330000.0,
       "cogs": 203728.74599999998,
       "gross_margin_amount": -533728.746,
-      "gross_margin_pct": 161.7
+      "gross_margin_pct": 161.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120229,7 +120777,8 @@
       "net_revenue": 15828.0,
       "cogs": 0.0,
       "gross_margin_amount": 15828.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120242,7 +120791,8 @@
       "net_revenue": 815000.0,
       "cogs": 155912.0,
       "gross_margin_amount": 659088.0,
-      "gross_margin_pct": 80.9
+      "gross_margin_pct": 80.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120261,7 +120811,8 @@
       "net_revenue": 4980633.0,
       "cogs": 956241.675,
       "gross_margin_amount": 4024391.325,
-      "gross_margin_pct": 80.8
+      "gross_margin_pct": 80.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120280,7 +120831,8 @@
       "net_revenue": 3300394.0,
       "cogs": 833073.24,
       "gross_margin_amount": 2467320.76,
-      "gross_margin_pct": 74.8
+      "gross_margin_pct": 74.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-05",
@@ -120297,7 +120849,8 @@
       "net_revenue": 57900.0,
       "cogs": 0.0,
       "gross_margin_amount": 57900.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-06",
@@ -120310,7 +120863,8 @@
       "net_revenue": 345000.0,
       "cogs": 77519.997,
       "gross_margin_amount": 267480.003,
-      "gross_margin_pct": 77.5
+      "gross_margin_pct": 77.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-06",
@@ -120325,7 +120879,8 @@
       "net_revenue": 466714.0,
       "cogs": 170519.997,
       "gross_margin_amount": 296194.003,
-      "gross_margin_pct": 63.5
+      "gross_margin_pct": 63.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-06",
@@ -120343,7 +120898,8 @@
       "net_revenue": 15375.0,
       "cogs": 0.0,
       "gross_margin_amount": 15375.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-06",
@@ -120362,7 +120918,8 @@
       "net_revenue": 6227081.0,
       "cogs": 1317029.302,
       "gross_margin_amount": 4910051.698,
-      "gross_margin_pct": 78.8
+      "gross_margin_pct": 78.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-06",
@@ -120383,7 +120940,8 @@
       "net_revenue": 8206567.75,
       "cogs": 2302009.472,
       "gross_margin_amount": 5904558.278,
-      "gross_margin_pct": 71.9
+      "gross_margin_pct": 71.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-06",
@@ -120401,7 +120959,8 @@
       "net_revenue": 35204.0,
       "cogs": 0.0,
       "gross_margin_amount": 35204.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-07",
@@ -120416,7 +120975,8 @@
       "net_revenue": 1229381.0,
       "cogs": 222585.918,
       "gross_margin_amount": 1006795.0819999999,
-      "gross_margin_pct": 81.9
+      "gross_margin_pct": 81.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-07",
@@ -120431,7 +120991,8 @@
       "net_revenue": 591603.0,
       "cogs": 152514.139,
       "gross_margin_amount": 439088.86100000003,
-      "gross_margin_pct": 74.2
+      "gross_margin_pct": 74.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-07",
@@ -120450,7 +121011,8 @@
       "net_revenue": 3489312.0,
       "cogs": 1249745.747,
       "gross_margin_amount": 2239566.253,
-      "gross_margin_pct": 64.2
+      "gross_margin_pct": 64.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-07",
@@ -120469,7 +121031,8 @@
       "net_revenue": 3815717.0,
       "cogs": 1562591.075,
       "gross_margin_amount": 2253125.925,
-      "gross_margin_pct": 59.0
+      "gross_margin_pct": 59.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-08",
@@ -120484,7 +121047,8 @@
       "net_revenue": 5872000.0,
       "cogs": 2081178.588,
       "gross_margin_amount": 3790821.412,
-      "gross_margin_pct": 64.6
+      "gross_margin_pct": 64.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-08",
@@ -120503,7 +121067,8 @@
       "net_revenue": 5496272.0,
       "cogs": 1207588.956,
       "gross_margin_amount": 4288683.044,
-      "gross_margin_pct": 78.0
+      "gross_margin_pct": 78.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-08",
@@ -120522,7 +121087,8 @@
       "net_revenue": 5183944.0,
       "cogs": 1578674.345,
       "gross_margin_amount": 3605269.6550000003,
-      "gross_margin_pct": 69.5
+      "gross_margin_pct": 69.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-08",
@@ -120539,7 +121105,8 @@
       "net_revenue": 108234.0,
       "cogs": 0.0,
       "gross_margin_amount": 108234.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-09",
@@ -120552,7 +121119,8 @@
       "net_revenue": -6000000.0,
       "cogs": 0.0,
       "gross_margin_amount": -6000000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-09",
@@ -120567,7 +121135,8 @@
       "net_revenue": 1711952.0,
       "cogs": 667315.013,
       "gross_margin_amount": 1044636.987,
-      "gross_margin_pct": 61.0
+      "gross_margin_pct": 61.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-09",
@@ -120586,7 +121155,8 @@
       "net_revenue": 3289949.0,
       "cogs": 718150.97,
       "gross_margin_amount": 2571798.0300000003,
-      "gross_margin_pct": 78.2
+      "gross_margin_pct": 78.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-09",
@@ -120607,7 +121177,8 @@
       "net_revenue": 4788793.0,
       "cogs": 1041374.194,
       "gross_margin_amount": 3747418.806,
-      "gross_margin_pct": 78.3
+      "gross_margin_pct": 78.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-09",
@@ -120624,7 +121195,8 @@
       "net_revenue": 170015.0,
       "cogs": 20201.715,
       "gross_margin_amount": 149813.285,
-      "gross_margin_pct": 88.1
+      "gross_margin_pct": 88.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-10",
@@ -120639,7 +121211,8 @@
       "net_revenue": 3587000.0,
       "cogs": 1442072.2400000002,
       "gross_margin_amount": 2144927.76,
-      "gross_margin_pct": 59.8
+      "gross_margin_pct": 59.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-10",
@@ -120654,7 +121227,8 @@
       "net_revenue": 4560793.0,
       "cogs": 1413960.692,
       "gross_margin_amount": 3146832.308,
-      "gross_margin_pct": 69.0
+      "gross_margin_pct": 69.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-10",
@@ -120667,7 +121241,8 @@
       "net_revenue": 470000.0,
       "cogs": 133119.997,
       "gross_margin_amount": 336880.003,
-      "gross_margin_pct": 71.7
+      "gross_margin_pct": 71.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-10",
@@ -120686,7 +121261,8 @@
       "net_revenue": 7621781.0,
       "cogs": 1870070.708,
       "gross_margin_amount": 5751710.291999999,
-      "gross_margin_pct": 75.5
+      "gross_margin_pct": 75.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-10",
@@ -120705,7 +121281,8 @@
       "net_revenue": 6623289.0,
       "cogs": 2203953.35,
       "gross_margin_amount": 4419335.65,
-      "gross_margin_pct": 66.7
+      "gross_margin_pct": 66.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-10",
@@ -120723,7 +121300,8 @@
       "net_revenue": 360317.0,
       "cogs": 102420.0,
       "gross_margin_amount": 257897.0,
-      "gross_margin_pct": 71.6
+      "gross_margin_pct": 71.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-10",
@@ -120738,7 +121316,8 @@
       "net_revenue": 1090000.0,
       "cogs": 653310.0,
       "gross_margin_amount": 436690.0,
-      "gross_margin_pct": 40.1
+      "gross_margin_pct": 40.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-11",
@@ -120753,7 +121332,8 @@
       "net_revenue": 2045000.0,
       "cogs": 41202.064,
       "gross_margin_amount": 2003797.936,
-      "gross_margin_pct": 98.0
+      "gross_margin_pct": 98.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-11",
@@ -120768,7 +121348,8 @@
       "net_revenue": 1234286.0,
       "cogs": 222585.918,
       "gross_margin_amount": 1011700.0819999999,
-      "gross_margin_pct": 82.0
+      "gross_margin_pct": 82.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-11",
@@ -120787,7 +121368,8 @@
       "net_revenue": 5040591.0,
       "cogs": 636908.971,
       "gross_margin_amount": 4403682.029,
-      "gross_margin_pct": 87.4
+      "gross_margin_pct": 87.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-11",
@@ -120808,7 +121390,8 @@
       "net_revenue": 6498823.0,
       "cogs": 2362580.088,
       "gross_margin_amount": 4136242.912,
-      "gross_margin_pct": 63.6
+      "gross_margin_pct": 63.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-12",
@@ -120823,7 +121406,8 @@
       "net_revenue": 3501376.0,
       "cogs": 763116.3640000001,
       "gross_margin_amount": 2738259.636,
-      "gross_margin_pct": 78.2
+      "gross_margin_pct": 78.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-12",
@@ -120841,7 +121425,8 @@
       "net_revenue": 47680.0,
       "cogs": 0.0,
       "gross_margin_amount": 47680.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-12",
@@ -120862,7 +121447,8 @@
       "net_revenue": 4865203.99,
       "cogs": 821546.898,
       "gross_margin_amount": 4043657.092,
-      "gross_margin_pct": 83.1
+      "gross_margin_pct": 83.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-12",
@@ -120881,7 +121467,8 @@
       "net_revenue": 7488173.0,
       "cogs": 1180250.355,
       "gross_margin_amount": 6307922.645,
-      "gross_margin_pct": 84.2
+      "gross_margin_pct": 84.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-13",
@@ -120896,7 +121483,8 @@
       "net_revenue": 526286.0,
       "cogs": 132208.098,
       "gross_margin_amount": 394077.902,
-      "gross_margin_pct": 74.9
+      "gross_margin_pct": 74.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-13",
@@ -120914,7 +121502,8 @@
       "net_revenue": 16413.0,
       "cogs": 0.0,
       "gross_margin_amount": 16413.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-13",
@@ -120933,7 +121522,8 @@
       "net_revenue": 3111378.0,
       "cogs": 310124.0,
       "gross_margin_amount": 2801254.0,
-      "gross_margin_pct": 90.0
+      "gross_margin_pct": 90.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-13",
@@ -120952,7 +121542,8 @@
       "net_revenue": 4377426.0,
       "cogs": 843811.9180000001,
       "gross_margin_amount": 3533614.082,
-      "gross_margin_pct": 80.7
+      "gross_margin_pct": 80.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-14",
@@ -120965,7 +121556,8 @@
       "net_revenue": 185250.0,
       "cogs": 0.0,
       "gross_margin_amount": 185250.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-14",
@@ -120980,7 +121572,8 @@
       "net_revenue": 1594450.0,
       "cogs": 637640.193,
       "gross_margin_amount": 956809.807,
-      "gross_margin_pct": 60.0
+      "gross_margin_pct": 60.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-14",
@@ -120993,7 +121586,8 @@
       "net_revenue": 355000.0,
       "cogs": 96119.997,
       "gross_margin_amount": 258880.003,
-      "gross_margin_pct": 72.9
+      "gross_margin_pct": 72.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-14",
@@ -121012,7 +121606,8 @@
       "net_revenue": 3390180.0,
       "cogs": 1352270.703,
       "gross_margin_amount": 2037909.297,
-      "gross_margin_pct": 60.1
+      "gross_margin_pct": 60.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-14",
@@ -121033,7 +121628,8 @@
       "net_revenue": 8384190.1,
       "cogs": 2005358.24,
       "gross_margin_amount": 6378831.859999999,
-      "gross_margin_pct": 76.1
+      "gross_margin_pct": 76.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-15",
@@ -121048,7 +121644,8 @@
       "net_revenue": 1583449.0,
       "cogs": 730705.146,
       "gross_margin_amount": 852743.854,
-      "gross_margin_pct": 53.9
+      "gross_margin_pct": 53.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-15",
@@ -121061,7 +121658,8 @@
       "net_revenue": 345000.0,
       "cogs": 0.0,
       "gross_margin_amount": 345000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-15",
@@ -121079,7 +121677,8 @@
       "net_revenue": 76128.0,
       "cogs": 0.0,
       "gross_margin_amount": 76128.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-15",
@@ -121100,7 +121699,8 @@
       "net_revenue": 6446641.07,
       "cogs": 2196698.916,
       "gross_margin_amount": 4249942.154,
-      "gross_margin_pct": 65.9
+      "gross_margin_pct": 65.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-15",
@@ -121119,7 +121719,8 @@
       "net_revenue": 6922641.0,
       "cogs": 2598056.173,
       "gross_margin_amount": 4324584.827,
-      "gross_margin_pct": 62.5
+      "gross_margin_pct": 62.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-15",
@@ -121137,7 +121738,8 @@
       "net_revenue": 89321.0,
       "cogs": 0.0,
       "gross_margin_amount": 89321.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-16",
@@ -121152,7 +121754,8 @@
       "net_revenue": 1236603.0,
       "cogs": 264914.13899999997,
       "gross_margin_amount": 971688.861,
-      "gross_margin_pct": 78.6
+      "gross_margin_pct": 78.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-16",
@@ -121170,7 +121773,8 @@
       "net_revenue": 141596.0,
       "cogs": 72519.997,
       "gross_margin_amount": 69076.003,
-      "gross_margin_pct": 48.8
+      "gross_margin_pct": 48.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-16",
@@ -121183,7 +121787,8 @@
       "net_revenue": 295000.0,
       "cogs": 69200.0,
       "gross_margin_amount": 225800.0,
-      "gross_margin_pct": 76.5
+      "gross_margin_pct": 76.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-16",
@@ -121202,7 +121807,8 @@
       "net_revenue": 4484700.0,
       "cogs": 1261906.831,
       "gross_margin_amount": 3222793.1689999998,
-      "gross_margin_pct": 71.9
+      "gross_margin_pct": 71.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-16",
@@ -121223,7 +121829,8 @@
       "net_revenue": 7607137.0,
       "cogs": 1851328.543,
       "gross_margin_amount": 5755808.457,
-      "gross_margin_pct": 75.7
+      "gross_margin_pct": 75.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-16",
@@ -121240,7 +121847,8 @@
       "net_revenue": 405810.0,
       "cogs": 0.0,
       "gross_margin_amount": 405810.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-17",
@@ -121255,7 +121863,8 @@
       "net_revenue": 1051802.0,
       "cogs": 316034.136,
       "gross_margin_amount": 735767.8640000001,
-      "gross_margin_pct": 70.0
+      "gross_margin_pct": 70.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-17",
@@ -121270,7 +121879,8 @@
       "net_revenue": 531603.0,
       "cogs": 132208.098,
       "gross_margin_amount": 399394.902,
-      "gross_margin_pct": 75.1
+      "gross_margin_pct": 75.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-17",
@@ -121285,7 +121895,8 @@
       "net_revenue": 676000.0,
       "cogs": 185914.139,
       "gross_margin_amount": 490085.86100000003,
-      "gross_margin_pct": 72.5
+      "gross_margin_pct": 72.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-17",
@@ -121306,7 +121917,8 @@
       "net_revenue": 5440940.0,
       "cogs": 951979.934,
       "gross_margin_amount": 4488960.066,
-      "gross_margin_pct": 82.5
+      "gross_margin_pct": 82.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-17",
@@ -121327,7 +121939,8 @@
       "net_revenue": 6546498.0,
       "cogs": 2590144.413,
       "gross_margin_amount": 3956353.587,
-      "gross_margin_pct": 60.4
+      "gross_margin_pct": 60.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-17",
@@ -121342,7 +121955,8 @@
       "net_revenue": -168200.0,
       "cogs": 248093.0,
       "gross_margin_amount": -416293.0,
-      "gross_margin_pct": 247.5
+      "gross_margin_pct": 247.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-17",
@@ -121357,7 +121971,8 @@
       "net_revenue": 643095.0,
       "cogs": 145039.994,
       "gross_margin_amount": 498055.006,
-      "gross_margin_pct": 77.4
+      "gross_margin_pct": 77.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-18",
@@ -121372,7 +121987,8 @@
       "net_revenue": 122000.0,
       "cogs": 47660.65,
       "gross_margin_amount": 74339.35,
-      "gross_margin_pct": 60.9
+      "gross_margin_pct": 60.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-18",
@@ -121391,7 +122007,8 @@
       "net_revenue": 3565662.0,
       "cogs": 483683.704,
       "gross_margin_amount": 3081978.296,
-      "gross_margin_pct": 86.4
+      "gross_margin_pct": 86.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-18",
@@ -121410,7 +122027,8 @@
       "net_revenue": 7105323.0,
       "cogs": 2339773.106,
       "gross_margin_amount": 4765549.893999999,
-      "gross_margin_pct": 67.1
+      "gross_margin_pct": 67.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-18",
@@ -121427,7 +122045,8 @@
       "net_revenue": 273608.0,
       "cogs": 0.0,
       "gross_margin_amount": 273608.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-18",
@@ -121440,7 +122059,8 @@
       "net_revenue": 1779200.0,
       "cogs": 0.0,
       "gross_margin_amount": 1779200.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-19",
@@ -121455,7 +122075,8 @@
       "net_revenue": 4576750.0,
       "cogs": 0.0,
       "gross_margin_amount": 4576750.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-19",
@@ -121470,7 +122091,8 @@
       "net_revenue": 724476.0,
       "cogs": 529894.959,
       "gross_margin_amount": 194581.04099999997,
-      "gross_margin_pct": 26.9
+      "gross_margin_pct": 26.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-19",
@@ -121489,7 +122111,8 @@
       "net_revenue": 4273340.0,
       "cogs": 650041.857,
       "gross_margin_amount": 3623298.143,
-      "gross_margin_pct": 84.8
+      "gross_margin_pct": 84.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-19",
@@ -121508,7 +122131,8 @@
       "net_revenue": 8132983.0,
       "cogs": 2566033.116,
       "gross_margin_amount": 5566949.884,
-      "gross_margin_pct": 68.4
+      "gross_margin_pct": 68.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-19",
@@ -121521,7 +122145,8 @@
       "net_revenue": 60000.0,
       "cogs": 3000.0,
       "gross_margin_amount": 57000.0,
-      "gross_margin_pct": 95.0
+      "gross_margin_pct": 95.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-20",
@@ -121534,7 +122159,8 @@
       "net_revenue": 0.0,
       "cogs": 170519.997,
       "gross_margin_amount": -170519.997,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-20",
@@ -121549,7 +122175,8 @@
       "net_revenue": 526650.0,
       "cogs": 144214.77500000002,
       "gross_margin_amount": 382435.225,
-      "gross_margin_pct": 72.6
+      "gross_margin_pct": 72.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-20",
@@ -121564,7 +122191,8 @@
       "net_revenue": 619800.0,
       "cogs": 111292.959,
       "gross_margin_amount": 508507.04099999997,
-      "gross_margin_pct": 82.0
+      "gross_margin_pct": 82.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-20",
@@ -121577,7 +122205,8 @@
       "net_revenue": 505000.0,
       "cogs": 170519.997,
       "gross_margin_amount": 334480.003,
-      "gross_margin_pct": 66.2
+      "gross_margin_pct": 66.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-20",
@@ -121596,7 +122225,8 @@
       "net_revenue": 3473297.0,
       "cogs": 967419.041,
       "gross_margin_amount": 2505877.959,
-      "gross_margin_pct": 72.1
+      "gross_margin_pct": 72.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-20",
@@ -121616,7 +122246,8 @@
       "net_revenue": 8147894.0,
       "cogs": 2819612.119,
       "gross_margin_amount": 5328281.881,
-      "gross_margin_pct": 65.4
+      "gross_margin_pct": 65.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-20",
@@ -121633,7 +122264,8 @@
       "net_revenue": 54117.0,
       "cogs": 0.0,
       "gross_margin_amount": 54117.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-21",
@@ -121646,7 +122278,8 @@
       "net_revenue": 475000.0,
       "cogs": 72520.997,
       "gross_margin_amount": 402479.003,
-      "gross_margin_pct": 84.7
+      "gross_margin_pct": 84.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-21",
@@ -121661,7 +122294,8 @@
       "net_revenue": 674800.0,
       "cogs": 142520.997,
       "gross_margin_amount": 532279.003,
-      "gross_margin_pct": 78.9
+      "gross_margin_pct": 78.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-21",
@@ -121676,7 +122310,8 @@
       "net_revenue": 589000.0,
       "cogs": 406292.95900000003,
       "gross_margin_amount": 182707.04099999997,
-      "gross_margin_pct": 31.0
+      "gross_margin_pct": 31.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-21",
@@ -121694,7 +122329,8 @@
       "net_revenue": 27750.0,
       "cogs": 0.0,
       "gross_margin_amount": 27750.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-21",
@@ -121713,7 +122349,8 @@
       "net_revenue": 5434436.0,
       "cogs": 665605.718,
       "gross_margin_amount": 4768830.282,
-      "gross_margin_pct": 87.8
+      "gross_margin_pct": 87.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-21",
@@ -121734,7 +122371,8 @@
       "net_revenue": 6266705.0,
       "cogs": 2472573.732,
       "gross_margin_amount": 3794131.268,
-      "gross_margin_pct": 60.5
+      "gross_margin_pct": 60.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-21",
@@ -121751,7 +122389,8 @@
       "net_revenue": 54117.0,
       "cogs": 0.0,
       "gross_margin_amount": 54117.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-22",
@@ -121766,7 +122405,8 @@
       "net_revenue": 7019122.0,
       "cogs": 1951753.546,
       "gross_margin_amount": 5067368.454,
-      "gross_margin_pct": 72.2
+      "gross_margin_pct": 72.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-22",
@@ -121787,7 +122427,8 @@
       "net_revenue": 3480178.0700000003,
       "cogs": 1184751.0659999999,
       "gross_margin_amount": 2295427.0040000007,
-      "gross_margin_pct": 66.0
+      "gross_margin_pct": 66.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-22",
@@ -121806,7 +122447,8 @@
       "net_revenue": 10566395.0,
       "cogs": 3810259.12,
       "gross_margin_amount": 6756135.88,
-      "gross_margin_pct": 63.9
+      "gross_margin_pct": 63.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-22",
@@ -121824,7 +122466,8 @@
       "net_revenue": 232874.0,
       "cogs": 58000.0,
       "gross_margin_amount": 174874.0,
-      "gross_margin_pct": 75.1
+      "gross_margin_pct": 75.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-23",
@@ -121839,7 +122482,8 @@
       "net_revenue": 673500.0,
       "cogs": 125914.139,
       "gross_margin_amount": 547585.861,
-      "gross_margin_pct": 81.3
+      "gross_margin_pct": 81.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-23",
@@ -121857,7 +122501,8 @@
       "net_revenue": 6964.0,
       "cogs": 0.0,
       "gross_margin_amount": 6964.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-23",
@@ -121870,7 +122515,8 @@
       "net_revenue": 150000.0,
       "cogs": 34944.938,
       "gross_margin_amount": 115055.062,
-      "gross_margin_pct": 76.7
+      "gross_margin_pct": 76.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-23",
@@ -121889,7 +122535,8 @@
       "net_revenue": 4885616.0,
       "cogs": 1947363.814,
       "gross_margin_amount": 2938252.1859999998,
-      "gross_margin_pct": 60.1
+      "gross_margin_pct": 60.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-23",
@@ -121909,7 +122556,8 @@
       "net_revenue": 10477165.0,
       "cogs": 4881651.485,
       "gross_margin_amount": 5595513.515,
-      "gross_margin_pct": 53.4
+      "gross_margin_pct": 53.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-23",
@@ -121926,7 +122574,8 @@
       "net_revenue": -21533.0,
       "cogs": 0.0,
       "gross_margin_amount": -21533.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-24",
@@ -121941,7 +122590,8 @@
       "net_revenue": 2506450.0,
       "cogs": 1179557.234,
       "gross_margin_amount": 1326892.766,
-      "gross_margin_pct": 52.9
+      "gross_margin_pct": 52.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-24",
@@ -121954,7 +122604,8 @@
       "net_revenue": 115000.0,
       "cogs": 22000.0,
       "gross_margin_amount": 93000.0,
-      "gross_margin_pct": 80.9
+      "gross_margin_pct": 80.9,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-24",
@@ -121975,7 +122626,8 @@
       "net_revenue": 7216167.0,
       "cogs": 2198713.428,
       "gross_margin_amount": 5017453.572000001,
-      "gross_margin_pct": 69.5
+      "gross_margin_pct": 69.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-24",
@@ -121996,7 +122648,8 @@
       "net_revenue": 8710610.0,
       "cogs": 2893898.122,
       "gross_margin_amount": 5816711.8780000005,
-      "gross_margin_pct": 66.8
+      "gross_margin_pct": 66.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-24",
@@ -122015,7 +122668,8 @@
       "net_revenue": 138222.0,
       "cogs": 185852.0,
       "gross_margin_amount": -47630.0,
-      "gross_margin_pct": -34.5
+      "gross_margin_pct": -34.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-24",
@@ -122028,7 +122682,8 @@
       "net_revenue": 0.0,
       "cogs": 35101.904,
       "gross_margin_amount": -35101.904,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-25",
@@ -122043,7 +122698,8 @@
       "net_revenue": 2599400.0,
       "cogs": 1082346.909,
       "gross_margin_amount": 1517053.091,
-      "gross_margin_pct": 58.4
+      "gross_margin_pct": 58.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-25",
@@ -122058,7 +122714,8 @@
       "net_revenue": 681900.0,
       "cogs": 185914.139,
       "gross_margin_amount": 495985.86100000003,
-      "gross_margin_pct": 72.7
+      "gross_margin_pct": 72.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-25",
@@ -122077,7 +122734,8 @@
       "net_revenue": 4336759.0,
       "cogs": 1661881.185,
       "gross_margin_amount": 2674877.815,
-      "gross_margin_pct": 61.7
+      "gross_margin_pct": 61.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-25",
@@ -122096,7 +122754,8 @@
       "net_revenue": 12479389.0,
       "cogs": 4905656.209,
       "gross_margin_amount": 7573732.791,
-      "gross_margin_pct": 60.7
+      "gross_margin_pct": 60.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-25",
@@ -122113,7 +122772,8 @@
       "net_revenue": 73140.0,
       "cogs": 25501.0,
       "gross_margin_amount": 47639.0,
-      "gross_margin_pct": 65.1
+      "gross_margin_pct": 65.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-25",
@@ -122128,7 +122788,8 @@
       "net_revenue": 1021000.0,
       "cogs": 0.0,
       "gross_margin_amount": 1021000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-26",
@@ -122143,7 +122804,8 @@
       "net_revenue": 6063900.0,
       "cogs": 1447880.9070000001,
       "gross_margin_amount": 4616019.093,
-      "gross_margin_pct": 76.1
+      "gross_margin_pct": 76.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-26",
@@ -122156,7 +122818,8 @@
       "net_revenue": 28000.0,
       "cogs": 0.0,
       "gross_margin_amount": 28000.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-26",
@@ -122177,7 +122840,8 @@
       "net_revenue": 7700387.0,
       "cogs": 2810310.078,
       "gross_margin_amount": 4890076.922,
-      "gross_margin_pct": 63.5
+      "gross_margin_pct": 63.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-26",
@@ -122196,7 +122860,8 @@
       "net_revenue": 9620366.0,
       "cogs": 3397297.039,
       "gross_margin_amount": 6223068.961,
-      "gross_margin_pct": 64.7
+      "gross_margin_pct": 64.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-27",
@@ -122211,7 +122876,8 @@
       "net_revenue": 2963800.0,
       "cogs": 575748.871,
       "gross_margin_amount": 2388051.1289999997,
-      "gross_margin_pct": 80.6
+      "gross_margin_pct": 80.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-27",
@@ -122224,7 +122890,8 @@
       "net_revenue": 17800.0,
       "cogs": 0.0,
       "gross_margin_amount": 17800.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-27",
@@ -122243,7 +122910,8 @@
       "net_revenue": 7834688.0,
       "cogs": 3239143.08,
       "gross_margin_amount": 4595544.92,
-      "gross_margin_pct": 58.7
+      "gross_margin_pct": 58.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-27",
@@ -122264,7 +122932,8 @@
       "net_revenue": 9628954.0,
       "cogs": 3164819.663,
       "gross_margin_amount": 6464134.336999999,
-      "gross_margin_pct": 67.1
+      "gross_margin_pct": 67.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-28",
@@ -122279,7 +122948,8 @@
       "net_revenue": 1111100.0,
       "cogs": 226041.997,
       "gross_margin_amount": 885058.003,
-      "gross_margin_pct": 79.7
+      "gross_margin_pct": 79.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-28",
@@ -122292,7 +122962,8 @@
       "net_revenue": 522750.0,
       "cogs": 346892.0,
       "gross_margin_amount": 175858.0,
-      "gross_margin_pct": 33.6
+      "gross_margin_pct": 33.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-28",
@@ -122311,7 +122982,8 @@
       "net_revenue": 7068994.0,
       "cogs": 1953909.9279999998,
       "gross_margin_amount": 5115084.072000001,
-      "gross_margin_pct": 72.4
+      "gross_margin_pct": 72.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-28",
@@ -122330,7 +123002,8 @@
       "net_revenue": 2230646.0,
       "cogs": 810587.499,
       "gross_margin_amount": 1420058.5010000002,
-      "gross_margin_pct": 63.7
+      "gross_margin_pct": 63.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-28",
@@ -122343,7 +123016,8 @@
       "net_revenue": 75650.0,
       "cogs": 0.0,
       "gross_margin_amount": 75650.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-29",
@@ -122358,7 +123032,8 @@
       "net_revenue": 1899800.0,
       "cogs": 527313.8740000001,
       "gross_margin_amount": 1372486.126,
-      "gross_margin_pct": 72.2
+      "gross_margin_pct": 72.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-29",
@@ -122373,7 +123048,8 @@
       "net_revenue": 301900.0,
       "cogs": 72519.997,
       "gross_margin_amount": 229380.003,
-      "gross_margin_pct": 76.0
+      "gross_margin_pct": 76.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-29",
@@ -122386,7 +123062,8 @@
       "net_revenue": 381800.0,
       "cogs": 127313.0,
       "gross_margin_amount": 254487.0,
-      "gross_margin_pct": 66.7
+      "gross_margin_pct": 66.7,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-29",
@@ -122406,7 +123083,8 @@
       "net_revenue": 3632683.0,
       "cogs": 1257733.736,
       "gross_margin_amount": 2374949.264,
-      "gross_margin_pct": 65.4
+      "gross_margin_pct": 65.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-29",
@@ -122425,7 +123103,8 @@
       "net_revenue": 6797834.0,
       "cogs": 1506228.681,
       "gross_margin_amount": 5291605.319,
-      "gross_margin_pct": 77.8
+      "gross_margin_pct": 77.8,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-29",
@@ -122438,7 +123117,8 @@
       "net_revenue": 172000.0,
       "cogs": 46194.938,
       "gross_margin_amount": 125805.062,
-      "gross_margin_pct": 73.1
+      "gross_margin_pct": 73.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-30",
@@ -122451,7 +123131,8 @@
       "net_revenue": 625000.0,
       "cogs": 133813.956,
       "gross_margin_amount": 491186.044,
-      "gross_margin_pct": 78.6
+      "gross_margin_pct": 78.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-30",
@@ -122464,7 +123145,8 @@
       "net_revenue": 0.0,
       "cogs": 140222.997,
       "gross_margin_amount": -140222.997,
-      "gross_margin_pct": 0.0
+      "gross_margin_pct": 0.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-30",
@@ -122482,7 +123164,8 @@
       "net_revenue": 6893880.0,
       "cogs": 1886687.186,
       "gross_margin_amount": 5007192.814,
-      "gross_margin_pct": 72.6
+      "gross_margin_pct": 72.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-30",
@@ -122500,7 +123183,8 @@
       "net_revenue": 13180690.0,
       "cogs": 3664769.647,
       "gross_margin_amount": 9515920.353,
-      "gross_margin_pct": 72.2
+      "gross_margin_pct": 72.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-06-30",
@@ -122513,7 +123197,8 @@
       "net_revenue": 151300.0,
       "cogs": 602636.0,
       "gross_margin_amount": -451336.0,
-      "gross_margin_pct": -298.3
+      "gross_margin_pct": -298.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-01",
@@ -122526,7 +123211,8 @@
       "net_revenue": 305000.0,
       "cogs": 84120.0,
       "gross_margin_amount": 220880.0,
-      "gross_margin_pct": 72.4
+      "gross_margin_pct": 72.4,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-01",
@@ -122539,7 +123225,8 @@
       "net_revenue": 4583084.0,
       "cogs": 1313503.756,
       "gross_margin_amount": 3269580.244,
-      "gross_margin_pct": 71.3
+      "gross_margin_pct": 71.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-01",
@@ -122552,7 +123239,8 @@
       "net_revenue": 10742840.0,
       "cogs": 2798179.243,
       "gross_margin_amount": 7944660.757,
-      "gross_margin_pct": 74.0
+      "gross_margin_pct": 74.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-01",
@@ -122565,7 +123253,8 @@
       "net_revenue": 493750.0,
       "cogs": 97434.0,
       "gross_margin_amount": 396316.0,
-      "gross_margin_pct": 80.3
+      "gross_margin_pct": 80.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-02",
@@ -122580,7 +123269,8 @@
       "net_revenue": 6360000.0,
       "cogs": 2726293.71,
       "gross_margin_amount": 3633706.29,
-      "gross_margin_pct": 57.1
+      "gross_margin_pct": 57.1,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-02",
@@ -122593,7 +123283,8 @@
       "net_revenue": 2314530.0,
       "cogs": 779421.299,
       "gross_margin_amount": 1535108.701,
-      "gross_margin_pct": 66.3
+      "gross_margin_pct": 66.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-02",
@@ -122606,7 +123297,8 @@
       "net_revenue": 8131500.0,
       "cogs": 1950495.362,
       "gross_margin_amount": 6181004.638,
-      "gross_margin_pct": 76.0
+      "gross_margin_pct": 76.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-02",
@@ -122619,7 +123311,8 @@
       "net_revenue": 75650.0,
       "cogs": 0.0,
       "gross_margin_amount": 75650.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-03",
@@ -122634,7 +123327,8 @@
       "net_revenue": 3020000.0,
       "cogs": 877120.95,
       "gross_margin_amount": 2142879.05,
-      "gross_margin_pct": 71.0
+      "gross_margin_pct": 71.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-03",
@@ -122647,7 +123341,8 @@
       "net_revenue": 3035376.0,
       "cogs": 801078.197,
       "gross_margin_amount": 2234297.803,
-      "gross_margin_pct": 73.6
+      "gross_margin_pct": 73.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-03",
@@ -122660,7 +123355,8 @@
       "net_revenue": 5834340.0,
       "cogs": 1544204.076,
       "gross_margin_amount": 4290135.924000001,
-      "gross_margin_pct": 73.5
+      "gross_margin_pct": 73.5,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-03",
@@ -122673,7 +123369,8 @@
       "net_revenue": 151300.0,
       "cogs": 0.0,
       "gross_margin_amount": 151300.0,
-      "gross_margin_pct": 100.0
+      "gross_margin_pct": 100.0,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-04",
@@ -122686,7 +123383,8 @@
       "net_revenue": 1260000.0,
       "cogs": 639998.966,
       "gross_margin_amount": 620001.034,
-      "gross_margin_pct": 49.2
+      "gross_margin_pct": 49.2,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-04",
@@ -122699,33 +123397,36 @@
       "net_revenue": 235000.0,
       "cogs": 74604.568,
       "gross_margin_amount": 160395.432,
-      "gross_margin_pct": 68.3
+      "gross_margin_pct": 68.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 26,
-      "gross_revenue": 5271091.0,
+      "orders": 30,
+      "gross_revenue": 6429353.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 5271091.0,
-      "cogs": 1154745.428,
-      "gross_margin_amount": 4116345.5719999997,
-      "gross_margin_pct": 78.1
+      "net_revenue": 6429353.0,
+      "cogs": 1438135.527,
+      "gross_margin_amount": 4991217.473,
+      "gross_margin_pct": 77.6,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 22,
-      "gross_revenue": 4736300.0,
+      "orders": 30,
+      "gross_revenue": 6726500.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 4736300.0,
-      "cogs": 844262.3,
-      "gross_margin_amount": 3892037.7,
-      "gross_margin_pct": 82.2
+      "net_revenue": 6726500.0,
+      "cogs": 1390864.038,
+      "gross_margin_amount": 5335635.962,
+      "gross_margin_pct": 79.3,
+      "ads_spend": 0.0
     },
     {
       "date": "2026-07-04",
@@ -122738,7 +123439,22 @@
       "net_revenue": 277300.0,
       "cogs": 148644.0,
       "gross_margin_amount": 128656.0,
-      "gross_margin_pct": 46.4
+      "gross_margin_pct": 46.4,
+      "ads_spend": 0.0
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "zalo",
+      "shop_page": "",
+      "orders": 1,
+      "gross_revenue": 655000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": 655000.0,
+      "cogs": 132207.959,
+      "gross_margin_amount": 522792.04099999997,
+      "gross_margin_pct": 79.8,
+      "ads_spend": 0.0
     }
   ],
   "ads_daily": [
@@ -125244,13 +125960,30 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2199417.0
+      "spend": 2199640.0
     },
     {
       "date": "2026-07-04",
-      "spend": 941755.0
+      "spend": 1073118.0
     }
   ],
+  "ads_daily_by_channel": [],
+  "ads_detail": {
+    "ads": [],
+    "adsets": [],
+    "campaigns": []
+  },
+  "ads_detail_error": "403 Client Error: Forbidden for url: https://graph.facebook.com/v25.0/act_800620885474602/insights?level=ad&fields=ad_id%2Cad_name%2Cadset_id%2Cadset_name%2Ccampaign_id%2Ccampaign_name%2Cspend%2Cimpressions%2Cclicks%2Cctr%2Ccpc%2Cactions&date_preset=maximum&access_token=EAASZCJHYbAjgBRZCWoZAbVdZCnxgVUSrPXEkid9WiUvXpRNVJZBmmbcoeGby28VVRpV90DFaxOHwHDzKmrBoCzjLzPx8yh650L4WoCRa38QiP0tZBJ9B0LgARk2OWD7ObLgiES7QGUWfxpZAoCd8ewr7ieM8c9wVQj6419OGIyK26AM74VU9JekPV0QXj4yVZBgvjZCoDXlaHScKRLqO3GZBQ0OcIs&limit=25&after=MjE0MzE4ODY4MDcwNQZDZD | Meta trả về: {'error': {'message': 'Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'error_subcode': 1504022, 'error_user_title': 'Too many API requests', 'error_user_msg': 'There have been too many calls from this app. Wait a bit and try again. For more info, please refer to https://developers.facebook.com/docs/marketing-api/insights/best-practices/#insightscallload.', 'fbtrace_id': 'ADX4zXF9G22GARP_h0HJYLF'}}",
+  "ads_rules_config": {
+    "cpc_max": null,
+    "cpa_max": null,
+    "ctr_min": null,
+    "spend_no_result_threshold": null
+  },
+  "ads_violations": {
+    "ads": [],
+    "adsets": []
+  },
   "debug_fee_join": {
     "settlement_rows": 6530,
     "matched": 6527,
@@ -125300,7 +126033,7 @@
     ]
   },
   "debug_fee_match": {
-    "total_orders_scanned": 11682,
+    "total_orders_scanned": 11695,
     "waybill_values_count": 6143,
     "son_values_count": 387,
     "top_matching_fields_for_waybill_mã_chứng_từ": [
@@ -125368,11 +126101,11 @@
       ],
       [
         "number",
-        706
+        708
       ],
       [
         "line_items[1].discount_allocations[0].amount",
-        161
+        162
       ],
       [
         "discount_applications[0].value",
@@ -125536,14 +126269,14 @@
     },
     "status_distribution_all_orders": {
       "status_distribution": {
-        "status='open'": 256,
-        "status='closed'": 11420,
+        "status='open'": 263,
+        "status='closed'": 11426,
         "status='cancelled'": 6
       },
       "financial_status_distribution": {
-        "financial_status='pending'": 1854,
-        "financial_status='paid'": 8364,
-        "financial_status='partially_paid'": 17,
+        "financial_status='paid'": 8377,
+        "financial_status='pending'": 1855,
+        "financial_status='partially_paid'": 16,
         "financial_status='refunded'": 1442,
         "financial_status='partially_refunded'": 5
       },
