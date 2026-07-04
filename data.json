@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-07-04T06:27:58.303982",
-  "total_ads_spend": 1378356925.0,
+  "updated_at": "2026-07-04T06:36:28.968134",
+  "total_ads_spend": 1378372885.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 6947,
-      "gross_revenue": 956197171.0,
+      "orders": 6948,
+      "gross_revenue": 956322171.0,
       "total_fee": 236824563.53,
       "fee_breakdown": {
         "Phí cố định": 132342674.0,
@@ -23,18 +23,18 @@
         "Thuế (Đơn hoàn thành)": 1558996.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -18495.0
       },
-      "net_revenue": 719372607.47,
-      "cogs": 462608755.907,
-      "gross_margin_amount": 256763851.56300002,
+      "net_revenue": 719497607.47,
+      "cogs": 462638714.915,
+      "gross_margin_amount": 256858892.555,
       "gross_margin_pct": 35.7,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 256763851.56300002
+      "net_profit_after_ads": 256858892.555
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3860,
-      "gross_revenue": 755883920.0,
+      "orders": 3861,
+      "gross_revenue": 756104420.0,
       "total_fee": 134401165.77,
       "fee_breakdown": {
         "Phí cố định": 81355467.0,
@@ -50,12 +50,12 @@
         "Thuế (Đơn hoàn thành)": 1320948.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -15135.0
       },
-      "net_revenue": 621482754.23,
-      "cogs": 150377164.209,
-      "gross_margin_amount": 471105590.021,
+      "net_revenue": 621703254.23,
+      "cogs": 150429817.065,
+      "gross_margin_amount": 471273437.165,
       "gross_margin_pct": 75.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 471105590.021
+      "net_profit_after_ads": 471273437.165
     },
     {
       "channel": "facebook",
@@ -112620,6 +112620,18 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nến Thuỷ Tinh 50g Midnight Garden",
+      "sku": "NETH00144",
+      "quantity": 4.0,
+      "revenue": 476000.0,
+      "cogs": 70203.808,
+      "gross_margin_amount": 405796.192,
+      "gross_margin_pct": 85.3
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Tinh Dầu Khuếch Tán Aroma Story Hương Trà Trắng Và Trái Sung True Grace Size 50ml/100ml/150ml",
       "sku": "",
       "quantity": 2.0,
@@ -112896,6 +112908,18 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán Lemongrass",
+      "sku": "TDKT00001",
+      "quantity": 1.0,
+      "revenue": 180000.0,
+      "cogs": 29959.008,
+      "gross_margin_amount": 150040.992,
+      "gross_margin_pct": 83.4
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thuỷ Tinh 50g Coffee Holic - Gói quà",
       "sku": "NETH00155",
       "quantity": 1.0,
@@ -112951,18 +112975,6 @@
       "cogs": 17325.953,
       "gross_margin_amount": 101674.04699999999,
       "gross_margin_pct": 85.4
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
-      "product": "Nến Thuỷ Tinh 50g Midnight Garden",
-      "sku": "NETH00144",
-      "quantity": 1.0,
-      "revenue": 119000.0,
-      "cogs": 17550.952,
-      "gross_margin_amount": 101449.048,
-      "gross_margin_pct": 85.3
     },
     {
       "date": "2026-07-04",
@@ -122693,27 +122705,27 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 25,
-      "gross_revenue": 5050591.0,
+      "orders": 26,
+      "gross_revenue": 5271091.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 5050591.0,
-      "cogs": 1102092.572,
-      "gross_margin_amount": 3948498.4280000003,
-      "gross_margin_pct": 78.2
+      "net_revenue": 5271091.0,
+      "cogs": 1154745.428,
+      "gross_margin_amount": 4116345.5719999997,
+      "gross_margin_pct": 78.1
     },
     {
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 21,
-      "gross_revenue": 4611300.0,
+      "orders": 22,
+      "gross_revenue": 4736300.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 4611300.0,
-      "cogs": 814303.292,
-      "gross_margin_amount": 3796996.708,
-      "gross_margin_pct": 82.3
+      "net_revenue": 4736300.0,
+      "cogs": 844262.3,
+      "gross_margin_amount": 3892037.7,
+      "gross_margin_pct": 82.2
     },
     {
       "date": "2026-07-04",
@@ -125232,11 +125244,11 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2199323.0
+      "spend": 2199356.0
     },
     {
       "date": "2026-07-04",
-      "spend": 916175.0
+      "spend": 932102.0
     }
   ],
   "debug_fee_join": {
@@ -125288,7 +125300,7 @@
     ]
   },
   "debug_fee_match": {
-    "total_orders_scanned": 11680,
+    "total_orders_scanned": 11682,
     "waybill_values_count": 6143,
     "son_values_count": 387,
     "top_matching_fields_for_waybill_mã_chứng_từ": [
@@ -125524,13 +125536,13 @@
     },
     "status_distribution_all_orders": {
       "status_distribution": {
-        "status='open'": 255,
-        "status='closed'": 11419,
+        "status='open'": 256,
+        "status='closed'": 11420,
         "status='cancelled'": 6
       },
       "financial_status_distribution": {
+        "financial_status='pending'": 1854,
         "financial_status='paid'": 8364,
-        "financial_status='pending'": 1852,
         "financial_status='partially_paid'": 17,
         "financial_status='refunded'": 1442,
         "financial_status='partially_refunded'": 5
@@ -129460,183 +129472,765 @@
           "date": "2026-06-30",
           "truth_net_revenue": 21290474.0,
           "computed_net_revenue": 21290474.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 24071934.0,
+          "computed_before_refund": 24071934.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 2781460.0,
+          "computed_refund": 2781460.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-29",
           "truth_net_revenue": 14084341.0,
           "computed_net_revenue": 13694341.0,
-          "diff_net_revenue": -390000.0
+          "diff_net_revenue": -390000.0,
+          "truth_before_refund": 16161321.0,
+          "computed_before_refund": 15771321.0,
+          "diff_before_refund": -390000.0,
+          "truth_refund": 2076980.0,
+          "computed_refund": 2076980.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-28",
           "truth_net_revenue": 12278127.0,
           "computed_net_revenue": 12278127.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 13706138.0,
+          "computed_before_refund": 13706138.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1428011.0,
+          "computed_refund": 1428011.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-27",
           "truth_net_revenue": 23471589.0,
           "computed_net_revenue": 23666589.0,
-          "diff_net_revenue": 195000.0
+          "diff_net_revenue": 195000.0,
+          "truth_before_refund": 26510469.0,
+          "computed_before_refund": 26705469.0,
+          "diff_before_refund": 195000.0,
+          "truth_refund": 3038880.0,
+          "computed_refund": 3038880.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-26",
           "truth_net_revenue": 29265307.0,
           "computed_net_revenue": 29295307.0,
-          "diff_net_revenue": 30000.0
+          "diff_net_revenue": 30000.0,
+          "truth_before_refund": 34145039.0,
+          "computed_before_refund": 34175039.0,
+          "diff_before_refund": 30000.0,
+          "truth_refund": 4879732.0,
+          "computed_refund": 4879732.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-25",
           "truth_net_revenue": 28158398.0,
           "computed_net_revenue": 28323398.0,
-          "diff_net_revenue": 165000.0
+          "diff_net_revenue": 165000.0,
+          "truth_before_refund": 33664498.0,
+          "computed_before_refund": 33829498.0,
+          "diff_before_refund": 165000.0,
+          "truth_refund": 5506100.0,
+          "computed_refund": 5506100.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-24",
           "truth_net_revenue": 24993832.0,
           "computed_net_revenue": 24993832.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 27029198.0,
+          "computed_before_refund": 27029198.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 2035366.0,
+          "computed_refund": 2035366.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-23",
           "truth_net_revenue": 23179901.0,
           "computed_net_revenue": 23179901.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 26845281.0,
+          "computed_before_refund": 26845281.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 3665380.0,
+          "computed_refund": 3665380.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-22",
           "truth_net_revenue": 27905814.0,
           "computed_net_revenue": 27905814.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 29199435.0,
+          "computed_before_refund": 29199435.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1293621.0,
+          "computed_refund": 1293621.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-21",
           "truth_net_revenue": 18466387.0,
           "computed_net_revenue": 18466387.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 20238715.0,
+          "computed_before_refund": 20238715.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1772328.0,
+          "computed_refund": 1772328.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-20",
           "truth_net_revenue": 18814011.0,
           "computed_net_revenue": 18814011.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 21532127.0,
+          "computed_before_refund": 21532127.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 2718116.0,
+          "computed_refund": 2718116.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-19",
           "truth_net_revenue": 23217996.0,
           "computed_net_revenue": 23182996.0,
-          "diff_net_revenue": -35000.0
+          "diff_net_revenue": -35000.0,
+          "truth_before_refund": 26046127.0,
+          "computed_before_refund": 26046127.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 2828131.0,
+          "computed_refund": 2863131.0,
+          "diff_refund": 35000.0
         },
         {
           "date": "2026-06-18",
           "truth_net_revenue": 18136124.0,
           "computed_net_revenue": 18136124.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 21850615.0,
+          "computed_before_refund": 21850615.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 3714491.0,
+          "computed_refund": 3714491.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-17",
           "truth_net_revenue": 20995001.0,
           "computed_net_revenue": 20995001.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 24772858.0,
+          "computed_before_refund": 24772858.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 3777857.0,
+          "computed_refund": 3777857.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-16",
           "truth_net_revenue": 20072723.0,
           "computed_net_revenue": 20072723.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 21928983.0,
+          "computed_before_refund": 21928983.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1856260.0,
+          "computed_refund": 1856260.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-15",
           "truth_net_revenue": 21611635.0,
           "computed_net_revenue": 21611635.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 25606767.0,
+          "computed_before_refund": 25606767.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 3995132.0,
+          "computed_refund": 3995132.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-14",
           "truth_net_revenue": 18790487.0,
           "computed_net_revenue": 18790487.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 21296455.0,
+          "computed_before_refund": 21296455.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 2505968.0,
+          "computed_refund": 2505968.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-13",
           "truth_net_revenue": 11367804.0,
           "computed_net_revenue": 11367804.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 12087704.0,
+          "computed_before_refund": 12087704.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 719900.0,
+          "computed_refund": 719900.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-12",
           "truth_net_revenue": 21545186.0,
           "computed_net_revenue": 21545186.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 22764004.0,
+          "computed_before_refund": 22764004.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1218818.0,
+          "computed_refund": 1218818.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-11",
           "truth_net_revenue": 19744922.0,
           "computed_net_revenue": 19744922.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 21245971.0,
+          "computed_before_refund": 21245971.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1501049.0,
+          "computed_refund": 1501049.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-10",
           "truth_net_revenue": 30976244.0,
           "computed_net_revenue": 30976244.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 32264394.0,
+          "computed_before_refund": 32264394.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1288150.0,
+          "computed_refund": 1288150.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-09",
           "truth_net_revenue": 13551835.0,
           "computed_net_revenue": 7551835.0,
-          "diff_net_revenue": -6000000.0
+          "diff_net_revenue": -6000000.0,
+          "truth_before_refund": 21024823.0,
+          "computed_before_refund": 15024823.0,
+          "diff_before_refund": -6000000.0,
+          "truth_refund": 7472988.0,
+          "computed_refund": 7472988.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-08",
           "truth_net_revenue": 21384429.0,
           "computed_net_revenue": 21425629.0,
-          "diff_net_revenue": 41200.0
+          "diff_net_revenue": 41200.0,
+          "truth_before_refund": 22569329.0,
+          "computed_before_refund": 22610529.0,
+          "diff_before_refund": 41200.0,
+          "truth_refund": 1184900.0,
+          "computed_refund": 1184900.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-07",
           "truth_net_revenue": 12376691.0,
           "computed_net_revenue": 12443483.0,
-          "diff_net_revenue": 66792.0
+          "diff_net_revenue": 66792.0,
+          "truth_before_refund": 14540060.0,
+          "computed_before_refund": 14606852.0,
+          "diff_before_refund": 66792.0,
+          "truth_refund": 2163369.0,
+          "computed_refund": 2163369.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-06",
           "truth_net_revenue": 21474095.0,
           "computed_net_revenue": 21407303.0,
-          "diff_net_revenue": -66792.0
+          "diff_net_revenue": -66792.0,
+          "truth_before_refund": 24707101.0,
+          "computed_before_refund": 24640309.0,
+          "diff_before_refund": -66792.0,
+          "truth_refund": 3233006.0,
+          "computed_refund": 3233006.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-05",
           "truth_net_revenue": 12919411.0,
           "computed_net_revenue": 12869411.0,
-          "diff_net_revenue": -50000.0
+          "diff_net_revenue": -50000.0,
+          "truth_before_refund": 16014285.0,
+          "computed_before_refund": 15964285.0,
+          "diff_before_refund": -50000.0,
+          "truth_refund": 3094874.0,
+          "computed_refund": 3094874.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-04",
           "truth_net_revenue": 11248416.0,
           "computed_net_revenue": 11357216.0,
-          "diff_net_revenue": 108800.0
+          "diff_net_revenue": 108800.0,
+          "truth_before_refund": 12016528.0,
+          "computed_before_refund": 12125328.0,
+          "diff_before_refund": 108800.0,
+          "truth_refund": 768112.0,
+          "computed_refund": 768112.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-03",
           "truth_net_revenue": 20921755.0,
           "computed_net_revenue": 20821755.0,
-          "diff_net_revenue": -100000.0
+          "diff_net_revenue": -100000.0,
+          "truth_before_refund": 23866485.0,
+          "computed_before_refund": 23766485.0,
+          "diff_before_refund": -100000.0,
+          "truth_refund": 2944730.0,
+          "computed_refund": 2944730.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-02",
           "truth_net_revenue": 15422197.0,
           "computed_net_revenue": 15422197.0,
-          "diff_net_revenue": 0.0
+          "diff_net_revenue": 0.0,
+          "truth_before_refund": 16600197.0,
+          "computed_before_refund": 16600197.0,
+          "diff_before_refund": 0.0,
+          "truth_refund": 1178000.0,
+          "computed_refund": 1178000.0,
+          "diff_refund": 0.0
         },
         {
           "date": "2026-06-01",
           "truth_net_revenue": 15596512.0,
           "computed_net_revenue": 15244512.0,
-          "diff_net_revenue": -352000.0
+          "diff_net_revenue": -352000.0,
+          "truth_before_refund": 17496542.0,
+          "computed_before_refund": 17144542.0,
+          "diff_before_refund": -352000.0,
+          "truth_refund": 1900030.0,
+          "computed_refund": 1900030.0,
+          "diff_refund": 0.0
         }
       ]
-    }
+    },
+    "raw_dump_worst_days": [
+      {
+        "name": "260630D3E5CT0V",
+        "order_number": 13716,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T16:39:35Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 180000.0,
+        "total_discounts": 62000.0,
+        "before_refund": 118000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260630D1CGFECG",
+        "order_number": 13715,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T16:02:53Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 235000.0,
+        "total_discounts": 40000.0,
+        "before_refund": 195000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629D02NFWMD",
+        "order_number": 13714,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T15:39:28Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 425000.0,
+        "total_discounts": 86900.0,
+        "before_refund": 338100.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "584772330886170582",
+        "order_number": 13713,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T15:12:13Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 244000.0,
+        "total_discounts": 72000.0,
+        "before_refund": 172000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CUR5QS1W",
+        "order_number": 13712,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T14:22:02Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 235000.0,
+        "total_discounts": 40000.0,
+        "before_refund": 195000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CUQEV6PH",
+        "order_number": 13711,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T14:21:37Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 200000.0,
+        "total_discounts": 25000.0,
+        "before_refund": 175000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CUB078X1",
+        "order_number": 13710,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T14:14:40Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 145000.0,
+        "total_discounts": 0.0,
+        "before_refund": 145000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CS9TJJM0",
+        "order_number": 13709,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T13:38:11Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 235000.0,
+        "total_discounts": 40000.0,
+        "before_refund": 195000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CRQ8EXFS",
+        "order_number": 13708,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T13:27:49Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 79000.0,
+        "total_discounts": 20000.0,
+        "before_refund": 59000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CR9QDBR9",
+        "order_number": 13707,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T13:20:16Z",
+        "status": "open",
+        "cancelled_on": null,
+        "total_line_items_price": 450000.0,
+        "total_discounts": 102100.0,
+        "before_refund": 347900.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CQPK6D9A",
+        "order_number": 13706,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T13:09:33Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 705000.0,
+        "total_discounts": 135000.0,
+        "before_refund": 570000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CPRC64MJ",
+        "order_number": 13705,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:52:40Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 250000.0,
+        "total_discounts": 19700.0,
+        "before_refund": 230300.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CPPE5M1P",
+        "order_number": 13704,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:51:34Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 400000.0,
+        "total_discounts": 81500.0,
+        "before_refund": 318500.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CPK84J6V",
+        "order_number": 13703,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:49:47Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 99000.0,
+        "total_discounts": 20000.0,
+        "before_refund": 79000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CPFVC311",
+        "order_number": 13702,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:47:54Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 79000.0,
+        "total_discounts": 14000.0,
+        "before_refund": 65000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CNU4JRTW",
+        "order_number": 13701,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:36:19Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 350000.0,
+        "total_discounts": 60900.0,
+        "before_refund": 289100.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CMN6HECS",
+        "order_number": 13700,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:15:06Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 260000.0,
+        "total_discounts": 29700.0,
+        "before_refund": 230300.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CM57EK94",
+        "order_number": 13699,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:06:10Z",
+        "status": "closed",
+        "cancelled_on": "2026-06-29T12:12:33Z",
+        "total_line_items_price": 400000.0,
+        "total_discounts": 81500.0,
+        "before_refund": 318500.0,
+        "refund_events": [
+          [
+            "2026-06-29",
+            318500.0
+          ]
+        ],
+        "refund_total": 318500.0
+      },
+      {
+        "name": "260629CKVMRQHY",
+        "order_number": 13698,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T12:01:22Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 180000.0,
+        "total_discounts": 62000.0,
+        "before_refund": 118000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CHT45EGW",
+        "order_number": 13697,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T11:24:11Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 415000.0,
+        "total_discounts": 109240.0,
+        "before_refund": 305760.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CHPQE46H",
+        "order_number": 13696,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T11:22:15Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 235000.0,
+        "total_discounts": 40000.0,
+        "before_refund": 195000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CH1400G5",
+        "order_number": 13695,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T11:10:11Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 139000.0,
+        "total_discounts": 30000.0,
+        "before_refund": 109000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CGCE58EH",
+        "order_number": 13694,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T10:58:37Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 149000.0,
+        "total_discounts": 40000.0,
+        "before_refund": 109000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CG9ES936",
+        "order_number": 13693,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T10:56:57Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 350000.0,
+        "total_discounts": 60900.0,
+        "before_refund": 289100.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "SON13692",
+        "order_number": 13692,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T10:49:58Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 325000.0,
+        "total_discounts": 0.0,
+        "before_refund": 325000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629CFFG6180",
+        "order_number": 13691,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T10:42:27Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 235000.0,
+        "total_discounts": 40000.0,
+        "before_refund": 195000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "SON13690",
+        "order_number": 13690,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T10:22:49Z",
+        "status": "closed",
+        "cancelled_on": null,
+        "total_line_items_price": 605000.0,
+        "total_discounts": 0.0,
+        "before_refund": 605000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "SON13689",
+        "order_number": 13689,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T09:17:08Z",
+        "status": "open",
+        "cancelled_on": null,
+        "total_line_items_price": 525000.0,
+        "total_discounts": 0.0,
+        "before_refund": 525000.0,
+        "refund_events": [],
+        "refund_total": 0
+      },
+      {
+        "name": "260629C9U98KDM",
+        "order_number": 13688,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T09:01:39Z",
+        "status": "closed",
+        "cancelled_on": "2026-06-29T09:02:18Z",
+        "total_line_items_price": 470000.0,
+        "total_discounts": 80000.0,
+        "before_refund": 390000.0,
+        "refund_events": [
+          [
+            "2026-06-29",
+            390000.0
+          ]
+        ],
+        "refund_total": 390000.0
+      },
+      {
+        "name": "260629C9JEYV76",
+        "order_number": 13687,
+        "date_vn": "2026-06-29",
+        "created_on": "2026-06-29T08:56:43Z",
+        "status": "open",
+        "cancelled_on": null,
+        "total_line_items_price": 235000.0,
+        "total_discounts": 40000.0,
+        "before_refund": 195000.0,
+        "refund_events": [],
+        "refund_total": 0
+      }
+    ]
   }
 }
