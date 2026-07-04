@@ -5,9 +5,8 @@ Tính DOANH THU THUẦN theo ĐÚNG công thức Sapo dùng trong báo cáo "Doa
 
   Tiền hàng           = total_line_items_price (tổng giá trị các line item, TRƯỚC giảm giá)
   Giảm giá            = total_discounts (tổng giảm giá áp dụng cho toàn đơn)
-  Tiền hàng trả lại   = tổng (price * quantity) của các refund_line_items trong "refunds"
-                        (Sapo Refund API: mỗi refund có refund_line_items, mỗi item có
-                        line_item.price + quantity đã hoàn)
+  Tiền hàng trả lại   = tổng "subtotal" của các refund_line_items trong "refunds"
+                        (ĐÃ SỬA ở vòng 3 — xem bên dưới, KHÔNG dùng price*quantity nữa)
   Doanh thu thuần     = Tiền hàng - Giảm giá - Tiền hàng trả lại
   Phí giao hàng       = tổng price của shipping_lines
   Tổng doanh thu      = Doanh thu thuần + Phí giao hàng + Tiền thuế
@@ -23,6 +22,19 @@ QUAN TRỌNG - ĐÃ ĐỐI CHIẾU VỚI SỐ THẬT (business_dashboard_debug_r
     (refund_value) trong công thức Doanh thu thuần, chứ không phải loại bỏ nguyên cả đơn.
   - NGÀY của order phải tính theo GIỜ VIỆT NAM (UTC+7), không phải giờ UTC thô của created_on
     — xem business_dashboard_aggregate._order_date().
+
+VÒNG 3 - SỬA CÔNG THỨC refund_value (ĐÃ XÁC NHẬN qua dump nguyên văn field "refunds" của 15
+đơn thật, xem business_dashboard_debug_revenue.py._raw_refund_samples):
+  - refund_line_items[].line_item.price là ĐƠN GIÁ GỐC TRƯỚC giảm giá của dòng hàng đó, KHÔNG
+    phải số tiền thực sự đã hoàn -> nhân price*quantity làm CAO HƠN thực tế (không áp dụng
+    discount cho phần hàng hoàn).
+  - refund_line_items[].subtotal (= line_item.discounted_total) mới là số tiền THỰC SỰ hoàn
+    cho dòng đó — đã đối chiếu khớp TUYỆT ĐỐI với transactions[].amount (tổng giao dịch hoàn
+    tiền thật) trên toàn bộ 15 mẫu kiểm tra được.
+  - refund.total_refunded ĐÁNG NGỜ: bằng 0 trên một số refund dù subtotal/transactions > 0
+    (có vẻ là bug/field không đáng tin cậy của Sapo) -> KHÔNG dùng field này.
+  -> refund_value = sum(refund_line_items[].subtotal), fallback về price*quantity chỉ khi
+     "subtotal" không tồn tại trong dữ liệu (phòng hờ).
 is_cancelled()/filter_valid_orders() vẫn giữ lại trong file này (không dùng trong pipeline
 chính nữa) để phục vụ chẩn đoán/tương lai nếu cần, nhưng KHÔNG áp dụng mặc định.
 
@@ -72,10 +84,15 @@ def order_revenue_breakdown(o: dict) -> dict:
     refund_value = 0.0
     for rf in (o.get("refunds") or []):
         for rli in (rf.get("refund_line_items") or []):
-            li = rli.get("line_item") or {}
-            price = _to_float(li.get("price"))
-            qty = _to_float(rli.get("quantity"))
-            refund_value += price * qty
+            if rli.get("subtotal") is not None:
+                # subtotal = số tiền THỰC SỰ hoàn cho dòng này (đã trừ giảm giá), đã đối
+                # chiếu khớp tuyệt đối với transactions[].amount thật — xem docstring module.
+                refund_value += _to_float(rli.get("subtotal"))
+            else:
+                # Fallback phòng hờ nếu dữ liệu không có "subtotal" (không nên xảy ra với
+                # dữ liệu Sapo hiện tại, nhưng giữ lại để không bị lỗi/mất dữ liệu).
+                li = rli.get("line_item") or {}
+                refund_value += _to_float(li.get("price")) * _to_float(rli.get("quantity"))
 
     shipping_fee = sum(_to_float(sl.get("price")) for sl in (o.get("shipping_lines") or []))
 

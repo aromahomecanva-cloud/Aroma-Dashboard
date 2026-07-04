@@ -196,12 +196,24 @@ def _refund_v5_refund_level_field(o: dict) -> float:
     return total
 
 
+def _refund_v6_subtotal_only(o: dict) -> float:
+    """ĐÃ XÁC NHẬN qua dump raw_refund_samples: refund_line_items[].subtotal = số tiền THỰC SỰ
+    hoàn (đã trừ giảm giá), khớp tuyệt đối với transactions[].amount. Đây là công thức hiện
+    đang dùng trong business_dashboard_revenue.order_revenue_breakdown() (vòng 3)."""
+    total = 0.0
+    for rf in (o.get("refunds") or []):
+        for rli in (rf.get("refund_line_items") or []):
+            total += _to_float(rli.get("subtotal"))
+    return total
+
+
 REFUND_FORMULAS = {
-    "price_times_qty (hiện tại)": _refund_v1_price_times_qty,
+    "price_times_qty (cũ, đã bỏ)": _refund_v1_price_times_qty,
     "price_only_no_qty": _refund_v2_price_only,
     "dedup_refund_id_price_times_qty": _refund_v3_dedup_by_id,
     "rli_alt_subtotal_fields": _refund_v4_rli_alt_fields,
     "refund_level_amount_field": _refund_v5_refund_level_field,
+    "subtotal_only (hiện tại)": _refund_v6_subtotal_only,
 }
 
 
@@ -227,6 +239,56 @@ def _score_refund_formulas(orders_raw: list) -> dict:
             "sum_abs_diff_per_day": round(abs_diff_per_day, 2),
         }
     return results
+
+
+def _refund_date_vn(rf: dict) -> str:
+    """Ngày CỦA CHÍNH refund (processed_at/created_on của object refund), theo giờ VN."""
+    for key in ("processed_at", "created_on"):
+        v = rf.get(key)
+        if v:
+            parsed = _parse_dt(v)
+            if parsed:
+                return (parsed + dt.timedelta(hours=7)).strftime("%Y-%m-%d")
+    return ""
+
+
+def _refund_subtotal_sum(rf: dict) -> float:
+    return sum(_to_float(rli.get("subtotal")) for rli in (rf.get("refund_line_items") or []))
+
+
+def _score_refund_date_attribution(orders_raw: list) -> dict:
+    """VÒNG 3b: So sánh 2 cách gắn NGÀY cho refund_value (dùng công thức subtotal đã xác nhận
+    đúng): theo ngày TẠO ĐƠN (cách hiện tại trong order_revenue_breakdown, refund luôn cộng vào
+    đúng ngày của order chứa nó) vs theo ngày CỦA CHÍNH sự kiện refund (processed_at/created_on
+    của object refund) — vì 1 đơn có thể được hoàn tiền VÀO NGÀY KHÁC với ngày tạo đơn."""
+    by_order_date = {}
+    by_refund_date = {}
+    for o in orders_raw:
+        order_date = _date_vn(o)
+        for rf in (o.get("refunds") or []):
+            amt = _refund_subtotal_sum(rf)
+            if order_date in TRUTH_DATES:
+                by_order_date[order_date] = by_order_date.get(order_date, 0.0) + amt
+            rdate = _refund_date_vn(rf)
+            if rdate in TRUTH_DATES:
+                by_refund_date[rdate] = by_refund_date.get(rdate, 0.0) + amt
+
+    total_truth = sum(t["refund_value"] for t in GROUND_TRUTH)
+
+    def _diffs(by_date):
+        total_computed = sum(by_date.values())
+        abs_diff_per_day = sum(abs(by_date.get(t["date"], 0.0) - t["refund_value"]) for t in GROUND_TRUTH)
+        return {
+            "total_computed": round(total_computed, 2),
+            "total_truth": round(total_truth, 2),
+            "diff_total": round(total_computed - total_truth, 2),
+            "sum_abs_diff_per_day": round(abs_diff_per_day, 2),
+        }
+
+    return {
+        "by_order_created_date (hiện tại)": _diffs(by_order_date),
+        "by_refund_own_date": _diffs(by_refund_date),
+    }
 
 
 def _raw_refund_samples(orders_raw: list, max_samples: int = 15) -> list:
@@ -350,6 +412,7 @@ def run_check(orders_raw: list) -> dict:
     refund_formula_scores = _score_refund_formulas(orders_raw)
     best_refund_formula = min(refund_formula_scores.items(), key=lambda kv: kv[1]["sum_abs_diff_per_day"])
     raw_refund_samples = _raw_refund_samples(orders_raw)
+    refund_date_attribution = _score_refund_date_attribution(orders_raw)
 
     return {
         "note": "So sánh MA TRẬN (cách lọc đơn huỷ x cách bucket ngày) để tìm tổ hợp khớp nhất với báo cáo Sapo thật.",
@@ -371,4 +434,5 @@ def run_check(orders_raw: list) -> dict:
         "best_refund_formula": best_refund_formula[0],
         "best_refund_formula_score": best_refund_formula[1],
         "raw_refund_samples": raw_refund_samples,
+        "refund_date_attribution": refund_date_attribution,
     }
