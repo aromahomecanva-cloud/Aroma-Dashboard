@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-07-04T08:49:10.014058",
-  "total_ads_spend": 1378615537.0,
+  "updated_at": "2026-07-04T09:22:12.797435",
+  "total_ads_spend": 1378680652.0,
   "ads_note": "Ads spend giờ ĐÃ gán theo kênh facebook/instagram (suy ra từ tên campaign), phân bổ về shop/page theo tỷ lệ doanh thu — xem ads_spend_by_channel.",
   "ads_spend_by_channel": {},
   "channels": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 6958,
-      "gross_revenue": 958632371.0,
+      "orders": 6959,
+      "gross_revenue": 958757371.0,
       "total_fee": 236824563.53,
       "fee_breakdown": {
         "Phí cố định": 132342674.0,
@@ -24,18 +24,18 @@
         "Thuế (Đơn hoàn thành)": 1558996.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -18495.0
       },
-      "net_revenue": 721807807.47,
-      "cogs": 463267166.661,
-      "gross_margin_amount": 258540640.80900002,
+      "net_revenue": 721932807.47,
+      "cogs": 463297125.669,
+      "gross_margin_amount": 258635681.801,
       "gross_margin_pct": 35.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 258540640.80900002
+      "net_profit_after_ads": 258635681.801
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3866,
-      "gross_revenue": 757338282.0,
+      "orders": 3867,
+      "gross_revenue": 757811976.0,
       "total_fee": 134401165.77,
       "fee_breakdown": {
         "Phí cố định": 81355467.0,
@@ -51,12 +51,12 @@
         "Thuế (Đơn hoàn thành)": 1320948.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -15135.0
       },
-      "net_revenue": 622937116.23,
-      "cogs": 150763207.164,
-      "gross_margin_amount": 472173909.066,
+      "net_revenue": 623410810.23,
+      "cogs": 150875195.182,
+      "gross_margin_amount": 472535615.048,
       "gross_margin_pct": 75.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 472173909.066
+      "net_profit_after_ads": 472535615.048
     },
     {
       "channel": "facebook",
@@ -112551,11 +112551,11 @@
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Tinh Dầu Khuếch Tán Lemongrass",
       "sku": "TDKT00001",
-      "quantity": 8.0,
-      "revenue": 1650000.0,
-      "cogs": 239672.064,
-      "gross_margin_amount": 1410327.936,
-      "gross_margin_pct": 85.5
+      "quantity": 10.0,
+      "revenue": 2220000.0,
+      "cogs": 299590.08,
+      "gross_margin_amount": 1920409.92,
+      "gross_margin_pct": 86.5
     },
     {
       "date": "2026-07-04",
@@ -112563,11 +112563,23 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Khuếch Tán Lemongrass",
       "sku": "TDKT00001",
-      "quantity": 5.0,
-      "revenue": 955000.0,
-      "cogs": 149795.04,
-      "gross_margin_amount": 805204.96,
-      "gross_margin_pct": 84.3
+      "quantity": 6.0,
+      "revenue": 1135000.0,
+      "cogs": 179754.048,
+      "gross_margin_amount": 955245.952,
+      "gross_margin_pct": 84.2
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Tinh Dầu Khuếch Tán True Grace",
+      "sku": "TDKT00010",
+      "quantity": 4.0,
+      "revenue": 1040000.0,
+      "cogs": 208280.008,
+      "gross_margin_amount": 831719.992,
+      "gross_margin_pct": 80.0
     },
     {
       "date": "2026-07-04",
@@ -112592,18 +112604,6 @@
       "cogs": 181987.688,
       "gross_margin_amount": 658012.312,
       "gross_margin_pct": 78.3
-    },
-    {
-      "date": "2026-07-04",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
-      "product": "Tinh Dầu Khuếch Tán True Grace",
-      "sku": "TDKT00010",
-      "quantity": 3.0,
-      "revenue": 755000.0,
-      "cogs": 156210.006,
-      "gross_margin_amount": 598789.994,
-      "gross_margin_pct": 79.3
     },
     {
       "date": "2026-07-04",
@@ -123404,13 +123404,13 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 31,
-      "gross_revenue": 6504953.0,
+      "orders": 32,
+      "gross_revenue": 6978647.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 6504953.0,
-      "cogs": 1488135.527,
-      "gross_margin_amount": 5016817.473,
+      "net_revenue": 6978647.0,
+      "cogs": 1600123.545,
+      "gross_margin_amount": 5378523.455,
       "gross_margin_pct": 77.1,
       "ads_spend": 0.0
     },
@@ -123418,14 +123418,14 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 32,
-      "gross_revenue": 7046500.0,
+      "orders": 33,
+      "gross_revenue": 7171500.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 7046500.0,
-      "cogs": 1472714.046,
-      "gross_margin_amount": 5573785.954,
-      "gross_margin_pct": 79.1,
+      "net_revenue": 7171500.0,
+      "cogs": 1502673.054,
+      "gross_margin_amount": 5668826.946,
+      "gross_margin_pct": 79.0,
       "ads_spend": 0.0
     },
     {
@@ -125960,11 +125960,11 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2199659.0
+      "spend": 2199681.0
     },
     {
       "date": "2026-07-04",
-      "spend": 1174451.0
+      "spend": 1239544.0
     }
   ],
   "ads_daily_by_channel": [],
@@ -125973,7 +125973,7 @@
     "adsets": [],
     "campaigns": []
   },
-  "ads_detail_error": "HTTPSConnectionPool(host='graph.facebook.com', port=443): Read timed out. (read timeout=30)",
+  "ads_detail_error": "500 Server Error: Internal Server Error for url: https://graph.facebook.com/v21.0/act_800620885474602/insights?level=ad&fields=ad_id%2Cad_name%2Cadset_id%2Cadset_name%2Ccampaign_id%2Ccampaign_name%2Cspend%2Cimpressions%2Cclicks%2Cactions&time_increment=1&access_token=EAASZCJHYbAjgBRZCWoZAbVdZCnxgVUSrPXEkid9WiUvXpRNVJZBmmbcoeGby28VVRpV90DFaxOHwHDzKmrBoCzjLzPx8yh650L4WoCRa38QiP0tZBJ9B0LgARk2OWD7ObLgiES7QGUWfxpZAoCd8ewr7ieM8c9wVQj6419OGIyK26AM74VU9JekPV0QXj4yVZBgvjZCoDXlaHScKRLqO3GZBQ0OcIs&date_preset=maximum | Meta trả về: {'error': {'code': 1, 'message': 'An unknown error occurred', 'error_subcode': 99}}",
   "ads_rules_config": {
     "cpc_max": null,
     "cpa_max": null,
@@ -126033,7 +126033,7 @@
     ]
   },
   "debug_fee_match": {
-    "total_orders_scanned": 11698,
+    "total_orders_scanned": 11700,
     "waybill_values_count": 6143,
     "son_values_count": 387,
     "top_matching_fields_for_waybill_mã_chứng_từ": [
@@ -126269,14 +126269,14 @@
     },
     "status_distribution_all_orders": {
       "status_distribution": {
-        "status='open'": 261,
-        "status='closed'": 11431,
+        "status='open'": 258,
+        "status='closed'": 11436,
         "status='cancelled'": 6
       },
       "financial_status_distribution": {
-        "financial_status='pending'": 1855,
-        "financial_status='paid'": 8379,
-        "financial_status='partially_paid'": 17,
+        "financial_status='pending'": 1854,
+        "financial_status='paid'": 8381,
+        "financial_status='partially_paid'": 18,
         "financial_status='refunded'": 1442,
         "financial_status='partially_refunded'": 5
       },
