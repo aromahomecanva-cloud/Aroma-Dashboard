@@ -347,6 +347,61 @@ def get_ads_spend_daily_cached(cache_path, incremental_days: int = 3) -> list:
     return [{"date": d, "spend": s} for d, s in sorted(by_date.items())]
 
 
+def _get_ads_spend_daily_by_channel_range(since: str, until: str) -> list:
+    """Giống get_ads_spend_daily_by_channel() nhưng nhận since/until tường minh — dùng để chia
+    nhỏ theo đợt khi full-pull TOÀN BỘ lịch sử (xem _get_ads_daily_by_channel_full_history_chunked
+    — ĐÃ XÁC NHẬN qua log GitHub Actions thật: gọi 1 lần date_preset="maximum" + time_increment=1
+    dù ở level="campaign" (nhẹ hơn level="ad" của ads_detail) VẪN có thể bị Meta trả về "500
+    Internal Server Error" (code 1, error_subcode 99), giống hệt lỗi đã gặp ở ads_detail)."""
+    url = f"https://graph.facebook.com/{Config.META_API_VERSION}/{Config.META_AD_ACCOUNT_ID}/insights"
+    params = {
+        "level": "campaign",
+        "fields": "campaign_name,spend",
+        "time_increment": 1,
+        "time_range": f'{{"since":"{since}","until":"{until}"}}',
+        "access_token": Config.META_ACCESS_TOKEN,
+    }
+    data = _get_paginated(url, params)
+    by_date_channel = {}
+    for row in data:
+        date = row.get("date_start")
+        channel = _infer_channel(row.get("campaign_name"))
+        spend = float(row.get("spend", 0))
+        key = (date, channel)
+        by_date_channel[key] = by_date_channel.get(key, 0.0) + spend
+    return [{"date": d, "channel": ch, "spend": round(s, 2)} for (d, ch), s in by_date_channel.items()]
+
+
+def _get_ads_daily_by_channel_full_history_chunked(chunk_days: int = 90, max_total_days: int = 1100) -> list:
+    """Giống _get_ads_detail_rows_full_history_chunked (xem docstring hàm đó) nhưng cho
+    get_ads_spend_daily_by_channel — cùng cách chia đợt ~chunk_days ngày, cùng cách cô lập lỗi
+    từng đợt, cùng cách tự dừng sớm sau 3 đợt liên tiếp không có dữ liệu."""
+    all_rows = []
+    until_dt = dt.datetime.now()
+    covered = 0
+    empty_streak = 0
+    while covered < max_total_days:
+        since_dt = until_dt - dt.timedelta(days=chunk_days)
+        since_s, until_s = since_dt.strftime("%Y-%m-%d"), until_dt.strftime("%Y-%m-%d")
+        print(f"  [full pull ads_daily_by_channel - đợt {covered}-{covered + chunk_days} ngày trước] {since_s} -> {until_s}")
+        try:
+            chunk_rows = _get_ads_spend_daily_by_channel_range(since_s, until_s)
+        except Exception as e:
+            print(f"  [Lỗi ở đợt {since_s} -> {until_s} - BỎ QUA đợt này, vẫn tiếp tục các đợt khác] {e}")
+            chunk_rows = []
+        if chunk_rows:
+            all_rows.extend(chunk_rows)
+            empty_streak = 0
+        else:
+            empty_streak += 1
+            if empty_streak >= 3:
+                print("  [full pull ads_daily_by_channel] 3 đợt liên tiếp không có dữ liệu -> dừng sớm.")
+                break
+        until_dt = since_dt
+        covered += chunk_days
+    return all_rows
+
+
 def get_ads_spend_daily_by_channel_cached(cache_path, incremental_days: int = 3) -> list:
     """Bản CÓ CACHE của get_ads_spend_daily_by_channel() — cache theo (ngày, kênh)."""
     if Config.DEMO_MODE:
@@ -356,8 +411,8 @@ def get_ads_spend_daily_by_channel_cached(cache_path, incremental_days: int = 3)
     by_key = cache.get("by_date_channel", {})
 
     if not by_key:
-        print("[Meta ads_daily_by_channel cache] Không có cache -> kéo TOÀN BỘ lịch sử.")
-        fresh = get_ads_spend_daily_by_channel(days=None)
+        print("[Meta ads_daily_by_channel cache] Không có cache -> kéo TOÀN BỘ lịch sử (chia đợt).")
+        fresh = _get_ads_daily_by_channel_full_history_chunked()
     else:
         print(f"[Meta ads_daily_by_channel cache] Đã có {len(by_key)} (ngày,kênh) trong cache -> "
               f"chỉ kéo {incremental_days} ngày gần nhất.")

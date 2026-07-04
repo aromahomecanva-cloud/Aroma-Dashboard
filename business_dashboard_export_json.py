@@ -72,21 +72,33 @@ def main():
     # tên campaign, và business_dashboard_aggregate._allocate_ads_spend*() để biết cách
     # phân bổ tổng chi phí theo kênh về từng shop/page (theo tỷ lệ doanh thu).
     #
-    # QUAN TRỌNG: bọc try/except RIÊNG cho phần này — nếu Meta API lỗi ở ĐÂY (rate limit,
-    # token hết hạn giữa chừng phân trang...) THÌ TUYỆT ĐỐI KHÔNG được để crash toàn bộ job —
-    # báo cáo doanh thu/COGS/phí (đã chạy ổn định, là phần quan trọng nhất) vẫn phải được
-    # tính và commit data.json bình thường. Lỗi thật (nếu có) được lưu vào ads_detail_error
-    # trong payload để xem trực tiếp trên data.json mà debug, không cần đào log Actions.
+    # QUAN TRỌNG: bọc try/except RIÊNG cho từng lời gọi (KHÔNG dùng chung 1 try/except cho cả
+    # 2 hàm) — trước đây 2 hàm này nằm chung 1 try/except, nên khi get_ads_detail_cached() chạy
+    # THÀNH CÔNG (đã cache được data thật) nhưng get_ads_spend_daily_by_channel_cached() chạy
+    # SAU đó lại lỗi, except sẽ ĐÈ ads_detail về rỗng — MẤT TRẮNG kết quả đã lấy được thành công,
+    # dù cache trên đĩa vẫn có data đúng (đã xác nhận thực tế: cache_meta_ads_detail.json.gz có
+    # data nhưng data.json lại ghi "ads": [] do lỗi ở hàm thứ 2 xảy ra SAU khi hàm 1 đã xong).
+    # Nếu Meta API lỗi ở 1 trong 2 hàm (rate limit, token hết hạn giữa chừng...) THÌ TUYỆT ĐỐI
+    # KHÔNG được để crash toàn bộ job, và KHÔNG được làm mất kết quả của hàm còn lại đã chạy ổn.
+    # Lỗi thật (nếu có) được lưu vào ads_detail_error trong payload để xem trực tiếp trên
+    # data.json mà debug, không cần đào log Actions.
     ads_detail_error = None
     try:
         ads_detail = get_ads_detail_cached(META_ADS_DETAIL_CACHE, incremental_days=META_INCREMENTAL_DAYS)
+    except Exception as e:
+        ads_detail_error = str(e)
+        print(f"[LỖI Meta ads_detail - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {ads_detail_error}")
+        ads_detail = {"ads": [], "adsets": [], "campaigns": []}
+
+    try:
         ads_daily_by_channel = get_ads_spend_daily_by_channel_cached(
             META_ADS_DAILY_BY_CHANNEL_CACHE, incremental_days=META_INCREMENTAL_DAYS
         )
     except Exception as e:
-        ads_detail_error = str(e)
-        print(f"[LỖI Meta Ads chi tiết - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {ads_detail_error}")
-        ads_detail = {"ads": [], "adsets": [], "campaigns": []}
+        err = str(e)
+        # Gộp vào cùng field ads_detail_error nếu cả 2 đều lỗi, để không mất thông tin lỗi nào.
+        ads_detail_error = f"{ads_detail_error} | ads_daily_by_channel: {err}" if ads_detail_error else err
+        print(f"[LỖI Meta ads_daily_by_channel - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {err}")
         ads_daily_by_channel = []
 
     ads_spend_by_channel = {}
