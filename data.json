@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-04T04:47:28.805884",
-  "total_ads_spend": 1378148073.0,
+  "updated_at": "2026-07-04T04:57:24.363475",
+  "total_ads_spend": 1378167344.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
@@ -33,8 +33,8 @@
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3434,
-      "gross_revenue": 752064377.0,
+      "orders": 3435,
+      "gross_revenue": 752332661.0,
       "total_fee": 134401165.77,
       "fee_breakdown": {
         "Phí cố định": 81355467.0,
@@ -50,12 +50,12 @@
         "Thuế (Đơn hoàn thành)": 1320948.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -15135.0
       },
-      "net_revenue": 617663211.23,
-      "cogs": 134651731.681,
-      "gross_margin_amount": 483011479.549,
+      "net_revenue": 617931495.23,
+      "cogs": 134720522.688,
+      "gross_margin_amount": 483210972.54200006,
       "gross_margin_pct": 78.2,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 483011479.549
+      "net_profit_after_ads": 483210972.54200006
     },
     {
       "channel": "facebook",
@@ -106812,6 +106812,18 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nến Thủy Tinh 200g Ocean Wind",
+      "sku": "NETH00063",
+      "quantity": 1.0,
+      "revenue": 295000.0,
+      "cogs": 68791.007,
+      "gross_margin_amount": 226208.99300000002,
+      "gross_margin_pct": 76.7
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Tinh Dầu Khuếch Tán True Grace",
       "sku": "TDKT00010",
       "quantity": 1.0,
@@ -116183,14 +116195,14 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 13,
-      "gross_revenue": 3018523.0,
+      "orders": 14,
+      "gross_revenue": 3286807.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 3018523.0,
-      "cogs": 602842.683,
-      "gross_margin_amount": 2415680.317,
-      "gross_margin_pct": 80.0
+      "net_revenue": 3286807.0,
+      "cogs": 671633.69,
+      "gross_margin_amount": 2615173.31,
+      "gross_margin_pct": 79.6
     },
     {
       "date": "2026-07-04",
@@ -118722,11 +118734,11 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2198475.0
+      "spend": 2198484.0
     },
     {
       "date": "2026-07-04",
-      "spend": 708171.0
+      "spend": 727433.0
     }
   ],
   "debug_fee_join": {
@@ -118778,7 +118790,7 @@
     ]
   },
   "debug_fee_match": {
-    "total_orders_scanned": 8516,
+    "total_orders_scanned": 8517,
     "waybill_values_count": 6143,
     "son_values_count": 387,
     "top_matching_fields_for_waybill_mã_chứng_từ": [
@@ -118931,734 +118943,1493 @@
     ]
   },
   "debug_revenue_check": {
-    "cancelled_orders_excluded": 3146,
-    "valid_orders_total": 8516,
-    "days_checked": 30,
-    "days_exact_match": 0,
-    "total_abs_diff_net_revenue": 46142501.0,
-    "total_truth_net_revenue": 593261644.0,
-    "pct_diff": 7.778,
-    "rows": [
-      {
-        "date": "2026-06-30",
-        "truth": {
-          "date": "2026-06-30",
-          "orders": 107,
-          "item_revenue": 30514250.0,
-          "discount": 6442316.0,
-          "refund_value": 2781460.0,
-          "net_revenue": 21290474.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 21325474.0
-        },
-        "computed": {
-          "orders": 100,
-          "item_revenue": 28474000.0,
-          "discount": 6425229.0,
-          "refund_value": 0.0,
-          "net_revenue": 22048771.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 22083771.0
-        },
-        "diff_orders": -7,
-        "diff_net_revenue": 758297.0
+    "note": "So sánh MA TRẬN (cách lọc đơn huỷ x cách bucket ngày) để tìm tổ hợp khớp nhất với báo cáo Sapo thật.",
+    "matrix": {
+      "no_filter | created_on_utc (hiện tại)": {
+        "total_orders_in_window": 2544,
+        "truth_total_orders": 2537,
+        "diff_total_orders": 7,
+        "sum_abs_diff_per_day": 187,
+        "exact_day_matches": 2
       },
-      {
-        "date": "2026-06-29",
-        "truth": {
-          "date": "2026-06-29",
-          "orders": 65,
-          "item_revenue": 20052000.0,
-          "discount": 3890679.0,
-          "refund_value": 2076980.0,
-          "net_revenue": 14084341.0,
-          "shipping_fee": 120000.0,
-          "total_revenue": 14204341.0
-        },
-        "computed": {
-          "orders": 57,
-          "item_revenue": 16686000.0,
-          "discount": 3023175.0,
-          "refund_value": 0.0,
-          "net_revenue": 13662825.0,
-          "shipping_fee": 120000.0,
-          "total_revenue": 13782825.0
-        },
-        "diff_orders": -8,
-        "diff_net_revenue": -421516.0
+      "no_filter | created_on_vn_+7h": {
+        "total_orders_in_window": 2537,
+        "truth_total_orders": 2537,
+        "diff_total_orders": 0,
+        "sum_abs_diff_per_day": 2,
+        "exact_day_matches": 28
       },
-      {
-        "date": "2026-06-28",
-        "truth": {
-          "date": "2026-06-28",
-          "orders": 57,
-          "item_revenue": 17517000.0,
-          "discount": 3810862.0,
-          "refund_value": 1428011.0,
-          "net_revenue": 12278127.0,
-          "shipping_fee": 120000.0,
-          "total_revenue": 12398127.0
-        },
-        "computed": {
-          "orders": 56,
-          "item_revenue": 17062000.0,
-          "discount": 3622085.0,
-          "refund_value": 0.0,
-          "net_revenue": 13439915.0,
-          "shipping_fee": 120000.0,
-          "total_revenue": 13559915.0
-        },
-        "diff_orders": -1,
-        "diff_net_revenue": 1161788.0
+      "status_cancelled_only | created_on_utc (hiện tại)": {
+        "total_orders_in_window": 2541,
+        "truth_total_orders": 2537,
+        "diff_total_orders": 4,
+        "sum_abs_diff_per_day": 186,
+        "exact_day_matches": 3
       },
-      {
-        "date": "2026-06-27",
-        "truth": {
-          "date": "2026-06-27",
-          "orders": 97,
-          "item_revenue": 34741800.0,
-          "discount": 8231331.0,
-          "refund_value": 3038880.0,
-          "net_revenue": 23471589.0,
-          "shipping_fee": 75000.0,
-          "total_revenue": 23546589.0
-        },
-        "computed": {
-          "orders": 75,
-          "item_revenue": 26602800.0,
-          "discount": 5802464.0,
-          "refund_value": 554000.0,
-          "net_revenue": 20246336.0,
-          "shipping_fee": 75000.0,
-          "total_revenue": 20321336.0
-        },
-        "diff_orders": -22,
-        "diff_net_revenue": -3225253.0
+      "status_cancelled_only | created_on_vn_+7h": {
+        "total_orders_in_window": 2534,
+        "truth_total_orders": 2537,
+        "diff_total_orders": -3,
+        "sum_abs_diff_per_day": 5,
+        "exact_day_matches": 25
       },
-      {
-        "date": "2026-06-26",
-        "truth": {
-          "date": "2026-06-26",
-          "orders": 110,
-          "item_revenue": 42473400.0,
-          "discount": 8328361.0,
-          "refund_value": 4879732.0,
-          "net_revenue": 29265307.0,
-          "shipping_fee": 60000.0,
-          "total_revenue": 29325307.0
-        },
-        "computed": {
-          "orders": 95,
-          "item_revenue": 37456200.0,
-          "discount": 7770366.0,
-          "refund_value": 350000.0,
-          "net_revenue": 29335834.0,
-          "shipping_fee": 60000.0,
-          "total_revenue": 29395834.0
-        },
-        "diff_orders": -15,
-        "diff_net_revenue": 70527.0
+      "cancelled_on_only | created_on_utc (hiện tại)": {
+        "total_orders_in_window": 2269,
+        "truth_total_orders": 2537,
+        "diff_total_orders": -268,
+        "sum_abs_diff_per_day": 318,
+        "exact_day_matches": 1
       },
-      {
-        "date": "2026-06-25",
-        "truth": {
-          "date": "2026-06-25",
-          "orders": 124,
-          "item_revenue": 43619600.0,
-          "discount": 9955102.0,
-          "refund_value": 5506100.0,
-          "net_revenue": 28158398.0,
-          "shipping_fee": 145000.0,
-          "total_revenue": 28303398.0
-        },
-        "computed": {
-          "orders": 98,
-          "item_revenue": 35229600.0,
-          "discount": 7514880.0,
-          "refund_value": 0.0,
-          "net_revenue": 27714720.0,
-          "shipping_fee": 145000.0,
-          "total_revenue": 27859720.0
-        },
-        "diff_orders": -26,
-        "diff_net_revenue": -443678.0
+      "cancelled_on_only | created_on_vn_+7h": {
+        "total_orders_in_window": 2263,
+        "truth_total_orders": 2537,
+        "diff_total_orders": -274,
+        "sum_abs_diff_per_day": 274,
+        "exact_day_matches": 0
       },
-      {
-        "date": "2026-06-24",
-        "truth": {
-          "date": "2026-06-24",
-          "orders": 107,
-          "item_revenue": 34413000.0,
-          "discount": 7383802.0,
-          "refund_value": 2035366.0,
-          "net_revenue": 24993832.0,
-          "shipping_fee": 70000.0,
-          "total_revenue": 25063832.0
-        },
-        "computed": {
-          "orders": 105,
-          "item_revenue": 34825000.0,
-          "discount": 7599182.0,
-          "refund_value": 435000.0,
-          "net_revenue": 26790818.0,
-          "shipping_fee": 70000.0,
-          "total_revenue": 26860818.0
-        },
-        "diff_orders": -2,
-        "diff_net_revenue": 1796986.0
+      "status_or_cancelled_on (hiện tại) | created_on_utc (hiện tại)": {
+        "total_orders_in_window": 2269,
+        "truth_total_orders": 2537,
+        "diff_total_orders": -268,
+        "sum_abs_diff_per_day": 318,
+        "exact_day_matches": 1
       },
-      {
-        "date": "2026-06-23",
-        "truth": {
-          "date": "2026-06-23",
-          "orders": 98,
-          "item_revenue": 35003900.0,
-          "discount": 8158619.0,
-          "refund_value": 3665380.0,
-          "net_revenue": 23179901.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 23179901.0
-        },
-        "computed": {
-          "orders": 87,
-          "item_revenue": 29076900.0,
-          "discount": 6407009.0,
-          "refund_value": 70000.0,
-          "net_revenue": 22599891.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 22599891.0
-        },
-        "diff_orders": -11,
-        "diff_net_revenue": -580010.0
+      "status_or_cancelled_on (hiện tại) | created_on_vn_+7h": {
+        "total_orders_in_window": 2263,
+        "truth_total_orders": 2537,
+        "diff_total_orders": -274,
+        "sum_abs_diff_per_day": 274,
+        "exact_day_matches": 0
       },
-      {
-        "date": "2026-06-22",
-        "truth": {
-          "date": "2026-06-22",
-          "orders": 99,
-          "item_revenue": 36658360.0,
-          "discount": 7458925.0,
-          "refund_value": 1293621.0,
-          "net_revenue": 27905814.0,
-          "shipping_fee": 25000.0,
-          "total_revenue": 27930814.0
-        },
-        "computed": {
-          "orders": 97,
-          "item_revenue": 38208360.0,
-          "discount": 8133569.0,
-          "refund_value": 0.0,
-          "net_revenue": 30074791.0,
-          "shipping_fee": 25000.0,
-          "total_revenue": 30099791.0
-        },
-        "diff_orders": -2,
-        "diff_net_revenue": 2168977.0
+      "financial_status_voided_only | created_on_utc (hiện tại)": {
+        "total_orders_in_window": 2544,
+        "truth_total_orders": 2537,
+        "diff_total_orders": 7,
+        "sum_abs_diff_per_day": 187,
+        "exact_day_matches": 2
       },
-      {
-        "date": "2026-06-21",
-        "truth": {
-          "date": "2026-06-21",
-          "orders": 85,
-          "item_revenue": 25386000.0,
-          "discount": 5147285.0,
-          "refund_value": 1772328.0,
-          "net_revenue": 18466387.0,
-          "shipping_fee": 60000.0,
-          "total_revenue": 18526387.0
-        },
-        "computed": {
-          "orders": 73,
-          "item_revenue": 22782000.0,
-          "discount": 4511059.0,
-          "refund_value": 1075000.0,
-          "net_revenue": 17195941.0,
-          "shipping_fee": 60000.0,
-          "total_revenue": 17255941.0
-        },
-        "diff_orders": -12,
-        "diff_net_revenue": -1270446.0
-      },
-      {
-        "date": "2026-06-20",
-        "truth": {
-          "date": "2026-06-20",
-          "orders": 92,
-          "item_revenue": 27491000.0,
-          "discount": 5958873.0,
-          "refund_value": 2718116.0,
-          "net_revenue": 18814011.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 18849011.0
-        },
-        "computed": {
-          "orders": 70,
-          "item_revenue": 20117000.0,
-          "discount": 4247233.0,
-          "refund_value": 0.0,
-          "net_revenue": 15869767.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 15904767.0
-        },
-        "diff_orders": -22,
-        "diff_net_revenue": -2944244.0
-      },
-      {
-        "date": "2026-06-19",
-        "truth": {
-          "date": "2026-06-19",
-          "orders": 93,
-          "item_revenue": 31463750.0,
-          "discount": 5417623.0,
-          "refund_value": 2828131.0,
-          "net_revenue": 23217996.0,
-          "shipping_fee": 30000.0,
-          "total_revenue": 23247996.0
-        },
-        "computed": {
-          "orders": 88,
-          "item_revenue": 31077750.0,
-          "discount": 5596434.0,
-          "refund_value": 235000.0,
-          "net_revenue": 25246316.0,
-          "shipping_fee": 90000.0,
-          "total_revenue": 25336316.0
-        },
-        "diff_orders": -5,
-        "diff_net_revenue": 2028320.0
-      },
-      {
-        "date": "2026-06-18",
-        "truth": {
-          "date": "2026-06-18",
-          "orders": 90,
-          "item_revenue": 28170200.0,
-          "discount": 6319585.0,
-          "refund_value": 3714491.0,
-          "net_revenue": 18136124.0,
-          "shipping_fee": 85000.0,
-          "total_revenue": 18221124.0
-        },
-        "computed": {
-          "orders": 85,
-          "item_revenue": 25222200.0,
-          "discount": 5524438.0,
-          "refund_value": 0.0,
-          "net_revenue": 19697762.0,
-          "shipping_fee": 85000.0,
-          "total_revenue": 19782762.0
-        },
-        "diff_orders": -5,
-        "diff_net_revenue": 1561638.0
-      },
-      {
-        "date": "2026-06-17",
-        "truth": {
-          "date": "2026-06-17",
-          "orders": 106,
-          "item_revenue": 30735000.0,
-          "discount": 5962142.0,
-          "refund_value": 3777857.0,
-          "net_revenue": 20995001.0,
-          "shipping_fee": 370000.0,
-          "total_revenue": 21365001.0
-        },
-        "computed": {
-          "orders": 95,
-          "item_revenue": 28328000.0,
-          "discount": 5530640.0,
-          "refund_value": 0.0,
-          "net_revenue": 22797360.0,
-          "shipping_fee": 370000.0,
-          "total_revenue": 23167360.0
-        },
-        "diff_orders": -11,
-        "diff_net_revenue": 1802359.0
-      },
-      {
-        "date": "2026-06-16",
-        "truth": {
-          "date": "2026-06-16",
-          "orders": 105,
-          "item_revenue": 28190250.0,
-          "discount": 6261267.0,
-          "refund_value": 1856260.0,
-          "net_revenue": 20072723.0,
-          "shipping_fee": 25000.0,
-          "total_revenue": 20097723.0
-        },
-        "computed": {
-          "orders": 90,
-          "item_revenue": 25045250.0,
-          "discount": 5688071.0,
-          "refund_value": 509000.0,
-          "net_revenue": 18848179.0,
-          "shipping_fee": 25000.0,
-          "total_revenue": 18873179.0
-        },
-        "diff_orders": -15,
-        "diff_net_revenue": -1224544.0
-      },
-      {
-        "date": "2026-06-15",
-        "truth": {
-          "date": "2026-06-15",
-          "orders": 87,
-          "item_revenue": 34196000.0,
-          "discount": 8589233.0,
-          "refund_value": 3995132.0,
-          "net_revenue": 21611635.0,
-          "shipping_fee": 150000.0,
-          "total_revenue": 21761635.0
-        },
-        "computed": {
-          "orders": 71,
-          "item_revenue": 27096000.0,
-          "discount": 6769918.0,
-          "refund_value": 0.0,
-          "net_revenue": 20326082.0,
-          "shipping_fee": 150000.0,
-          "total_revenue": 20476082.0
-        },
-        "diff_orders": -16,
-        "diff_net_revenue": -1285553.0
-      },
-      {
-        "date": "2026-06-14",
-        "truth": {
-          "date": "2026-06-14",
-          "orders": 77,
-          "item_revenue": 26425000.0,
-          "discount": 5128545.0,
-          "refund_value": 2505968.0,
-          "net_revenue": 18790487.0,
-          "shipping_fee": 140000.0,
-          "total_revenue": 18930487.0
-        },
-        "computed": {
-          "orders": 77,
-          "item_revenue": 26591000.0,
-          "discount": 5403597.0,
-          "refund_value": 1790000.0,
-          "net_revenue": 19397403.0,
-          "shipping_fee": 140000.0,
-          "total_revenue": 19537403.0
-        },
-        "diff_orders": 0,
-        "diff_net_revenue": 606916.0
-      },
-      {
-        "date": "2026-06-13",
-        "truth": {
-          "date": "2026-06-13",
-          "orders": 58,
-          "item_revenue": 15780000.0,
-          "discount": 3692296.0,
-          "refund_value": 719900.0,
-          "net_revenue": 11367804.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 11402804.0
-        },
-        "computed": {
-          "orders": 49,
-          "item_revenue": 13944000.0,
-          "discount": 3124451.0,
-          "refund_value": 0.0,
-          "net_revenue": 10819549.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 10854549.0
-        },
-        "diff_orders": -9,
-        "diff_net_revenue": -548255.0
-      },
-      {
-        "date": "2026-06-12",
-        "truth": {
-          "date": "2026-06-12",
-          "orders": 67,
-          "item_revenue": 28370240.0,
-          "discount": 5606236.0,
-          "refund_value": 1218818.0,
-          "net_revenue": 21545186.0,
-          "shipping_fee": 70000.0,
-          "total_revenue": 21615186.0
-        },
-        "computed": {
-          "orders": 64,
-          "item_revenue": 27536240.0,
-          "discount": 5414378.0,
-          "refund_value": 549000.0,
-          "net_revenue": 21572862.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 21607862.0
-        },
-        "diff_orders": -3,
-        "diff_net_revenue": 27676.0
-      },
-      {
-        "date": "2026-06-11",
-        "truth": {
-          "date": "2026-06-11",
-          "orders": 83,
-          "item_revenue": 27507000.0,
-          "discount": 6261029.0,
-          "refund_value": 1501049.0,
-          "net_revenue": 19744922.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 19779922.0
-        },
-        "computed": {
-          "orders": 72,
-          "item_revenue": 25188000.0,
-          "discount": 5938876.0,
-          "refund_value": 244000.0,
-          "net_revenue": 19005124.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 19040124.0
-        },
-        "diff_orders": -11,
-        "diff_net_revenue": -739798.0
-      },
-      {
-        "date": "2026-06-10",
-        "truth": {
-          "date": "2026-06-10",
-          "orders": 94,
-          "item_revenue": 42570000.0,
-          "discount": 10305606.0,
-          "refund_value": 1288150.0,
-          "net_revenue": 30976244.0,
-          "shipping_fee": 110000.0,
-          "total_revenue": 31086244.0
-        },
-        "computed": {
-          "orders": 88,
-          "item_revenue": 39636000.0,
-          "discount": 9478592.0,
-          "refund_value": 140000.0,
-          "net_revenue": 30017408.0,
-          "shipping_fee": 110000.0,
-          "total_revenue": 30127408.0
-        },
-        "diff_orders": -6,
-        "diff_net_revenue": -958836.0
-      },
-      {
-        "date": "2026-06-09",
-        "truth": {
-          "date": "2026-06-09",
-          "orders": 60,
-          "item_revenue": 25706000.0,
-          "discount": 4681177.0,
-          "refund_value": 7472988.0,
-          "net_revenue": 13551835.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 13586835.0
-        },
-        "computed": {
-          "orders": 56,
-          "item_revenue": 19049000.0,
-          "discount": 4141749.0,
-          "refund_value": 400000.0,
-          "net_revenue": 14507251.0,
-          "shipping_fee": 35000.0,
-          "total_revenue": 14542251.0
-        },
-        "diff_orders": -4,
-        "diff_net_revenue": 955416.0
-      },
-      {
-        "date": "2026-06-08",
-        "truth": {
-          "date": "2026-06-08",
-          "orders": 63,
-          "item_revenue": 28904800.0,
-          "discount": 6335471.0,
-          "refund_value": 1184900.0,
-          "net_revenue": 21384429.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 21384429.0
-        },
-        "computed": {
-          "orders": 55,
-          "item_revenue": 27062000.0,
-          "discount": 5709508.0,
-          "refund_value": 0.0,
-          "net_revenue": 21352492.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 21352492.0
-        },
-        "diff_orders": -8,
-        "diff_net_revenue": -31937.0
-      },
-      {
-        "date": "2026-06-07",
-        "truth": {
-          "date": "2026-06-07",
-          "orders": 69,
-          "item_revenue": 19145000.0,
-          "discount": 4604940.0,
-          "refund_value": 2163369.0,
-          "net_revenue": 12376691.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 12376691.0
-        },
-        "computed": {
-          "orders": 61,
-          "item_revenue": 16347000.0,
-          "discount": 3740815.0,
-          "refund_value": 0.0,
-          "net_revenue": 12606185.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 12606185.0
-        },
-        "diff_orders": -8,
-        "diff_net_revenue": 229494.0
-      },
-      {
-        "date": "2026-06-06",
-        "truth": {
-          "date": "2026-06-06",
-          "orders": 109,
-          "item_revenue": 33610000.0,
-          "discount": 8902899.0,
-          "refund_value": 3233006.0,
-          "net_revenue": 21474095.0,
-          "shipping_fee": 105000.0,
-          "total_revenue": 21579095.0
-        },
-        "computed": {
-          "orders": 74,
-          "item_revenue": 21113000.0,
-          "discount": 5567826.0,
-          "refund_value": 294000.0,
-          "net_revenue": 15251174.0,
-          "shipping_fee": 105000.0,
-          "total_revenue": 15356174.0
-        },
-        "diff_orders": -35,
-        "diff_net_revenue": -6222921.0
-      },
-      {
-        "date": "2026-06-05",
-        "truth": {
-          "date": "2026-06-05",
-          "orders": 66,
-          "item_revenue": 20567000.0,
-          "discount": 4552715.0,
-          "refund_value": 3094874.0,
-          "net_revenue": 12919411.0,
-          "shipping_fee": 105000.0,
-          "total_revenue": 13024411.0
-        },
-        "computed": {
-          "orders": 85,
-          "item_revenue": 27448000.0,
-          "discount": 6574757.0,
-          "refund_value": 208000.0,
-          "net_revenue": 20665243.0,
-          "shipping_fee": 105000.0,
-          "total_revenue": 20770243.0
-        },
-        "diff_orders": 19,
-        "diff_net_revenue": 7745832.0
-      },
-      {
-        "date": "2026-06-04",
-        "truth": {
-          "date": "2026-06-04",
-          "orders": 45,
-          "item_revenue": 15743000.0,
-          "discount": 3726472.0,
-          "refund_value": 768112.0,
-          "net_revenue": 11248416.0,
-          "shipping_fee": 90000.0,
-          "total_revenue": 11338416.0
-        },
-        "computed": {
-          "orders": 41,
-          "item_revenue": 14654800.0,
-          "discount": 3453752.0,
-          "refund_value": 425000.0,
-          "net_revenue": 10776048.0,
-          "shipping_fee": 90000.0,
-          "total_revenue": 10866048.0
-        },
-        "diff_orders": -4,
-        "diff_net_revenue": -472368.0
-      },
-      {
-        "date": "2026-06-03",
-        "truth": {
-          "date": "2026-06-03",
-          "orders": 84,
-          "item_revenue": 30457000.0,
-          "discount": 6590515.0,
-          "refund_value": 2944730.0,
-          "net_revenue": 20921755.0,
-          "shipping_fee": 120000.0,
-          "total_revenue": 21041755.0
-        },
-        "computed": {
-          "orders": 70,
-          "item_revenue": 24210000.0,
-          "discount": 5581448.0,
-          "refund_value": 0.0,
-          "net_revenue": 18628552.0,
-          "shipping_fee": 120000.0,
-          "total_revenue": 18748552.0
-        },
-        "diff_orders": -14,
-        "diff_net_revenue": -2293203.0
-      },
-      {
-        "date": "2026-06-02",
-        "truth": {
-          "date": "2026-06-02",
-          "orders": 69,
-          "item_revenue": 21542000.0,
-          "discount": 4941803.0,
-          "refund_value": 1178000.0,
-          "net_revenue": 15422197.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 15422197.0
-        },
-        "computed": {
-          "orders": 75,
-          "item_revenue": 22904000.0,
-          "discount": 5295260.0,
-          "refund_value": 570000.0,
-          "net_revenue": 17038740.0,
-          "shipping_fee": 0.0,
-          "total_revenue": 17038740.0
-        },
-        "diff_orders": 6,
-        "diff_net_revenue": 1616543.0
-      },
-      {
-        "date": "2026-06-01",
-        "truth": {
-          "date": "2026-06-01",
-          "orders": 71,
-          "item_revenue": 21940000.0,
-          "discount": 4443458.0,
-          "refund_value": 1900030.0,
-          "net_revenue": 15596512.0,
-          "shipping_fee": 110000.0,
-          "total_revenue": 15706512.0
-        },
-        "computed": {
-          "orders": 60,
-          "item_revenue": 18740000.0,
-          "discount": 3912658.0,
-          "refund_value": 180000.0,
-          "net_revenue": 14647342.0,
-          "shipping_fee": 110000.0,
-          "total_revenue": 14757342.0
-        },
-        "diff_orders": -11,
-        "diff_net_revenue": -949170.0
+      "financial_status_voided_only | created_on_vn_+7h": {
+        "total_orders_in_window": 2537,
+        "truth_total_orders": 2537,
+        "diff_total_orders": 0,
+        "sum_abs_diff_per_day": 2,
+        "exact_day_matches": 28
       }
-    ]
+    },
+    "best_combo": "no_filter | created_on_vn_+7h",
+    "best_combo_score": {
+      "total_orders_in_window": 2537,
+      "truth_total_orders": 2537,
+      "diff_total_orders": 0,
+      "sum_abs_diff_per_day": 2,
+      "exact_day_matches": 28
+    },
+    "status_distribution_all_orders": {
+      "status_distribution": {
+        "status='open'": 250,
+        "status='closed'": 11407,
+        "status='cancelled'": 6
+      },
+      "financial_status_distribution": {
+        "financial_status='paid'": 8350,
+        "financial_status='pending'": 1847,
+        "financial_status='partially_paid'": 19,
+        "financial_status='refunded'": 1442,
+        "financial_status='partially_refunded'": 5
+      },
+      "orders_with_cancelled_on_set": 3146
+    },
+    "current_approach": {
+      "label": "status_or_cancelled_on (hiện tại) | created_on_utc (hiện tại)",
+      "total_abs_diff_net_revenue": 46142501.0,
+      "rows": [
+        {
+          "date": "2026-06-30",
+          "truth": {
+            "date": "2026-06-30",
+            "orders": 107,
+            "item_revenue": 30514250.0,
+            "discount": 6442316.0,
+            "refund_value": 2781460.0,
+            "net_revenue": 21290474.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 21325474.0
+          },
+          "computed": {
+            "orders": 100,
+            "item_revenue": 28474000.0,
+            "discount": 6425229.0,
+            "refund_value": 0.0,
+            "net_revenue": 22048771.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": -7,
+          "diff_net_revenue": 758297.0
+        },
+        {
+          "date": "2026-06-29",
+          "truth": {
+            "date": "2026-06-29",
+            "orders": 65,
+            "item_revenue": 20052000.0,
+            "discount": 3890679.0,
+            "refund_value": 2076980.0,
+            "net_revenue": 14084341.0,
+            "shipping_fee": 120000.0,
+            "total_revenue": 14204341.0
+          },
+          "computed": {
+            "orders": 57,
+            "item_revenue": 16686000.0,
+            "discount": 3023175.0,
+            "refund_value": 0.0,
+            "net_revenue": 13662825.0,
+            "shipping_fee": 120000.0
+          },
+          "diff_orders": -8,
+          "diff_net_revenue": -421516.0
+        },
+        {
+          "date": "2026-06-28",
+          "truth": {
+            "date": "2026-06-28",
+            "orders": 57,
+            "item_revenue": 17517000.0,
+            "discount": 3810862.0,
+            "refund_value": 1428011.0,
+            "net_revenue": 12278127.0,
+            "shipping_fee": 120000.0,
+            "total_revenue": 12398127.0
+          },
+          "computed": {
+            "orders": 56,
+            "item_revenue": 17062000.0,
+            "discount": 3622085.0,
+            "refund_value": 0.0,
+            "net_revenue": 13439915.0,
+            "shipping_fee": 120000.0
+          },
+          "diff_orders": -1,
+          "diff_net_revenue": 1161788.0
+        },
+        {
+          "date": "2026-06-27",
+          "truth": {
+            "date": "2026-06-27",
+            "orders": 97,
+            "item_revenue": 34741800.0,
+            "discount": 8231331.0,
+            "refund_value": 3038880.0,
+            "net_revenue": 23471589.0,
+            "shipping_fee": 75000.0,
+            "total_revenue": 23546589.0
+          },
+          "computed": {
+            "orders": 75,
+            "item_revenue": 26602800.0,
+            "discount": 5802464.0,
+            "refund_value": 554000.0,
+            "net_revenue": 20246336.0,
+            "shipping_fee": 75000.0
+          },
+          "diff_orders": -22,
+          "diff_net_revenue": -3225253.0
+        },
+        {
+          "date": "2026-06-26",
+          "truth": {
+            "date": "2026-06-26",
+            "orders": 110,
+            "item_revenue": 42473400.0,
+            "discount": 8328361.0,
+            "refund_value": 4879732.0,
+            "net_revenue": 29265307.0,
+            "shipping_fee": 60000.0,
+            "total_revenue": 29325307.0
+          },
+          "computed": {
+            "orders": 95,
+            "item_revenue": 37456200.0,
+            "discount": 7770366.0,
+            "refund_value": 350000.0,
+            "net_revenue": 29335834.0,
+            "shipping_fee": 60000.0
+          },
+          "diff_orders": -15,
+          "diff_net_revenue": 70527.0
+        },
+        {
+          "date": "2026-06-25",
+          "truth": {
+            "date": "2026-06-25",
+            "orders": 124,
+            "item_revenue": 43619600.0,
+            "discount": 9955102.0,
+            "refund_value": 5506100.0,
+            "net_revenue": 28158398.0,
+            "shipping_fee": 145000.0,
+            "total_revenue": 28303398.0
+          },
+          "computed": {
+            "orders": 98,
+            "item_revenue": 35229600.0,
+            "discount": 7514880.0,
+            "refund_value": 0.0,
+            "net_revenue": 27714720.0,
+            "shipping_fee": 145000.0
+          },
+          "diff_orders": -26,
+          "diff_net_revenue": -443678.0
+        },
+        {
+          "date": "2026-06-24",
+          "truth": {
+            "date": "2026-06-24",
+            "orders": 107,
+            "item_revenue": 34413000.0,
+            "discount": 7383802.0,
+            "refund_value": 2035366.0,
+            "net_revenue": 24993832.0,
+            "shipping_fee": 70000.0,
+            "total_revenue": 25063832.0
+          },
+          "computed": {
+            "orders": 105,
+            "item_revenue": 34825000.0,
+            "discount": 7599182.0,
+            "refund_value": 435000.0,
+            "net_revenue": 26790818.0,
+            "shipping_fee": 70000.0
+          },
+          "diff_orders": -2,
+          "diff_net_revenue": 1796986.0
+        },
+        {
+          "date": "2026-06-23",
+          "truth": {
+            "date": "2026-06-23",
+            "orders": 98,
+            "item_revenue": 35003900.0,
+            "discount": 8158619.0,
+            "refund_value": 3665380.0,
+            "net_revenue": 23179901.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 23179901.0
+          },
+          "computed": {
+            "orders": 87,
+            "item_revenue": 29076900.0,
+            "discount": 6407009.0,
+            "refund_value": 70000.0,
+            "net_revenue": 22599891.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": -11,
+          "diff_net_revenue": -580010.0
+        },
+        {
+          "date": "2026-06-22",
+          "truth": {
+            "date": "2026-06-22",
+            "orders": 99,
+            "item_revenue": 36658360.0,
+            "discount": 7458925.0,
+            "refund_value": 1293621.0,
+            "net_revenue": 27905814.0,
+            "shipping_fee": 25000.0,
+            "total_revenue": 27930814.0
+          },
+          "computed": {
+            "orders": 97,
+            "item_revenue": 38208360.0,
+            "discount": 8133569.0,
+            "refund_value": 0.0,
+            "net_revenue": 30074791.0,
+            "shipping_fee": 25000.0
+          },
+          "diff_orders": -2,
+          "diff_net_revenue": 2168977.0
+        },
+        {
+          "date": "2026-06-21",
+          "truth": {
+            "date": "2026-06-21",
+            "orders": 85,
+            "item_revenue": 25386000.0,
+            "discount": 5147285.0,
+            "refund_value": 1772328.0,
+            "net_revenue": 18466387.0,
+            "shipping_fee": 60000.0,
+            "total_revenue": 18526387.0
+          },
+          "computed": {
+            "orders": 73,
+            "item_revenue": 22782000.0,
+            "discount": 4511059.0,
+            "refund_value": 1075000.0,
+            "net_revenue": 17195941.0,
+            "shipping_fee": 60000.0
+          },
+          "diff_orders": -12,
+          "diff_net_revenue": -1270446.0
+        },
+        {
+          "date": "2026-06-20",
+          "truth": {
+            "date": "2026-06-20",
+            "orders": 92,
+            "item_revenue": 27491000.0,
+            "discount": 5958873.0,
+            "refund_value": 2718116.0,
+            "net_revenue": 18814011.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 18849011.0
+          },
+          "computed": {
+            "orders": 70,
+            "item_revenue": 20117000.0,
+            "discount": 4247233.0,
+            "refund_value": 0.0,
+            "net_revenue": 15869767.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": -22,
+          "diff_net_revenue": -2944244.0
+        },
+        {
+          "date": "2026-06-19",
+          "truth": {
+            "date": "2026-06-19",
+            "orders": 93,
+            "item_revenue": 31463750.0,
+            "discount": 5417623.0,
+            "refund_value": 2828131.0,
+            "net_revenue": 23217996.0,
+            "shipping_fee": 30000.0,
+            "total_revenue": 23247996.0
+          },
+          "computed": {
+            "orders": 88,
+            "item_revenue": 31077750.0,
+            "discount": 5596434.0,
+            "refund_value": 235000.0,
+            "net_revenue": 25246316.0,
+            "shipping_fee": 90000.0
+          },
+          "diff_orders": -5,
+          "diff_net_revenue": 2028320.0
+        },
+        {
+          "date": "2026-06-18",
+          "truth": {
+            "date": "2026-06-18",
+            "orders": 90,
+            "item_revenue": 28170200.0,
+            "discount": 6319585.0,
+            "refund_value": 3714491.0,
+            "net_revenue": 18136124.0,
+            "shipping_fee": 85000.0,
+            "total_revenue": 18221124.0
+          },
+          "computed": {
+            "orders": 85,
+            "item_revenue": 25222200.0,
+            "discount": 5524438.0,
+            "refund_value": 0.0,
+            "net_revenue": 19697762.0,
+            "shipping_fee": 85000.0
+          },
+          "diff_orders": -5,
+          "diff_net_revenue": 1561638.0
+        },
+        {
+          "date": "2026-06-17",
+          "truth": {
+            "date": "2026-06-17",
+            "orders": 106,
+            "item_revenue": 30735000.0,
+            "discount": 5962142.0,
+            "refund_value": 3777857.0,
+            "net_revenue": 20995001.0,
+            "shipping_fee": 370000.0,
+            "total_revenue": 21365001.0
+          },
+          "computed": {
+            "orders": 95,
+            "item_revenue": 28328000.0,
+            "discount": 5530640.0,
+            "refund_value": 0.0,
+            "net_revenue": 22797360.0,
+            "shipping_fee": 370000.0
+          },
+          "diff_orders": -11,
+          "diff_net_revenue": 1802359.0
+        },
+        {
+          "date": "2026-06-16",
+          "truth": {
+            "date": "2026-06-16",
+            "orders": 105,
+            "item_revenue": 28190250.0,
+            "discount": 6261267.0,
+            "refund_value": 1856260.0,
+            "net_revenue": 20072723.0,
+            "shipping_fee": 25000.0,
+            "total_revenue": 20097723.0
+          },
+          "computed": {
+            "orders": 90,
+            "item_revenue": 25045250.0,
+            "discount": 5688071.0,
+            "refund_value": 509000.0,
+            "net_revenue": 18848179.0,
+            "shipping_fee": 25000.0
+          },
+          "diff_orders": -15,
+          "diff_net_revenue": -1224544.0
+        },
+        {
+          "date": "2026-06-15",
+          "truth": {
+            "date": "2026-06-15",
+            "orders": 87,
+            "item_revenue": 34196000.0,
+            "discount": 8589233.0,
+            "refund_value": 3995132.0,
+            "net_revenue": 21611635.0,
+            "shipping_fee": 150000.0,
+            "total_revenue": 21761635.0
+          },
+          "computed": {
+            "orders": 71,
+            "item_revenue": 27096000.0,
+            "discount": 6769918.0,
+            "refund_value": 0.0,
+            "net_revenue": 20326082.0,
+            "shipping_fee": 150000.0
+          },
+          "diff_orders": -16,
+          "diff_net_revenue": -1285553.0
+        },
+        {
+          "date": "2026-06-14",
+          "truth": {
+            "date": "2026-06-14",
+            "orders": 77,
+            "item_revenue": 26425000.0,
+            "discount": 5128545.0,
+            "refund_value": 2505968.0,
+            "net_revenue": 18790487.0,
+            "shipping_fee": 140000.0,
+            "total_revenue": 18930487.0
+          },
+          "computed": {
+            "orders": 77,
+            "item_revenue": 26591000.0,
+            "discount": 5403597.0,
+            "refund_value": 1790000.0,
+            "net_revenue": 19397403.0,
+            "shipping_fee": 140000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": 606916.0
+        },
+        {
+          "date": "2026-06-13",
+          "truth": {
+            "date": "2026-06-13",
+            "orders": 58,
+            "item_revenue": 15780000.0,
+            "discount": 3692296.0,
+            "refund_value": 719900.0,
+            "net_revenue": 11367804.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 11402804.0
+          },
+          "computed": {
+            "orders": 49,
+            "item_revenue": 13944000.0,
+            "discount": 3124451.0,
+            "refund_value": 0.0,
+            "net_revenue": 10819549.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": -9,
+          "diff_net_revenue": -548255.0
+        },
+        {
+          "date": "2026-06-12",
+          "truth": {
+            "date": "2026-06-12",
+            "orders": 67,
+            "item_revenue": 28370240.0,
+            "discount": 5606236.0,
+            "refund_value": 1218818.0,
+            "net_revenue": 21545186.0,
+            "shipping_fee": 70000.0,
+            "total_revenue": 21615186.0
+          },
+          "computed": {
+            "orders": 64,
+            "item_revenue": 27536240.0,
+            "discount": 5414378.0,
+            "refund_value": 549000.0,
+            "net_revenue": 21572862.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": -3,
+          "diff_net_revenue": 27676.0
+        },
+        {
+          "date": "2026-06-11",
+          "truth": {
+            "date": "2026-06-11",
+            "orders": 83,
+            "item_revenue": 27507000.0,
+            "discount": 6261029.0,
+            "refund_value": 1501049.0,
+            "net_revenue": 19744922.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 19779922.0
+          },
+          "computed": {
+            "orders": 72,
+            "item_revenue": 25188000.0,
+            "discount": 5938876.0,
+            "refund_value": 244000.0,
+            "net_revenue": 19005124.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": -11,
+          "diff_net_revenue": -739798.0
+        },
+        {
+          "date": "2026-06-10",
+          "truth": {
+            "date": "2026-06-10",
+            "orders": 94,
+            "item_revenue": 42570000.0,
+            "discount": 10305606.0,
+            "refund_value": 1288150.0,
+            "net_revenue": 30976244.0,
+            "shipping_fee": 110000.0,
+            "total_revenue": 31086244.0
+          },
+          "computed": {
+            "orders": 88,
+            "item_revenue": 39636000.0,
+            "discount": 9478592.0,
+            "refund_value": 140000.0,
+            "net_revenue": 30017408.0,
+            "shipping_fee": 110000.0
+          },
+          "diff_orders": -6,
+          "diff_net_revenue": -958836.0
+        },
+        {
+          "date": "2026-06-09",
+          "truth": {
+            "date": "2026-06-09",
+            "orders": 60,
+            "item_revenue": 25706000.0,
+            "discount": 4681177.0,
+            "refund_value": 7472988.0,
+            "net_revenue": 13551835.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 13586835.0
+          },
+          "computed": {
+            "orders": 56,
+            "item_revenue": 19049000.0,
+            "discount": 4141749.0,
+            "refund_value": 400000.0,
+            "net_revenue": 14507251.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": -4,
+          "diff_net_revenue": 955416.0
+        },
+        {
+          "date": "2026-06-08",
+          "truth": {
+            "date": "2026-06-08",
+            "orders": 63,
+            "item_revenue": 28904800.0,
+            "discount": 6335471.0,
+            "refund_value": 1184900.0,
+            "net_revenue": 21384429.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 21384429.0
+          },
+          "computed": {
+            "orders": 55,
+            "item_revenue": 27062000.0,
+            "discount": 5709508.0,
+            "refund_value": 0.0,
+            "net_revenue": 21352492.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": -8,
+          "diff_net_revenue": -31937.0
+        },
+        {
+          "date": "2026-06-07",
+          "truth": {
+            "date": "2026-06-07",
+            "orders": 69,
+            "item_revenue": 19145000.0,
+            "discount": 4604940.0,
+            "refund_value": 2163369.0,
+            "net_revenue": 12376691.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 12376691.0
+          },
+          "computed": {
+            "orders": 61,
+            "item_revenue": 16347000.0,
+            "discount": 3740815.0,
+            "refund_value": 0.0,
+            "net_revenue": 12606185.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": -8,
+          "diff_net_revenue": 229494.0
+        },
+        {
+          "date": "2026-06-06",
+          "truth": {
+            "date": "2026-06-06",
+            "orders": 109,
+            "item_revenue": 33610000.0,
+            "discount": 8902899.0,
+            "refund_value": 3233006.0,
+            "net_revenue": 21474095.0,
+            "shipping_fee": 105000.0,
+            "total_revenue": 21579095.0
+          },
+          "computed": {
+            "orders": 74,
+            "item_revenue": 21113000.0,
+            "discount": 5567826.0,
+            "refund_value": 294000.0,
+            "net_revenue": 15251174.0,
+            "shipping_fee": 105000.0
+          },
+          "diff_orders": -35,
+          "diff_net_revenue": -6222921.0
+        },
+        {
+          "date": "2026-06-05",
+          "truth": {
+            "date": "2026-06-05",
+            "orders": 66,
+            "item_revenue": 20567000.0,
+            "discount": 4552715.0,
+            "refund_value": 3094874.0,
+            "net_revenue": 12919411.0,
+            "shipping_fee": 105000.0,
+            "total_revenue": 13024411.0
+          },
+          "computed": {
+            "orders": 85,
+            "item_revenue": 27448000.0,
+            "discount": 6574757.0,
+            "refund_value": 208000.0,
+            "net_revenue": 20665243.0,
+            "shipping_fee": 105000.0
+          },
+          "diff_orders": 19,
+          "diff_net_revenue": 7745832.0
+        },
+        {
+          "date": "2026-06-04",
+          "truth": {
+            "date": "2026-06-04",
+            "orders": 45,
+            "item_revenue": 15743000.0,
+            "discount": 3726472.0,
+            "refund_value": 768112.0,
+            "net_revenue": 11248416.0,
+            "shipping_fee": 90000.0,
+            "total_revenue": 11338416.0
+          },
+          "computed": {
+            "orders": 41,
+            "item_revenue": 14654800.0,
+            "discount": 3453752.0,
+            "refund_value": 425000.0,
+            "net_revenue": 10776048.0,
+            "shipping_fee": 90000.0
+          },
+          "diff_orders": -4,
+          "diff_net_revenue": -472368.0
+        },
+        {
+          "date": "2026-06-03",
+          "truth": {
+            "date": "2026-06-03",
+            "orders": 84,
+            "item_revenue": 30457000.0,
+            "discount": 6590515.0,
+            "refund_value": 2944730.0,
+            "net_revenue": 20921755.0,
+            "shipping_fee": 120000.0,
+            "total_revenue": 21041755.0
+          },
+          "computed": {
+            "orders": 70,
+            "item_revenue": 24210000.0,
+            "discount": 5581448.0,
+            "refund_value": 0.0,
+            "net_revenue": 18628552.0,
+            "shipping_fee": 120000.0
+          },
+          "diff_orders": -14,
+          "diff_net_revenue": -2293203.0
+        },
+        {
+          "date": "2026-06-02",
+          "truth": {
+            "date": "2026-06-02",
+            "orders": 69,
+            "item_revenue": 21542000.0,
+            "discount": 4941803.0,
+            "refund_value": 1178000.0,
+            "net_revenue": 15422197.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 15422197.0
+          },
+          "computed": {
+            "orders": 75,
+            "item_revenue": 22904000.0,
+            "discount": 5295260.0,
+            "refund_value": 570000.0,
+            "net_revenue": 17038740.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": 6,
+          "diff_net_revenue": 1616543.0
+        },
+        {
+          "date": "2026-06-01",
+          "truth": {
+            "date": "2026-06-01",
+            "orders": 71,
+            "item_revenue": 21940000.0,
+            "discount": 4443458.0,
+            "refund_value": 1900030.0,
+            "net_revenue": 15596512.0,
+            "shipping_fee": 110000.0,
+            "total_revenue": 15706512.0
+          },
+          "computed": {
+            "orders": 60,
+            "item_revenue": 18740000.0,
+            "discount": 3912658.0,
+            "refund_value": 180000.0,
+            "net_revenue": 14647342.0,
+            "shipping_fee": 110000.0
+          },
+          "diff_orders": -11,
+          "diff_net_revenue": -949170.0
+        }
+      ]
+    },
+    "best_approach": {
+      "label": "no_filter | created_on_vn_+7h",
+      "total_abs_diff_net_revenue": 24959717.0,
+      "rows": [
+        {
+          "date": "2026-06-30",
+          "truth": {
+            "date": "2026-06-30",
+            "orders": 107,
+            "item_revenue": 30514250.0,
+            "discount": 6442316.0,
+            "refund_value": 2781460.0,
+            "net_revenue": 21290474.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 21325474.0
+          },
+          "computed": {
+            "orders": 107,
+            "item_revenue": 30514250.0,
+            "discount": 6442316.0,
+            "refund_value": 3288250.0,
+            "net_revenue": 20783684.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -506790.0
+        },
+        {
+          "date": "2026-06-29",
+          "truth": {
+            "date": "2026-06-29",
+            "orders": 65,
+            "item_revenue": 20052000.0,
+            "discount": 3890679.0,
+            "refund_value": 2076980.0,
+            "net_revenue": 14084341.0,
+            "shipping_fee": 120000.0,
+            "total_revenue": 14204341.0
+          },
+          "computed": {
+            "orders": 65,
+            "item_revenue": 19662000.0,
+            "discount": 3890679.0,
+            "refund_value": 2083000.0,
+            "net_revenue": 13688321.0,
+            "shipping_fee": 120000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -396020.0
+        },
+        {
+          "date": "2026-06-28",
+          "truth": {
+            "date": "2026-06-28",
+            "orders": 57,
+            "item_revenue": 17517000.0,
+            "discount": 3810862.0,
+            "refund_value": 1428011.0,
+            "net_revenue": 12278127.0,
+            "shipping_fee": 120000.0,
+            "total_revenue": 12398127.0
+          },
+          "computed": {
+            "orders": 57,
+            "item_revenue": 17517000.0,
+            "discount": 3810862.0,
+            "refund_value": 695000.0,
+            "net_revenue": 13011138.0,
+            "shipping_fee": 120000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": 733011.0
+        },
+        {
+          "date": "2026-06-27",
+          "truth": {
+            "date": "2026-06-27",
+            "orders": 97,
+            "item_revenue": 34741800.0,
+            "discount": 8231331.0,
+            "refund_value": 3038880.0,
+            "net_revenue": 23471589.0,
+            "shipping_fee": 75000.0,
+            "total_revenue": 23546589.0
+          },
+          "computed": {
+            "orders": 97,
+            "item_revenue": 34936800.0,
+            "discount": 8231331.0,
+            "refund_value": 5989000.0,
+            "net_revenue": 20716469.0,
+            "shipping_fee": 75000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -2755120.0
+        },
+        {
+          "date": "2026-06-26",
+          "truth": {
+            "date": "2026-06-26",
+            "orders": 110,
+            "item_revenue": 42473400.0,
+            "discount": 8328361.0,
+            "refund_value": 4879732.0,
+            "net_revenue": 29265307.0,
+            "shipping_fee": 60000.0,
+            "total_revenue": 29325307.0
+          },
+          "computed": {
+            "orders": 110,
+            "item_revenue": 42503400.0,
+            "discount": 8328361.0,
+            "refund_value": 5847200.0,
+            "net_revenue": 28327839.0,
+            "shipping_fee": 60000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -937468.0
+        },
+        {
+          "date": "2026-06-25",
+          "truth": {
+            "date": "2026-06-25",
+            "orders": 124,
+            "item_revenue": 43619600.0,
+            "discount": 9955102.0,
+            "refund_value": 5506100.0,
+            "net_revenue": 28158398.0,
+            "shipping_fee": 145000.0,
+            "total_revenue": 28303398.0
+          },
+          "computed": {
+            "orders": 124,
+            "item_revenue": 43784600.0,
+            "discount": 9955102.0,
+            "refund_value": 8300000.0,
+            "net_revenue": 25529498.0,
+            "shipping_fee": 145000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -2628900.0
+        },
+        {
+          "date": "2026-06-24",
+          "truth": {
+            "date": "2026-06-24",
+            "orders": 107,
+            "item_revenue": 34413000.0,
+            "discount": 7383802.0,
+            "refund_value": 2035366.0,
+            "net_revenue": 24993832.0,
+            "shipping_fee": 70000.0,
+            "total_revenue": 25063832.0
+          },
+          "computed": {
+            "orders": 107,
+            "item_revenue": 34413000.0,
+            "discount": 7383802.0,
+            "refund_value": 2489000.0,
+            "net_revenue": 24540198.0,
+            "shipping_fee": 120000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -453634.0
+        },
+        {
+          "date": "2026-06-23",
+          "truth": {
+            "date": "2026-06-23",
+            "orders": 98,
+            "item_revenue": 35003900.0,
+            "discount": 8158619.0,
+            "refund_value": 3665380.0,
+            "net_revenue": 23179901.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 23179901.0
+          },
+          "computed": {
+            "orders": 98,
+            "item_revenue": 35003900.0,
+            "discount": 8158619.0,
+            "refund_value": 4651000.0,
+            "net_revenue": 22194281.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -985620.0
+        },
+        {
+          "date": "2026-06-22",
+          "truth": {
+            "date": "2026-06-22",
+            "orders": 99,
+            "item_revenue": 36658360.0,
+            "discount": 7458925.0,
+            "refund_value": 1293621.0,
+            "net_revenue": 27905814.0,
+            "shipping_fee": 25000.0,
+            "total_revenue": 27930814.0
+          },
+          "computed": {
+            "orders": 99,
+            "item_revenue": 36658360.0,
+            "discount": 7458925.0,
+            "refund_value": 1352000.0,
+            "net_revenue": 27847435.0,
+            "shipping_fee": 25000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -58379.0
+        },
+        {
+          "date": "2026-06-21",
+          "truth": {
+            "date": "2026-06-21",
+            "orders": 85,
+            "item_revenue": 25386000.0,
+            "discount": 5147285.0,
+            "refund_value": 1772328.0,
+            "net_revenue": 18466387.0,
+            "shipping_fee": 60000.0,
+            "total_revenue": 18526387.0
+          },
+          "computed": {
+            "orders": 85,
+            "item_revenue": 25386000.0,
+            "discount": 5147285.0,
+            "refund_value": 3348000.0,
+            "net_revenue": 16890715.0,
+            "shipping_fee": 60000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -1575672.0
+        },
+        {
+          "date": "2026-06-20",
+          "truth": {
+            "date": "2026-06-20",
+            "orders": 92,
+            "item_revenue": 27491000.0,
+            "discount": 5958873.0,
+            "refund_value": 2718116.0,
+            "net_revenue": 18814011.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 18849011.0
+          },
+          "computed": {
+            "orders": 92,
+            "item_revenue": 27491000.0,
+            "discount": 5958873.0,
+            "refund_value": 3060000.0,
+            "net_revenue": 18472127.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -341884.0
+        },
+        {
+          "date": "2026-06-19",
+          "truth": {
+            "date": "2026-06-19",
+            "orders": 93,
+            "item_revenue": 31463750.0,
+            "discount": 5417623.0,
+            "refund_value": 2828131.0,
+            "net_revenue": 23217996.0,
+            "shipping_fee": 30000.0,
+            "total_revenue": 23247996.0
+          },
+          "computed": {
+            "orders": 93,
+            "item_revenue": 31463750.0,
+            "discount": 5417623.0,
+            "refund_value": 3128000.0,
+            "net_revenue": 22918127.0,
+            "shipping_fee": 90000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -299869.0
+        },
+        {
+          "date": "2026-06-18",
+          "truth": {
+            "date": "2026-06-18",
+            "orders": 90,
+            "item_revenue": 28170200.0,
+            "discount": 6319585.0,
+            "refund_value": 3714491.0,
+            "net_revenue": 18136124.0,
+            "shipping_fee": 85000.0,
+            "total_revenue": 18221124.0
+          },
+          "computed": {
+            "orders": 90,
+            "item_revenue": 28170200.0,
+            "discount": 6319585.0,
+            "refund_value": 4239000.0,
+            "net_revenue": 17611615.0,
+            "shipping_fee": 85000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -524509.0
+        },
+        {
+          "date": "2026-06-17",
+          "truth": {
+            "date": "2026-06-17",
+            "orders": 106,
+            "item_revenue": 30735000.0,
+            "discount": 5962142.0,
+            "refund_value": 3777857.0,
+            "net_revenue": 20995001.0,
+            "shipping_fee": 370000.0,
+            "total_revenue": 21365001.0
+          },
+          "computed": {
+            "orders": 106,
+            "item_revenue": 30735000.0,
+            "discount": 5962142.0,
+            "refund_value": 3081000.0,
+            "net_revenue": 21691858.0,
+            "shipping_fee": 420000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": 696857.0
+        },
+        {
+          "date": "2026-06-16",
+          "truth": {
+            "date": "2026-06-16",
+            "orders": 105,
+            "item_revenue": 28190250.0,
+            "discount": 6261267.0,
+            "refund_value": 1856260.0,
+            "net_revenue": 20072723.0,
+            "shipping_fee": 25000.0,
+            "total_revenue": 20097723.0
+          },
+          "computed": {
+            "orders": 105,
+            "item_revenue": 28190250.0,
+            "discount": 6261267.0,
+            "refund_value": 2799000.0,
+            "net_revenue": 19129983.0,
+            "shipping_fee": 25000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -942740.0
+        },
+        {
+          "date": "2026-06-15",
+          "truth": {
+            "date": "2026-06-15",
+            "orders": 87,
+            "item_revenue": 34196000.0,
+            "discount": 8589233.0,
+            "refund_value": 3995132.0,
+            "net_revenue": 21611635.0,
+            "shipping_fee": 150000.0,
+            "total_revenue": 21761635.0
+          },
+          "computed": {
+            "orders": 87,
+            "item_revenue": 34196000.0,
+            "discount": 8589233.0,
+            "refund_value": 5287000.0,
+            "net_revenue": 20319767.0,
+            "shipping_fee": 150000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -1291868.0
+        },
+        {
+          "date": "2026-06-14",
+          "truth": {
+            "date": "2026-06-14",
+            "orders": 77,
+            "item_revenue": 26425000.0,
+            "discount": 5128545.0,
+            "refund_value": 2505968.0,
+            "net_revenue": 18790487.0,
+            "shipping_fee": 140000.0,
+            "total_revenue": 18930487.0
+          },
+          "computed": {
+            "orders": 77,
+            "item_revenue": 26425000.0,
+            "discount": 5128545.0,
+            "refund_value": 4009000.0,
+            "net_revenue": 17287455.0,
+            "shipping_fee": 140000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -1503032.0
+        },
+        {
+          "date": "2026-06-13",
+          "truth": {
+            "date": "2026-06-13",
+            "orders": 58,
+            "item_revenue": 15780000.0,
+            "discount": 3692296.0,
+            "refund_value": 719900.0,
+            "net_revenue": 11367804.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 11402804.0
+          },
+          "computed": {
+            "orders": 58,
+            "item_revenue": 15780000.0,
+            "discount": 3692296.0,
+            "refund_value": 1149000.0,
+            "net_revenue": 10938704.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -429100.0
+        },
+        {
+          "date": "2026-06-12",
+          "truth": {
+            "date": "2026-06-12",
+            "orders": 67,
+            "item_revenue": 28370240.0,
+            "discount": 5606236.0,
+            "refund_value": 1218818.0,
+            "net_revenue": 21545186.0,
+            "shipping_fee": 70000.0,
+            "total_revenue": 21615186.0
+          },
+          "computed": {
+            "orders": 67,
+            "item_revenue": 28370240.0,
+            "discount": 5606236.0,
+            "refund_value": 1828000.0,
+            "net_revenue": 20936004.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -609182.0
+        },
+        {
+          "date": "2026-06-11",
+          "truth": {
+            "date": "2026-06-11",
+            "orders": 83,
+            "item_revenue": 27507000.0,
+            "discount": 6261029.0,
+            "refund_value": 1501049.0,
+            "net_revenue": 19744922.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 19779922.0
+          },
+          "computed": {
+            "orders": 83,
+            "item_revenue": 27507000.0,
+            "discount": 6261029.0,
+            "refund_value": 3110000.0,
+            "net_revenue": 18135971.0,
+            "shipping_fee": 105000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -1608951.0
+        },
+        {
+          "date": "2026-06-10",
+          "truth": {
+            "date": "2026-06-10",
+            "orders": 94,
+            "item_revenue": 42570000.0,
+            "discount": 10305606.0,
+            "refund_value": 1288150.0,
+            "net_revenue": 30976244.0,
+            "shipping_fee": 110000.0,
+            "total_revenue": 31086244.0
+          },
+          "computed": {
+            "orders": 94,
+            "item_revenue": 42570000.0,
+            "discount": 10305606.0,
+            "refund_value": 1348000.0,
+            "net_revenue": 30916394.0,
+            "shipping_fee": 110000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -59850.0
+        },
+        {
+          "date": "2026-06-09",
+          "truth": {
+            "date": "2026-06-09",
+            "orders": 60,
+            "item_revenue": 25706000.0,
+            "discount": 4681177.0,
+            "refund_value": 7472988.0,
+            "net_revenue": 13551835.0,
+            "shipping_fee": 35000.0,
+            "total_revenue": 13586835.0
+          },
+          "computed": {
+            "orders": 60,
+            "item_revenue": 19256000.0,
+            "discount": 4231177.0,
+            "refund_value": 2305000.0,
+            "net_revenue": 12719823.0,
+            "shipping_fee": 35000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -832012.0
+        },
+        {
+          "date": "2026-06-08",
+          "truth": {
+            "date": "2026-06-08",
+            "orders": 63,
+            "item_revenue": 28904800.0,
+            "discount": 6335471.0,
+            "refund_value": 1184900.0,
+            "net_revenue": 21384429.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 21384429.0
+          },
+          "computed": {
+            "orders": 63,
+            "item_revenue": 28946000.0,
+            "discount": 6335471.0,
+            "refund_value": 1092000.0,
+            "net_revenue": 21518529.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": 134100.0
+        },
+        {
+          "date": "2026-06-07",
+          "truth": {
+            "date": "2026-06-07",
+            "orders": 69,
+            "item_revenue": 19145000.0,
+            "discount": 4604940.0,
+            "refund_value": 2163369.0,
+            "net_revenue": 12376691.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 12376691.0
+          },
+          "computed": {
+            "orders": 70,
+            "item_revenue": 19294000.0,
+            "discount": 4687148.0,
+            "refund_value": 2192000.0,
+            "net_revenue": 12414852.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": 1,
+          "diff_net_revenue": 38161.0
+        },
+        {
+          "date": "2026-06-06",
+          "truth": {
+            "date": "2026-06-06",
+            "orders": 109,
+            "item_revenue": 33610000.0,
+            "discount": 8902899.0,
+            "refund_value": 3233006.0,
+            "net_revenue": 21474095.0,
+            "shipping_fee": 105000.0,
+            "total_revenue": 21579095.0
+          },
+          "computed": {
+            "orders": 108,
+            "item_revenue": 33461000.0,
+            "discount": 8820691.0,
+            "refund_value": 5107000.0,
+            "net_revenue": 19533309.0,
+            "shipping_fee": 105000.0
+          },
+          "diff_orders": -1,
+          "diff_net_revenue": -1940786.0
+        },
+        {
+          "date": "2026-06-05",
+          "truth": {
+            "date": "2026-06-05",
+            "orders": 66,
+            "item_revenue": 20567000.0,
+            "discount": 4552715.0,
+            "refund_value": 3094874.0,
+            "net_revenue": 12919411.0,
+            "shipping_fee": 105000.0,
+            "total_revenue": 13024411.0
+          },
+          "computed": {
+            "orders": 66,
+            "item_revenue": 20517000.0,
+            "discount": 4552715.0,
+            "refund_value": 3019000.0,
+            "net_revenue": 12945285.0,
+            "shipping_fee": 145000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": 25874.0
+        },
+        {
+          "date": "2026-06-04",
+          "truth": {
+            "date": "2026-06-04",
+            "orders": 45,
+            "item_revenue": 15743000.0,
+            "discount": 3726472.0,
+            "refund_value": 768112.0,
+            "net_revenue": 11248416.0,
+            "shipping_fee": 90000.0,
+            "total_revenue": 11338416.0
+          },
+          "computed": {
+            "orders": 45,
+            "item_revenue": 15851800.0,
+            "discount": 3726472.0,
+            "refund_value": 1035000.0,
+            "net_revenue": 11090328.0,
+            "shipping_fee": 90000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -158088.0
+        },
+        {
+          "date": "2026-06-03",
+          "truth": {
+            "date": "2026-06-03",
+            "orders": 84,
+            "item_revenue": 30457000.0,
+            "discount": 6590515.0,
+            "refund_value": 2944730.0,
+            "net_revenue": 20921755.0,
+            "shipping_fee": 120000.0,
+            "total_revenue": 21041755.0
+          },
+          "computed": {
+            "orders": 84,
+            "item_revenue": 30357000.0,
+            "discount": 6590515.0,
+            "refund_value": 4144000.0,
+            "net_revenue": 19622485.0,
+            "shipping_fee": 120000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -1299270.0
+        },
+        {
+          "date": "2026-06-02",
+          "truth": {
+            "date": "2026-06-02",
+            "orders": 69,
+            "item_revenue": 21542000.0,
+            "discount": 4941803.0,
+            "refund_value": 1178000.0,
+            "net_revenue": 15422197.0,
+            "shipping_fee": 0.0,
+            "total_revenue": 15422197.0
+          },
+          "computed": {
+            "orders": 69,
+            "item_revenue": 21542000.0,
+            "discount": 4941803.0,
+            "refund_value": 1688000.0,
+            "net_revenue": 14912197.0,
+            "shipping_fee": 0.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -510000.0
+        },
+        {
+          "date": "2026-06-01",
+          "truth": {
+            "date": "2026-06-01",
+            "orders": 71,
+            "item_revenue": 21940000.0,
+            "discount": 4443458.0,
+            "refund_value": 1900030.0,
+            "net_revenue": 15596512.0,
+            "shipping_fee": 110000.0,
+            "total_revenue": 15706512.0
+          },
+          "computed": {
+            "orders": 71,
+            "item_revenue": 21588000.0,
+            "discount": 4443458.0,
+            "refund_value": 2231000.0,
+            "net_revenue": 14913542.0,
+            "shipping_fee": 165000.0
+          },
+          "diff_orders": 0,
+          "diff_net_revenue": -682970.0
+        }
+      ]
+    }
   }
 }
