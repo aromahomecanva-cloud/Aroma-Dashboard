@@ -20,12 +20,18 @@ from business_dashboard_meta import get_ads_spend, get_ads_spend_daily
 from business_dashboard_settlement import load_settlement_fees, load_settlement_fee_breakdown
 from business_dashboard_aggregate import build_summary, build_product_breakdown, build_daily_summary, fee_join_diagnostics
 from business_dashboard_debug_fee_match import run_diagnostics as run_fee_match_diagnostics
+from business_dashboard_revenue import filter_valid_orders
+from business_dashboard_debug_revenue import run_check as run_revenue_check
 
 OUT_PATH = Path(__file__).resolve().parent / "data.json"
 
 
 def main():
-    orders = get_orders(days=None)
+    orders_raw = get_orders(days=None)
+    # Loại bỏ TOÀN BỘ đơn đã HUỶ ngay tại đây — 1 LẦN DUY NHẤT — để mọi hàm build_*/diagnostics
+    # phía sau đều dùng chung 1 tập order "hợp lệ" (xem business_dashboard_revenue.py).
+    orders = filter_valid_orders(orders_raw)
+    cancelled_count = len(orders_raw) - len(orders)
     variant_sku_map = get_variant_sku_map()
     cost_map = load_cost_map()
     ads_data = get_ads_spend(days=None)
@@ -53,6 +59,13 @@ def main():
     except Exception as e:
         fee_match_result = {"error": str(e)}
 
+    # Đối chiếu Doanh thu thuần tự tính với file "Báo cáo doanh thu theo thời gian" user đã
+    # xuất trực tiếp từ Sapo (30 ngày 2026-06-01 -> 2026-06-30) — xem business_dashboard_debug_revenue.py.
+    try:
+        revenue_check = run_revenue_check(orders_raw)
+    except Exception as e:
+        revenue_check = {"error": str(e)}
+
     payload = {
         "updated_at": dt.datetime.now().isoformat(),
         "total_ads_spend": ads_data.get("total_spend", 0),
@@ -72,10 +85,11 @@ def main():
             "sample_settlement_order_names": sample_settlement_names,
         },
         "debug_fee_match": fee_match_result,
+        "debug_revenue_check": revenue_check,
     }
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Đã ghi {OUT_PATH}")
-    print(f"Lấy TOÀN BỘ lịch sử — {len(orders)} đơn hàng.")
+    print(f"Lấy TOÀN BỘ lịch sử — {len(orders_raw)} đơn hàng thô, loại {cancelled_count} đơn đã huỷ -> còn {len(orders)} đơn hợp lệ.")
     print(f"Tổng ads spend (Meta, chưa gán kênh): {ads_data.get('total_spend', 0):,.0f}đ")
     print(f"Số SKU có giá vốn trong file: {len(cost_map)}")
     print(f"Số dòng breakdown theo ngày x sản phẩm x kênh x shop/page: {len(product_breakdown)}")

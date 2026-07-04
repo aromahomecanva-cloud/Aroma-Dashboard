@@ -102,6 +102,14 @@ def _demo_orders(days: int) -> list[dict]:
             "created_on": (now - dt.timedelta(days=random.randint(0, days))).isoformat(),
             "total_price": total,
             "source_name": channel,
+            "status": "closed",
+            "cancelled_on": None,
+            # Các field dưới đây cần cho business_dashboard_revenue.py tính "Doanh thu thuần"
+            # đúng công thức Sapo thật (total_line_items_price - total_discounts - refund_value).
+            "total_line_items_price": total,
+            "total_discounts": 0,
+            "shipping_lines": [],
+            "refunds": [],
             "line_items": [{
                 "product_id": variant_id, "variant_id": variant_id, "quantity": qty,
                 "price": round(total / qty, 0), "title": f"Sản phẩm demo {variant_id}",

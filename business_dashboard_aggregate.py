@@ -4,12 +4,22 @@ Gộp dữ liệu từ Sapo (orders + variant->sku) + file product_costs.csv (gi
 tách thêm theo SHOP/PAGE cụ thể (parse từ field "tags" của order).
 
 Công thức:
-  gross_revenue      = tổng total_price các order theo kênh
+  gross_revenue      = DOANH THU THUẦN theo đúng công thức báo cáo "Doanh thu theo thời gian"
+                       của Sapo (xem business_dashboard_revenue.py):
+                       total_line_items_price - total_discounts - giá trị hàng trả lại (refunds)
+                       (ĐÃ XÁC NHẬN khớp với file "Báo cáo doanh thu theo thời gian" user xuất
+                       trực tiếp từ Sapo — trước đây dùng "total_price" là SAI vì total_price
+                       là tổng tiền khách phải trả, không trừ hàng trả lại và không loại đơn huỷ)
   cogs               = tổng (giá_vốn_theo_sku * quantity) theo kênh (join qua variant_id -> sku)
   total_fee          = tổng phí sàn + ship + voucher + aff + đồng tài trợ (từ file Chi phí Sapo)
   net_revenue        = gross_revenue - total_fee
   gross_margin_amount= net_revenue - cogs
   gross_margin_pct   = gross_margin_amount / net_revenue * 100
+
+QUAN TRỌNG: orders truyền vào các hàm build_*() trong module này PHẢI đã được lọc bỏ đơn HUỶ
+từ trước (xem business_dashboard_revenue.filter_valid_orders(), gọi 1 lần duy nhất trong
+business_dashboard_export_json.py ngay sau khi lấy orders từ Sapo) — đúng theo xác nhận của
+user "số liệu của sapo đã loại trừ hết những đơn hoàn hủy".
 
 Lưu ý về ads_spend: Meta Ads (Facebook/Instagram) không nhất thiết chạy cho từng kênh bán
 hàng cụ thể (Shopee/TikTok Shop có nền tảng ads riêng của họ). Vì vậy ads_spend KHÔNG được
@@ -45,6 +55,7 @@ import re
 import pandas as pd
 
 from business_dashboard_costs import get_combo_bom, get_combo_names
+from business_dashboard_revenue import order_revenue_breakdown
 
 _SHOP_TAG_RE = re.compile(r"^(?:Shopee|Tiktok|Lazada)_(.+)$", re.IGNORECASE)
 _PAGE_TAG_RE = re.compile(r"^page_(?!id_)(.+)$", re.IGNORECASE)
@@ -177,13 +188,18 @@ def _prep_orders_df(
     fee_breakdown_by_name: dict | None = None,
     fee_breakdown_by_order_number: dict | None = None,
 ) -> pd.DataFrame:
-    """Tạo DataFrame từ orders, thêm cột shop_page (parse từ tags), total_fee (join 2 nhánh)
-    và fee_breakdown (dict chi tiết từng loại phí, join 2 nhánh tương tự total_fee)."""
+    """Tạo DataFrame từ orders, thêm cột shop_page (parse từ tags), total_fee (join 2 nhánh),
+    fee_breakdown (dict chi tiết từng loại phí, join 2 nhánh tương tự total_fee), và
+    gross_revenue (Doanh thu thuần, TÍNH TỪ orders GỐC — không dùng df.apply() vì hàm trả về
+    dict sẽ bị pandas tự "nở" thành nhiều cột, xem ghi chú tương tự ở build_summary())."""
     df = pd.DataFrame(orders)
     if "tags" in df.columns:
         df["shop_page"] = df["tags"].apply(_extract_shop_page)
     else:
         df["shop_page"] = ""
+
+    revenues = [order_revenue_breakdown(o) for o in orders]
+    df["gross_revenue"] = [r["net_revenue"] for r in revenues]
 
     fee_from_name = df["name"].astype(str).map(fee_map_by_name).fillna(0.0) if "name" in df.columns else 0.0
     fee_from_number = df["order_number"].astype(str).map(fee_map_by_order_number).fillna(0.0) \
@@ -220,7 +236,7 @@ def build_summary(
     )
 
     summary = orders_df.groupby(["source_name", "shop_page"]).agg(
-        gross_revenue=("total_price", "sum"),
+        gross_revenue=("gross_revenue", "sum"),
         orders=("id", "count"),
         cogs=("cogs", "sum"),
         total_fee=("total_fee", "sum"),
@@ -409,7 +425,7 @@ def build_daily_summary(
     )
 
     gross = orders_df.groupby(["date", "source_name", "shop_page"]).agg(
-        gross_revenue=("total_price", "sum"),
+        gross_revenue=("gross_revenue", "sum"),
         orders=("id", "count"),
         cogs=("cogs", "sum"),
         total_fee=("total_fee", "sum"),
