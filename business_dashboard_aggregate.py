@@ -62,6 +62,18 @@ from business_dashboard_revenue import order_revenue_breakdown, refund_events
 _SHOP_TAG_RE = re.compile(r"^(?:Shopee|Tiktok|Lazada)_(.+)$", re.IGNORECASE)
 _PAGE_TAG_RE = re.compile(r"^page_(?!id_)(.+)$", re.IGNORECASE)
 
+# Một số kênh (hiện tại: Facebook) trên thực tế CHỈ chạy Meta Ads cho ĐÚNG 1 page/shop cụ thể,
+# dù trong Sapo có thể có nhiều shop_page được gắn tag "facebook" (VD page phụ ít dùng, hoặc
+# đơn không xác định được page cụ thể -> shop_page rỗng ""). Theo XÁC NHẬN của user: tài khoản
+# Meta Ads hiện tại CHỈ chạy cho "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn" -> thay vì
+# chia ads_spend theo tỷ lệ doanh thu qua nhiều shop_page trong kênh đó (sai lệch, vì các
+# shop_page khác không hề có ads chạy cho chúng), ta CỐ ĐỊNH gán 100% ads_spend của kênh này
+# vào đúng page đó. Kênh nào KHÔNG có trong map này (VD instagram) vẫn dùng cách phân bổ theo
+# tỷ lệ doanh thu như cũ.
+FIXED_ADS_SHOP_PAGE_BY_CHANNEL = {
+    "facebook": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
+}
+
 
 def _extract_shop_page(tags) -> str:
     """Parse tên shop/page cụ thể từ field 'tags' của order Sapo. Xem docstring module."""
@@ -254,6 +266,16 @@ def _allocate_ads_spend(df: pd.DataFrame, ads_spend_by_channel: dict | None, rev
     extra_rows = []
     for ch, total_spend in ads_spend_by_channel.items():
         if not total_spend:
+            continue
+        fixed_page = FIXED_ADS_SHOP_PAGE_BY_CHANNEL.get(ch)
+        if fixed_page is not None:
+            # Kênh này CHỈ chạy ads cho đúng 1 page -> gán thẳng 100%, KHÔNG chia theo doanh
+            # thu (xem docstring FIXED_ADS_SHOP_PAGE_BY_CHANNEL).
+            mask = (df["channel"] == ch) & (df["shop_page"] == fixed_page)
+            if mask.any():
+                df.loc[mask, "ads_spend"] = df.loc[mask, "ads_spend"] + total_spend
+            else:
+                extra_rows.append({"channel": ch, "shop_page": fixed_page, "ads_spend": total_spend})
             continue
         mask = df["channel"] == ch
         if not mask.any():
@@ -482,6 +504,16 @@ def _allocate_ads_spend_daily(df: pd.DataFrame, ads_daily_by_channel: list | Non
     extra_rows = []
     for (date, ch), total_spend in agg.items():
         if not total_spend:
+            continue
+        fixed_page = FIXED_ADS_SHOP_PAGE_BY_CHANNEL.get(ch)
+        if fixed_page is not None:
+            # Kênh này CHỈ chạy ads cho đúng 1 page -> gán thẳng 100% của NGÀY đó vào đúng
+            # page, KHÔNG chia theo doanh thu (xem docstring FIXED_ADS_SHOP_PAGE_BY_CHANNEL).
+            mask = (df["date"] == date) & (df["channel"] == ch) & (df["shop_page"] == fixed_page)
+            if mask.any():
+                df.loc[mask, "ads_spend"] = df.loc[mask, "ads_spend"] + total_spend
+            else:
+                extra_rows.append({"date": date, "channel": ch, "shop_page": fixed_page, "ads_spend": total_spend})
             continue
         mask = (df["date"] == date) & (df["channel"] == ch)
         if not mask.any():
