@@ -92,7 +92,20 @@ def _get_paginated(url: str, params: dict, max_retries: int = 4) -> list:
     next_url, next_params = url, params
     retries_left = max_retries
     for _ in range(200):  # giới hạn an toàn, đủ cho vài năm dữ liệu theo ngày
-        resp = requests.get(next_url, params=next_params, timeout=30)
+        try:
+            resp = requests.get(next_url, params=next_params, timeout=90)
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+            # Lỗi MẠNG (timeout/mất kết nối) — cũng là lỗi TẠM THỜI, xử lý giống rate limit:
+            # chờ rồi thử lại CHÍNH trang này, không bỏ cuộc ngay. Đã gặp thực tế: full pull
+            # theo NGÀY x ad (level="ad" + time_increment=1, xem get_ads_detail_cached) nặng
+            # hơn hẳn bản lifetime cũ -> timeout 30s trước đây quá ngắn, đã tăng lên 90s.
+            if retries_left > 0:
+                wait_s = 30 * (max_retries - retries_left + 1)
+                print(f"[Lỗi mạng tạm thời - chờ {wait_s}s rồi thử lại ({retries_left} lượt còn lại)] {e}")
+                time.sleep(wait_s)
+                retries_left -= 1
+                continue
+            raise
         try:
             resp.raise_for_status()
         except requests.exceptions.HTTPError as e:
