@@ -14,14 +14,24 @@ khác nhau để tìm nguyên nhân, thay vì đoán mù:
        khỏi báo cáo doanh thu của Sapo (hoặc ngược lại) -> thử nhiều tiêu chí lọc khác nhau
        (không lọc / chỉ status / chỉ cancelled_on / chỉ financial_status=="voided") và xem
        tiêu chí nào cho tổng số đơn KHỚP GẦN NHẤT với báo cáo Sapo.
+ĐÃ XÁC NHẬN: H1 (múi giờ VN+7h) + KHÔNG lọc huỷ ("no_filter") cho số ĐƠN khớp gần tuyệt đối
+(2537/2537 đơn, 28/30 ngày khớp chính xác). NHƯNG net_revenue vẫn lệch ~25 triệu/tháng dù số
+đơn đã khớp -> nghi ngờ công thức refund_value (item_revenue, discount đã khớp gần như tuyệt
+đối ở hầu hết các ngày, chỉ riêng refund_value tính RA CAO HƠN báo cáo thật một cách hệ thống,
+không theo tỷ lệ cố định).
+
+VÒNG 3 - chẩn đoán refund_value: thử nhiều CÔNG THỨC refund khác nhau (không chỉ tin công thức
+price*quantity theo tài liệu), VÀ dump nguyên văn field "refunds" của vài order thật (những
+ngày lệch nhiều nhất) vào data.json để Claude tự đọc qua `git clone` và xem cấu trúc thật,
+tương tự cách đã tìm ra join-key cho total_fee trước đây (business_dashboard_debug_fee_match.py).
+
 Tất cả kết quả (không chỉ 1 giả thuyết) được ghi vào data.json (mục debug_revenue_check) để
-Claude tự đọc qua `git clone`, so sánh và chọn ra tổ hợp đúng — theo đúng cách đã làm thành
-công với việc tìm join-key cho total_fee trước đây (business_dashboard_debug_fee_match.py).
+Claude tự đọc qua `git clone`, so sánh và chọn ra tổ hợp đúng.
 """
 
 import datetime as dt
 
-from business_dashboard_revenue import order_revenue_breakdown
+from business_dashboard_revenue import order_revenue_breakdown, _to_float
 
 # Ground truth lấy trực tiếp từ file Sapo export (xem docstring trên).
 GROUND_TRUTH = [
@@ -118,6 +128,133 @@ DATE_FIELDS = {
 }
 
 
+# --- VÒNG 3: các giả thuyết công thức refund_value (item_revenue/discount đã khớp gần như
+# tuyệt đối, chỉ refund_value bị tính CAO HƠN báo cáo thật, không theo tỷ lệ cố định) ---
+def _refund_v1_price_times_qty(o: dict) -> float:
+    """Công thức hiện tại trong business_dashboard_revenue.py: price (line_item) * quantity."""
+    total = 0.0
+    for rf in (o.get("refunds") or []):
+        for rli in (rf.get("refund_line_items") or []):
+            li = rli.get("line_item") or {}
+            total += _to_float(li.get("price")) * _to_float(rli.get("quantity"))
+    return total
+
+
+def _refund_v2_price_only(o: dict) -> float:
+    """Giả thuyết: price đã là SUBTOTAL của dòng hoàn, không cần nhân thêm quantity."""
+    total = 0.0
+    for rf in (o.get("refunds") or []):
+        for rli in (rf.get("refund_line_items") or []):
+            li = rli.get("line_item") or {}
+            total += _to_float(li.get("price"))
+    return total
+
+
+def _refund_v3_dedup_by_id(o: dict) -> float:
+    """Giả thuyết: mảng 'refunds' có thể chứa refund trùng lặp (cùng id) -> khử trùng lặp trước."""
+    seen = set()
+    total = 0.0
+    for rf in (o.get("refunds") or []):
+        rid = rf.get("id")
+        if rid is not None:
+            if rid in seen:
+                continue
+            seen.add(rid)
+        for rli in (rf.get("refund_line_items") or []):
+            li = rli.get("line_item") or {}
+            total += _to_float(li.get("price")) * _to_float(rli.get("quantity"))
+    return total
+
+
+def _refund_v4_rli_alt_fields(o: dict) -> float:
+    """Giả thuyết: refund_line_item có field subtotal/total/line_price/amount riêng (không cần
+    nhân qty), thử các tên field khác trước khi rơi về công thức price*qty mặc định."""
+    total = 0.0
+    for rf in (o.get("refunds") or []):
+        for rli in (rf.get("refund_line_items") or []):
+            found = False
+            for key in ("subtotal", "total", "line_price", "total_price", "amount"):
+                if rli.get(key) is not None:
+                    total += _to_float(rli.get(key))
+                    found = True
+                    break
+            if not found:
+                li = rli.get("line_item") or {}
+                total += _to_float(li.get("price")) * _to_float(rli.get("quantity"))
+    return total
+
+
+def _refund_v5_refund_level_field(o: dict) -> float:
+    """Giả thuyết: mỗi object 'refund' có field tổng tiền hoàn cấp refund (không cần cộng dồn
+    từng refund_line_item)."""
+    total = 0.0
+    for rf in (o.get("refunds") or []):
+        for key in ("total_price", "amount", "refund_amount", "subtotal", "total"):
+            if rf.get(key) is not None:
+                total += _to_float(rf.get(key))
+                break
+    return total
+
+
+REFUND_FORMULAS = {
+    "price_times_qty (hiện tại)": _refund_v1_price_times_qty,
+    "price_only_no_qty": _refund_v2_price_only,
+    "dedup_refund_id_price_times_qty": _refund_v3_dedup_by_id,
+    "rli_alt_subtotal_fields": _refund_v4_rli_alt_fields,
+    "refund_level_amount_field": _refund_v5_refund_level_field,
+}
+
+
+def _score_refund_formulas(orders_raw: list) -> dict:
+    """So khớp TỪNG công thức refund với cột 'Tiền hàng trả lại' thật của Sapo theo ngày,
+    dùng tổ hợp lọc/ngày đã xác nhận tốt nhất (no_filter + created_on_vn_+7h)."""
+    filtered = _filter_none(orders_raw)
+    results = {}
+    total_truth = sum(t["refund_value"] for t in GROUND_TRUTH)
+    for name, fn in REFUND_FORMULAS.items():
+        by_date = {}
+        for o in filtered:
+            d = _date_vn(o)
+            if d not in TRUTH_DATES:
+                continue
+            by_date[d] = by_date.get(d, 0.0) + fn(o)
+        total_computed = sum(by_date.values())
+        abs_diff_per_day = sum(abs(by_date.get(t["date"], 0.0) - t["refund_value"]) for t in GROUND_TRUTH)
+        results[name] = {
+            "total_computed": round(total_computed, 2),
+            "total_truth": round(total_truth, 2),
+            "diff_total": round(total_computed - total_truth, 2),
+            "sum_abs_diff_per_day": round(abs_diff_per_day, 2),
+        }
+    return results
+
+
+def _raw_refund_samples(orders_raw: list, max_samples: int = 15) -> list:
+    """Dump NGUYÊN VĂN field 'refunds' của vài order thật (trong 30 ngày đối chiếu, có refund
+    khác rỗng) vào data.json để Claude đọc qua git clone và xem đúng cấu trúc thật của Sapo,
+    thay vì đoán mù công thức."""
+    filtered = _filter_none(orders_raw)
+    samples = []
+    for o in filtered:
+        d = _date_vn(o)
+        if d not in TRUTH_DATES:
+            continue
+        refunds = o.get("refunds") or []
+        if not refunds:
+            continue
+        samples.append({
+            "name": o.get("name"),
+            "date_vn": d,
+            "total_line_items_price": o.get("total_line_items_price"),
+            "total_discounts": o.get("total_discounts"),
+            "computed_refund_price_times_qty": round(_refund_v1_price_times_qty(o), 2),
+            "raw_refunds": refunds,
+        })
+        if len(samples) >= max_samples:
+            break
+    return samples
+
+
 def _score_combo(orders_filtered: list, date_fn) -> dict:
     """Đếm số đơn theo ngày (theo date_fn) trong đúng 30 ngày GROUND_TRUTH, so khớp tổng số đơn."""
     counts = {}
@@ -208,6 +345,12 @@ def run_check(orders_raw: list) -> dict:
     current_rows, current_abs_diff_net = _rows_for(current_filtered, _date_utc)
     best_rows, best_abs_diff_net = _rows_for(best_filtered, best_date_fn)
 
+    # VÒNG 3: chẩn đoán riêng công thức refund_value (đơn/ngày đã khớp gần tuyệt đối, chỉ còn
+    # net_revenue lệch ~25tr/tháng do refund_value bị tính cao hơn thật một cách hệ thống).
+    refund_formula_scores = _score_refund_formulas(orders_raw)
+    best_refund_formula = min(refund_formula_scores.items(), key=lambda kv: kv[1]["sum_abs_diff_per_day"])
+    raw_refund_samples = _raw_refund_samples(orders_raw)
+
     return {
         "note": "So sánh MA TRẬN (cách lọc đơn huỷ x cách bucket ngày) để tìm tổ hợp khớp nhất với báo cáo Sapo thật.",
         "matrix": matrix,
@@ -224,4 +367,8 @@ def run_check(orders_raw: list) -> dict:
             "total_abs_diff_net_revenue": best_abs_diff_net,
             "rows": best_rows,
         },
+        "refund_formula_scores": refund_formula_scores,
+        "best_refund_formula": best_refund_formula[0],
+        "best_refund_formula_score": best_refund_formula[1],
+        "raw_refund_samples": raw_refund_samples,
     }
