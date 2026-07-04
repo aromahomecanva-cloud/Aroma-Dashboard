@@ -45,8 +45,24 @@ def main():
     # (facebook/instagram) — xem business_dashboard_meta.py để biết cách suy ra channel từ
     # tên campaign, và business_dashboard_aggregate._allocate_ads_spend*() để biết cách
     # phân bổ tổng chi phí theo kênh về từng shop/page (theo tỷ lệ doanh thu).
-    ads_detail = get_ads_detail(days=None)
-    ads_daily_by_channel = get_ads_spend_daily_by_channel(days=None)
+    #
+    # QUAN TRỌNG: bọc try/except RIÊNG cho phần này — đây là tính năng MỚI (gọi level="ad",
+    # granularity cao hơn hẳn level="campaign"/"account" mà get_ads_spend()/get_ads_spend_daily()
+    # ở trên vẫn dùng ổn định từ trước). Nếu Meta API lỗi ở ĐÂY (hết quyền riêng cho level="ad",
+    # rate limit, token hết hạn giữa chừng phân trang...) THÌ TUYỆT ĐỐI KHÔNG được để crash toàn
+    # bộ job — báo cáo doanh thu/COGS/phí (đã chạy ổn định, là phần quan trọng nhất) vẫn phải
+    # được tính và commit data.json bình thường. Lỗi thật (nếu có) được lưu vào ads_detail_error
+    # trong payload để xem trực tiếp trên data.json mà debug, không cần đào log Actions.
+    ads_detail_error = None
+    try:
+        ads_detail = get_ads_detail(days=None)
+        ads_daily_by_channel = get_ads_spend_daily_by_channel(days=None)
+    except Exception as e:
+        ads_detail_error = str(e)
+        print(f"[LỖI Meta Ads chi tiết - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {ads_detail_error}")
+        ads_detail = {"ads": [], "adsets": [], "campaigns": []}
+        ads_daily_by_channel = []
+
     ads_spend_by_channel = {}
     for c in ads_detail["campaigns"]:
         ads_spend_by_channel[c["channel"]] = ads_spend_by_channel.get(c["channel"], 0.0) + c["spend"]
@@ -97,6 +113,7 @@ def main():
         "ads_daily": ads_daily,
         "ads_daily_by_channel": ads_daily_by_channel,
         "ads_detail": ads_detail,
+        "ads_detail_error": ads_detail_error,
         "ads_rules_config": RULES_CONFIG,
         "ads_violations": {
             "ads": ads_violations_ads,

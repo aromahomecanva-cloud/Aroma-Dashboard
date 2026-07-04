@@ -62,12 +62,28 @@ def _rollup(ads: list, group_keys: list) -> list:
 
 
 def _get_paginated(url: str, params: dict) -> list:
-    """Gọi Graph API và tự động lấy hết các trang (paging.next) nếu có."""
+    """Gọi Graph API và tự động lấy hết các trang (paging.next) nếu có.
+
+    QUAN TRỌNG: requests' resp.raise_for_status() mặc định KHÔNG in ra nội dung lỗi thật
+    của Meta (body JSON có "error": {"message", "type", "code", "error_subcode", "fbtrace_id"})
+    -> khi crash chỉ thấy "403 Forbidden for url: ..." mà KHÔNG biết lý do thật (hết quyền?
+    token hết hạn? rate limit? level="ad" cần quyền khác level="campaign"?). Bắt riêng lỗi
+    HTTP để in kèm body thật, giúp chẩn đoán được ngay từ log GitHub Actions lần sau.
+    """
     all_rows = []
     next_url, next_params = url, params
     for _ in range(200):  # giới hạn an toàn, đủ cho vài năm dữ liệu theo ngày
         resp = requests.get(next_url, params=next_params, timeout=30)
-        resp.raise_for_status()
+        try:
+            resp.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            try:
+                err_body = resp.json()
+            except ValueError:
+                err_body = resp.text[:500]
+            raise requests.exceptions.HTTPError(
+                f"{e} | Meta trả về: {err_body}", response=resp
+            ) from e
         body = resp.json()
         all_rows.extend(body.get("data", []))
         next_link = body.get("paging", {}).get("next")
