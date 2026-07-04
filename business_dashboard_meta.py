@@ -22,6 +22,7 @@ VÒNG MỚI - kết nối chi phí Meta Ads ở 3 CẤP ĐỘ (campaign / ad set
 """
 
 import datetime as dt
+import gzip
 import json
 import random
 import re
@@ -298,17 +299,23 @@ def get_ads_spend_daily_by_channel(days: int | None = None) -> list:
 # ---------------------------------------------------------------------------
 
 def _load_cache(cache_path) -> dict:
+    """Đọc cache JSON NÉN GZIP (xem _save_cache — dùng gzip vì cache_sapo_orders.json.gz bên
+    module Sapo đã lên tới ~193MB không nén, vượt giới hạn 100MB/file của GitHub; áp dụng
+    đồng bộ gzip cho mọi file cache_meta_*.json.gz để nhất quán và an toàn khi lớn dần)."""
     cache_path = Path(cache_path)
-    if cache_path.exists():
-        try:
-            return json.loads(cache_path.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            return {}
-    return {}
+    if not cache_path.exists():
+        return {}
+    try:
+        with gzip.open(cache_path, "rb") as f:
+            return json.loads(f.read().decode("utf-8"))
+    except (OSError, gzip.BadGzipFile, json.JSONDecodeError):
+        return {}
 
 
 def _save_cache(cache_path, cache: dict) -> None:
-    Path(cache_path).write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+    raw = json.dumps(cache, ensure_ascii=False).encode("utf-8")
+    with gzip.open(Path(cache_path), "wb", compresslevel=6) as f:
+        f.write(raw)
 
 
 def get_ads_spend_daily_cached(cache_path, incremental_days: int = 3) -> list:

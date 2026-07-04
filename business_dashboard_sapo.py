@@ -5,6 +5,7 @@ Auth: Basic Auth (username = API Key, password = API Secret)
 Base URL: https://{store}.mysapo.net/admin/...
 """
 
+import gzip
 import json
 import random
 import datetime as dt
@@ -13,6 +14,28 @@ from pathlib import Path
 import requests
 
 from business_dashboard_config import Config
+
+
+def _write_json_gz(path: Path, data: dict) -> None:
+    """Ghi JSON đã NÉN GZIP — cache_sapo_orders.json bản KHÔNG nén đã lên tới ~193MB (vượt
+    giới hạn 100MB/file của GitHub, bị từ chối push với lỗi 'GH001: Large files detected').
+    JSON đơn hàng có rất nhiều field/giá trị lặp lại nên nén rất tốt (thường giảm 5-10 lần),
+    và vẫn giữ NGUYÊN VẸN từng order (không cắt bớt field nào) — vì business_dashboard_debug
+    _fee_match.py cần FLATTEN toàn bộ order để tự dò field join, cắt field sẽ làm hỏng chẩn
+    đoán đó."""
+    raw = json.dumps(data, ensure_ascii=False).encode("utf-8")
+    with gzip.open(path, "wb", compresslevel=6) as f:
+        f.write(raw)
+
+
+def _read_json_gz(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        with gzip.open(path, "rb") as f:
+            return json.loads(f.read().decode("utf-8"))
+    except (OSError, gzip.BadGzipFile, json.JSONDecodeError):
+        return {}
 
 
 def _base_url() -> str:
@@ -61,9 +84,11 @@ def get_orders_cached(cache_path: Path | str, incremental_days: int = 60) -> lis
     nhất (mặc định 60 — đủ rộng để bắt các đơn được sửa/hoàn tiền muộn) rồi GHI ĐÈ (upsert
     theo order id) lên cache — đơn cũ hơn incremental_days ngày giữ nguyên, không bị đụng tới.
 
-    Cache lưu ở file JSON `cache_path`, dạng {"orders_by_id": {id: order, ...}, "last_updated_at": ...}.
-    File này cần được COMMIT lại vào repo (giống data.json) để lần chạy SAU đọc lại được — xem
-    workflow YAML (đã thêm cache_*.json vào bước "git add").
+    Cache lưu ở file JSON NÉN GZIP `cache_path` (nên đặt tên đuôi .json.gz), dạng
+    {"orders_by_id": {id: order, ...}, "last_updated_at": ...}. File này cần được COMMIT lại
+    vào repo (giống data.json) để lần chạy SAU đọc lại được — xem workflow YAML (đã thêm
+    cache_*.json.gz vào bước "git add"). Dùng gzip vì bản KHÔNG nén của cửa hàng này đã lên
+    tới ~193MB, vượt giới hạn 100MB/file cứng của GitHub (bị từ chối push).
 
     Muốn ép tải lại TOÀN BỘ (VD nghi ngờ cache lệch, hoặc mới đổi công thức tính) -> XÓA file
     cache_path rồi chạy lại; hàm sẽ tự nhận ra cache rỗng và tự làm full pull như lần đầu.
@@ -72,12 +97,7 @@ def get_orders_cached(cache_path: Path | str, incremental_days: int = 60) -> lis
         return get_orders(days=None)
 
     cache_path = Path(cache_path)
-    cache = {}
-    if cache_path.exists():
-        try:
-            cache = json.loads(cache_path.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            cache = {}
+    cache = _read_json_gz(cache_path)
     orders_by_id = cache.get("orders_by_id", {})
 
     if not orders_by_id:
@@ -96,7 +116,7 @@ def get_orders_cached(cache_path: Path | str, incremental_days: int = 60) -> lis
 
     cache["orders_by_id"] = orders_by_id
     cache["last_updated_at"] = dt.datetime.now().isoformat()
-    cache_path.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+    _write_json_gz(cache_path, cache)
 
     print(f"[Sapo cache] Lần này lấy mới/cập nhật {len(fresh)} đơn -> tổng cộng "
           f"{len(orders_by_id)} đơn trong cache.")

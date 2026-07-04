@@ -39,11 +39,14 @@ BASE_DIR = Path(__file__).resolve().parent
 OUT_PATH = BASE_DIR / "data.json"
 
 # File cache — commit lại vào repo cùng data.json (xem workflow YAML). Xóa file tương ứng
-# để ép full-pull lại từ đầu.
-SAPO_ORDERS_CACHE = BASE_DIR / "cache_sapo_orders.json"
-META_ADS_DAILY_CACHE = BASE_DIR / "cache_meta_ads_daily.json"
-META_ADS_DAILY_BY_CHANNEL_CACHE = BASE_DIR / "cache_meta_ads_daily_by_channel.json"
-META_ADS_DETAIL_CACHE = BASE_DIR / "cache_meta_ads_detail.json"
+# để ép full-pull lại từ đầu. Đuôi .json.gz vì cache KHÔNG nén của cửa hàng này đã lên tới
+# ~193MB, vượt giới hạn 100MB/file của GitHub (bị từ chối push "GH001: Large files detected")
+# -> mọi cache giờ được NÉN GZIP (xem _write_json_gz/_read_json_gz trong business_dashboard
+# _sapo.py và _load_cache/_save_cache trong business_dashboard_meta.py).
+SAPO_ORDERS_CACHE = BASE_DIR / "cache_sapo_orders.json.gz"
+META_ADS_DAILY_CACHE = BASE_DIR / "cache_meta_ads_daily.json.gz"
+META_ADS_DAILY_BY_CHANNEL_CACHE = BASE_DIR / "cache_meta_ads_daily_by_channel.json.gz"
+META_ADS_DETAIL_CACHE = BASE_DIR / "cache_meta_ads_detail.json.gz"
 
 SAPO_INCREMENTAL_DAYS = 60
 META_INCREMENTAL_DAYS = 3
