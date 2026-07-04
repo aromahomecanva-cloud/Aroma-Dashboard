@@ -42,7 +42,17 @@ Trước đây dashboard dùng trực tiếp field "total_price" (tổng tiền 
 phí ship/thuế, và KHÔNG trừ giá trị hàng trả lại) làm "DT gộp" -> lệch khá xa so với
 "Doanh thu thuần" thật của Sapo (đã xác nhận qua file "Báo cáo doanh thu theo thời gian"
 user xuất trực tiếp từ Sapo).
+
+VÒNG 3b - NGÀY của refund_value phải là ngày CỦA CHÍNH sự kiện refund, KHÔNG phải ngày tạo
+đơn (ĐÃ XÁC NHẬN qua business_dashboard_debug_revenue.py._score_refund_date_attribution: bucket
+theo ngày refund [processed_at/created_on của object refund] khớp gần tuyệt đối với báo cáo
+Sapo — lệch tổng chỉ 35,000đ/78.5 triệu trên 30 ngày, so với lệch 6.3 triệu nếu bucket theo
+ngày tạo đơn). Một đơn có thể được TẠO ngày X nhưng HOÀN TIỀN vào ngày Y khác. Hàm refund_events()
+bên dưới trả về từng sự kiện refund kèm ngày riêng của nó, để business_dashboard_aggregate.py
+gắn "Tiền hàng trả lại" vào đúng ngày xảy ra refund thay vì dồn hết vào ngày tạo đơn.
 """
+
+import datetime as dt
 
 
 def is_cancelled(o: dict) -> bool:
@@ -72,27 +82,70 @@ def _to_float(v) -> float:
         return 0.0
 
 
+def _parse_iso_dt(s):
+    if not s:
+        return None
+    s = str(s).replace("Z", "+00:00")
+    try:
+        return dt.datetime.fromisoformat(s)
+    except ValueError:
+        return None
+
+
+def _vn_date_str(parsed_dt):
+    if parsed_dt is None:
+        return None
+    return (parsed_dt + dt.timedelta(hours=7)).strftime("%Y-%m-%d")
+
+
+def refund_events(o: dict) -> list:
+    """
+    Trả về list các (refund_date_vn, amount) — 1 phần tử cho MỖI object refund trong order
+    (gộp các refund_line_items bên trong 1 refund lại thành 1 số tiền), amount = tổng
+    "subtotal" của các refund_line_items (số tiền THỰC SỰ hoàn, đã trừ giảm giá — xem docstring
+    module), refund_date_vn = ngày (giờ VN, UTC+7) của CHÍNH sự kiện refund (lấy processed_at,
+    fallback created_on của object refund) — KHÔNG phải ngày tạo đơn.
+
+    ĐÃ XÁC NHẬN: Sapo tính "Tiền hàng trả lại" theo NGÀY REFUND xảy ra, không phải ngày đơn
+    được tạo — xem docstring module. Nếu không parse được ngày refund, trả về (None, amount);
+    caller nên fallback về ngày tạo đơn trong trường hợp hiếm gặp này.
+    """
+    events = []
+    for rf in (o.get("refunds") or []):
+        amt = 0.0
+        for rli in (rf.get("refund_line_items") or []):
+            if rli.get("subtotal") is not None:
+                amt += _to_float(rli.get("subtotal"))
+            else:
+                li = rli.get("line_item") or {}
+                amt += _to_float(li.get("price")) * _to_float(rli.get("quantity"))
+        if amt == 0.0:
+            continue
+        date_vn = None
+        for key in ("processed_at", "created_on"):
+            parsed = _parse_iso_dt(rf.get(key))
+            if parsed is not None:
+                date_vn = _vn_date_str(parsed)
+                break
+        events.append((date_vn, amt))
+    return events
+
+
 def order_revenue_breakdown(o: dict) -> dict:
     """
     Trả về dict các thành phần doanh thu của 1 order, theo đúng công thức báo cáo Sapo
     "Doanh thu theo thời gian" (xem docstring module):
       item_revenue, discount, refund_value, shipping_fee, tax, net_revenue, total_revenue
+
+    LƯU Ý: refund_value ở đây là TỔNG (không phân biệt ngày) — dùng cho tổng theo channel/
+    shop_page (build_summary, không tách theo ngày, không bị ảnh hưởng bởi vấn đề "ngày nào").
+    Khi cần tách theo NGÀY (build_daily_summary), dùng refund_events() ở trên để gắn đúng
+    ngày của từng sự kiện refund, không dùng số tổng ở đây.
     """
     item_revenue = _to_float(o.get("total_line_items_price"))
     discount = _to_float(o.get("total_discounts"))
 
-    refund_value = 0.0
-    for rf in (o.get("refunds") or []):
-        for rli in (rf.get("refund_line_items") or []):
-            if rli.get("subtotal") is not None:
-                # subtotal = số tiền THỰC SỰ hoàn cho dòng này (đã trừ giảm giá), đã đối
-                # chiếu khớp tuyệt đối với transactions[].amount thật — xem docstring module.
-                refund_value += _to_float(rli.get("subtotal"))
-            else:
-                # Fallback phòng hờ nếu dữ liệu không có "subtotal" (không nên xảy ra với
-                # dữ liệu Sapo hiện tại, nhưng giữ lại để không bị lỗi/mất dữ liệu).
-                li = rli.get("line_item") or {}
-                refund_value += _to_float(li.get("price")) * _to_float(rli.get("quantity"))
+    refund_value = sum(amt for _, amt in refund_events(o))
 
     shipping_fee = sum(_to_float(sl.get("price")) for sl in (o.get("shipping_lines") or []))
 

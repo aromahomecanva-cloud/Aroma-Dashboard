@@ -57,7 +57,7 @@ import datetime as dt
 import pandas as pd
 
 from business_dashboard_costs import get_combo_bom, get_combo_names
-from business_dashboard_revenue import order_revenue_breakdown
+from business_dashboard_revenue import order_revenue_breakdown, refund_events
 
 _SHOP_TAG_RE = re.compile(r"^(?:Shopee|Tiktok|Lazada)_(.+)$", re.IGNORECASE)
 _PAGE_TAG_RE = re.compile(r"^page_(?!id_)(.+)$", re.IGNORECASE)
@@ -216,6 +216,10 @@ def _prep_orders_df(
 
     revenues = [order_revenue_breakdown(o) for o in orders]
     df["gross_revenue"] = [r["net_revenue"] for r in revenues]
+    # before_refund = item_revenue - discount (CHƯA trừ refund) — dùng riêng cho
+    # build_daily_summary(), vì refund_value phải gắn theo ngày CỦA CHÍNH sự kiện refund,
+    # không phải ngày tạo đơn (xem business_dashboard_revenue.refund_events()).
+    df["before_refund"] = [r["item_revenue"] - r["discount"] for r in revenues]
 
     fee_from_name = df["name"].astype(str).map(fee_map_by_name).fillna(0.0) if "name" in df.columns else 0.0
     fee_from_number = df["order_number"].astype(str).map(fee_map_by_order_number).fillna(0.0) \
@@ -424,6 +428,14 @@ def build_daily_summary(
     Trả về: date, channel, shop_page, orders, gross_revenue, total_fee, fee_breakdown,
             net_revenue, cogs, gross_margin_amount, gross_margin_pct
     (fee_breakdown = dict {tên loại phí: số tiền}, cộng dồn theo group).
+
+    QUAN TRỌNG: "Tiền hàng trả lại" (refund) được gắn vào NGÀY CỦA CHÍNH SỰ KIỆN REFUND
+    (processed_at/created_on của object refund), KHÔNG phải ngày tạo đơn — ĐÃ XÁC NHẬN qua
+    business_dashboard_debug_revenue.py._score_refund_date_attribution (lệch tổng chỉ
+    35,000đ/78.5 triệu trên 30 ngày, so với lệch 6.3 triệu nếu dồn refund vào ngày tạo đơn).
+    Một đơn có thể TẠO ngày X nhưng được HOÀN TIỀN vào ngày Y khác -> phải tách riêng phần
+    "before_refund" (item_revenue - discount, gắn theo ngày tạo đơn) và phần "refund" (gắn
+    theo ngày của chính sự kiện refund), rồi mới trừ lại với nhau theo (date, channel, shop_page).
     """
     if not orders:
         return pd.DataFrame(columns=["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee",
@@ -440,12 +452,45 @@ def build_daily_summary(
         lambda items: sum(_line_item_cost(li, variant_sku_map, cost_map) for li in items)
     )
 
+    # Phần "trước hoàn" (item_revenue - discount) + orders/cogs/total_fee: vẫn gắn theo
+    # ngày TẠO ĐƠN như trước (không liên quan tới vấn đề ngày refund).
     gross = orders_df.groupby(["date", "source_name", "shop_page"]).agg(
-        gross_revenue=("gross_revenue", "sum"),
+        revenue_before_refund=("before_refund", "sum"),
         orders=("id", "count"),
         cogs=("cogs", "sum"),
         total_fee=("total_fee", "sum"),
     ).rename_axis(["date", "channel", "shop_page"]).reset_index()
+
+    # Phần "hoàn trả" (refund): gắn theo ngày CỦA CHÍNH sự kiện refund (fallback về ngày tạo
+    # đơn nếu không parse được ngày refund), channel/shop_page lấy theo order chứa refund đó.
+    refund_rows = []
+    for o, order_date, channel, shop_page in zip(
+        orders, orders_df["date"], orders_df["source_name"], orders_df["shop_page"]
+    ):
+        for refund_date, amt in refund_events(o):
+            refund_rows.append({
+                "date": refund_date or order_date,
+                "channel": channel,
+                "shop_page": shop_page,
+                "refund_amount": amt,
+            })
+    if refund_rows:
+        refund_df = pd.DataFrame(refund_rows).groupby(["date", "channel", "shop_page"]).agg(
+            refund_amount=("refund_amount", "sum")
+        ).reset_index()
+    else:
+        refund_df = pd.DataFrame(columns=["date", "channel", "shop_page", "refund_amount"])
+        refund_df["refund_amount"] = refund_df["refund_amount"].astype(float)
+
+    # Outer merge: 1 refund có thể rơi vào ngày KHÔNG có đơn nào được tạo (cho channel/shop đó)
+    # -> vẫn cần xuất hiện dòng riêng cho ngày đó với gross_revenue âm.
+    gross = gross.merge(refund_df, on=["date", "channel", "shop_page"], how="outer")
+    gross["revenue_before_refund"] = gross["revenue_before_refund"].fillna(0.0).astype(float)
+    gross["refund_amount"] = gross["refund_amount"].fillna(0.0).astype(float)
+    gross["orders"] = gross["orders"].fillna(0).astype(int)
+    gross["cogs"] = gross["cogs"].fillna(0.0).astype(float)
+    gross["total_fee"] = gross["total_fee"].fillna(0.0).astype(float)
+    gross["gross_revenue"] = gross["revenue_before_refund"] - gross["refund_amount"]
 
     # Xem ghi chú tương tự trong build_summary() — dùng vòng lặp for thường, KHÔNG dùng
     # .groupby(...).apply()/gross.apply(axis=1), vì cả hai đều tự động convert/nở dict trả về

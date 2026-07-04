@@ -31,7 +31,7 @@ Claude tự đọc qua `git clone`, so sánh và chọn ra tổ hợp đúng.
 
 import datetime as dt
 
-from business_dashboard_revenue import order_revenue_breakdown, _to_float
+from business_dashboard_revenue import order_revenue_breakdown, refund_events, _to_float
 
 # Ground truth lấy trực tiếp từ file Sapo export (xem docstring trên).
 GROUND_TRUTH = [
@@ -291,6 +291,49 @@ def _score_refund_date_attribution(orders_raw: list) -> dict:
     }
 
 
+def _final_check(orders_raw: list) -> dict:
+    """
+    VÒNG 3c: MÔ PHỎNG ĐÚNG logic pipeline THẬT sau khi sửa (business_dashboard_aggregate.
+    build_daily_summary): before_refund (item_revenue - discount) gắn theo ngày TẠO ĐƠN,
+    refund_value gắn theo ngày CỦA CHÍNH sự kiện refund (fallback ngày tạo đơn nếu không parse
+    được) — rồi net_revenue = before_refund - refund. So khớp với cột net_revenue thật của Sapo
+    theo từng ngày, để xác nhận cuối cùng pipeline đã đúng chưa (không cần đợi group theo
+    channel/shop_page vì ground truth là TOÀN SHOP không tách kênh).
+    """
+    before_refund_by_date = {}
+    refund_by_date = {}
+    for o in orders_raw:
+        order_date = _date_vn(o)
+        item_revenue = _to_float(o.get("total_line_items_price"))
+        discount = _to_float(o.get("total_discounts"))
+        if order_date in TRUTH_DATES:
+            before_refund_by_date[order_date] = before_refund_by_date.get(order_date, 0.0) + (item_revenue - discount)
+        for refund_date, amt in refund_events(o):
+            d = refund_date or order_date
+            if d in TRUTH_DATES:
+                refund_by_date[d] = refund_by_date.get(d, 0.0) + amt
+
+    rows = []
+    total_abs_diff_net = 0.0
+    for t in GROUND_TRUTH:
+        before_refund = before_refund_by_date.get(t["date"], 0.0)
+        refund = refund_by_date.get(t["date"], 0.0)
+        net_revenue = before_refund - refund
+        diff_net = round(net_revenue - t["net_revenue"], 2)
+        total_abs_diff_net += abs(diff_net)
+        rows.append({
+            "date": t["date"],
+            "truth_net_revenue": t["net_revenue"],
+            "computed_net_revenue": round(net_revenue, 2),
+            "diff_net_revenue": diff_net,
+        })
+    return {
+        "total_abs_diff_net_revenue": round(total_abs_diff_net, 2),
+        "total_truth_net_revenue": round(sum(t["net_revenue"] for t in GROUND_TRUTH), 2),
+        "rows": rows,
+    }
+
+
 def _raw_refund_samples(orders_raw: list, max_samples: int = 15) -> list:
     """Dump NGUYÊN VĂN field 'refunds' của vài order thật (trong 30 ngày đối chiếu, có refund
     khác rỗng) vào data.json để Claude đọc qua git clone và xem đúng cấu trúc thật của Sapo,
@@ -413,6 +456,7 @@ def run_check(orders_raw: list) -> dict:
     best_refund_formula = min(refund_formula_scores.items(), key=lambda kv: kv[1]["sum_abs_diff_per_day"])
     raw_refund_samples = _raw_refund_samples(orders_raw)
     refund_date_attribution = _score_refund_date_attribution(orders_raw)
+    final_check = _final_check(orders_raw)
 
     return {
         "note": "So sánh MA TRẬN (cách lọc đơn huỷ x cách bucket ngày) để tìm tổ hợp khớp nhất với báo cáo Sapo thật.",
@@ -435,4 +479,5 @@ def run_check(orders_raw: list) -> dict:
         "best_refund_formula_score": best_refund_formula[1],
         "raw_refund_samples": raw_refund_samples,
         "refund_date_attribution": refund_date_attribution,
+        "final_check": final_check,
     }
