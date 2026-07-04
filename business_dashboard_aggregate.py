@@ -229,9 +229,17 @@ def build_summary(
     # Chi tiết từng loại phí (Phí cố định, Phí dịch vụ, Phí thanh toán, Thuế sàn, aff, ...)
     # theo từng tổ hợp channel + shop_page -> để dashboard hiển thị breakdown thay vì chỉ
     # 1 con số tổng.
-    fee_breakdown_by_group = orders_df.groupby(["source_name", "shop_page"])["fee_breakdown"].apply(_sum_fee_breakdowns)
-    summary["fee_breakdown"] = summary.apply(
-        lambda r: fee_breakdown_by_group.get((r["channel"], r["shop_page"]), {}), axis=1
+    # LƯU Ý QUAN TRỌNG: KHÔNG dùng .groupby(...)["fee_breakdown"].apply(_sum_fee_breakdowns) —
+    # khi hàm trả về 1 dict, pandas GroupBy.apply() sẽ TỰ ĐỘNG convert dict đó thành pd.Series
+    # (không giữ nguyên dict thường), và summary.apply(axis=1) tương tự cũng "nở" dict/Series
+    # thành nhiều cột -> lỗi "Cannot set a DataFrame with multiple columns to the single column
+    # fee_breakdown". Dùng vòng lặp for thường (không qua .apply()) để giữ nguyên kiểu dict.
+    fee_breakdown_by_group = {}
+    for (ch, sp), grp in orders_df.groupby(["source_name", "shop_page"]):
+        fee_breakdown_by_group[(ch, sp)] = _sum_fee_breakdowns(grp["fee_breakdown"])
+    summary["fee_breakdown"] = pd.Series(
+        [fee_breakdown_by_group.get((ch, sp), {}) for ch, sp in zip(summary["channel"], summary["shop_page"])],
+        index=summary.index, dtype=object,
     )
 
     # Ads spend KHÔNG gán theo kênh (xem lý do ở docstring) -> để 0 ở đây,
@@ -407,11 +415,18 @@ def build_daily_summary(
         total_fee=("total_fee", "sum"),
     ).rename_axis(["date", "channel", "shop_page"]).reset_index()
 
-    fee_breakdown_by_daily_group = orders_df.groupby(
-        ["date", "source_name", "shop_page"]
-    )["fee_breakdown"].apply(_sum_fee_breakdowns)
-    gross["fee_breakdown"] = gross.apply(
-        lambda r: fee_breakdown_by_daily_group.get((r["date"], r["channel"], r["shop_page"]), {}), axis=1
+    # Xem ghi chú tương tự trong build_summary() — dùng vòng lặp for thường, KHÔNG dùng
+    # .groupby(...).apply()/gross.apply(axis=1), vì cả hai đều tự động convert/nở dict trả về
+    # thành pd.Series hoặc nhiều cột, làm hỏng dữ liệu hoặc crash khi gán lại vào 1 cột.
+    fee_breakdown_by_daily_group = {}
+    for (d, ch, sp), grp in orders_df.groupby(["date", "source_name", "shop_page"]):
+        fee_breakdown_by_daily_group[(d, ch, sp)] = _sum_fee_breakdowns(grp["fee_breakdown"])
+    gross["fee_breakdown"] = pd.Series(
+        [
+            fee_breakdown_by_daily_group.get((d, ch, sp), {})
+            for d, ch, sp in zip(gross["date"], gross["channel"], gross["shop_page"])
+        ],
+        index=gross.index, dtype=object,
     )
 
     gross["net_revenue"] = gross["gross_revenue"] - gross["total_fee"]
