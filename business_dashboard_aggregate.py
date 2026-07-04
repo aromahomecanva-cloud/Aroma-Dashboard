@@ -95,6 +95,49 @@ def _build_fee_maps(settlement_df: pd.DataFrame) -> tuple[dict, dict]:
     return fee_map_by_name, fee_map_by_order_number
 
 
+def _build_fee_breakdown_maps(fee_breakdown_df: pd.DataFrame) -> tuple[dict, dict]:
+    """
+    Trả về (breakdown_map_by_name, breakdown_map_by_order_number): mỗi map là
+    {join_key: {fee_name: amount, ...}} — chi tiết TỪNG LOẠI PHÍ (Phí cố định, Phí dịch vụ,
+    Phí thanh toán, Thuế sàn thực tế, Phí tiếp thị liên kết (aff), ...) thay vì chỉ 1 tổng.
+    Xem business_dashboard_settlement.load_settlement_fee_breakdown().
+    """
+    if fee_breakdown_df is None or fee_breakdown_df.empty:
+        return {}, {}
+    by_name = fee_breakdown_df[fee_breakdown_df["join_field"] == "name"]
+    by_number = fee_breakdown_df[fee_breakdown_df["join_field"] == "order_number"]
+
+    breakdown_map_by_name = {
+        str(key): dict(zip(grp["fee_name"], grp["amount"]))
+        for key, grp in by_name.groupby("join_key")
+    }
+    breakdown_map_by_order_number = {
+        str(key): dict(zip(grp["fee_name"], grp["amount"]))
+        for key, grp in by_number.groupby("join_key")
+    }
+    return breakdown_map_by_name, breakdown_map_by_order_number
+
+
+def _merge_fee_breakdown(a: dict, b: dict) -> dict:
+    """Cộng dồn 2 dict {fee_name: amount} (1 order chỉ khớp đúng 1 trong 2 nhánh join
+    trên thực tế, nhưng cộng lại cho an toàn — tương đương "hoặc cái này hoặc cái kia")."""
+    if not a and not b:
+        return {}
+    merged = dict(a)
+    for k, v in b.items():
+        merged[k] = merged.get(k, 0) + v
+    return merged
+
+
+def _sum_fee_breakdowns(dicts) -> dict:
+    """Cộng dồn nhiều dict {fee_name: amount} lại thành 1 (dùng khi groupby nhiều order)."""
+    out = {}
+    for d in dicts:
+        for k, v in d.items():
+            out[k] = out.get(k, 0) + v
+    return out
+
+
 def fee_join_diagnostics(orders: list, settlement_df: pd.DataFrame) -> dict:
     """
     Thống kê tỷ lệ khớp giữa order thật và file Chi phí, tách riêng cho từng nhánh
@@ -127,8 +170,15 @@ def fee_join_diagnostics(orders: list, settlement_df: pd.DataFrame) -> dict:
     }
 
 
-def _prep_orders_df(orders: list, fee_map_by_name: dict, fee_map_by_order_number: dict) -> pd.DataFrame:
-    """Tạo DataFrame từ orders, thêm cột shop_page (parse từ tags) và total_fee (join 2 nhánh)."""
+def _prep_orders_df(
+    orders: list,
+    fee_map_by_name: dict,
+    fee_map_by_order_number: dict,
+    fee_breakdown_by_name: dict | None = None,
+    fee_breakdown_by_order_number: dict | None = None,
+) -> pd.DataFrame:
+    """Tạo DataFrame từ orders, thêm cột shop_page (parse từ tags), total_fee (join 2 nhánh)
+    và fee_breakdown (dict chi tiết từng loại phí, join 2 nhánh tương tự total_fee)."""
     df = pd.DataFrame(orders)
     if "tags" in df.columns:
         df["shop_page"] = df["tags"].apply(_extract_shop_page)
@@ -139,6 +189,15 @@ def _prep_orders_df(orders: list, fee_map_by_name: dict, fee_map_by_order_number
     fee_from_number = df["order_number"].astype(str).map(fee_map_by_order_number).fillna(0.0) \
         if "order_number" in df.columns else 0.0
     df["total_fee"] = fee_from_name + fee_from_number
+
+    fee_breakdown_by_name = fee_breakdown_by_name or {}
+    fee_breakdown_by_order_number = fee_breakdown_by_order_number or {}
+    names = df["name"].astype(str) if "name" in df.columns else pd.Series([""] * len(df))
+    numbers = df["order_number"].astype(str) if "order_number" in df.columns else pd.Series([""] * len(df))
+    df["fee_breakdown"] = [
+        _merge_fee_breakdown(fee_breakdown_by_name.get(n, {}), fee_breakdown_by_order_number.get(on, {}))
+        for n, on in zip(names, numbers)
+    ]
     return df
 
 
@@ -148,9 +207,14 @@ def build_summary(
     cost_map: dict,
     ads_data: dict,
     settlement_df: pd.DataFrame,
+    fee_breakdown_df: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     fee_map_by_name, fee_map_by_order_number = _build_fee_maps(settlement_df)
-    orders_df = _prep_orders_df(orders, fee_map_by_name, fee_map_by_order_number)
+    fee_breakdown_by_name, fee_breakdown_by_order_number = _build_fee_breakdown_maps(fee_breakdown_df)
+    orders_df = _prep_orders_df(
+        orders, fee_map_by_name, fee_map_by_order_number,
+        fee_breakdown_by_name, fee_breakdown_by_order_number,
+    )
     orders_df["cogs"] = orders_df["line_items"].apply(
         lambda items: sum(_line_item_cost(li, variant_sku_map, cost_map) for li in items)
     )
@@ -162,6 +226,14 @@ def build_summary(
         total_fee=("total_fee", "sum"),
     ).rename_axis(["channel", "shop_page"]).reset_index()
 
+    # Chi tiết từng loại phí (Phí cố định, Phí dịch vụ, Phí thanh toán, Thuế sàn, aff, ...)
+    # theo từng tổ hợp channel + shop_page -> để dashboard hiển thị breakdown thay vì chỉ
+    # 1 con số tổng.
+    fee_breakdown_by_group = orders_df.groupby(["source_name", "shop_page"])["fee_breakdown"].apply(_sum_fee_breakdowns)
+    summary["fee_breakdown"] = summary.apply(
+        lambda r: fee_breakdown_by_group.get((r["channel"], r["shop_page"]), {}), axis=1
+    )
+
     # Ads spend KHÔNG gán theo kênh (xem lý do ở docstring) -> để 0 ở đây,
     # tổng ads spend thật lấy riêng từ ads_data["total_spend"] khi xuất data.json.
     summary["ads_spend"] = 0.0
@@ -171,7 +243,7 @@ def build_summary(
     summary["gross_margin_pct"] = (summary["gross_margin_amount"] / summary["net_revenue"] * 100).round(1)
     summary["net_profit_after_ads"] = summary["gross_margin_amount"] - summary["ads_spend"]
 
-    cols = ["channel", "shop_page", "orders", "gross_revenue", "total_fee", "net_revenue",
+    cols = ["channel", "shop_page", "orders", "gross_revenue", "total_fee", "fee_breakdown", "net_revenue",
             "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend", "net_profit_after_ads"]
     return summary[cols].sort_values("gross_revenue", ascending=False).reset_index(drop=True)
 
@@ -223,7 +295,9 @@ def _reconcile_combo_lines(sku_agg: dict, combo_bom_sorted: list) -> list:
 
 def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict) -> pd.DataFrame:
     """
-    Bảng chi tiết theo SẢN PHẨM x KÊNH x SHOP/PAGE: số lượng bán, doanh thu, giá vốn, gross margin.
+    Bảng chi tiết theo NGÀY x SẢN PHẨM x KÊNH x SHOP/PAGE: số lượng bán, doanh thu, giá vốn,
+    gross margin. Có cột "date" để dashboard lọc theo khoảng thời gian giống bảng "Theo kênh"
+    (client tự cộng dồn lại theo khoảng ngày đã chọn, không cần gọi lại API).
     Dùng title trong line_items làm tên sản phẩm hiển thị, sku để join giá vốn.
     (total_fee KHÔNG áp dụng ở mức sản phẩm vì file Chi phí chỉ có granularity theo order.)
 
@@ -239,6 +313,7 @@ def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict)
     for o in orders:
         channel = o.get("source_name")
         shop_page = _extract_shop_page(o.get("tags"))
+        date = _order_date(o)
 
         sku_agg = {}
         for li in o.get("line_items", []):
@@ -255,6 +330,7 @@ def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict)
 
         for cr in combo_rows:
             rows.append({
+                "date": date,
                 "channel": channel,
                 "shop_page": shop_page,
                 "product": combo_names.get(cr["sku"], f"Combo {cr['sku']}"),
@@ -268,6 +344,7 @@ def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict)
             if agg["qty"] <= 1e-9:
                 continue
             rows.append({
+                "date": date,
                 "channel": channel,
                 "shop_page": shop_page,
                 "product": agg["title"],
@@ -278,11 +355,11 @@ def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict)
             })
 
     if not rows:
-        return pd.DataFrame(columns=["channel", "shop_page", "product", "sku", "quantity", "revenue", "cogs",
+        return pd.DataFrame(columns=["date", "channel", "shop_page", "product", "sku", "quantity", "revenue", "cogs",
                                       "gross_margin_amount", "gross_margin_pct"])
 
     df = pd.DataFrame(rows)
-    grouped = df.groupby(["channel", "shop_page", "product", "sku"]).agg(
+    grouped = df.groupby(["date", "channel", "shop_page", "product", "sku"]).agg(
         quantity=("quantity", "sum"),
         revenue=("revenue", "sum"),
         cogs=("cogs", "sum"),
@@ -291,7 +368,7 @@ def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict)
     grouped["gross_margin_pct"] = grouped.apply(
         lambda r: round(r["gross_margin_amount"] / r["revenue"] * 100, 1) if r["revenue"] else 0.0, axis=1
     )
-    return grouped.sort_values(["channel", "revenue"], ascending=[True, False]).reset_index(drop=True)
+    return grouped.sort_values(["date", "channel", "revenue"], ascending=[True, True, False]).reset_index(drop=True)
 
 
 def build_daily_summary(
@@ -299,19 +376,25 @@ def build_daily_summary(
     variant_sku_map: dict,
     cost_map: dict,
     settlement_df: pd.DataFrame,
+    fee_breakdown_df: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """
     Giống build_summary nhưng tách thêm theo NGÀY (date) — dùng để dashboard
     lọc theo khoảng thời gian mà không cần gọi lại API mỗi lần đổi filter.
-    Trả về: date, channel, shop_page, orders, gross_revenue, total_fee, net_revenue, cogs,
-            gross_margin_amount, gross_margin_pct
+    Trả về: date, channel, shop_page, orders, gross_revenue, total_fee, fee_breakdown,
+            net_revenue, cogs, gross_margin_amount, gross_margin_pct
+    (fee_breakdown = dict {tên loại phí: số tiền}, cộng dồn theo group).
     """
     if not orders:
         return pd.DataFrame(columns=["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee",
-                                      "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct"])
+                                      "fee_breakdown", "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct"])
 
     fee_map_by_name, fee_map_by_order_number = _build_fee_maps(settlement_df)
-    orders_df = _prep_orders_df(orders, fee_map_by_name, fee_map_by_order_number)
+    fee_breakdown_by_name, fee_breakdown_by_order_number = _build_fee_breakdown_maps(fee_breakdown_df)
+    orders_df = _prep_orders_df(
+        orders, fee_map_by_name, fee_map_by_order_number,
+        fee_breakdown_by_name, fee_breakdown_by_order_number,
+    )
     orders_df["date"] = orders_df.apply(_order_date, axis=1)
     orders_df["cogs"] = orders_df["line_items"].apply(
         lambda items: sum(_line_item_cost(li, variant_sku_map, cost_map) for li in items)
@@ -324,12 +407,19 @@ def build_daily_summary(
         total_fee=("total_fee", "sum"),
     ).rename_axis(["date", "channel", "shop_page"]).reset_index()
 
+    fee_breakdown_by_daily_group = orders_df.groupby(
+        ["date", "source_name", "shop_page"]
+    )["fee_breakdown"].apply(_sum_fee_breakdowns)
+    gross["fee_breakdown"] = gross.apply(
+        lambda r: fee_breakdown_by_daily_group.get((r["date"], r["channel"], r["shop_page"]), {}), axis=1
+    )
+
     gross["net_revenue"] = gross["gross_revenue"] - gross["total_fee"]
     gross["gross_margin_amount"] = gross["net_revenue"] - gross["cogs"]
     gross["gross_margin_pct"] = gross.apply(
         lambda r: round(r["gross_margin_amount"] / r["net_revenue"] * 100, 1) if r["net_revenue"] else 0.0, axis=1
     )
 
-    cols = ["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee", "net_revenue",
-            "cogs", "gross_margin_amount", "gross_margin_pct"]
+    cols = ["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee", "fee_breakdown",
+            "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct"]
     return gross[cols].sort_values(["date", "channel", "shop_page"]).reset_index(drop=True)

@@ -73,18 +73,16 @@ def _digit_suffix(s) -> str:
     return m.group(1) if m else ""
 
 
-def load_settlement_fees() -> pd.DataFrame:
+def _load_combined_expense_rows() -> pd.DataFrame:
     """
-    Trả về DataFrame: join_key, join_field ("name" hoặc "order_number"), channel, total_fee.
-    - join_field="name": join_key so khớp với order["name"] (đơn sàn).
-    - join_field="order_number": join_key so khớp với str(order["order_number"]) (đơn ngoại sàn).
+    Đọc + gộp + khử trùng lặp TẤT CẢ file Chi phí, gắn sẵn "_join_key"/"_join_field" cho
+    từng DÒNG (mỗi dòng = 1 loại phí của 1 đơn hàng), loại "Sổ quỹ"/nguồn lạ. Đây là dữ liệu
+    gốc dùng chung cho cả load_settlement_fees() (tổng theo order) và
+    load_settlement_fee_breakdown() (chi tiết theo TỪNG LOẠI PHÍ - cột "Tên chi phí").
     """
-    if Config.DEMO_MODE:
-        return _demo_settlement()
-
     files = _all_expense_files()
     if not files:
-        return pd.DataFrame(columns=["join_key", "join_field", "channel", "total_fee"])
+        return pd.DataFrame()
 
     raw_frames = []
     for f in files:
@@ -111,7 +109,7 @@ def load_settlement_fees() -> pd.DataFrame:
         raw_frames.append(df)
 
     if not raw_frames:
-        return pd.DataFrame(columns=["join_key", "join_field", "channel", "total_fee"])
+        return pd.DataFrame()
 
     all_rows = pd.concat(raw_frames, ignore_index=True)
 
@@ -131,35 +129,77 @@ def load_settlement_fees() -> pd.DataFrame:
         print(f"[Chi phí] Bỏ qua {excluded_count} dòng không thuộc nguồn nào đã biết "
               f"(VD: 'Sổ quỹ' — chi phí vận hành chung, không gắn với 1 order cụ thể).")
 
+    if "Tên chi phí" not in all_rows.columns:
+        all_rows["Tên chi phí"] = "Khác"
+    all_rows["Tên chi phí"] = all_rows["Tên chi phí"].fillna("Khác").astype(str).str.strip()
+
     frames = []
 
     # Nhóm SÀN: join_key = Mã chứng từ -> so khớp order["name"]
-    mp = all_rows[marketplace_mask]
+    mp = all_rows[marketplace_mask].copy()
     if not mp.empty:
-        fee_series = mp.groupby("Mã chứng từ")["Giá trị ghi nhận"].sum()
-        channel_series = mp.groupby("Mã chứng từ")["Nguồn ghi nhận"].first() if "Nguồn ghi nhận" in mp.columns else None
-        g = pd.DataFrame({"join_key": fee_series.index, "total_fee": fee_series.values, "join_field": "name"})
-        g["channel"] = g["join_key"].map(channel_series).fillna("") if channel_series is not None else ""
-        frames.append(g)
+        mp["_join_key"] = mp["Mã chứng từ"]
+        mp["_join_field"] = "name"
+        frames.append(mp)
 
     # Nhóm NGOẠI SÀN: join_key = phần số trong "Tham chiếu" (VD: "SON12345" -> "12345")
     # -> so khớp str(order["order_number"])
-    nm = all_rows[non_marketplace_mask]
+    nm = all_rows[non_marketplace_mask].copy()
     if not nm.empty and "Tham chiếu" in nm.columns:
-        nm = nm.copy()
         nm["_ref_digits"] = nm["Tham chiếu"].apply(_digit_suffix)
         nm = nm[nm["_ref_digits"] != ""]
         if not nm.empty:
-            fee_series = nm.groupby("_ref_digits")["Giá trị ghi nhận"].sum()
-            channel_series = nm.groupby("_ref_digits")["Nguồn ghi nhận"].first() if "Nguồn ghi nhận" in nm.columns else None
-            g = pd.DataFrame({"join_key": fee_series.index, "total_fee": fee_series.values, "join_field": "order_number"})
-            g["channel"] = g["join_key"].map(channel_series).fillna("") if channel_series is not None else ""
-            frames.append(g)
+            nm["_join_key"] = nm["_ref_digits"]
+            nm["_join_field"] = "order_number"
+            frames.append(nm)
 
     if not frames:
-        return pd.DataFrame(columns=["join_key", "join_field", "channel", "total_fee"])
+        return pd.DataFrame()
 
     return pd.concat(frames, ignore_index=True)
+
+
+def load_settlement_fees() -> pd.DataFrame:
+    """
+    Trả về DataFrame: join_key, join_field ("name" hoặc "order_number"), channel, total_fee.
+    - join_field="name": join_key so khớp với order["name"] (đơn sàn).
+    - join_field="order_number": join_key so khớp với str(order["order_number"]) (đơn ngoại sàn).
+    """
+    if Config.DEMO_MODE:
+        return _demo_settlement()
+
+    combined = _load_combined_expense_rows()
+    if combined.empty:
+        return pd.DataFrame(columns=["join_key", "join_field", "channel", "total_fee"])
+
+    channel_col = "Nguồn ghi nhận" if "Nguồn ghi nhận" in combined.columns else None
+    agg_kwargs = {"total_fee": ("Giá trị ghi nhận", "sum")}
+    if channel_col:
+        agg_kwargs["channel"] = (channel_col, "first")
+    g = combined.groupby(["_join_key", "_join_field"]).agg(**agg_kwargs).reset_index()
+    if channel_col is None:
+        g["channel"] = ""
+    g = g.rename(columns={"_join_key": "join_key", "_join_field": "join_field"})
+    return g[["join_key", "join_field", "channel", "total_fee"]]
+
+
+def load_settlement_fee_breakdown() -> pd.DataFrame:
+    """
+    Trả về DataFrame CHI TIẾT theo TỪNG LOẠI PHÍ: join_key, join_field, fee_name, amount.
+    Dùng để hiển thị "list chi tiết từng phần phí" (VD: Phí cố định, Phí dịch vụ, Phí thanh
+    toán, Thuế sàn thực tế, Phí tiếp thị liên kết (aff), Phí vận chuyển thực tế, ...) thay vì
+    chỉ 1 con số tổng total_fee.
+    """
+    if Config.DEMO_MODE:
+        return pd.DataFrame(columns=["join_key", "join_field", "fee_name", "amount"])
+
+    combined = _load_combined_expense_rows()
+    if combined.empty:
+        return pd.DataFrame(columns=["join_key", "join_field", "fee_name", "amount"])
+
+    g = combined.groupby(["_join_key", "_join_field", "Tên chi phí"])["Giá trị ghi nhận"].sum().reset_index()
+    g.columns = ["join_key", "join_field", "fee_name", "amount"]
+    return g
 
 
 # ---------------------------------------------------------------------------

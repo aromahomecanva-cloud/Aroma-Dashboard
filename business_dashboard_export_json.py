@@ -17,7 +17,7 @@ from pathlib import Path
 from business_dashboard_sapo import get_orders, get_variant_sku_map
 from business_dashboard_costs import load_cost_map
 from business_dashboard_meta import get_ads_spend, get_ads_spend_daily
-from business_dashboard_settlement import load_settlement_fees
+from business_dashboard_settlement import load_settlement_fees, load_settlement_fee_breakdown
 from business_dashboard_aggregate import build_summary, build_product_breakdown, build_daily_summary, fee_join_diagnostics
 from business_dashboard_debug_fee_match import run_diagnostics as run_fee_match_diagnostics
 
@@ -31,10 +31,11 @@ def main():
     ads_data = get_ads_spend(days=None)
     ads_daily = get_ads_spend_daily(days=None)
     settlement_df = load_settlement_fees()
+    fee_breakdown_df = load_settlement_fee_breakdown()
 
-    summary = build_summary(orders, variant_sku_map, cost_map, ads_data, settlement_df)
+    summary = build_summary(orders, variant_sku_map, cost_map, ads_data, settlement_df, fee_breakdown_df)
     product_breakdown = build_product_breakdown(orders, variant_sku_map, cost_map)
-    daily_summary = build_daily_summary(orders, variant_sku_map, cost_map, settlement_df)
+    daily_summary = build_daily_summary(orders, variant_sku_map, cost_map, settlement_df, fee_breakdown_df)
 
     diag = fee_join_diagnostics(orders, settlement_df)
     # Ghi kèm mẫu order["name"]/order["order_number"] thật + mẫu join_key trong file Chi phí
@@ -77,7 +78,7 @@ def main():
     print(f"Lấy TOÀN BỘ lịch sử — {len(orders)} đơn hàng.")
     print(f"Tổng ads spend (Meta, chưa gán kênh): {ads_data.get('total_spend', 0):,.0f}đ")
     print(f"Số SKU có giá vốn trong file: {len(cost_map)}")
-    print(f"Số dòng breakdown theo sản phẩm x kênh x shop/page: {len(product_breakdown)}")
+    print(f"Số dòng breakdown theo ngày x sản phẩm x kênh x shop/page: {len(product_breakdown)}")
     print(f"Số dòng dữ liệu theo ngày x kênh x shop/page: {len(daily_summary)}")
     print(f"Số ngày có dữ liệu ads: {len(ads_daily)}")
     print(f"Số tổ hợp channel x shop/page nhận diện được: {len(summary)}")
