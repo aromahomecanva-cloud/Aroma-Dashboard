@@ -237,6 +237,39 @@ def _prep_orders_df(
     return df
 
 
+def _allocate_ads_spend(df: pd.DataFrame, ads_spend_by_channel: dict | None, revenue_col: str = "gross_revenue") -> pd.DataFrame:
+    """
+    Gán ads_spend (tổng theo KÊNH, từ Meta) vào từng dòng (channel, shop_page) — vì Meta chỉ
+    cho biết tổng chi tiêu theo CAMPAIGN/KÊNH (facebook/instagram), không biết chia cho
+    shop/page cụ thể nào trong Sapo. Quy ước phân bổ: chia theo TỶ LỆ doanh thu
+    (revenue_col) của từng shop/page trong cùng kênh đó (shop/page đóng góp doanh thu nhiều
+    hơn thì được cộng nhiều ads_spend hơn — cách phân bổ phổ biến, có thể tinh chỉnh sau khi
+    có thêm dữ liệu ví dụ UTM/landing page cụ thể).
+    Nếu kênh đó có ads_spend nhưng KHÔNG có dòng nào trong df (VD chưa từng có đơn) -> thêm
+    1 dòng mới shop_page="" để không làm mất chi phí này.
+    """
+    if "ads_spend" not in df.columns:
+        df["ads_spend"] = 0.0
+    ads_spend_by_channel = ads_spend_by_channel or {}
+    extra_rows = []
+    for ch, total_spend in ads_spend_by_channel.items():
+        if not total_spend:
+            continue
+        mask = df["channel"] == ch
+        if not mask.any():
+            extra_rows.append({"channel": ch, "shop_page": "", "ads_spend": total_spend})
+            continue
+        rev_sum = df.loc[mask, revenue_col].sum()
+        if rev_sum > 0:
+            df.loc[mask, "ads_spend"] = df.loc[mask, "ads_spend"] + df.loc[mask, revenue_col] / rev_sum * total_spend
+        else:
+            n = mask.sum()
+            df.loc[mask, "ads_spend"] = df.loc[mask, "ads_spend"] + total_spend / n
+    if extra_rows:
+        df = pd.concat([df, pd.DataFrame(extra_rows)], ignore_index=True)
+    return df
+
+
 def build_summary(
     orders: list,
     variant_sku_map: dict,
@@ -244,6 +277,7 @@ def build_summary(
     ads_data: dict,
     settlement_df: pd.DataFrame,
     fee_breakdown_df: pd.DataFrame | None = None,
+    ads_spend_by_channel: dict | None = None,
 ) -> pd.DataFrame:
     fee_map_by_name, fee_map_by_order_number = _build_fee_maps(settlement_df)
     fee_breakdown_by_name, fee_breakdown_by_order_number = _build_fee_breakdown_maps(fee_breakdown_df)
@@ -278,14 +312,29 @@ def build_summary(
         index=summary.index, dtype=object,
     )
 
-    # Ads spend KHÔNG gán theo kênh (xem lý do ở docstring) -> để 0 ở đây,
-    # tổng ads spend thật lấy riêng từ ads_data["total_spend"] khi xuất data.json.
+    # Ads spend giờ ĐÃ gán theo kênh facebook/instagram (từ Meta), phân bổ theo tỷ lệ
+    # doanh thu cho từng shop/page trong kênh đó — xem _allocate_ads_spend(). Các kênh khác
+    # (shopee/tiktokshop/...) không có trong ads_spend_by_channel -> vẫn = 0 như trước.
     summary["ads_spend"] = 0.0
+    summary = _allocate_ads_spend(summary, ads_spend_by_channel, revenue_col="gross_revenue")
+    summary["fee_breakdown"] = summary["fee_breakdown"].apply(lambda v: v if isinstance(v, dict) else {})
+    for col in ["gross_revenue", "cogs", "total_fee"]:
+        summary[col] = summary[col].fillna(0)
+    summary["orders"] = summary["orders"].fillna(0).astype(int)
 
     summary["net_revenue"] = summary["gross_revenue"] - summary["total_fee"]
-    summary["gross_margin_amount"] = summary["net_revenue"] - summary["cogs"]
-    summary["gross_margin_pct"] = (summary["gross_margin_amount"] / summary["net_revenue"] * 100).round(1)
-    summary["net_profit_after_ads"] = summary["gross_margin_amount"] - summary["ads_spend"]
+    # Gross margin GIỜ ĐÃ TRỪ Ads spend ngay ở mức từng dòng (trước đây chỉ trừ ở mức tổng
+    # trên dashboard) — để nhất quán với banner "Gross margin ở mọi nơi ĐÃ TRỪ Ads spend",
+    # giờ ads_spend không còn luôn = 0 nữa (facebook/instagram đã có số thật).
+    summary["gross_margin_amount"] = summary["net_revenue"] - summary["cogs"] - summary["ads_spend"]
+    # LƯU Ý: net_revenue có thể = 0 khi 1 kênh (facebook/instagram) có ads_spend nhưng CHƯA có
+    # đơn hàng nào khớp (dòng "extra_rows" từ _allocate_ads_spend) -> chia cho 0 sẽ ra
+    # inf/-inf/NaN, mà json.dumps xuất "Infinity"/"-Infinity"/"NaN" là JSON KHÔNG HỢP LỆ, JS
+    # JSON.parse() sẽ crash khi dashboard đọc data.json. Phải chặn chia 0 -> trả về 0.0.
+    summary["gross_margin_pct"] = summary.apply(
+        lambda r: round(r["gross_margin_amount"] / r["net_revenue"] * 100, 1) if r["net_revenue"] else 0.0, axis=1
+    )
+    summary["net_profit_after_ads"] = summary["gross_margin_amount"]  # giữ cột để tương thích cũ, không trừ thêm nữa
 
     cols = ["channel", "shop_page", "orders", "gross_revenue", "total_fee", "fee_breakdown", "net_revenue",
             "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend", "net_profit_after_ads"]
@@ -415,12 +464,47 @@ def build_product_breakdown(orders: list, variant_sku_map: dict, cost_map: dict)
     return grouped.sort_values(["date", "channel", "revenue"], ascending=[True, True, False]).reset_index(drop=True)
 
 
+def _allocate_ads_spend_daily(df: pd.DataFrame, ads_daily_by_channel: list | None) -> pd.DataFrame:
+    """Giống _allocate_ads_spend() nhưng theo TỪNG NGÀY x KÊNH (dùng
+    business_dashboard_meta.get_ads_spend_daily_by_channel()). Nếu ngày/kênh đó có ads_spend
+    nhưng KHÔNG có dòng đơn hàng nào (VD chạy ads nhưng hôm đó không có đơn) -> vẫn thêm 1
+    dòng mới (shop_page="") để không làm mất chi phí, gross_revenue=0 nên gross_margin âm
+    đúng bằng ads_spend hôm đó."""
+    if "ads_spend" not in df.columns:
+        df["ads_spend"] = 0.0
+    if not ads_daily_by_channel:
+        return df
+    agg = {}
+    for row in ads_daily_by_channel:
+        key = (row["date"], row["channel"])
+        agg[key] = agg.get(key, 0.0) + row["spend"]
+
+    extra_rows = []
+    for (date, ch), total_spend in agg.items():
+        if not total_spend:
+            continue
+        mask = (df["date"] == date) & (df["channel"] == ch)
+        if not mask.any():
+            extra_rows.append({"date": date, "channel": ch, "shop_page": "", "ads_spend": total_spend})
+            continue
+        rev_sum = df.loc[mask, "gross_revenue"].sum()
+        if rev_sum > 0:
+            df.loc[mask, "ads_spend"] = df.loc[mask, "ads_spend"] + df.loc[mask, "gross_revenue"] / rev_sum * total_spend
+        else:
+            n = mask.sum()
+            df.loc[mask, "ads_spend"] = df.loc[mask, "ads_spend"] + total_spend / n
+    if extra_rows:
+        df = pd.concat([df, pd.DataFrame(extra_rows)], ignore_index=True)
+    return df
+
+
 def build_daily_summary(
     orders: list,
     variant_sku_map: dict,
     cost_map: dict,
     settlement_df: pd.DataFrame,
     fee_breakdown_df: pd.DataFrame | None = None,
+    ads_daily_by_channel: list | None = None,
 ) -> pd.DataFrame:
     """
     Giống build_summary nhưng tách thêm theo NGÀY (date) — dùng để dashboard
@@ -506,12 +590,23 @@ def build_daily_summary(
         index=gross.index, dtype=object,
     )
 
+    # Ads spend theo NGÀY x KÊNH (facebook/instagram) từ Meta, phân bổ theo tỷ lệ doanh thu
+    # cho shop/page trong cùng kênh + ngày đó — xem _allocate_ads_spend_daily().
+    gross["ads_spend"] = 0.0
+    gross = _allocate_ads_spend_daily(gross, ads_daily_by_channel)
+    gross["fee_breakdown"] = gross["fee_breakdown"].apply(lambda v: v if isinstance(v, dict) else {})
+    for col in ["gross_revenue", "cogs", "total_fee"]:
+        gross[col] = gross[col].fillna(0)
+    gross["orders"] = gross["orders"].fillna(0).astype(int)
+
     gross["net_revenue"] = gross["gross_revenue"] - gross["total_fee"]
-    gross["gross_margin_amount"] = gross["net_revenue"] - gross["cogs"]
+    # Gross margin GIỜ ĐÃ TRỪ Ads spend ngay ở mức từng dòng (xem ghi chú tương tự trong
+    # build_summary()).
+    gross["gross_margin_amount"] = gross["net_revenue"] - gross["cogs"] - gross["ads_spend"]
     gross["gross_margin_pct"] = gross.apply(
         lambda r: round(r["gross_margin_amount"] / r["net_revenue"] * 100, 1) if r["net_revenue"] else 0.0, axis=1
     )
 
     cols = ["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee", "fee_breakdown",
-            "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct"]
+            "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend"]
     return gross[cols].sort_values(["date", "channel", "shop_page"]).reset_index(drop=True)
