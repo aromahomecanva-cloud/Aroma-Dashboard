@@ -448,6 +448,47 @@ def _rows_to_ads(rows: list) -> list:
     return out
 
 
+def _get_ads_detail_rows_full_history_chunked(chunk_days: int = 90, max_total_days: int = 1100) -> list:
+    """
+    Kéo TOÀN BỘ lịch sử (ad_id, date) theo TỪNG ĐỢT ~chunk_days ngày (đi lùi từ hôm nay), thay
+    vì 1 lần gọi date_preset="maximum" + time_increment=1 + level="ad" duy nhất.
+
+    ĐÃ XÁC NHẬN qua log GitHub Actions thật: gọi 1 lần duy nhất cho TOÀN BỘ lịch sử ở granularity
+    này (mỗi ad x mỗi ngày) quá nặng, Meta trả về "500 Internal Server Error" (code 1, error_
+    subcode 99 - "An unknown error occurred", tức Meta xử lý không nổi truy vấn quá lớn). Chia
+    nhỏ theo đợt giúp mỗi truy vấn nhẹ hơn hẳn, và nếu 1 đợt lỗi (dù đã retry trong
+    _get_paginated) thì CHỈ MẤT đợt đó, KHÔNG mất toàn bộ các đợt khác đã lấy được.
+
+    max_total_days ~1100 ngày (~3 năm) — rộng hơn giới hạn ~37 tháng dữ liệu insights Meta giữ,
+    nên nếu về tới đợt không còn dữ liệu (3 đợt rỗng liên tiếp) sẽ tự dừng sớm.
+    """
+    all_rows = []
+    until_dt = dt.datetime.now()
+    covered = 0
+    empty_streak = 0
+    while covered < max_total_days:
+        since_dt = until_dt - dt.timedelta(days=chunk_days)
+        since_s, until_s = since_dt.strftime("%Y-%m-%d"), until_dt.strftime("%Y-%m-%d")
+        print(f"  [full pull ads_detail - đợt {covered}-{covered + chunk_days} ngày trước] {since_s} -> {until_s}")
+        try:
+            chunk_rows = _get_ads_detail_rows_range(since_s, until_s)
+        except Exception as e:
+            print(f"  [Lỗi ở đợt {since_s} -> {until_s} - BỎ QUA đợt này, vẫn tiếp tục các đợt khác] {e}")
+            chunk_rows = []
+        if chunk_rows:
+            all_rows.extend(chunk_rows)
+            empty_streak = 0
+        else:
+            empty_streak += 1
+            if empty_streak >= 3:
+                print(f"  [full pull ads_detail] 3 đợt liên tiếp không có dữ liệu -> dừng sớm "
+                      f"(có thể đã vượt quá ngày Ads Meta bắt đầu chạy, hoặc hết dữ liệu Meta còn giữ).")
+                break
+        until_dt = since_dt
+        covered += chunk_days
+    return all_rows
+
+
 def get_ads_detail_cached(cache_path, incremental_days: int = 3) -> dict:
     """
     Bản CÓ CACHE của get_ads_detail() — xem ghi chú lớn ở đầu phần CACHE. Cache lưu THEO NGÀY
@@ -461,8 +502,8 @@ def get_ads_detail_cached(cache_path, incremental_days: int = 3) -> dict:
     rows_by_key = cache.get("rows", {})
 
     if not rows_by_key:
-        print("[Meta ads_detail cache] Không có cache -> kéo TOÀN BỘ lịch sử (level=ad, theo ngày).")
-        fresh_rows = _get_ads_detail_rows_range(None, None)
+        print("[Meta ads_detail cache] Không có cache -> kéo TOÀN BỘ lịch sử (level=ad, theo ngày, chia đợt).")
+        fresh_rows = _get_ads_detail_rows_full_history_chunked()
     else:
         since = (dt.datetime.now() - dt.timedelta(days=incremental_days)).strftime("%Y-%m-%d")
         until = dt.datetime.now().strftime("%Y-%m-%d")
