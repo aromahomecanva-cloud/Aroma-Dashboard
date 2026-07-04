@@ -9,17 +9,18 @@ Công thức:
                        total_line_items_price - total_discounts - giá trị hàng trả lại (refunds)
                        (ĐÃ XÁC NHẬN khớp với file "Báo cáo doanh thu theo thời gian" user xuất
                        trực tiếp từ Sapo — trước đây dùng "total_price" là SAI vì total_price
-                       là tổng tiền khách phải trả, không trừ hàng trả lại và không loại đơn huỷ)
+                       là tổng tiền khách phải trả, không trừ hàng trả lại)
   cogs               = tổng (giá_vốn_theo_sku * quantity) theo kênh (join qua variant_id -> sku)
   total_fee          = tổng phí sàn + ship + voucher + aff + đồng tài trợ (từ file Chi phí Sapo)
   net_revenue        = gross_revenue - total_fee
   gross_margin_amount= net_revenue - cogs
   gross_margin_pct   = gross_margin_amount / net_revenue * 100
 
-QUAN TRỌNG: orders truyền vào các hàm build_*() trong module này PHẢI đã được lọc bỏ đơn HUỶ
-từ trước (xem business_dashboard_revenue.filter_valid_orders(), gọi 1 lần duy nhất trong
-business_dashboard_export_json.py ngay sau khi lấy orders từ Sapo) — đúng theo xác nhận của
-user "số liệu của sapo đã loại trừ hết những đơn hoàn hủy".
+QUAN TRỌNG: orders truyền vào các hàm build_*() trong module này là orders GỐC, KHÔNG lọc bỏ
+đơn huỷ (xem business_dashboard_revenue.py — đã đối chiếu thực nghiệm với báo cáo Sapo thật
+và xác nhận Sapo KHÔNG loại đơn nào theo status/cancelled_on trong báo cáo doanh thu). Ngày
+của order (_order_date()) PHẢI tính theo giờ Việt Nam (UTC+7), đã xác nhận qua đối chiếu
+business_dashboard_debug_revenue.py.
 
 Lưu ý về ads_spend: Meta Ads (Facebook/Instagram) không nhất thiết chạy cho từng kênh bán
 hàng cụ thể (Shopee/TikTok Shop có nền tảng ads riêng của họ). Vì vậy ads_spend KHÔNG được
@@ -51,6 +52,7 @@ dòng sản phẩm thường.
 """
 
 import re
+import datetime as dt
 
 import pandas as pd
 
@@ -77,10 +79,24 @@ def _extract_shop_page(tags) -> str:
     return ""
 
 
-def _order_date(o: dict) -> str:
-    """Lấy ngày (YYYY-MM-DD) từ created_on của order."""
+def _order_date(o) -> str:
+    """
+    Lấy ngày (YYYY-MM-DD) từ created_on của order, THEO GIỜ VIỆT NAM (UTC+7).
+
+    ĐÃ XÁC NHẬN qua business_dashboard_debug_revenue.py (chạy ma trận đối chiếu với báo cáo
+    "Doanh thu theo thời gian" thật của Sapo, 30 ngày, ~2537 đơn): dùng trực tiếp 10 ký tự đầu
+    của created_on (giờ UTC thô) làm sai lệch NGÀY của rất nhiều đơn (tổng lệch 187 đơn/30 ngày,
+    chỉ khớp đúng 2/30 ngày). Sau khi cộng thêm 7 tiếng (giờ VN) trước khi lấy ngày, kết quả
+    khớp gần như tuyệt đối: khớp đúng 28/30 ngày, tổng lệch chỉ 2 đơn/2537 đơn.
+    """
     created = o.get("created_on") or ""
-    return str(created)[:10]
+    s = str(created).replace("Z", "+00:00")
+    try:
+        parsed = dt.datetime.fromisoformat(s)
+    except ValueError:
+        return str(created)[:10]
+    vn_time = parsed + dt.timedelta(hours=7)
+    return vn_time.strftime("%Y-%m-%d")
 
 
 def _line_item_cost(li: dict, variant_sku_map: dict, cost_map: dict) -> float:

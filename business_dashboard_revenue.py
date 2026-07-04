@@ -12,15 +12,24 @@ Tính DOANH THU THUẦN theo ĐÚNG công thức Sapo dùng trong báo cáo "Doa
   Phí giao hàng       = tổng price của shipping_lines
   Tổng doanh thu      = Doanh thu thuần + Phí giao hàng + Tiền thuế
 
-QUAN TRỌNG: đơn đã HUỶ (status="cancelled" hoặc có cancelled_on) bị loại hẳn khỏi MỌI thống
-kê doanh thu — đúng như user xác nhận "số liệu của sapo đã loại trừ hết những đơn hoàn hủy".
-Dùng filter_valid_orders() ngay sau khi lấy orders từ Sapo, TRƯỚC KHI đưa vào bất kỳ hàm
-build_* nào trong business_dashboard_aggregate.py.
+QUAN TRỌNG - ĐÃ ĐỐI CHIẾU VỚI SỐ THẬT (business_dashboard_debug_revenue.py, chạy ma trận
+5 cách lọc huỷ x 2 cách tính ngày trên ~2537 đơn / 30 ngày, so với báo cáo Sapo thật):
+  - KHÔNG lọc bỏ đơn nào theo status/cancelled_on/financial_status cả — "no_filter" khớp
+    TỐT NHẤT (28/30 ngày khớp chính xác, lệch tổng chỉ 2 đơn/2537 đơn). Ban đầu tưởng cần
+    loại đơn huỷ (theo lời user "nhớ trừ hết đơn hoàn hủy"), nhưng dữ liệu thật cho thấy
+    trường "cancelled_on" được set trên tới 3146 đơn dù chỉ có 6 đơn thực sự status="cancelled"
+    — và loại bỏ theo cancelled_on làm kết quả LỆCH NẶNG hơn (thiếu ~268 đơn/2537). Nhiều khả
+    năng "loại trừ hàng hoàn/huỷ" mà user nói đã được phản ánh qua việc TRỪ "Tiền hàng trả lại"
+    (refund_value) trong công thức Doanh thu thuần, chứ không phải loại bỏ nguyên cả đơn.
+  - NGÀY của order phải tính theo GIỜ VIỆT NAM (UTC+7), không phải giờ UTC thô của created_on
+    — xem business_dashboard_aggregate._order_date().
+is_cancelled()/filter_valid_orders() vẫn giữ lại trong file này (không dùng trong pipeline
+chính nữa) để phục vụ chẩn đoán/tương lai nếu cần, nhưng KHÔNG áp dụng mặc định.
 
 Trước đây dashboard dùng trực tiếp field "total_price" (tổng tiền khách phải trả, ĐÃ gồm
-phí ship/thuế, và KHÔNG trừ giá trị hàng trả lại, KHÔNG loại đơn huỷ) làm "DT gộp" -> lệch
-khá xa so với "Doanh thu thuần" thật của Sapo (đã xác nhận qua file
-"Báo cáo doanh thu theo thời gian" user xuất trực tiếp từ Sapo).
+phí ship/thuế, và KHÔNG trừ giá trị hàng trả lại) làm "DT gộp" -> lệch khá xa so với
+"Doanh thu thuần" thật của Sapo (đã xác nhận qua file "Báo cáo doanh thu theo thời gian"
+user xuất trực tiếp từ Sapo).
 """
 
 
@@ -34,9 +43,11 @@ def is_cancelled(o: dict) -> bool:
 
 
 def filter_valid_orders(orders: list) -> list:
-    """Loại bỏ TOÀN BỘ đơn đã huỷ khỏi danh sách orders — áp dụng 1 LẦN DUY NHẤT ngay sau khi
-    lấy orders từ Sapo (business_dashboard_export_json.py), để mọi hàm build_*/diagnostics
-    phía sau đều nhất quán dùng chung 1 tập order "hợp lệ"."""
+    """
+    KHÔNG dùng trong pipeline chính (xem docstring module) — đã xác nhận thực nghiệm rằng
+    Sapo KHÔNG loại bỏ đơn theo status/cancelled_on trong báo cáo "Doanh thu theo thời gian".
+    Giữ lại hàm này chỉ để tham khảo/chẩn đoán nếu cần điều tra lại sau này.
+    """
     return [o for o in orders if not is_cancelled(o)]
 
 
