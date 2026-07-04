@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-07-03T21:49:13.896251",
-  "total_ads_spend": 1377566098.0,
+  "updated_at": "2026-07-04T01:54:49.693924",
+  "total_ads_spend": 1377789252.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
@@ -19,28 +19,28 @@
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3840,
-      "gross_revenue": 846372588.0,
+      "orders": 3841,
+      "gross_revenue": 846411588.0,
       "total_fee": 134401165.77,
-      "net_revenue": 711971422.23,
-      "cogs": 149434548.513,
-      "gross_margin_amount": 562536873.717,
+      "net_revenue": 712010422.23,
+      "cogs": 149451548.513,
+      "gross_margin_amount": 562558873.717,
       "gross_margin_pct": 79.0,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 562536873.717
+      "net_profit_after_ads": 562558873.717
     },
     {
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
-      "orders": 401,
-      "gross_revenue": 256316165.0,
+      "orders": 402,
+      "gross_revenue": 257081165.0,
       "total_fee": 0.0,
-      "net_revenue": 256316165.0,
-      "cogs": 64577311.113,
-      "gross_margin_amount": 191738853.887,
+      "net_revenue": 257081165.0,
+      "cogs": 64792225.113,
+      "gross_margin_amount": 192288939.887,
       "gross_margin_pct": 74.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 191738853.887
+      "net_profit_after_ads": 192288939.887
     },
     {
       "channel": "facebook",
@@ -84,15 +84,15 @@
     {
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
-      "orders": 259,
-      "gross_revenue": 19304790.0,
+      "orders": 260,
+      "gross_revenue": 19582090.0,
       "total_fee": 4983313.0,
-      "net_revenue": 14321477.0,
-      "cogs": 7716881.705,
-      "gross_margin_amount": 6604595.295,
-      "gross_margin_pct": 46.1,
+      "net_revenue": 14598777.0,
+      "cogs": 7768091.705,
+      "gross_margin_amount": 6830685.295,
+      "gross_margin_pct": 46.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 6604595.295
+      "net_profit_after_ads": 6830685.295
     },
     {
       "channel": "pos",
@@ -691,10 +691,10 @@
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Khắc cốc line art",
       "sku": "PVN444",
-      "quantity": 182,
-      "revenue": 35973924.0,
-      "cogs": 9100000.0,
-      "gross_margin_amount": 26873924.0,
+      "quantity": 183,
+      "revenue": 36158707.0,
+      "cogs": 9150000.0,
+      "gross_margin_amount": 27008707.0,
       "gross_margin_pct": 74.7
     },
     {
@@ -724,11 +724,11 @@
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Dịch Vụ Thông Điệp Ẩn",
       "sku": "PVN440",
-      "quantity": 327,
-      "revenue": 16270300.0,
-      "cogs": 1635000.0,
-      "gross_margin_amount": 14635300.0,
-      "gross_margin_pct": 90.0
+      "quantity": 328,
+      "revenue": 16316496.0,
+      "cogs": 1640000.0,
+      "gross_margin_amount": 14676496.0,
+      "gross_margin_pct": 89.9
     },
     {
       "channel": "facebook",
@@ -779,11 +779,11 @@
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "[NL - KO TẠO ĐƠN SP NÀY] Hộp Đen Cứng Dài",
       "sku": "PVN456",
-      "quantity": 74,
-      "revenue": 9046517.0,
-      "cogs": 4810000.0,
-      "gross_margin_amount": 4236517.0,
-      "gross_margin_pct": 46.8
+      "quantity": 75,
+      "revenue": 9194343.0,
+      "cogs": 4875000.0,
+      "gross_margin_amount": 4319343.0,
+      "gross_margin_pct": 47.0
     },
     {
       "channel": "facebook",
@@ -812,11 +812,11 @@
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Nến Xi Măng 250gr - Chanh Đào Bạc Hà",
       "sku": "NETH00212",
-      "quantity": 15,
-      "revenue": 5325000.0,
-      "cogs": 1063710.0,
-      "gross_margin_amount": 4261290.0,
-      "gross_margin_pct": 80.0
+      "quantity": 16,
+      "revenue": 5652988.0,
+      "cogs": 1134624.0,
+      "gross_margin_amount": 4518364.0,
+      "gross_margin_pct": 79.9
     },
     {
       "channel": "facebook",
@@ -955,11 +955,11 @@
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Bó Hoa Khô Mini Màu Ngẫu Nhiên",
       "sku": "PKTT00047",
-      "quantity": 126,
-      "revenue": 2830763.0,
-      "cogs": 1512000.0,
-      "gross_margin_amount": 1318763.0,
-      "gross_margin_pct": 46.6
+      "quantity": 127,
+      "revenue": 2857556.0,
+      "cogs": 1524000.0,
+      "gross_margin_amount": 1333556.0,
+      "gross_margin_pct": 46.7
     },
     {
       "channel": "facebook",
@@ -1074,6 +1074,17 @@
     {
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
+      "product": "Túi canvas lớn",
+      "sku": "DGQT00017",
+      "quantity": 127,
+      "revenue": 1484483.0,
+      "cogs": 1016000.0,
+      "gross_margin_amount": 468483.0,
+      "gross_margin_pct": 31.6
+    },
+    {
+      "channel": "facebook",
+      "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Khắc Chibi + Spotify",
       "sku": "PVN554",
       "quantity": 9,
@@ -1092,17 +1103,6 @@
       "cogs": 500000.0,
       "gross_margin_amount": 975000.0,
       "gross_margin_pct": 66.1
-    },
-    {
-      "channel": "facebook",
-      "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
-      "product": "Túi canvas lớn",
-      "sku": "DGQT00017",
-      "quantity": 126,
-      "revenue": 1470624.0,
-      "cogs": 1008000.0,
-      "gross_margin_amount": 462624.0,
-      "gross_margin_pct": 31.5
     },
     {
       "channel": "facebook",
@@ -1197,11 +1197,11 @@
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Diêm Good Day",
       "sku": "PKNT00039",
-      "quantity": 151,
-      "revenue": 1187783.0,
-      "cogs": 377500.0,
-      "gross_margin_amount": 810283.0,
-      "gross_margin_pct": 68.2
+      "quantity": 152,
+      "revenue": 1197022.0,
+      "cogs": 380000.0,
+      "gross_margin_amount": 817022.0,
+      "gross_margin_pct": 68.3
     },
     {
       "channel": "facebook",
@@ -1549,21 +1549,21 @@
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Quả Thông 1 Trái",
       "sku": "PKNT00040",
-      "quantity": 142,
-      "revenue": 449656.0,
-      "cogs": 142000.0,
-      "gross_margin_amount": 307656.0,
-      "gross_margin_pct": 68.4
+      "quantity": 143,
+      "revenue": 453352.0,
+      "cogs": 143000.0,
+      "gross_margin_amount": 310352.0,
+      "gross_margin_pct": 68.5
     },
     {
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "product": "Thiệp Trái Tim Màu Ngẫu Nhiên",
       "sku": "PKTT00049",
-      "quantity": 99,
-      "revenue": 419299.0,
-      "cogs": 49500.0,
-      "gross_margin_amount": 369799.0,
+      "quantity": 100,
+      "revenue": 423919.0,
+      "cogs": 50000.0,
+      "gross_margin_amount": 373919.0,
       "gross_margin_pct": 88.2
     },
     {
@@ -7255,6 +7255,17 @@
     },
     {
       "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nước hoa tóc 10ml Pink Pomelo",
+      "sku": "NHTC00006",
+      "quantity": 14,
+      "revenue": 980000.0,
+      "cogs": 238000.0,
+      "gross_margin_amount": 742000.0,
+      "gross_margin_pct": 75.7
+    },
+    {
+      "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Lọ Tán Hương - Đàn Hương",
       "sku": "LTH0003",
@@ -7318,17 +7329,6 @@
       "cogs": 197435.0,
       "gross_margin_amount": 712565.0,
       "gross_margin_pct": 78.3
-    },
-    {
-      "channel": "shopee",
-      "shop_page": "Aroma Story - Góc Hương Thơm",
-      "product": "Nước hoa tóc 10ml Pink Pomelo",
-      "sku": "NHTC00006",
-      "quantity": 13,
-      "revenue": 910000.0,
-      "cogs": 221000.0,
-      "gross_margin_amount": 689000.0,
-      "gross_margin_pct": 75.7
     },
     {
       "channel": "shopee",
@@ -9313,6 +9313,17 @@
     {
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
+      "product": "Nước Hoa Nam Urban Night 30ml",
+      "sku": "8936241240238",
+      "quantity": 3,
+      "revenue": 1200000.0,
+      "cogs": 153630.0,
+      "gross_margin_amount": 1046370.0,
+      "gross_margin_pct": 87.2
+    },
+    {
+      "channel": "tiktokshop",
+      "shop_page": "Aroma Story - Scented Shop",
       "product": "Xịt Thơm Phòng Hương Bạc Hà 200ml",
       "sku": "XTQA00030",
       "quantity": 15,
@@ -9320,17 +9331,6 @@
       "cogs": 435000.0,
       "gross_margin_amount": 765000.0,
       "gross_margin_pct": 63.7
-    },
-    {
-      "channel": "tiktokshop",
-      "shop_page": "Aroma Story - Scented Shop",
-      "product": "Nước Hoa Nam Urban Night 30ml",
-      "sku": "8936241240238",
-      "quantity": 2,
-      "revenue": 800000.0,
-      "cogs": 102420.0,
-      "gross_margin_amount": 697580.0,
-      "gross_margin_pct": 87.2
     },
     {
       "channel": "tiktokshop",
@@ -17315,13 +17315,37 @@
       "date": "2026-07-03",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
-      "orders": 2,
-      "gross_revenue": 151300.0,
+      "orders": 3,
+      "gross_revenue": 428600.0,
       "total_fee": 0.0,
-      "net_revenue": 151300.0,
-      "cogs": 0.0,
-      "gross_margin_amount": 151300.0,
-      "gross_margin_pct": 100.0
+      "net_revenue": 428600.0,
+      "cogs": 51210.0,
+      "gross_margin_amount": 377390.0,
+      "gross_margin_pct": 88.1
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "facebook",
+      "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
+      "orders": 1,
+      "gross_revenue": 765000.0,
+      "total_fee": 0.0,
+      "net_revenue": 765000.0,
+      "cogs": 214914.0,
+      "gross_margin_amount": 550086.0,
+      "gross_margin_pct": 71.9
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "orders": 1,
+      "gross_revenue": 39000.0,
+      "total_fee": 0.0,
+      "net_revenue": 39000.0,
+      "cogs": 17000.0,
+      "gross_margin_amount": 22000.0,
+      "gross_margin_pct": 56.4
     }
   ],
   "ads_daily": [
@@ -19827,11 +19851,11 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2191787.0
+      "spend": 2196729.0
     },
     {
       "date": "2026-07-04",
-      "spend": 132884.0
+      "spend": 351096.0
     }
   ],
   "debug_fee_join": {
@@ -19875,6 +19899,156 @@
     ]
   },
   "debug_fee_match": {
-    "error": "cannot convert float infinity to integer"
+    "total_orders_scanned": 11643,
+    "waybill_values_count": 6143,
+    "son_values_count": 387,
+    "top_matching_fields_for_waybill_mã_chứng_từ": [
+      [
+        "name",
+        6140
+      ],
+      [
+        "source_identifier",
+        6140
+      ],
+      [
+        "fulfillments[1].tracking_info.tracking_number",
+        2
+      ],
+      [
+        "fulfillments[1].tracking_info.tracking_numbers[0]",
+        2
+      ],
+      [
+        "fulfillments[1].tracking_number",
+        2
+      ],
+      [
+        "fulfillments[1].tracking_numbers[0]",
+        2
+      ],
+      [
+        "fulfillments[0].tracking_info.tracking_number",
+        1
+      ],
+      [
+        "fulfillments[0].tracking_info.tracking_numbers[0]",
+        1
+      ],
+      [
+        "fulfillments[0].tracking_number",
+        1
+      ],
+      [
+        "fulfillments[0].tracking_numbers[0]",
+        1
+      ]
+    ],
+    "top_matching_fields_for_SON_tham_chiếu": [
+      [
+        "total_weight",
+        1220
+      ],
+      [
+        "current_total_weight",
+        1018
+      ],
+      [
+        "shipping_address.ward_code",
+        860
+      ],
+      [
+        "billing_address.ward_code",
+        854
+      ],
+      [
+        "order_number",
+        774
+      ],
+      [
+        "number",
+        706
+      ],
+      [
+        "line_items[1].discount_allocations[0].amount",
+        161
+      ],
+      [
+        "discount_applications[0].value",
+        88
+      ],
+      [
+        "line_items[2].discounted_unit_price",
+        63
+      ],
+      [
+        "line_items[0].discount_allocations[0].amount",
+        60
+      ],
+      [
+        "line_items[2].discount_allocations[1].amount",
+        59
+      ],
+      [
+        "line_items[2].discount_allocations[0].amount",
+        58
+      ],
+      [
+        "fulfillments[0].line_items[2].discounted_unit_price",
+        53
+      ],
+      [
+        "line_items[2].discounted_total",
+        52
+      ],
+      [
+        "fulfillments[0].line_items[2].discounted_total",
+        43
+      ],
+      [
+        "line_items[3].discounted_unit_price",
+        41
+      ],
+      [
+        "line_items[3].discounted_total",
+        38
+      ],
+      [
+        "fulfillments[0].line_items[3].discounted_unit_price",
+        36
+      ],
+      [
+        "fulfillments[0].line_items[3].discounted_total",
+        33
+      ],
+      [
+        "line_items[1].discounted_unit_price",
+        29
+      ]
+    ],
+    "sample_waybill_values": [
+      "141150593150",
+      "143297332719",
+      "145524825796",
+      "260311S2E4BCM8",
+      "260311S3FFFNRH",
+      "260311S3KCF4YJ",
+      "260311S5ER3DNA",
+      "260311S7Y8Y4DQ",
+      "260311S9B3TX26",
+      "260311SA5DXPXQ"
+    ],
+    "sample_son_values": [
+      "10019",
+      "10101",
+      "10123",
+      "10128",
+      "10147",
+      "10177",
+      "10183",
+      "10232",
+      "10258",
+      "10300"
+    ]
   }
 }
