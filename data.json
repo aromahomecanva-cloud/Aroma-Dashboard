@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-07-04T06:14:43.544507",
-  "total_ads_spend": 1378332904.0,
+  "updated_at": "2026-07-04T06:27:58.303982",
+  "total_ads_spend": 1378356925.0,
   "ads_note": "Ads spend hiện là TỔNG chung (Meta Ads), chưa gán theo kênh cụ thể.",
   "channels": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 6945,
-      "gross_revenue": 955514071.0,
+      "orders": 6947,
+      "gross_revenue": 956197171.0,
       "total_fee": 236824563.53,
       "fee_breakdown": {
         "Phí cố định": 132342674.0,
@@ -23,18 +23,18 @@
         "Thuế (Đơn hoàn thành)": 1558996.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -18495.0
       },
-      "net_revenue": 718689507.47,
-      "cogs": 462587248.895,
-      "gross_margin_amount": 256102258.57500005,
-      "gross_margin_pct": 35.6,
+      "net_revenue": 719372607.47,
+      "cogs": 462608755.907,
+      "gross_margin_amount": 256763851.56300002,
+      "gross_margin_pct": 35.7,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 256102258.57500005
+      "net_profit_after_ads": 256763851.56300002
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 3859,
-      "gross_revenue": 755857020.0,
+      "orders": 3860,
+      "gross_revenue": 755883920.0,
       "total_fee": 134401165.77,
       "fee_breakdown": {
         "Phí cố định": 81355467.0,
@@ -50,12 +50,12 @@
         "Thuế (Đơn hoàn thành)": 1320948.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -15135.0
       },
-      "net_revenue": 621455854.23,
-      "cogs": 150371664.209,
-      "gross_margin_amount": 471084190.021,
+      "net_revenue": 621482754.23,
+      "cogs": 150377164.209,
+      "gross_margin_amount": 471105590.021,
       "gross_margin_pct": 75.8,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 471084190.021
+      "net_profit_after_ads": 471105590.021
     },
     {
       "channel": "facebook",
@@ -112547,6 +112547,18 @@
     {
       "date": "2026-07-04",
       "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán Roasted Coffee",
+      "sku": "TDKT00199",
+      "quantity": 2.0,
+      "revenue": 850000.0,
+      "cogs": 43014.024,
+      "gross_margin_amount": 806985.976,
+      "gross_margin_pct": 94.9
+    },
+    {
+      "date": "2026-07-04",
+      "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Tinh Dầu Khuếch Tán True Grace",
       "sku": "TDKT00028",
@@ -112620,13 +112632,13 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Tinh Dầu Khuếch Tán Roasted Coffee",
-      "sku": "TDKT00199",
+      "product": "Tinh Dầu Khuếch Tán Romantic Night",
+      "sku": "TDKT00025",
       "quantity": 1.0,
       "revenue": 425000.0,
-      "cogs": 21507.012,
-      "gross_margin_amount": 403492.988,
-      "gross_margin_pct": 94.9
+      "cogs": 0.0,
+      "gross_margin_amount": 425000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-07-04",
@@ -113038,6 +113050,18 @@
     },
     {
       "date": "2026-07-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Đế Gỗ 10 -12cm",
+      "sku": "PKNT00003",
+      "quantity": 1.0,
+      "revenue": 27000.0,
+      "cogs": 5500.0,
+      "gross_margin_amount": 21500.0,
+      "gross_margin_pct": 79.6
+    },
+    {
+      "date": "2026-07-04",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "product": "Nước Hoa Nam Urban Night 30ml",
@@ -113092,15 +113116,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 2,
-      "gross_revenue": 645000.0,
+      "gross_revenue": 1350000.0,
       "total_fee": 23397.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 23397.0
       },
-      "net_revenue": 621603.0,
+      "net_revenue": 1326603.0,
       "cogs": 75915.139,
-      "gross_margin_amount": 545687.861,
-      "gross_margin_pct": 87.8
+      "gross_margin_amount": 1250687.861,
+      "gross_margin_pct": 94.3
     },
     {
       "date": "2026-03-11",
@@ -113157,7 +113181,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 48,
-      "gross_revenue": 9717380.0,
+      "gross_revenue": 10344316.0,
       "total_fee": 2775703.0,
       "fee_breakdown": {
         "Phí cố định": 1553390.0,
@@ -113168,38 +113192,38 @@
         "Các phí khác": 40000.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -1035.0
       },
-      "net_revenue": 6941677.0,
+      "net_revenue": 7568613.0,
       "cogs": 1806207.503,
-      "gross_margin_amount": 5135469.4969999995,
-      "gross_margin_pct": 74.0
+      "gross_margin_amount": 5762405.4969999995,
+      "gross_margin_pct": 76.1
     },
     {
       "date": "2026-03-12",
       "channel": "admin",
       "shop_page": "",
       "orders": 2,
-      "gross_revenue": 0.0,
+      "gross_revenue": 1110000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 1110000.0,
       "cogs": 147584.014,
-      "gross_margin_amount": -147584.014,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 962415.986,
+      "gross_margin_pct": 86.7
     },
     {
       "date": "2026-03-12",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 6,
-      "gross_revenue": 3694750.0,
+      "gross_revenue": 2989750.0,
       "total_fee": 184969.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 184969.0
       },
-      "net_revenue": 3509781.0,
+      "net_revenue": 2804781.0,
       "cogs": 148435.136,
-      "gross_margin_amount": 3361345.864,
-      "gross_margin_pct": 95.8
+      "gross_margin_amount": 2656345.864,
+      "gross_margin_pct": 94.7
     },
     {
       "date": "2026-03-12",
@@ -113240,7 +113264,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
-      "gross_revenue": 10305964.0,
+      "gross_revenue": 9749028.0,
       "total_fee": 2750920.0,
       "fee_breakdown": {
         "Phí cố định": 1562544.0,
@@ -113250,10 +113274,10 @@
         "Phí tiếp thị liên kết": 55950.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -4935.0
       },
-      "net_revenue": 7555044.0,
+      "net_revenue": 6998108.0,
       "cogs": 1134218.387,
-      "gross_margin_amount": 6420825.613,
-      "gross_margin_pct": 85.0
+      "gross_margin_amount": 5863889.613,
+      "gross_margin_pct": 83.8
     },
     {
       "date": "2026-03-12",
@@ -113269,6 +113293,19 @@
       "cogs": 5000.0,
       "gross_margin_amount": 9490496.0,
       "gross_margin_pct": 99.9
+    },
+    {
+      "date": "2026-03-13",
+      "channel": "admin",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -1110000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -1110000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -1110000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-03-13",
@@ -113305,13 +113342,13 @@
       "channel": "lazada",
       "shop_page": "Aroma Story Scented Candles",
       "orders": 1,
-      "gross_revenue": 0.0,
+      "gross_revenue": 455000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 455000.0,
       "cogs": 0.0,
-      "gross_margin_amount": 0.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 455000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-03-13",
@@ -113337,7 +113374,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 47,
-      "gross_revenue": 10733031.0,
+      "gross_revenue": 10663031.0,
       "total_fee": 2935831.0,
       "fee_breakdown": {
         "Phí cố định": 1673720.0,
@@ -113346,10 +113383,10 @@
         "Phí tiếp thị liên kết": 40422.0,
         "Thuế (Đơn hoàn thành)": 155937.0
       },
-      "net_revenue": 7797200.0,
+      "net_revenue": 7727200.0,
       "cogs": 1982111.124,
-      "gross_margin_amount": 5815088.876,
-      "gross_margin_pct": 74.6
+      "gross_margin_amount": 5745088.876,
+      "gross_margin_pct": 74.3
     },
     {
       "date": "2026-03-13",
@@ -113427,7 +113464,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 35,
-      "gross_revenue": 5784506.0,
+      "gross_revenue": 6158983.0,
       "total_fee": 1270804.0,
       "fee_breakdown": {
         "Phí cố định": 757094.0,
@@ -113436,17 +113473,17 @@
         "Thuế (Đơn hoàn thành)": 86767.0,
         "Phí tiếp thị liên kết": 53648.0
       },
-      "net_revenue": 4513702.0,
+      "net_revenue": 4888179.0,
       "cogs": 1672413.821,
-      "gross_margin_amount": 2841288.179,
-      "gross_margin_pct": 62.9
+      "gross_margin_amount": 3215765.179,
+      "gross_margin_pct": 65.8
     },
     {
       "date": "2026-03-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 41,
-      "gross_revenue": 7296299.0,
+      "gross_revenue": 7882380.0,
       "total_fee": 2079755.0,
       "fee_breakdown": {
         "Phí cố định": 1174705.0,
@@ -113455,10 +113492,10 @@
         "Thuế (Đơn hoàn thành)": 109446.0,
         "Phí tiếp thị liên kết": 33243.0
       },
-      "net_revenue": 5216544.0,
+      "net_revenue": 5802625.0,
       "cogs": 1519750.8429999999,
-      "gross_margin_amount": 3696793.157,
-      "gross_margin_pct": 70.9
+      "gross_margin_amount": 4282874.157,
+      "gross_margin_pct": 73.8
     },
     {
       "date": "2026-03-15",
@@ -113477,10 +113514,23 @@
     },
     {
       "date": "2026-03-15",
+      "channel": "lazada",
+      "shop_page": "Aroma Story Scented Candles",
+      "orders": 0,
+      "gross_revenue": -455000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -455000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -455000.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-03-15",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 54,
-      "gross_revenue": 7990637.0,
+      "gross_revenue": 7616160.0,
       "total_fee": 1751034.0,
       "fee_breakdown": {
         "Phí cố định": 1044582.0,
@@ -113489,17 +113539,17 @@
         "Thuế (Đơn hoàn thành)": 119864.0,
         "Phí tiếp thị liên kết": 63242.0
       },
-      "net_revenue": 6239603.0,
+      "net_revenue": 5865126.0,
       "cogs": 1887869.121,
-      "gross_margin_amount": 4351733.879,
-      "gross_margin_pct": 69.7
+      "gross_margin_amount": 3977256.8789999997,
+      "gross_margin_pct": 67.8
     },
     {
       "date": "2026-03-15",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 59,
-      "gross_revenue": 10363140.0,
+      "gross_revenue": 10618779.0,
       "total_fee": 2815181.0,
       "fee_breakdown": {
         "Phí cố định": 1591242.0,
@@ -113509,10 +113559,10 @@
         "Phí tiếp thị liên kết": 60303.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -4350.0
       },
-      "net_revenue": 7547959.0,
+      "net_revenue": 7803598.0,
       "cogs": 2121282.79,
-      "gross_margin_amount": 5426676.21,
-      "gross_margin_pct": 71.9
+      "gross_margin_amount": 5682315.21,
+      "gross_margin_pct": 72.8
     },
     {
       "date": "2026-03-16",
@@ -113581,7 +113631,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 47,
-      "gross_revenue": 8664803.0,
+      "gross_revenue": 7823083.0,
       "total_fee": 2474498.0,
       "fee_breakdown": {
         "Phí cố định": 1395034.0,
@@ -113590,25 +113640,25 @@
         "Phí tiếp thị liên kết": 51320.0,
         "Thuế (Đơn hoàn thành)": 129969.0
       },
-      "net_revenue": 6190305.0,
+      "net_revenue": 5348585.0,
       "cogs": 1755502.132,
-      "gross_margin_amount": 4434802.868,
-      "gross_margin_pct": 71.6
+      "gross_margin_amount": 3593082.868,
+      "gross_margin_pct": 67.2
     },
     {
       "date": "2026-03-17",
       "channel": "admin",
       "shop_page": "",
       "orders": 2,
-      "gross_revenue": 5322000.0,
+      "gross_revenue": 5718000.0,
       "total_fee": 31905.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 31905.0
       },
-      "net_revenue": 5290095.0,
+      "net_revenue": 5686095.0,
       "cogs": 116180.0,
-      "gross_margin_amount": 5173915.0,
-      "gross_margin_pct": 97.8
+      "gross_margin_amount": 5569915.0,
+      "gross_margin_pct": 98.0
     },
     {
       "date": "2026-03-17",
@@ -113630,15 +113680,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 8,
-      "gross_revenue": 4375000.0,
+      "gross_revenue": 5080000.0,
       "total_fee": 386301.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 386301.0
       },
-      "net_revenue": 3988699.0,
+      "net_revenue": 4693699.0,
       "cogs": 1191112.38,
-      "gross_margin_amount": 2797586.62,
-      "gross_margin_pct": 70.1
+      "gross_margin_amount": 3502586.62,
+      "gross_margin_pct": 74.6
     },
     {
       "date": "2026-03-17",
@@ -113708,6 +113758,19 @@
     },
     {
       "date": "2026-03-18",
+      "channel": "admin",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -396000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -396000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -396000.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-03-18",
       "channel": "facebook",
       "shop_page": "",
       "orders": 2,
@@ -113726,15 +113789,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 3,
-      "gross_revenue": 1400000.0,
+      "gross_revenue": 695000.0,
       "total_fee": 139524.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 139524.0
       },
-      "net_revenue": 1260476.0,
+      "net_revenue": 555476.0,
       "cogs": 551358.894,
-      "gross_margin_amount": 709117.106,
-      "gross_margin_pct": 56.3
+      "gross_margin_amount": 4117.106000000029,
+      "gross_margin_pct": 0.7
     },
     {
       "date": "2026-03-18",
@@ -113775,7 +113838,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 56,
-      "gross_revenue": 8217762.0,
+      "gross_revenue": 8985122.0,
       "total_fee": 2355390.0,
       "fee_breakdown": {
         "Phí cố định": 1323063.0,
@@ -113784,10 +113847,10 @@
         "Thuế (Đơn hoàn thành)": 123265.0,
         "Phí tiếp thị liên kết": 35022.0
       },
-      "net_revenue": 5862372.0,
+      "net_revenue": 6629732.0,
       "cogs": 2293928.045,
-      "gross_margin_amount": 3568443.955,
-      "gross_margin_pct": 60.9
+      "gross_margin_amount": 4335803.955,
+      "gross_margin_pct": 65.4
     },
     {
       "date": "2026-03-19",
@@ -113822,7 +113885,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
-      "gross_revenue": 8066573.0,
+      "gross_revenue": 8240203.0,
       "total_fee": 1678644.0,
       "fee_breakdown": {
         "Phí cố định": 1012927.0,
@@ -113831,17 +113894,17 @@
         "Thuế (Đơn hoàn thành)": 116368.0,
         "Phí tiếp thị liên kết": 49408.0
       },
-      "net_revenue": 6387929.0,
+      "net_revenue": 6561559.0,
       "cogs": 1337055.165,
-      "gross_margin_amount": 5050873.835,
-      "gross_margin_pct": 79.1
+      "gross_margin_amount": 5224503.835,
+      "gross_margin_pct": 79.6
     },
     {
       "date": "2026-03-19",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 53,
-      "gross_revenue": 9372118.0,
+      "gross_revenue": 8698758.0,
       "total_fee": 2691321.0,
       "fee_breakdown": {
         "Phí cố định": 1508857.0,
@@ -113850,10 +113913,10 @@
         "Thuế (Đơn hoàn thành)": 140582.0,
         "Phí tiếp thị liên kết": 71320.0
       },
-      "net_revenue": 6680797.0,
+      "net_revenue": 6007437.0,
       "cogs": 3081973.966,
-      "gross_margin_amount": 3598823.034,
-      "gross_margin_pct": 53.9
+      "gross_margin_amount": 2925463.034,
+      "gross_margin_pct": 48.7
     },
     {
       "date": "2026-03-19",
@@ -113905,7 +113968,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 37,
-      "gross_revenue": 6315639.0,
+      "gross_revenue": 6142009.0,
       "total_fee": 1281834.0,
       "fee_breakdown": {
         "Phí cố định": 758552.0,
@@ -113914,17 +113977,17 @@
         "Thuế (Đơn hoàn thành)": 86912.0,
         "Phí tiếp thị liên kết": 51542.0
       },
-      "net_revenue": 5033805.0,
+      "net_revenue": 4860175.0,
       "cogs": 1410089.284,
-      "gross_margin_amount": 3623715.716,
-      "gross_margin_pct": 72.0
+      "gross_margin_amount": 3450085.716,
+      "gross_margin_pct": 71.0
     },
     {
       "date": "2026-03-20",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 50,
-      "gross_revenue": 11175411.0,
+      "gross_revenue": 11081411.0,
       "total_fee": 3138393.0,
       "fee_breakdown": {
         "Phí cố định": 1770949.0,
@@ -113935,10 +113998,10 @@
         "Thuế sàn thực tế": 18586.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -2775.0
       },
-      "net_revenue": 8037018.0,
+      "net_revenue": 7943018.0,
       "cogs": 2179392.437,
-      "gross_margin_amount": 5857625.563,
-      "gross_margin_pct": 72.9
+      "gross_margin_amount": 5763625.563,
+      "gross_margin_pct": 72.6
     },
     {
       "date": "2026-03-21",
@@ -114001,7 +114064,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
-      "gross_revenue": 7915783.0,
+      "gross_revenue": 8016177.0,
       "total_fee": 1660643.0,
       "fee_breakdown": {
         "Phí cố định": 1004320.0,
@@ -114011,17 +114074,17 @@
         "Thuế (Đơn hoàn thành)": 93483.0,
         "Phí tiếp thị liên kết": 46874.0
       },
-      "net_revenue": 6255140.0,
+      "net_revenue": 6355534.0,
       "cogs": 1456405.437,
-      "gross_margin_amount": 4798734.563,
-      "gross_margin_pct": 76.7
+      "gross_margin_amount": 4899128.563,
+      "gross_margin_pct": 77.1
     },
     {
       "date": "2026-03-21",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 37,
-      "gross_revenue": 5612060.0,
+      "gross_revenue": 5791510.0,
       "total_fee": 1528290.0,
       "fee_breakdown": {
         "Phí cố định": 837016.0,
@@ -114033,10 +114096,10 @@
         "Các phí khác": 18300.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -4425.0
       },
-      "net_revenue": 4083770.0,
+      "net_revenue": 4263220.0,
       "cogs": 1495517.719,
-      "gross_margin_amount": 2588252.281,
-      "gross_margin_pct": 63.4
+      "gross_margin_amount": 2767702.281,
+      "gross_margin_pct": 64.9
     },
     {
       "date": "2026-03-21",
@@ -114086,7 +114149,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
-      "gross_revenue": 6201891.0,
+      "gross_revenue": 6707522.0,
       "total_fee": 1281243.0,
       "fee_breakdown": {
         "Phí cố định": 800752.0,
@@ -114096,17 +114159,17 @@
         "Thuế sàn thực tế": 42943.0,
         "Thuế (Đơn hoàn thành)": 49051.0
       },
-      "net_revenue": 4920648.0,
+      "net_revenue": 5426279.0,
       "cogs": 1440500.656,
-      "gross_margin_amount": 3480147.344,
-      "gross_margin_pct": 70.7
+      "gross_margin_amount": 3985778.344,
+      "gross_margin_pct": 73.5
     },
     {
       "date": "2026-03-22",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 29,
-      "gross_revenue": 5083180.0,
+      "gross_revenue": 5107250.0,
       "total_fee": 1412028.0,
       "fee_breakdown": {
         "Phí cố định": 807122.0,
@@ -114116,10 +114179,10 @@
         "Phí tiếp thị liên kết": 14743.0,
         "Thuế sàn thực tế": 22496.0
       },
-      "net_revenue": 3671152.0,
+      "net_revenue": 3695222.0,
       "cogs": 1274479.532,
-      "gross_margin_amount": 2396672.4680000003,
-      "gross_margin_pct": 65.3
+      "gross_margin_amount": 2420742.4680000003,
+      "gross_margin_pct": 65.5
     },
     {
       "date": "2026-03-22",
@@ -114154,7 +114217,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 25,
-      "gross_revenue": 4290124.0,
+      "gross_revenue": 3804493.0,
       "total_fee": 928962.0,
       "fee_breakdown": {
         "Phí cố định": 561717.0,
@@ -114164,17 +114227,17 @@
         "Thuế (Đơn hoàn thành)": 39303.0,
         "Thuế sàn thực tế": 25050.0
       },
-      "net_revenue": 3361162.0,
+      "net_revenue": 2875531.0,
       "cogs": 883984.968,
-      "gross_margin_amount": 2477177.032,
-      "gross_margin_pct": 73.7
+      "gross_margin_amount": 1991546.0320000001,
+      "gross_margin_pct": 69.3
     },
     {
       "date": "2026-03-23",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 27,
-      "gross_revenue": 4803218.0,
+      "gross_revenue": 4775559.0,
       "total_fee": 1385323.0,
       "fee_breakdown": {
         "Phí cố định": 762854.0,
@@ -114186,10 +114249,10 @@
         "Các phí khác": 23400.0,
         "Thuế đơn hoàn (Đơn trả hàng/hoàn tiền)": -975.0
       },
-      "net_revenue": 3417895.0,
+      "net_revenue": 3390236.0,
       "cogs": 1257175.996,
-      "gross_margin_amount": 2160719.0039999997,
-      "gross_margin_pct": 63.2
+      "gross_margin_amount": 2133060.0039999997,
+      "gross_margin_pct": 62.9
     },
     {
       "date": "2026-03-24",
@@ -114237,7 +114300,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
-      "gross_revenue": 9015420.0,
+      "gross_revenue": 8995420.0,
       "total_fee": 1655780.0,
       "fee_breakdown": {
         "Phí cố định": 1017469.0,
@@ -114247,9 +114310,9 @@
         "Thuế (Đơn hoàn thành)": 34602.0,
         "Phí tiếp thị liên kết": 51695.0
       },
-      "net_revenue": 7359640.0,
+      "net_revenue": 7339640.0,
       "cogs": 2285972.617,
-      "gross_margin_amount": 5073667.382999999,
+      "gross_margin_amount": 5053667.382999999,
       "gross_margin_pct": 68.9
     },
     {
@@ -114257,7 +114320,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
-      "gross_revenue": 7774558.0,
+      "gross_revenue": 7598697.0,
       "total_fee": 1897922.0,
       "fee_breakdown": {
         "Phí cố định": 1065018.0,
@@ -114267,25 +114330,25 @@
         "Thuế (Đơn hoàn thành)": 31525.0,
         "Phí tiếp thị liên kết": 52747.0
       },
-      "net_revenue": 5876636.0,
+      "net_revenue": 5700775.0,
       "cogs": 1194952.522,
-      "gross_margin_amount": 4681683.478,
-      "gross_margin_pct": 79.7
+      "gross_margin_amount": 4505822.478,
+      "gross_margin_pct": 79.0
     },
     {
       "date": "2026-03-25",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 5,
-      "gross_revenue": 4568500.0,
+      "gross_revenue": 4683500.0,
       "total_fee": 154877.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 154877.0
       },
-      "net_revenue": 4413623.0,
+      "net_revenue": 4528623.0,
       "cogs": 396628.912,
-      "gross_margin_amount": 4016994.088,
-      "gross_margin_pct": 91.0
+      "gross_margin_amount": 4131994.088,
+      "gross_margin_pct": 91.2
     },
     {
       "date": "2026-03-25",
@@ -114312,7 +114375,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 46,
-      "gross_revenue": 7530983.0,
+      "gross_revenue": 7814183.0,
       "total_fee": 1978760.0,
       "fee_breakdown": {
         "Phí cố định": 1125084.0,
@@ -114322,10 +114385,10 @@
         "Thuế sàn thực tế": 88394.0,
         "Thuế (Đơn hoàn thành)": 16431.0
       },
-      "net_revenue": 5552223.0,
+      "net_revenue": 5835423.0,
       "cogs": 2055311.245,
-      "gross_margin_amount": 3496911.755,
-      "gross_margin_pct": 63.0
+      "gross_margin_amount": 3780111.755,
+      "gross_margin_pct": 64.8
     },
     {
       "date": "2026-03-25",
@@ -114347,13 +114410,13 @@
       "channel": "admin",
       "shop_page": "",
       "orders": 2,
-      "gross_revenue": 0.0,
+      "gross_revenue": 645000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 645000.0,
       "cogs": 795900.0,
-      "gross_margin_amount": -795900.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": -150900.0,
+      "gross_margin_pct": -23.4
     },
     {
       "date": "2026-03-26",
@@ -114390,7 +114453,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
-      "gross_revenue": 10414556.0,
+      "gross_revenue": 10550142.0,
       "total_fee": 1123528.2,
       "fee_breakdown": {
         "Phí cố định": 693861.0,
@@ -114403,17 +114466,17 @@
         "Hoàn thuế do phát sinh trả hàng": -4240.8,
         "Thuế (Đơn hoàn thành)": 10725.0
       },
-      "net_revenue": 9291027.8,
+      "net_revenue": 9426613.8,
       "cogs": 2508166.33,
-      "gross_margin_amount": 6782861.470000001,
-      "gross_margin_pct": 73.0
+      "gross_margin_amount": 6918447.470000001,
+      "gross_margin_pct": 73.4
     },
     {
       "date": "2026-03-26",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 40,
-      "gross_revenue": 6223470.0,
+      "gross_revenue": 5940270.0,
       "total_fee": 970667.0,
       "fee_breakdown": {
         "Phí cố định": 543080.0,
@@ -114422,25 +114485,25 @@
         "Phí tiếp thị liên kết": 23404.0,
         "Thuế sàn thực tế": 50598.0
       },
-      "net_revenue": 5252803.0,
+      "net_revenue": 4969603.0,
       "cogs": 1851433.093,
-      "gross_margin_amount": 3401369.9069999997,
-      "gross_margin_pct": 64.8
+      "gross_margin_amount": 3118169.9069999997,
+      "gross_margin_pct": 62.7
     },
     {
       "date": "2026-03-27",
       "channel": "admin",
       "shop_page": "",
       "orders": 2,
-      "gross_revenue": 455000.0,
+      "gross_revenue": 1100000.0,
       "total_fee": 32000.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 32000.0
       },
-      "net_revenue": 423000.0,
+      "net_revenue": 1068000.0,
       "cogs": 75915.139,
-      "gross_margin_amount": 347084.86100000003,
-      "gross_margin_pct": 82.1
+      "gross_margin_amount": 992084.861,
+      "gross_margin_pct": 92.9
     },
     {
       "date": "2026-03-27",
@@ -114462,7 +114525,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 35,
-      "gross_revenue": 6379359.0,
+      "gross_revenue": 6243773.0,
       "total_fee": 385746.0,
       "fee_breakdown": {
         "Phí cố định": 239377.0,
@@ -114471,10 +114534,10 @@
         "Thuế sàn thực tế": 27484.0,
         "Phí tiếp thị liên kết": 10925.0
       },
-      "net_revenue": 5993613.0,
+      "net_revenue": 5858027.0,
       "cogs": 1278938.919,
-      "gross_margin_amount": 4714674.081,
-      "gross_margin_pct": 78.7
+      "gross_margin_amount": 4579088.081,
+      "gross_margin_pct": 78.2
     },
     {
       "date": "2026-03-27",
@@ -114500,20 +114563,20 @@
       "channel": "admin",
       "shop_page": "",
       "orders": 1,
-      "gross_revenue": 0.0,
+      "gross_revenue": 615000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 615000.0,
       "cogs": 180921.816,
-      "gross_margin_amount": -180921.816,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 434078.184,
+      "gross_margin_pct": 70.6
     },
     {
       "date": "2026-03-28",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
-      "gross_revenue": 4511364.0,
+      "gross_revenue": 4560364.0,
       "total_fee": 214931.0,
       "fee_breakdown": {
         "Phí cố định": 135569.0,
@@ -114521,10 +114584,10 @@
         "Phí thanh toán": 51719.0,
         "Thuế sàn thực tế": 15643.0
       },
-      "net_revenue": 4296433.0,
+      "net_revenue": 4345433.0,
       "cogs": 832670.619,
-      "gross_margin_amount": 3463762.381,
-      "gross_margin_pct": 80.6
+      "gross_margin_amount": 3512762.381,
+      "gross_margin_pct": 80.8
     },
     {
       "date": "2026-03-28",
@@ -114550,13 +114613,13 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
-      "gross_revenue": 5931571.0,
+      "gross_revenue": 6033321.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 5931571.0,
+      "net_revenue": 6033321.0,
       "cogs": 1424621.412,
-      "gross_margin_amount": 4506949.5879999995,
-      "gross_margin_pct": 76.0
+      "gross_margin_amount": 4608699.5879999995,
+      "gross_margin_pct": 76.4
     },
     {
       "date": "2026-03-29",
@@ -114570,6 +114633,19 @@
       "cogs": 833898.858,
       "gross_margin_amount": 3282203.142,
       "gross_margin_pct": 79.7
+    },
+    {
+      "date": "2026-03-30",
+      "channel": "admin",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -1290000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -1290000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -1290000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-03-30",
@@ -114604,13 +114680,13 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
-      "gross_revenue": 3990776.0,
+      "gross_revenue": 3840026.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 3990776.0,
+      "net_revenue": 3840026.0,
       "cogs": 1126626.725,
-      "gross_margin_amount": 2864149.275,
-      "gross_margin_pct": 71.8
+      "gross_margin_amount": 2713399.275,
+      "gross_margin_pct": 70.7
     },
     {
       "date": "2026-03-30",
@@ -114627,18 +114703,31 @@
     },
     {
       "date": "2026-03-31",
+      "channel": "admin",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -615000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -615000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -615000.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-03-31",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 6,
-      "gross_revenue": 2000000.0,
+      "gross_revenue": 2180000.0,
       "total_fee": 174803.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 174803.0
       },
-      "net_revenue": 1825197.0,
+      "net_revenue": 2005197.0,
       "cogs": 565816.846,
-      "gross_margin_amount": 1259380.154,
-      "gross_margin_pct": 69.0
+      "gross_margin_amount": 1439380.154,
+      "gross_margin_pct": 71.8
     },
     {
       "date": "2026-03-31",
@@ -114660,26 +114749,26 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
-      "gross_revenue": 5054441.0,
+      "gross_revenue": 5464065.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 5054441.0,
+      "net_revenue": 5464065.0,
       "cogs": 1354291.112,
-      "gross_margin_amount": 3700149.8880000003,
-      "gross_margin_pct": 73.2
+      "gross_margin_amount": 4109773.8880000003,
+      "gross_margin_pct": 75.2
     },
     {
       "date": "2026-03-31",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
-      "gross_revenue": 9203589.0,
+      "gross_revenue": 9397589.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 9203589.0,
+      "net_revenue": 9397589.0,
       "cogs": 2062899.253,
-      "gross_margin_amount": 7140689.7469999995,
-      "gross_margin_pct": 77.6
+      "gross_margin_amount": 7334689.7469999995,
+      "gross_margin_pct": 78.0
     },
     {
       "date": "2026-04-01",
@@ -114714,7 +114803,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
-      "gross_revenue": 8234895.0,
+      "gross_revenue": 7939023.0,
       "total_fee": 167683.0,
       "fee_breakdown": {
         "Phí cố định": 100568.0,
@@ -114723,23 +114812,23 @@
         "Thuế sàn thực tế": 11604.0,
         "Phí tiếp thị liên kết": 8527.0
       },
-      "net_revenue": 8067212.0,
+      "net_revenue": 7771340.0,
       "cogs": 1151885.214,
-      "gross_margin_amount": 6915326.786,
-      "gross_margin_pct": 85.7
+      "gross_margin_amount": 6619454.786,
+      "gross_margin_pct": 85.2
     },
     {
       "date": "2026-04-01",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 30,
-      "gross_revenue": 6515923.0,
+      "gross_revenue": 6321923.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 6515923.0,
+      "net_revenue": 6321923.0,
       "cogs": 1640610.832,
-      "gross_margin_amount": 4875312.168,
-      "gross_margin_pct": 74.8
+      "gross_margin_amount": 4681312.168,
+      "gross_margin_pct": 74.0
     },
     {
       "date": "2026-04-02",
@@ -114789,7 +114878,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 42,
-      "gross_revenue": 8633861.0,
+      "gross_revenue": 8520109.0,
       "total_fee": 132450.0,
       "fee_breakdown": {
         "Phí cố định": 86701.0,
@@ -114797,10 +114886,10 @@
         "Phí thanh toán": 32746.0,
         "Thuế sàn thực tế": 10003.0
       },
-      "net_revenue": 8501411.0,
+      "net_revenue": 8387659.0,
       "cogs": 1580007.44,
-      "gross_margin_amount": 6921403.5600000005,
-      "gross_margin_pct": 81.4
+      "gross_margin_amount": 6807651.5600000005,
+      "gross_margin_pct": 81.2
     },
     {
       "date": "2026-04-02",
@@ -114873,7 +114962,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
-      "gross_revenue": 8146979.0,
+      "gross_revenue": 8540768.0,
       "total_fee": 311080.0,
       "fee_breakdown": {
         "Phí cố định": 191841.0,
@@ -114882,17 +114971,17 @@
         "Thuế sàn thực tế": 21856.0,
         "Phí tiếp thị liên kết": 4155.0
       },
-      "net_revenue": 7835899.0,
+      "net_revenue": 8229688.0,
       "cogs": 1359249.702,
-      "gross_margin_amount": 6476649.298,
-      "gross_margin_pct": 82.7
+      "gross_margin_amount": 6870438.298,
+      "gross_margin_pct": 83.5
     },
     {
       "date": "2026-04-03",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 29,
-      "gross_revenue": 6918904.0,
+      "gross_revenue": 7256154.0,
       "total_fee": 407583.0,
       "fee_breakdown": {
         "Phí cố định": 232222.0,
@@ -114901,10 +114990,10 @@
         "Thuế sàn thực tế": 21635.0,
         "Phí tiếp thị liên kết": 7212.0
       },
-      "net_revenue": 6511321.0,
+      "net_revenue": 6848571.0,
       "cogs": 1416463.078,
-      "gross_margin_amount": 5094857.922,
-      "gross_margin_pct": 78.2
+      "gross_margin_amount": 5432107.922,
+      "gross_margin_pct": 79.3
     },
     {
       "date": "2026-04-03",
@@ -114926,35 +115015,35 @@
       "channel": "admin",
       "shop_page": "",
       "orders": 1,
-      "gross_revenue": 0.0,
+      "gross_revenue": 495000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 495000.0,
       "cogs": 0.0,
-      "gross_margin_amount": 0.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 495000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-04-04",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 5,
-      "gross_revenue": 2460000.0,
+      "gross_revenue": 2895000.0,
       "total_fee": 160615.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 160615.0
       },
-      "net_revenue": 2299385.0,
+      "net_revenue": 2734385.0,
       "cogs": 987935.09,
-      "gross_margin_amount": 1311449.9100000001,
-      "gross_margin_pct": 57.0
+      "gross_margin_amount": 1746449.9100000001,
+      "gross_margin_pct": 63.9
     },
     {
       "date": "2026-04-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 81,
-      "gross_revenue": 18000712.0,
+      "gross_revenue": 18437062.0,
       "total_fee": 1100442.0,
       "fee_breakdown": {
         "Phí cố định": 684533.0,
@@ -114963,17 +115052,17 @@
         "Thuế sàn thực tế": 78674.0,
         "Phí tiếp thị liên kết": 14952.0
       },
-      "net_revenue": 16900270.0,
+      "net_revenue": 17336620.0,
       "cogs": 3125105.229,
-      "gross_margin_amount": 13775164.771,
-      "gross_margin_pct": 81.5
+      "gross_margin_amount": 14211514.771,
+      "gross_margin_pct": 82.0
     },
     {
       "date": "2026-04-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 62,
-      "gross_revenue": 10922705.0,
+      "gross_revenue": 10902998.0,
       "total_fee": 817904.0,
       "fee_breakdown": {
         "Phí cố định": 459189.0,
@@ -114982,9 +115071,9 @@
         "Phí tiếp thị liên kết": 19809.0,
         "Thuế sàn thực tế": 42785.0
       },
-      "net_revenue": 10104801.0,
+      "net_revenue": 10085094.0,
       "cogs": 2747668.927,
-      "gross_margin_amount": 7357132.073,
+      "gross_margin_amount": 7337425.073,
       "gross_margin_pct": 72.8
     },
     {
@@ -115004,6 +115093,19 @@
       "cogs": 29000.0,
       "gross_margin_amount": 43900.0,
       "gross_margin_pct": 60.2
+    },
+    {
+      "date": "2026-04-05",
+      "channel": "admin",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -495000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -495000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -495000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-04-05",
@@ -115068,7 +115170,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 19,
-      "gross_revenue": 2324510.0,
+      "gross_revenue": 1951186.0,
       "total_fee": 71800.0,
       "fee_breakdown": {
         "Phí cố định": 44070.0,
@@ -115076,17 +115178,17 @@
         "Phí thanh toán": 16645.0,
         "Thuế sàn thực tế": 5085.0
       },
-      "net_revenue": 2252710.0,
+      "net_revenue": 1879386.0,
       "cogs": 292570.012,
-      "gross_margin_amount": 1960139.988,
-      "gross_margin_pct": 87.0
+      "gross_margin_amount": 1586815.988,
+      "gross_margin_pct": 84.4
     },
     {
       "date": "2026-04-05",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 32,
-      "gross_revenue": 5488996.0,
+      "gross_revenue": 5324713.0,
       "total_fee": 461043.0,
       "fee_breakdown": {
         "Phí cố định": 259111.0,
@@ -115095,25 +115197,25 @@
         "Thuế sàn thực tế": 24142.0,
         "Phí tiếp thị liên kết": 11652.0
       },
-      "net_revenue": 5027953.0,
+      "net_revenue": 4863670.0,
       "cogs": 864282.375,
-      "gross_margin_amount": 4163670.625,
-      "gross_margin_pct": 82.8
+      "gross_margin_amount": 3999387.625,
+      "gross_margin_pct": 82.2
     },
     {
       "date": "2026-04-06",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 5,
-      "gross_revenue": 3115000.0,
+      "gross_revenue": 2680000.0,
       "total_fee": 170123.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 170123.0
       },
-      "net_revenue": 2944877.0,
+      "net_revenue": 2509877.0,
       "cogs": 1310017.956,
-      "gross_margin_amount": 1634859.044,
-      "gross_margin_pct": 55.5
+      "gross_margin_amount": 1199859.044,
+      "gross_margin_pct": 47.8
     },
     {
       "date": "2026-04-06",
@@ -115133,7 +115235,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 52,
-      "gross_revenue": 7981238.0,
+      "gross_revenue": 7924673.0,
       "total_fee": 393239.0,
       "fee_breakdown": {
         "Phí cố định": 225249.0,
@@ -115142,17 +115244,17 @@
         "Thuế sàn thực tế": 25867.0,
         "Phí tiếp thị liên kết": 24237.0
       },
-      "net_revenue": 7587999.0,
+      "net_revenue": 7531434.0,
       "cogs": 1641177.631,
-      "gross_margin_amount": 5946821.369,
-      "gross_margin_pct": 78.4
+      "gross_margin_amount": 5890256.369,
+      "gross_margin_pct": 78.2
     },
     {
       "date": "2026-04-06",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 35,
-      "gross_revenue": 6413801.0,
+      "gross_revenue": 6260541.0,
       "total_fee": 607882.0,
       "fee_breakdown": {
         "Phí cố định": 341498.0,
@@ -115161,10 +115263,10 @@
         "Phí tiếp thị liên kết": 9892.0,
         "Thuế sàn thực tế": 31821.0
       },
-      "net_revenue": 5805919.0,
+      "net_revenue": 5652659.0,
       "cogs": 1447134.547,
-      "gross_margin_amount": 4358784.453,
-      "gross_margin_pct": 75.1
+      "gross_margin_amount": 4205524.453,
+      "gross_margin_pct": 74.4
     },
     {
       "date": "2026-04-07",
@@ -115214,7 +115316,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 48,
-      "gross_revenue": 9867214.0,
+      "gross_revenue": 10171142.0,
       "total_fee": 126673.0,
       "fee_breakdown": {
         "Phí cố định": 79041.0,
@@ -115222,17 +115324,17 @@
         "Phí thanh toán": 29592.0,
         "Thuế sàn thực tế": 9040.0
       },
-      "net_revenue": 9740541.0,
+      "net_revenue": 10044469.0,
       "cogs": 1036761.948,
-      "gross_margin_amount": 8703779.052,
-      "gross_margin_pct": 89.4
+      "gross_margin_amount": 9007707.052,
+      "gross_margin_pct": 89.7
     },
     {
       "date": "2026-04-07",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 38,
-      "gross_revenue": 5696921.0,
+      "gross_revenue": 6835681.0,
       "total_fee": 277874.0,
       "fee_breakdown": {
         "Phí cố định": 151566.0,
@@ -115241,10 +115343,10 @@
         "Thuế sàn thực tế": 14121.0,
         "Phí tiếp thị liên kết": 7976.0
       },
-      "net_revenue": 5419047.0,
+      "net_revenue": 6557807.0,
       "cogs": 2082060.776,
-      "gross_margin_amount": 3336986.224,
-      "gross_margin_pct": 61.6
+      "gross_margin_amount": 4475746.223999999,
+      "gross_margin_pct": 68.3
     },
     {
       "date": "2026-04-07",
@@ -115298,7 +115400,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 45,
-      "gross_revenue": 7425215.0,
+      "gross_revenue": 7548416.0,
       "total_fee": 188608.0,
       "fee_breakdown": {
         "Phí cố định": 118116.0,
@@ -115306,17 +115408,17 @@
         "Phí thanh toán": 44804.0,
         "Thuế sàn thực tế": 13688.0
       },
-      "net_revenue": 7236607.0,
+      "net_revenue": 7359808.0,
       "cogs": 1555057.122,
-      "gross_margin_amount": 5681549.8780000005,
-      "gross_margin_pct": 78.5
+      "gross_margin_amount": 5804750.8780000005,
+      "gross_margin_pct": 78.9
     },
     {
       "date": "2026-04-08",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 2130,
-      "gross_revenue": 4084017.0,
+      "gross_revenue": 63515321.0,
       "total_fee": 271624.0,
       "fee_breakdown": {
         "Phí cố định": 140725.0,
@@ -115325,10 +115427,10 @@
         "Thuế sàn thực tế": 13116.0,
         "Phí tiếp thị liên kết": 3759.0
       },
-      "net_revenue": 3812393.0,
+      "net_revenue": 63243697.0,
       "cogs": 255978225.455,
-      "gross_margin_amount": -252165832.455,
-      "gross_margin_pct": -6614.4
+      "gross_margin_amount": -192734528.455,
+      "gross_margin_pct": -304.7
     },
     {
       "date": "2026-04-08",
@@ -115365,13 +115467,13 @@
       "channel": "admin",
       "shop_page": "",
       "orders": 1,
-      "gross_revenue": 0.0,
+      "gross_revenue": 495000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 495000.0,
       "cogs": 61293.959,
-      "gross_margin_amount": -61293.959,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 433706.04099999997,
+      "gross_margin_pct": 87.6
     },
     {
       "date": "2026-04-09",
@@ -115393,7 +115495,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 41,
-      "gross_revenue": 7385622.0,
+      "gross_revenue": 7280811.0,
       "total_fee": 131050.0,
       "fee_breakdown": {
         "Phí đơn trả hàng": 36500.0,
@@ -115403,17 +115505,17 @@
         "Phí tiếp thị liên kết": 11842.0,
         "Thuế sàn thực tế": 6160.0
       },
-      "net_revenue": 7254572.0,
+      "net_revenue": 7149761.0,
       "cogs": 1044922.2370000001,
-      "gross_margin_amount": 6209649.763,
-      "gross_margin_pct": 85.6
+      "gross_margin_amount": 6104838.763,
+      "gross_margin_pct": 85.4
     },
     {
       "date": "2026-04-09",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 37,
-      "gross_revenue": 10624950.0,
+      "gross_revenue": 4672578.0,
       "total_fee": 638676.75,
       "fee_breakdown": {
         "Phí cố định": 377937.0,
@@ -115422,23 +115524,23 @@
         "Thuế sàn thực tế": 35214.0,
         "Hoàn thuế do phát sinh trả hàng": -4631.25
       },
-      "net_revenue": 9986273.25,
+      "net_revenue": 4033901.25,
       "cogs": 2614537.042,
-      "gross_margin_amount": 7371736.208000001,
-      "gross_margin_pct": 73.8
+      "gross_margin_amount": 1419364.208,
+      "gross_margin_pct": 35.2
     },
     {
       "date": "2026-04-10",
       "channel": "admin",
       "shop_page": "",
       "orders": 2,
-      "gross_revenue": 0.0,
+      "gross_revenue": 270000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 270000.0,
       "cogs": 135915.139,
-      "gross_margin_amount": -135915.139,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 134084.861,
+      "gross_margin_pct": 49.7
     },
     {
       "date": "2026-04-10",
@@ -115460,15 +115562,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 4,
-      "gross_revenue": 1407000.0,
+      "gross_revenue": 1812000.0,
       "total_fee": 116349.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 116349.0
       },
-      "net_revenue": 1290651.0,
+      "net_revenue": 1695651.0,
       "cogs": 118840.959,
-      "gross_margin_amount": 1171810.041,
-      "gross_margin_pct": 90.8
+      "gross_margin_amount": 1576810.041,
+      "gross_margin_pct": 93.0
     },
     {
       "date": "2026-04-10",
@@ -115488,7 +115590,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 41,
-      "gross_revenue": 7317271.0,
+      "gross_revenue": 7137821.0,
       "total_fee": 409064.0,
       "fee_breakdown": {
         "Phí cố định": 242828.0,
@@ -115497,17 +115599,17 @@
         "Thuế sàn thực tế": 27768.0,
         "Phí tiếp thị liên kết": 17578.0
       },
-      "net_revenue": 6908207.0,
+      "net_revenue": 6728757.0,
       "cogs": 1941239.435,
-      "gross_margin_amount": 4966967.5649999995,
-      "gross_margin_pct": 71.9
+      "gross_margin_amount": 4787517.5649999995,
+      "gross_margin_pct": 71.2
     },
     {
       "date": "2026-04-10",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 37,
-      "gross_revenue": 6750062.0,
+      "gross_revenue": 5565775.0,
       "total_fee": 400995.0,
       "fee_breakdown": {
         "Phí cố định": 223425.0,
@@ -115516,10 +115618,10 @@
         "Phí tiếp thị liên kết": 6317.0,
         "Thuế sàn thực tế": 20818.0
       },
-      "net_revenue": 6349067.0,
+      "net_revenue": 5164780.0,
       "cogs": 1226409.821,
-      "gross_margin_amount": 5122657.179,
-      "gross_margin_pct": 80.7
+      "gross_margin_amount": 3938370.179,
+      "gross_margin_pct": 76.3
     },
     {
       "date": "2026-04-10",
@@ -115532,6 +115634,19 @@
       "net_revenue": 185000.0,
       "cogs": 0.0,
       "gross_margin_amount": 185000.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-04-11",
+      "channel": "admin",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -765000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -765000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -765000.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -115584,7 +115699,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
-      "gross_revenue": 5704008.0,
+      "gross_revenue": 5773008.0,
       "total_fee": 468705.0,
       "fee_breakdown": {
         "Phí cố định": 279307.0,
@@ -115593,17 +115708,17 @@
         "Thuế sàn thực tế": 31728.0,
         "Phí tiếp thị liên kết": 14815.0
       },
-      "net_revenue": 5235303.0,
+      "net_revenue": 5304303.0,
       "cogs": 1540247.817,
-      "gross_margin_amount": 3695055.183,
-      "gross_margin_pct": 70.6
+      "gross_margin_amount": 3764055.183,
+      "gross_margin_pct": 71.0
     },
     {
       "date": "2026-04-11",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 17,
-      "gross_revenue": 1966841.0,
+      "gross_revenue": 1422341.0,
       "total_fee": 151771.0,
       "fee_breakdown": {
         "Phí cố định": 84129.0,
@@ -115612,10 +115727,10 @@
         "Thuế sàn thực tế": 7847.0,
         "Phí tiếp thị liên kết": 1175.0
       },
-      "net_revenue": 1815070.0,
+      "net_revenue": 1270570.0,
       "cogs": 445290.503,
-      "gross_margin_amount": 1369779.497,
-      "gross_margin_pct": 75.5
+      "gross_margin_amount": 825279.497,
+      "gross_margin_pct": 65.0
     },
     {
       "date": "2026-04-11",
@@ -115676,7 +115791,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 38,
-      "gross_revenue": 6209064.0,
+      "gross_revenue": 6315914.0,
       "total_fee": 1097477.22,
       "fee_breakdown": {
         "Phí cố định": 668306.0,
@@ -115686,17 +115801,17 @@
         "Hoàn thuế do phát sinh trả hàng": -2492.78,
         "Phí tiếp thị liên kết": 19109.0
       },
-      "net_revenue": 5111586.78,
+      "net_revenue": 5218436.78,
       "cogs": 722579.091,
-      "gross_margin_amount": 4389007.689,
-      "gross_margin_pct": 85.9
+      "gross_margin_amount": 4495857.689,
+      "gross_margin_pct": 86.2
     },
     {
       "date": "2026-04-12",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 18,
-      "gross_revenue": 2669443.0,
+      "gross_revenue": -47080103.0,
       "total_fee": 607545.0,
       "fee_breakdown": {
         "Phí cố định": 319387.0,
@@ -115707,10 +115822,10 @@
         "Các phí khác": 40000.0,
         "Hoàn thuế do phát sinh trả hàng": -4248.0
       },
-      "net_revenue": 2061898.0,
+      "net_revenue": -47687648.0,
       "cogs": 542911.2339999999,
-      "gross_margin_amount": 1518986.766,
-      "gross_margin_pct": 73.7
+      "gross_margin_amount": -48230559.234,
+      "gross_margin_pct": 101.1
     },
     {
       "date": "2026-04-13",
@@ -115732,7 +115847,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 39,
-      "gross_revenue": 6642130.0,
+      "gross_revenue": 6837930.0,
       "total_fee": 1109494.38,
       "fee_breakdown": {
         "Phí cố định": 604486.0,
@@ -115744,17 +115859,17 @@
         "Phí đơn trả hàng": 32200.0,
         "Các phí khác": 40000.0
       },
-      "net_revenue": 5532635.62,
+      "net_revenue": 5728435.62,
       "cogs": 1494978.252,
-      "gross_margin_amount": 4037657.368,
-      "gross_margin_pct": 73.0
+      "gross_margin_amount": 4233457.368,
+      "gross_margin_pct": 73.9
     },
     {
       "date": "2026-04-13",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 28,
-      "gross_revenue": 5094053.0,
+      "gross_revenue": 2516344.0,
       "total_fee": 1127192.0,
       "fee_breakdown": {
         "Phí cố định": 637887.0,
@@ -115763,10 +115878,10 @@
         "Thuế sàn thực tế": 59436.0,
         "Phí tiếp thị liên kết": 15397.0
       },
-      "net_revenue": 3966861.0,
+      "net_revenue": 1389152.0,
       "cogs": 1158562.542,
-      "gross_margin_amount": 2808298.458,
-      "gross_margin_pct": 70.8
+      "gross_margin_amount": 230589.4580000001,
+      "gross_margin_pct": 16.6
     },
     {
       "date": "2026-04-13",
@@ -115801,22 +115916,22 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 7,
-      "gross_revenue": 4225000.0,
+      "gross_revenue": 3930000.0,
       "total_fee": 246510.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 246510.0
       },
-      "net_revenue": 3978490.0,
+      "net_revenue": 3683490.0,
       "cogs": 1428955.3260000001,
-      "gross_margin_amount": 2549534.6739999996,
-      "gross_margin_pct": 64.1
+      "gross_margin_amount": 2254534.6739999996,
+      "gross_margin_pct": 61.2
     },
     {
       "date": "2026-04-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 43,
-      "gross_revenue": 8129324.0,
+      "gross_revenue": 7757674.0,
       "total_fee": 1239758.0,
       "fee_breakdown": {
         "Phí cố định": 736753.0,
@@ -115825,17 +115940,17 @@
         "Thuế sàn thực tế": 84934.0,
         "Phí tiếp thị liên kết": 61509.0
       },
-      "net_revenue": 6889566.0,
+      "net_revenue": 6517916.0,
       "cogs": 1604886.099,
-      "gross_margin_amount": 5284679.901000001,
-      "gross_margin_pct": 76.7
+      "gross_margin_amount": 4913029.901000001,
+      "gross_margin_pct": 75.4
     },
     {
       "date": "2026-04-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 36,
-      "gross_revenue": 6472372.0,
+      "gross_revenue": 6694932.0,
       "total_fee": 1365382.1,
       "fee_breakdown": {
         "Phí cố định": 838350.0,
@@ -115846,10 +115961,10 @@
         "Hoàn phí do phát sinh trả hàng": -106623.0,
         "Hoàn thuế do phát sinh trả hàng": -5805.9
       },
-      "net_revenue": 5106989.9,
+      "net_revenue": 5329549.9,
       "cogs": 1462640.2280000001,
-      "gross_margin_amount": 3644349.6720000003,
-      "gross_margin_pct": 71.4
+      "gross_margin_amount": 3866909.6720000003,
+      "gross_margin_pct": 72.6
     },
     {
       "date": "2026-04-15",
@@ -115904,7 +116019,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 53,
-      "gross_revenue": 10682664.0,
+      "gross_revenue": 10514354.0,
       "total_fee": 2063762.0,
       "fee_breakdown": {
         "Phí cố định": 1175779.0,
@@ -115913,10 +116028,10 @@
         "Phí tiếp thị liên kết": 32925.0,
         "Thuế sàn thực tế": 109550.0
       },
-      "net_revenue": 8618902.0,
+      "net_revenue": 8450592.0,
       "cogs": 2215651.335,
-      "gross_margin_amount": 6403250.665,
-      "gross_margin_pct": 74.3
+      "gross_margin_amount": 6234940.665,
+      "gross_margin_pct": 73.8
     },
     {
       "date": "2026-04-15",
@@ -115936,28 +116051,28 @@
       "channel": "facebook",
       "shop_page": "",
       "orders": 1,
-      "gross_revenue": 0.0,
+      "gross_revenue": 555000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 555000.0,
       "cogs": 144214.77500000002,
-      "gross_margin_amount": -144214.77500000002,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 410785.225,
+      "gross_margin_pct": 74.0
     },
     {
       "date": "2026-04-16",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 2,
-      "gross_revenue": 1060000.0,
+      "gross_revenue": 655000.0,
       "total_fee": 83778.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 83778.0
       },
-      "net_revenue": 976222.0,
+      "net_revenue": 571222.0,
       "cogs": 273834.955,
-      "gross_margin_amount": 702387.0449999999,
-      "gross_margin_pct": 71.9
+      "gross_margin_amount": 297387.045,
+      "gross_margin_pct": 52.1
     },
     {
       "date": "2026-04-16",
@@ -115983,7 +116098,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 46,
-      "gross_revenue": 8385810.0,
+      "gross_revenue": 8412010.0,
       "total_fee": 865047.0,
       "fee_breakdown": {
         "Phí cố định": 471045.0,
@@ -115994,10 +116109,10 @@
         "Hoàn thuế do phát sinh trả hàng": -975.0,
         "Phí đơn trả hàng": 38000.0
       },
-      "net_revenue": 7520763.0,
+      "net_revenue": 7546963.0,
       "cogs": 2128462.611,
-      "gross_margin_amount": 5392300.389,
-      "gross_margin_pct": 71.7
+      "gross_margin_amount": 5418500.389,
+      "gross_margin_pct": 71.8
     },
     {
       "date": "2026-04-17",
@@ -116034,7 +116149,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 36,
-      "gross_revenue": 6843898.0,
+      "gross_revenue": 7011898.0,
       "total_fee": 484152.0,
       "fee_breakdown": {
         "Phí cố định": 291528.0,
@@ -116043,17 +116158,17 @@
         "Phí tiếp thị liên kết": 15188.0,
         "Thuế sàn thực tế": 33558.0
       },
-      "net_revenue": 6359746.0,
+      "net_revenue": 6527746.0,
       "cogs": 1276325.946,
-      "gross_margin_amount": 5083420.054,
-      "gross_margin_pct": 79.9
+      "gross_margin_amount": 5251420.054,
+      "gross_margin_pct": 80.4
     },
     {
       "date": "2026-04-17",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 24,
-      "gross_revenue": 4785040.0,
+      "gross_revenue": 4605590.0,
       "total_fee": 305755.0,
       "fee_breakdown": {
         "Phí cố định": 170150.0,
@@ -116062,10 +116177,10 @@
         "Phí tiếp thị liên kết": 9625.0,
         "Thuế sàn thực tế": 15893.0
       },
-      "net_revenue": 4479285.0,
+      "net_revenue": 4299835.0,
       "cogs": 1335501.048,
-      "gross_margin_amount": 3143783.952,
-      "gross_margin_pct": 70.2
+      "gross_margin_amount": 2964333.952,
+      "gross_margin_pct": 68.9
     },
     {
       "date": "2026-04-17",
@@ -116115,7 +116230,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 43,
-      "gross_revenue": 8712822.0,
+      "gross_revenue": 8643822.0,
       "total_fee": 465653.0,
       "fee_breakdown": {
         "Phí cố định": 280797.0,
@@ -116124,17 +116239,17 @@
         "Thuế sàn thực tế": 31631.0,
         "Phí tiếp thị liên kết": 12716.0
       },
-      "net_revenue": 8247169.0,
+      "net_revenue": 8178169.0,
       "cogs": 1732363.109,
-      "gross_margin_amount": 6514805.891,
-      "gross_margin_pct": 79.0
+      "gross_margin_amount": 6445805.891,
+      "gross_margin_pct": 78.8
     },
     {
       "date": "2026-04-18",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 31,
-      "gross_revenue": 5136110.0,
+      "gross_revenue": 5161660.0,
       "total_fee": 466858.0,
       "fee_breakdown": {
         "Phí cố định": 269217.0,
@@ -116143,10 +116258,10 @@
         "Thuế sàn thực tế": 25082.0,
         "Phí tiếp thị liên kết": 2251.0
       },
-      "net_revenue": 4669252.0,
+      "net_revenue": 4694802.0,
       "cogs": 1280276.468,
-      "gross_margin_amount": 3388975.5319999997,
-      "gross_margin_pct": 72.6
+      "gross_margin_amount": 3414525.5319999997,
+      "gross_margin_pct": 72.7
     },
     {
       "date": "2026-04-18",
@@ -116160,6 +116275,19 @@
       "cogs": 54933.178,
       "gross_margin_amount": 120066.822,
       "gross_margin_pct": 68.6
+    },
+    {
+      "date": "2026-04-19",
+      "channel": "facebook",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -555000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -555000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -555000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-04-19",
@@ -116194,7 +116322,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 33,
-      "gross_revenue": 5717262.0,
+      "gross_revenue": 5618262.0,
       "total_fee": 910561.0,
       "fee_breakdown": {
         "Phí cố định": 548082.0,
@@ -116203,17 +116331,17 @@
         "Phí tiếp thị liên kết": 30559.0,
         "Thuế sàn thực tế": 62959.0
       },
-      "net_revenue": 4806701.0,
+      "net_revenue": 4707701.0,
       "cogs": 1109798.971,
-      "gross_margin_amount": 3696902.029,
-      "gross_margin_pct": 76.9
+      "gross_margin_amount": 3597902.029,
+      "gross_margin_pct": 76.4
     },
     {
       "date": "2026-04-19",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 30,
-      "gross_revenue": 5197110.0,
+      "gross_revenue": 5019310.0,
       "total_fee": 1284882.75,
       "fee_breakdown": {
         "Phí cố định": 711325.0,
@@ -116224,10 +116352,10 @@
         "Các phí khác": 40000.0,
         "Hoàn thuế do phát sinh trả hàng": -1964.25
       },
-      "net_revenue": 3912227.25,
+      "net_revenue": 3734427.25,
       "cogs": 1091283.3,
-      "gross_margin_amount": 2820943.95,
-      "gross_margin_pct": 72.1
+      "gross_margin_amount": 2643143.95,
+      "gross_margin_pct": 70.8
     },
     {
       "date": "2026-04-19",
@@ -116247,22 +116375,22 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 3,
-      "gross_revenue": 1470000.0,
+      "gross_revenue": 2065000.0,
       "total_fee": 100424.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 100424.0
       },
-      "net_revenue": 1369576.0,
+      "net_revenue": 1964576.0,
       "cogs": 757122.237,
-      "gross_margin_amount": 612453.763,
-      "gross_margin_pct": 44.7
+      "gross_margin_amount": 1207453.763,
+      "gross_margin_pct": 61.5
     },
     {
       "date": "2026-04-20",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 46,
-      "gross_revenue": 7731939.0,
+      "gross_revenue": 8156799.0,
       "total_fee": 1344016.64,
       "fee_breakdown": {
         "Phí cố định": 796758.0,
@@ -116273,10 +116401,10 @@
         "Các phí khác": 40000.0,
         "Hoàn thuế do phát sinh trả hàng": -5648.36
       },
-      "net_revenue": 6387922.36,
+      "net_revenue": 6812782.36,
       "cogs": 1520325.092,
-      "gross_margin_amount": 4867597.268,
-      "gross_margin_pct": 76.2
+      "gross_margin_amount": 5292457.268,
+      "gross_margin_pct": 77.7
     },
     {
       "date": "2026-04-20",
@@ -116330,7 +116458,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 61,
-      "gross_revenue": 9411179.0,
+      "gross_revenue": 9912080.0,
       "total_fee": 1658404.8,
       "fee_breakdown": {
         "Hoàn thuế do phát sinh trả hàng": -6799.2,
@@ -116342,17 +116470,17 @@
         "Phí tiếp thị liên kết": 62396.0,
         "Các phí khác": 25300.0
       },
-      "net_revenue": 7752774.2,
+      "net_revenue": 8253675.2,
       "cogs": 1768861.636,
-      "gross_margin_amount": 5983912.564,
-      "gross_margin_pct": 77.2
+      "gross_margin_amount": 6484813.564,
+      "gross_margin_pct": 78.6
     },
     {
       "date": "2026-04-21",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 23,
-      "gross_revenue": 3940020.0,
+      "gross_revenue": 4290020.0,
       "total_fee": 1133448.0,
       "fee_breakdown": {
         "Phí cố định": 634345.0,
@@ -116361,10 +116489,10 @@
         "Thuế sàn thực tế": 59099.0,
         "Phí tiếp thị liên kết": 23885.0
       },
-      "net_revenue": 2806572.0,
+      "net_revenue": 3156572.0,
       "cogs": 1126871.966,
-      "gross_margin_amount": 1679700.034,
-      "gross_margin_pct": 59.8
+      "gross_margin_amount": 2029700.034,
+      "gross_margin_pct": 64.3
     },
     {
       "date": "2026-04-22",
@@ -116401,7 +116529,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 44,
-      "gross_revenue": 9182996.0,
+      "gross_revenue": 8505685.0,
       "total_fee": 1896025.0,
       "fee_breakdown": {
         "Phí cố định": 1134823.0,
@@ -116410,17 +116538,17 @@
         "Phí tiếp thị liên kết": 85485.0,
         "Thuế sàn thực tế": 130069.0
       },
-      "net_revenue": 7286971.0,
+      "net_revenue": 6609660.0,
       "cogs": 1976592.142,
-      "gross_margin_amount": 5310378.858,
-      "gross_margin_pct": 72.9
+      "gross_margin_amount": 4633067.858,
+      "gross_margin_pct": 70.1
     },
     {
       "date": "2026-04-22",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 40,
-      "gross_revenue": 9601050.0,
+      "gross_revenue": 9120100.0,
       "total_fee": 2716002.0,
       "fee_breakdown": {
         "Phí cố định": 1545417.0,
@@ -116429,10 +116557,10 @@
         "Thuế sàn thực tế": 144026.0,
         "Phí tiếp thị liên kết": 49852.0
       },
-      "net_revenue": 6885048.0,
+      "net_revenue": 6404098.0,
       "cogs": 1635834.194,
-      "gross_margin_amount": 5249213.806,
-      "gross_margin_pct": 76.2
+      "gross_margin_amount": 4768263.806,
+      "gross_margin_pct": 74.5
     },
     {
       "date": "2026-04-22",
@@ -116485,7 +116613,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
-      "gross_revenue": 3757860.0,
+      "gross_revenue": 3787860.0,
       "total_fee": 836248.0,
       "fee_breakdown": {
         "Phí cố định": 494206.0,
@@ -116494,17 +116622,17 @@
         "Phí tiếp thị liên kết": 33566.0,
         "Thuế sàn thực tế": 56372.0
       },
-      "net_revenue": 2921612.0,
+      "net_revenue": 2951612.0,
       "cogs": 1412999.545,
-      "gross_margin_amount": 1508612.455,
-      "gross_margin_pct": 51.6
+      "gross_margin_amount": 1538612.455,
+      "gross_margin_pct": 52.1
     },
     {
       "date": "2026-04-23",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 49,
-      "gross_revenue": 9970390.0,
+      "gross_revenue": 10307640.0,
       "total_fee": 2803890.0,
       "fee_breakdown": {
         "Phí cố định": 1604803.0,
@@ -116514,10 +116642,10 @@
         "Phí tiếp thị liên kết": 26904.0,
         "Khoản điều chỉnh": -5165.0
       },
-      "net_revenue": 7166500.0,
+      "net_revenue": 7503750.0,
       "cogs": 1987426.068,
-      "gross_margin_amount": 5179073.932,
-      "gross_margin_pct": 72.3
+      "gross_margin_amount": 5516323.932,
+      "gross_margin_pct": 73.5
     },
     {
       "date": "2026-04-24",
@@ -116539,15 +116667,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 5,
-      "gross_revenue": 2210000.0,
+      "gross_revenue": 2695000.0,
       "total_fee": 124397.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 124397.0
       },
-      "net_revenue": 2085603.0,
+      "net_revenue": 2570603.0,
       "cogs": 475308.73400000005,
-      "gross_margin_amount": 1610294.2659999998,
-      "gross_margin_pct": 77.2
+      "gross_margin_amount": 2095294.2659999998,
+      "gross_margin_pct": 81.5
     },
     {
       "date": "2026-04-24",
@@ -116586,7 +116714,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 45,
-      "gross_revenue": 7269150.0,
+      "gross_revenue": 6931900.0,
       "total_fee": 2085732.0,
       "fee_breakdown": {
         "Phí cố định": 1170278.0,
@@ -116595,23 +116723,23 @@
         "Thuế sàn thực tế": 109045.0,
         "Phí tiếp thị liên kết": 35783.0
       },
-      "net_revenue": 5183418.0,
+      "net_revenue": 4846168.0,
       "cogs": 1477519.969,
-      "gross_margin_amount": 3705898.031,
-      "gross_margin_pct": 71.5
+      "gross_margin_amount": 3368648.031,
+      "gross_margin_pct": 69.5
     },
     {
       "date": "2026-04-24",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 12,
-      "gross_revenue": 95000.0,
+      "gross_revenue": 184000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 95000.0,
+      "net_revenue": 184000.0,
       "cogs": 340000.0,
-      "gross_margin_amount": -245000.0,
-      "gross_margin_pct": -257.9
+      "gross_margin_amount": -156000.0,
+      "gross_margin_pct": -84.8
     },
     {
       "date": "2026-04-25",
@@ -116712,13 +116840,13 @@
       "channel": "facebook",
       "shop_page": "",
       "orders": 1,
-      "gross_revenue": 0.0,
+      "gross_revenue": 645000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 645000.0,
       "cogs": 0.0,
-      "gross_margin_amount": 0.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 645000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-04-26",
@@ -116743,7 +116871,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 12,
-      "gross_revenue": 1808635.0,
+      "gross_revenue": 2072292.0,
       "total_fee": 341029.72,
       "fee_breakdown": {
         "Phí cố định": 188873.0,
@@ -116754,17 +116882,17 @@
         "Hoàn thuế do phát sinh trả hàng": -5416.28,
         "Phí đơn trả hàng": 30800.0
       },
-      "net_revenue": 1467605.28,
+      "net_revenue": 1731262.28,
       "cogs": 303657.341,
-      "gross_margin_amount": 1163947.939,
-      "gross_margin_pct": 79.3
+      "gross_margin_amount": 1427604.939,
+      "gross_margin_pct": 82.5
     },
     {
       "date": "2026-04-26",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 34,
-      "gross_revenue": 8037922.0,
+      "gross_revenue": 8650922.0,
       "total_fee": 2266048.0,
       "fee_breakdown": {
         "Phí cố định": 1294109.0,
@@ -116773,10 +116901,10 @@
         "Phí tiếp thị liên kết": 37366.0,
         "Thuế sàn thực tế": 120578.0
       },
-      "net_revenue": 5771874.0,
+      "net_revenue": 6384874.0,
       "cogs": 960880.201,
-      "gross_margin_amount": 4810993.799,
-      "gross_margin_pct": 83.4
+      "gross_margin_amount": 5423993.799,
+      "gross_margin_pct": 85.0
     },
     {
       "date": "2026-04-26",
@@ -116796,13 +116924,13 @@
       "channel": "admin",
       "shop_page": "",
       "orders": 1,
-      "gross_revenue": 0.0,
+      "gross_revenue": 765000.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 765000.0,
       "cogs": 0.0,
-      "gross_margin_amount": 0.0,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 765000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-04-27",
@@ -116824,7 +116952,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 41,
-      "gross_revenue": 8796364.0,
+      "gross_revenue": 8601707.0,
       "total_fee": 1890803.0,
       "fee_breakdown": {
         "Phí cố định": 1154629.0,
@@ -116833,17 +116961,17 @@
         "Thuế sàn thực tế": 131953.0,
         "Phí tiếp thị liên kết": 51079.0
       },
-      "net_revenue": 6905561.0,
+      "net_revenue": 6710904.0,
       "cogs": 1573201.01,
-      "gross_margin_amount": 5332359.99,
-      "gross_margin_pct": 77.2
+      "gross_margin_amount": 5137702.99,
+      "gross_margin_pct": 76.6
     },
     {
       "date": "2026-04-27",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 30,
-      "gross_revenue": 7959689.0,
+      "gross_revenue": 7404689.0,
       "total_fee": 1955918.0,
       "fee_breakdown": {
         "Phí cố định": 1146717.0,
@@ -116854,25 +116982,64 @@
         "Hoàn phí do phát sinh trả hàng": -21758.0,
         "Hoàn thuế do phát sinh trả hàng": -1125.0
       },
-      "net_revenue": 6003771.0,
+      "net_revenue": 5448771.0,
       "cogs": 1051234.895,
-      "gross_margin_amount": 4952536.105,
-      "gross_margin_pct": 82.5
+      "gross_margin_amount": 4397536.105,
+      "gross_margin_pct": 80.7
+    },
+    {
+      "date": "2026-04-27",
+      "channel": "tiktokshop",
+      "shop_page": "Aroma Story - Scented Shop",
+      "orders": 0,
+      "gross_revenue": -89000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -89000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -89000.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-04-28",
+      "channel": "admin",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -765000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -765000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -765000.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-04-28",
+      "channel": "facebook",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -645000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -645000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -645000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-04-28",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 6,
-      "gross_revenue": 3900000.0,
+      "gross_revenue": 3305000.0,
       "total_fee": 232683.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 232683.0
       },
-      "net_revenue": 3667317.0,
+      "net_revenue": 3072317.0,
       "cogs": 968977.189,
-      "gross_margin_amount": 2698339.8109999998,
-      "gross_margin_pct": 73.6
+      "gross_margin_amount": 2103339.8109999998,
+      "gross_margin_pct": 68.5
     },
     {
       "date": "2026-04-28",
@@ -116899,7 +117066,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 39,
-      "gross_revenue": 9131390.0,
+      "gross_revenue": 9721390.0,
       "total_fee": 2574240.0,
       "fee_breakdown": {
         "Phí cố định": 1470153.0,
@@ -116908,10 +117075,10 @@
         "Phí tiếp thị liên kết": 30728.0,
         "Thuế sàn thực tế": 136981.0
       },
-      "net_revenue": 6557150.0,
+      "net_revenue": 7147150.0,
       "cogs": 1466545.432,
-      "gross_margin_amount": 5090604.568,
-      "gross_margin_pct": 77.6
+      "gross_margin_amount": 5680604.568,
+      "gross_margin_pct": 79.5
     },
     {
       "date": "2026-04-28",
@@ -116931,15 +117098,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 5,
-      "gross_revenue": 1290000.0,
+      "gross_revenue": 2140000.0,
       "total_fee": 84619.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 84619.0
       },
-      "net_revenue": 1205381.0,
+      "net_revenue": 2055381.0,
       "cogs": 516951.555,
-      "gross_margin_amount": 688429.4450000001,
-      "gross_margin_pct": 57.1
+      "gross_margin_amount": 1538429.445,
+      "gross_margin_pct": 74.8
     },
     {
       "date": "2026-04-29",
@@ -116964,7 +117131,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
-      "gross_revenue": 5085889.0,
+      "gross_revenue": 5531033.0,
       "total_fee": 1102344.0,
       "fee_breakdown": {
         "Phí cố định": 666573.0,
@@ -116973,10 +117140,10 @@
         "Phí tiếp thị liên kết": 42042.0,
         "Thuế sàn thực tế": 76293.0
       },
-      "net_revenue": 3983545.0,
+      "net_revenue": 4428689.0,
       "cogs": 990792.134,
-      "gross_margin_amount": 2992752.866,
-      "gross_margin_pct": 75.1
+      "gross_margin_amount": 3437896.866,
+      "gross_margin_pct": 77.6
     },
     {
       "date": "2026-04-29",
@@ -117017,7 +117184,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 11,
-      "gross_revenue": 1936750.0,
+      "gross_revenue": 1595606.0,
       "total_fee": 393295.75,
       "fee_breakdown": {
         "Phí cố định": 228419.0,
@@ -117028,17 +117195,17 @@
         "Hoàn thuế do phát sinh trả hàng": -5612.25,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 1543454.25,
+      "net_revenue": 1202310.25,
       "cogs": 329464.974,
-      "gross_margin_amount": 1213989.276,
-      "gross_margin_pct": 78.7
+      "gross_margin_amount": 872845.2760000001,
+      "gross_margin_pct": 72.6
     },
     {
       "date": "2026-04-30",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 18,
-      "gross_revenue": 2843785.0,
+      "gross_revenue": 3195285.0,
       "total_fee": 804516.0,
       "fee_breakdown": {
         "Phí cố định": 457850.0,
@@ -117047,10 +117214,10 @@
         "Thuế sàn thực tế": 42660.0,
         "Phí tiếp thị liên kết": 10092.0
       },
-      "net_revenue": 2039269.0,
+      "net_revenue": 2390769.0,
       "cogs": 326395.618,
-      "gross_margin_amount": 1712873.382,
-      "gross_margin_pct": 84.0
+      "gross_margin_amount": 2064373.382,
+      "gross_margin_pct": 86.3
     },
     {
       "date": "2026-04-30",
@@ -117070,7 +117237,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 18,
-      "gross_revenue": 4440862.0,
+      "gross_revenue": 4406862.0,
       "total_fee": 961529.0,
       "fee_breakdown": {
         "Phí cố định": 556042.0,
@@ -117079,17 +117246,17 @@
         "Thuế sàn thực tế": 64159.0,
         "Phí tiếp thị liên kết": 36694.0
       },
-      "net_revenue": 3479333.0,
+      "net_revenue": 3445333.0,
       "cogs": 413881.81,
-      "gross_margin_amount": 3065451.19,
-      "gross_margin_pct": 88.1
+      "gross_margin_amount": 3031451.19,
+      "gross_margin_pct": 88.0
     },
     {
       "date": "2026-05-01",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 24,
-      "gross_revenue": 3865926.0,
+      "gross_revenue": 3630426.0,
       "total_fee": 1062780.0,
       "fee_breakdown": {
         "Phí cố định": 593521.0,
@@ -117100,10 +117267,10 @@
         "Các phí khác": 20100.0,
         "Hoàn thuế do phát sinh trả hàng": -1740.0
       },
-      "net_revenue": 2803146.0,
+      "net_revenue": 2567646.0,
       "cogs": 456786.023,
-      "gross_margin_amount": 2346359.977,
-      "gross_margin_pct": 83.7
+      "gross_margin_amount": 2110859.977,
+      "gross_margin_pct": 82.2
     },
     {
       "date": "2026-05-01",
@@ -117123,15 +117290,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 2,
-      "gross_revenue": 1470000.0,
+      "gross_revenue": 985000.0,
       "total_fee": 61683.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 61683.0
       },
-      "net_revenue": 1408317.0,
+      "net_revenue": 923317.0,
       "cogs": 397121.23699999996,
-      "gross_margin_amount": 1011195.763,
-      "gross_margin_pct": 71.8
+      "gross_margin_amount": 526195.763,
+      "gross_margin_pct": 57.0
     },
     {
       "date": "2026-05-02",
@@ -117153,7 +117320,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 23,
-      "gross_revenue": 3797870.0,
+      "gross_revenue": 4178752.0,
       "total_fee": 891218.25,
       "fee_breakdown": {
         "Phí cố định": 494417.0,
@@ -117164,10 +117331,10 @@
         "Các phí khác": 40000.0,
         "Hoàn thuế do phát sinh trả hàng": -2691.75
       },
-      "net_revenue": 2906651.75,
+      "net_revenue": 3287533.75,
       "cogs": 692015.001,
-      "gross_margin_amount": 2214636.749,
-      "gross_margin_pct": 76.2
+      "gross_margin_amount": 2595518.749,
+      "gross_margin_pct": 79.0
     },
     {
       "date": "2026-05-02",
@@ -117208,7 +117375,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 25,
-      "gross_revenue": 5670094.0,
+      "gross_revenue": 5898462.0,
       "total_fee": 1271318.0,
       "fee_breakdown": {
         "Phí cố định": 741993.0,
@@ -117217,10 +117384,10 @@
         "Thuế sàn thực tế": 85054.0,
         "Phí tiếp thị liên kết": 29125.0
       },
-      "net_revenue": 4398776.0,
+      "net_revenue": 4627144.0,
       "cogs": 1005180.588,
-      "gross_margin_amount": 3393595.412,
-      "gross_margin_pct": 77.1
+      "gross_margin_amount": 3621963.412,
+      "gross_margin_pct": 78.3
     },
     {
       "date": "2026-05-03",
@@ -117293,7 +117460,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 36,
-      "gross_revenue": 5443886.0,
+      "gross_revenue": 5034242.0,
       "total_fee": 1233009.01,
       "fee_breakdown": {
         "Phí cố định": 709932.0,
@@ -117305,17 +117472,17 @@
         "Hoàn thuế do phát sinh trả hàng": -2865.99,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 4210876.99,
+      "net_revenue": 3801232.99,
       "cogs": 791673.978,
-      "gross_margin_amount": 3419203.012,
-      "gross_margin_pct": 81.2
+      "gross_margin_amount": 3009559.012,
+      "gross_margin_pct": 79.2
     },
     {
       "date": "2026-05-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 27,
-      "gross_revenue": 4702616.0,
+      "gross_revenue": 4586616.0,
       "total_fee": 1326704.28,
       "fee_breakdown": {
         "Phí cố định": 723266.0,
@@ -117326,10 +117493,10 @@
         "Hoàn thuế do phát sinh trả hàng": -3114.72,
         "Phí đơn trả hàng": 40000.0
       },
-      "net_revenue": 3375911.7199999997,
+      "net_revenue": 3259911.7199999997,
       "cogs": 699127.258,
-      "gross_margin_amount": 2676784.462,
-      "gross_margin_pct": 79.3
+      "gross_margin_amount": 2560784.462,
+      "gross_margin_pct": 78.6
     },
     {
       "date": "2026-05-04",
@@ -117415,7 +117582,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 68,
-      "gross_revenue": 11950214.0,
+      "gross_revenue": 12211558.0,
       "total_fee": 2755414.25,
       "fee_breakdown": {
         "Phí cố định": 1584330.0,
@@ -117425,10 +117592,10 @@
         "Phí tiếp thị liên kết": 86805.0,
         "Hoàn thuế do phát sinh trả hàng": -2691.75
       },
-      "net_revenue": 9194799.75,
+      "net_revenue": 9456143.75,
       "cogs": 1818453.674,
-      "gross_margin_amount": 7376346.075999999,
-      "gross_margin_pct": 80.2
+      "gross_margin_amount": 7637690.075999999,
+      "gross_margin_pct": 80.8
     },
     {
       "date": "2026-05-05",
@@ -117469,15 +117636,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 8,
-      "gross_revenue": 5008250.0,
+      "gross_revenue": 5268250.0,
       "total_fee": 435080.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 435080.0
       },
-      "net_revenue": 4573170.0,
+      "net_revenue": 4833170.0,
       "cogs": 971664.664,
-      "gross_margin_amount": 3601505.336,
-      "gross_margin_pct": 78.8
+      "gross_margin_amount": 3861505.336,
+      "gross_margin_pct": 79.9
     },
     {
       "date": "2026-05-06",
@@ -117510,7 +117677,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 33,
-      "gross_revenue": 4919725.0,
+      "gross_revenue": 4426371.0,
       "total_fee": 1133779.06,
       "fee_breakdown": {
         "Phí cố định": 634020.0,
@@ -117523,17 +117690,17 @@
         "Khoản điều chỉnh": -3132.0,
         "Phí đơn trả hàng": 20100.0
       },
-      "net_revenue": 3785945.94,
+      "net_revenue": 3292591.94,
       "cogs": 1229230.637,
-      "gross_margin_amount": 2556715.303,
-      "gross_margin_pct": 67.5
+      "gross_margin_amount": 2063361.3029999998,
+      "gross_margin_pct": 62.7
     },
     {
       "date": "2026-05-06",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 51,
-      "gross_revenue": 8436729.0,
+      "gross_revenue": 8824759.0,
       "total_fee": 2389935.0,
       "fee_breakdown": {
         "Phí cố định": 1329637.0,
@@ -117542,10 +117709,10 @@
         "Phí tiếp thị liên kết": 63671.0,
         "Thuế sàn thực tế": 123915.0
       },
-      "net_revenue": 6046794.0,
+      "net_revenue": 6434824.0,
       "cogs": 1904302.1430000002,
-      "gross_margin_amount": 4142491.857,
-      "gross_margin_pct": 68.5
+      "gross_margin_amount": 4530521.857,
+      "gross_margin_pct": 70.4
     },
     {
       "date": "2026-05-06",
@@ -117603,7 +117770,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 22,
-      "gross_revenue": 5237288.0,
+      "gross_revenue": 4208730.0,
       "total_fee": 1195892.0,
       "fee_breakdown": {
         "Phí cố định": 681695.0,
@@ -117612,17 +117779,17 @@
         "Thuế sàn thực tế": 78563.0,
         "Phí tiếp thị liên kết": 51137.0
       },
-      "net_revenue": 4041396.0,
+      "net_revenue": 3012838.0,
       "cogs": 696608.6849999999,
-      "gross_margin_amount": 3344787.315,
-      "gross_margin_pct": 82.8
+      "gross_margin_amount": 2316229.315,
+      "gross_margin_pct": 76.9
     },
     {
       "date": "2026-05-07",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 45,
-      "gross_revenue": 6923839.0,
+      "gross_revenue": 6086459.0,
       "total_fee": 1967862.0,
       "fee_breakdown": {
         "Phí cố định": 1105400.0,
@@ -117631,10 +117798,10 @@
         "Thuế sàn thực tế": 102990.0,
         "Phí tiếp thị liên kết": 35588.0
       },
-      "net_revenue": 4955977.0,
+      "net_revenue": 4118597.0,
       "cogs": 1360941.929,
-      "gross_margin_amount": 3595035.071,
-      "gross_margin_pct": 72.5
+      "gross_margin_amount": 2757655.071,
+      "gross_margin_pct": 67.0
     },
     {
       "date": "2026-05-07",
@@ -117659,15 +117826,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 7,
-      "gross_revenue": 2952000.0,
+      "gross_revenue": 3374750.0,
       "total_fee": 242238.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 242238.0
       },
-      "net_revenue": 2709762.0,
+      "net_revenue": 3132512.0,
       "cogs": 574727.017,
-      "gross_margin_amount": 2135034.983,
-      "gross_margin_pct": 78.8
+      "gross_margin_amount": 2557784.983,
+      "gross_margin_pct": 81.7
     },
     {
       "date": "2026-05-08",
@@ -117695,7 +117862,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
-      "gross_revenue": 8620330.0,
+      "gross_revenue": 8309849.0,
       "total_fee": 2490804.25,
       "fee_breakdown": {
         "Phí cố định": 1356573.0,
@@ -117707,10 +117874,10 @@
         "Phí đơn trả hàng": 32200.0,
         "Khoản điều chỉnh": -1064.0
       },
-      "net_revenue": 6129525.75,
+      "net_revenue": 5819044.75,
       "cogs": 2059321.208,
-      "gross_margin_amount": 4070204.542,
-      "gross_margin_pct": 66.4
+      "gross_margin_amount": 3759723.542,
+      "gross_margin_pct": 64.6
     },
     {
       "date": "2026-05-08",
@@ -117824,7 +117991,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 18,
-      "gross_revenue": 5056073.0,
+      "gross_revenue": 5368073.0,
       "total_fee": 1114315.0,
       "fee_breakdown": {
         "Phí cố định": 652842.0,
@@ -117833,17 +118000,17 @@
         "Thuế sàn thực tế": 75245.0,
         "Phí tiếp thị liên kết": 29992.0
       },
-      "net_revenue": 3941758.0,
+      "net_revenue": 4253758.0,
       "cogs": 1070881.021,
-      "gross_margin_amount": 2870876.9790000003,
-      "gross_margin_pct": 72.8
+      "gross_margin_amount": 3182876.9790000003,
+      "gross_margin_pct": 74.8
     },
     {
       "date": "2026-05-10",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 35,
-      "gross_revenue": 6056137.0,
+      "gross_revenue": 6114137.0,
       "total_fee": 1810364.0,
       "fee_breakdown": {
         "Phí cố định": 975036.0,
@@ -117852,10 +118019,10 @@
         "Thuế sàn thực tế": 90847.0,
         "Phí tiếp thị liên kết": 49408.0
       },
-      "net_revenue": 4245773.0,
+      "net_revenue": 4303773.0,
       "cogs": 1199312.254,
-      "gross_margin_amount": 3046460.7460000003,
-      "gross_margin_pct": 71.8
+      "gross_margin_amount": 3104460.7460000003,
+      "gross_margin_pct": 72.1
     },
     {
       "date": "2026-05-10",
@@ -118010,7 +118177,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 23,
-      "gross_revenue": 3158748.0,
+      "gross_revenue": 3228948.0,
       "total_fee": 731529.0,
       "fee_breakdown": {
         "Phí cố định": 415285.0,
@@ -118019,17 +118186,17 @@
         "Thuế sàn thực tế": 47383.0,
         "Phí tiếp thị liên kết": 18508.0
       },
-      "net_revenue": 2427219.0,
+      "net_revenue": 2497419.0,
       "cogs": 553746.4,
-      "gross_margin_amount": 1873472.6,
-      "gross_margin_pct": 77.2
+      "gross_margin_amount": 1943672.6,
+      "gross_margin_pct": 77.8
     },
     {
       "date": "2026-05-12",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
-      "gross_revenue": 6423659.0,
+      "gross_revenue": 6624814.0,
       "total_fee": 1939466.0,
       "fee_breakdown": {
         "Phí cố định": 1033837.0,
@@ -118038,17 +118205,17 @@
         "Phí tiếp thị liên kết": 45429.0,
         "Thuế sàn thực tế": 96359.0
       },
-      "net_revenue": 4484193.0,
+      "net_revenue": 4685348.0,
       "cogs": 1265339.498,
-      "gross_margin_amount": 3218853.5020000003,
-      "gross_margin_pct": 71.8
+      "gross_margin_amount": 3420008.5020000003,
+      "gross_margin_pct": 73.0
     },
     {
       "date": "2026-05-12",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 10,
-      "gross_revenue": 1139960.0,
+      "gross_revenue": 1219860.0,
       "total_fee": 383379.0,
       "fee_breakdown": {
         "Phí hoa hồng": 147871.0,
@@ -118057,25 +118224,25 @@
         "Phí tiếp thị liên kết": 40424.0,
         "Phí vận chuyển": 49900.0
       },
-      "net_revenue": 756581.0,
+      "net_revenue": 836481.0,
       "cogs": 478069.896,
-      "gross_margin_amount": 278511.104,
-      "gross_margin_pct": 36.8
+      "gross_margin_amount": 358411.104,
+      "gross_margin_pct": 42.8
     },
     {
       "date": "2026-05-13",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 2,
-      "gross_revenue": 1755000.0,
+      "gross_revenue": 627250.0,
       "total_fee": 46794.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 46794.0
       },
-      "net_revenue": 1708206.0,
+      "net_revenue": 580456.0,
       "cogs": 403439.106,
-      "gross_margin_amount": 1304766.8939999999,
-      "gross_margin_pct": 76.4
+      "gross_margin_amount": 177016.89399999997,
+      "gross_margin_pct": 30.5
     },
     {
       "date": "2026-05-13",
@@ -118113,7 +118280,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 23,
-      "gross_revenue": 4809292.0,
+      "gross_revenue": 4739092.0,
       "total_fee": 1088208.0,
       "fee_breakdown": {
         "Phí cố định": 627523.0,
@@ -118122,17 +118289,17 @@
         "Thuế sàn thực tế": 72140.0,
         "Phí tiếp thị liên kết": 26518.0
       },
-      "net_revenue": 3721084.0,
+      "net_revenue": 3650884.0,
       "cogs": 1142297.303,
-      "gross_margin_amount": 2578786.6969999997,
-      "gross_margin_pct": 69.3
+      "gross_margin_amount": 2508586.6969999997,
+      "gross_margin_pct": 68.7
     },
     {
       "date": "2026-05-13",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 37,
-      "gross_revenue": 5348755.0,
+      "gross_revenue": 5616785.0,
       "total_fee": 1616720.0,
       "fee_breakdown": {
         "Phí cố định": 861149.0,
@@ -118143,17 +118310,17 @@
         "Các phí khác": 40000.0,
         "Hoàn thuế do phát sinh trả hàng": -7275.0
       },
-      "net_revenue": 3732035.0,
+      "net_revenue": 4000065.0,
       "cogs": 2487277.106,
-      "gross_margin_amount": 1244757.8939999999,
-      "gross_margin_pct": 33.4
+      "gross_margin_amount": 1512787.8939999999,
+      "gross_margin_pct": 37.8
     },
     {
       "date": "2026-05-13",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
-      "gross_revenue": 79900.0,
+      "gross_revenue": 0.0,
       "total_fee": 43350.0,
       "fee_breakdown": {
         "Phí hoa hồng": 10387.0,
@@ -118161,10 +118328,10 @@
         "Phí tiếp thị liên kết": 11985.0,
         "Tổng thuế thực tế": -1199.0
       },
-      "net_revenue": 36550.0,
+      "net_revenue": -43350.0,
       "cogs": 29000.0,
-      "gross_margin_amount": 7550.0,
-      "gross_margin_pct": 20.7
+      "gross_margin_amount": -72350.0,
+      "gross_margin_pct": 166.9
     },
     {
       "date": "2026-05-14",
@@ -118205,7 +118372,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 32,
-      "gross_revenue": 4315020.0,
+      "gross_revenue": 4405190.0,
       "total_fee": 1293110.0,
       "fee_breakdown": {
         "Phí cố định": 694718.0,
@@ -118214,10 +118381,10 @@
         "Thuế sàn thực tế": 64730.0,
         "Phí tiếp thị liên kết": 16822.0
       },
-      "net_revenue": 3021910.0,
+      "net_revenue": 3112080.0,
       "cogs": 929973.488,
-      "gross_margin_amount": 2091936.512,
-      "gross_margin_pct": 69.2
+      "gross_margin_amount": 2182106.512,
+      "gross_margin_pct": 70.1
     },
     {
       "date": "2026-05-14",
@@ -118272,7 +118439,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 52,
-      "gross_revenue": 11145481.0,
+      "gross_revenue": 11819841.0,
       "total_fee": 2535296.0,
       "fee_breakdown": {
         "Phí cố định": 1459544.0,
@@ -118281,17 +118448,17 @@
         "Thuế sàn thực tế": 167190.0,
         "Phí tiếp thị liên kết": 96495.0
       },
-      "net_revenue": 8610185.0,
+      "net_revenue": 9284545.0,
       "cogs": 2430671.9560000002,
-      "gross_margin_amount": 6179513.044,
-      "gross_margin_pct": 71.8
+      "gross_margin_amount": 6853873.044,
+      "gross_margin_pct": 73.8
     },
     {
       "date": "2026-05-15",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
-      "gross_revenue": 9980290.0,
+      "gross_revenue": 9794090.0,
       "total_fee": 2887608.0,
       "fee_breakdown": {
         "Phí cố định": 1597486.0,
@@ -118300,10 +118467,10 @@
         "Thuế sàn thực tế": 148842.0,
         "Phí tiếp thị liên kết": 26759.0
       },
-      "net_revenue": 7092682.0,
+      "net_revenue": 6906482.0,
       "cogs": 2552420.9990000003,
-      "gross_margin_amount": 4540261.001,
-      "gross_margin_pct": 64.0
+      "gross_margin_amount": 4354061.001,
+      "gross_margin_pct": 63.0
     },
     {
       "date": "2026-05-15",
@@ -118343,13 +118510,13 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 1,
-      "gross_revenue": 405000.0,
+      "gross_revenue": 0.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 405000.0,
+      "net_revenue": 0.0,
       "cogs": 87920.816,
-      "gross_margin_amount": 317079.184,
-      "gross_margin_pct": 78.3
+      "gross_margin_amount": -87920.816,
+      "gross_margin_pct": 0.0
     },
     {
       "date": "2026-05-16",
@@ -118371,7 +118538,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
-      "gross_revenue": 8291820.0,
+      "gross_revenue": 7969180.0,
       "total_fee": 1913628.0,
       "fee_breakdown": {
         "Phí cố định": 1081237.0,
@@ -118380,17 +118547,17 @@
         "Thuế sàn thực tế": 124378.0,
         "Phí tiếp thị liên kết": 133766.0
       },
-      "net_revenue": 6378192.0,
+      "net_revenue": 6055552.0,
       "cogs": 1001040.6900000001,
-      "gross_margin_amount": 5377151.31,
-      "gross_margin_pct": 84.3
+      "gross_margin_amount": 5054511.31,
+      "gross_margin_pct": 83.5
     },
     {
       "date": "2026-05-16",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 56,
-      "gross_revenue": 14551775.0,
+      "gross_revenue": 15275975.0,
       "total_fee": 4201159.25,
       "fee_breakdown": {
         "Phí cố định": 2313945.0,
@@ -118401,10 +118568,10 @@
         "Hoàn thuế do phát sinh trả hàng": -2691.75,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 10350615.75,
+      "net_revenue": 11074815.75,
       "cogs": 6698432.370999999,
-      "gross_margin_amount": 3652183.3790000007,
-      "gross_margin_pct": 35.3
+      "gross_margin_amount": 4376383.379000001,
+      "gross_margin_pct": 39.5
     },
     {
       "date": "2026-05-16",
@@ -118454,7 +118621,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 18,
-      "gross_revenue": 3858180.0,
+      "gross_revenue": 3506460.0,
       "total_fee": 866083.0,
       "fee_breakdown": {
         "Phí cố định": 503750.0,
@@ -118463,17 +118630,17 @@
         "Phí tiếp thị liên kết": 29977.0,
         "Thuế sàn thực tế": 57875.0
       },
-      "net_revenue": 2992097.0,
+      "net_revenue": 2640377.0,
       "cogs": 841698.115,
-      "gross_margin_amount": 2150398.885,
-      "gross_margin_pct": 71.9
+      "gross_margin_amount": 1798678.885,
+      "gross_margin_pct": 68.1
     },
     {
       "date": "2026-05-17",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 46,
-      "gross_revenue": 8486428.0,
+      "gross_revenue": 7867228.0,
       "total_fee": 2529471.0,
       "fee_breakdown": {
         "Phí cố định": 1355203.0,
@@ -118484,23 +118651,23 @@
         "Các phí khác": 32200.0,
         "Hoàn thuế do phát sinh trả hàng": -1575.0
       },
-      "net_revenue": 5956957.0,
+      "net_revenue": 5337757.0,
       "cogs": 2285114.471,
-      "gross_margin_amount": 3671842.529,
-      "gross_margin_pct": 61.6
+      "gross_margin_amount": 3052642.529,
+      "gross_margin_pct": 57.2
     },
     {
       "date": "2026-05-17",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 2,
-      "gross_revenue": 0.0,
+      "gross_revenue": 305500.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 0.0,
+      "net_revenue": 305500.0,
       "cogs": 141311.00400000002,
-      "gross_margin_amount": -141311.00400000002,
-      "gross_margin_pct": 0.0
+      "gross_margin_amount": 164188.99599999998,
+      "gross_margin_pct": 53.7
     },
     {
       "date": "2026-05-18",
@@ -118558,7 +118725,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 61,
-      "gross_revenue": 9609389.0,
+      "gross_revenue": 9834989.0,
       "total_fee": 2858813.0,
       "fee_breakdown": {
         "Phí cố định": 1546751.0,
@@ -118568,17 +118735,17 @@
         "Phí tiếp thị liên kết": 36469.0,
         "Khoản điều chỉnh": -2327.0
       },
-      "net_revenue": 6750576.0,
+      "net_revenue": 6976176.0,
       "cogs": 2232509.039,
-      "gross_margin_amount": 4518066.961,
-      "gross_margin_pct": 66.9
+      "gross_margin_amount": 4743666.961,
+      "gross_margin_pct": 68.0
     },
     {
       "date": "2026-05-18",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
-      "gross_revenue": 511660.0,
+      "gross_revenue": 206160.0,
       "total_fee": 143091.0,
       "fee_breakdown": {
         "Phí hoa hồng": 55640.0,
@@ -118586,25 +118753,25 @@
         "Tổng thuế thực tế": -6419.0,
         "Phí tiếp thị liên kết": 24676.0
       },
-      "net_revenue": 368569.0,
+      "net_revenue": 63069.0,
       "cogs": 147912.32,
-      "gross_margin_amount": 220656.68,
-      "gross_margin_pct": 59.9
+      "gross_margin_amount": -84843.32,
+      "gross_margin_pct": -134.5
     },
     {
       "date": "2026-05-19",
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 5,
-      "gross_revenue": 3713500.0,
+      "gross_revenue": 4318500.0,
       "total_fee": 124635.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 124635.0
       },
-      "net_revenue": 3588865.0,
+      "net_revenue": 4193865.0,
       "cogs": 1425301.75,
-      "gross_margin_amount": 2163563.25,
-      "gross_margin_pct": 60.3
+      "gross_margin_amount": 2768563.25,
+      "gross_margin_pct": 66.0
     },
     {
       "date": "2026-05-19",
@@ -118624,7 +118791,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
-      "gross_revenue": 5985906.0,
+      "gross_revenue": 6023333.0,
       "total_fee": 1344178.0,
       "fee_breakdown": {
         "Phí cố định": 779323.0,
@@ -118633,17 +118800,17 @@
         "Thuế sàn thực tế": 89792.0,
         "Phí tiếp thị liên kết": 34009.0
       },
-      "net_revenue": 4641728.0,
+      "net_revenue": 4679155.0,
       "cogs": 1006320.417,
-      "gross_margin_amount": 3635407.583,
-      "gross_margin_pct": 78.3
+      "gross_margin_amount": 3672834.583,
+      "gross_margin_pct": 78.5
     },
     {
       "date": "2026-05-19",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 54,
-      "gross_revenue": 8842490.0,
+      "gross_revenue": 8455195.0,
       "total_fee": 2629430.0,
       "fee_breakdown": {
         "Phí cố định": 1422851.0,
@@ -118652,10 +118819,10 @@
         "Thuế sàn thực tế": 132648.0,
         "Phí tiếp thị liên kết": 38122.0
       },
-      "net_revenue": 6213060.0,
+      "net_revenue": 5825765.0,
       "cogs": 1532404.946,
-      "gross_margin_amount": 4680655.054,
-      "gross_margin_pct": 75.3
+      "gross_margin_amount": 4293360.054,
+      "gross_margin_pct": 73.7
     },
     {
       "date": "2026-05-19",
@@ -118724,7 +118891,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 48,
-      "gross_revenue": 9417970.0,
+      "gross_revenue": 9303510.0,
       "total_fee": 2794740.0,
       "fee_breakdown": {
         "Phí cố định": 1516291.0,
@@ -118734,10 +118901,10 @@
         "Phí tiếp thị liên kết": 53158.0,
         "Khoản điều chỉnh": -1844.0
       },
-      "net_revenue": 6623230.0,
+      "net_revenue": 6508770.0,
       "cogs": 1825050.127,
-      "gross_margin_amount": 4798179.873,
-      "gross_margin_pct": 72.4
+      "gross_margin_amount": 4683719.873,
+      "gross_margin_pct": 72.0
     },
     {
       "date": "2026-05-20",
@@ -118808,7 +118975,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 56,
-      "gross_revenue": 9557610.0,
+      "gross_revenue": 9810450.0,
       "total_fee": 2753713.0,
       "fee_breakdown": {
         "Phí cố định": 1463520.0,
@@ -118820,10 +118987,10 @@
         "Các phí khác": 18300.0,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 6803897.0,
+      "net_revenue": 7056737.0,
       "cogs": 1905839.428,
-      "gross_margin_amount": 4898057.572,
-      "gross_margin_pct": 72.0
+      "gross_margin_amount": 5150897.572,
+      "gross_margin_pct": 73.0
     },
     {
       "date": "2026-05-21",
@@ -118891,7 +119058,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
-      "gross_revenue": 4752315.0,
+      "gross_revenue": 5467315.0,
       "total_fee": 1096032.0,
       "fee_breakdown": {
         "Phí cố định": 619679.0,
@@ -118902,17 +119069,17 @@
         "Các phí khác": 19600.0,
         "Hoàn thuế do phát sinh trả hàng": -1470.0
       },
-      "net_revenue": 3656283.0,
+      "net_revenue": 4371283.0,
       "cogs": 1130647.829,
-      "gross_margin_amount": 2525635.171,
-      "gross_margin_pct": 69.1
+      "gross_margin_amount": 3240635.171,
+      "gross_margin_pct": 74.1
     },
     {
       "date": "2026-05-22",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 48,
-      "gross_revenue": 8374930.0,
+      "gross_revenue": 8307120.0,
       "total_fee": 2459969.0,
       "fee_breakdown": {
         "Phí cố định": 1348361.0,
@@ -118922,10 +119089,10 @@
         "Phí tiếp thị liên kết": 25495.0,
         "Hoàn thuế do phát sinh trả hàng": -7275.0
       },
-      "net_revenue": 5914961.0,
+      "net_revenue": 5847151.0,
       "cogs": 1747947.956,
-      "gross_margin_amount": 4167013.0439999998,
-      "gross_margin_pct": 70.4
+      "gross_margin_amount": 4099203.0439999998,
+      "gross_margin_pct": 70.1
     },
     {
       "date": "2026-05-22",
@@ -118963,7 +119130,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 22,
-      "gross_revenue": 2856202.0,
+      "gross_revenue": 2332262.0,
       "total_fee": 748908.0,
       "fee_breakdown": {
         "Phí cố định": 460851.0,
@@ -118972,17 +119139,17 @@
         "Phí tiếp thị liên kết": 18038.0,
         "Thuế sàn thực tế": 42846.0
       },
-      "net_revenue": 2107294.0,
+      "net_revenue": 1583354.0,
       "cogs": 627465.696,
-      "gross_margin_amount": 1479828.304,
-      "gross_margin_pct": 70.2
+      "gross_margin_amount": 955888.304,
+      "gross_margin_pct": 60.4
     },
     {
       "date": "2026-05-23",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 41,
-      "gross_revenue": 7202200.0,
+      "gross_revenue": 7254190.0,
       "total_fee": 2250710.0,
       "fee_breakdown": {
         "Phí cố định": 1159552.0,
@@ -118991,10 +119158,10 @@
         "Thuế sàn thực tế": 108039.0,
         "Phí tiếp thị liên kết": 35885.0
       },
-      "net_revenue": 4951490.0,
+      "net_revenue": 5003480.0,
       "cogs": 1003636.157,
-      "gross_margin_amount": 3947853.843,
-      "gross_margin_pct": 79.7
+      "gross_margin_amount": 3999843.843,
+      "gross_margin_pct": 79.9
     },
     {
       "date": "2026-05-23",
@@ -119052,7 +119219,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 19,
-      "gross_revenue": 2978775.0,
+      "gross_revenue": 2885715.0,
       "total_fee": 769994.0,
       "fee_breakdown": {
         "Phí cố định": 478834.0,
@@ -119061,17 +119228,17 @@
         "Thuế sàn thực tế": 44685.0,
         "Phí tiếp thị liên kết": 19388.0
       },
-      "net_revenue": 2208781.0,
+      "net_revenue": 2115721.0,
       "cogs": 456470.553,
-      "gross_margin_amount": 1752310.447,
-      "gross_margin_pct": 79.3
+      "gross_margin_amount": 1659250.447,
+      "gross_margin_pct": 78.4
     },
     {
       "date": "2026-05-24",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 20,
-      "gross_revenue": 3296510.0,
+      "gross_revenue": 3555500.0,
       "total_fee": 1013701.0,
       "fee_breakdown": {
         "Phí cố định": 530738.0,
@@ -119080,25 +119247,25 @@
         "Thuế sàn thực tế": 49450.0,
         "Phí tiếp thị liên kết": 5634.0
       },
-      "net_revenue": 2282809.0,
+      "net_revenue": 2541799.0,
       "cogs": 785906.2930000001,
-      "gross_margin_amount": 1496902.707,
-      "gross_margin_pct": 65.6
+      "gross_margin_amount": 1755892.707,
+      "gross_margin_pct": 69.1
     },
     {
       "date": "2026-05-25",
       "channel": "facebook",
       "shop_page": "",
       "orders": 1,
-      "gross_revenue": 6000000.0,
+      "gross_revenue": 12000000.0,
       "total_fee": 157743.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 157743.0
       },
-      "net_revenue": 5842257.0,
+      "net_revenue": 11842257.0,
       "cogs": 3360260.0,
-      "gross_margin_amount": 2481997.0,
-      "gross_margin_pct": 42.5
+      "gross_margin_amount": 8481997.0,
+      "gross_margin_pct": 71.6
     },
     {
       "date": "2026-05-25",
@@ -119120,7 +119287,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 42,
-      "gross_revenue": 7100435.0,
+      "gross_revenue": 7775435.0,
       "total_fee": 1829243.0,
       "fee_breakdown": {
         "Phí cố định": 1144029.0,
@@ -119129,17 +119296,17 @@
         "Thuế sàn thực tế": 106515.0,
         "Phí tiếp thị liên kết": 43502.0
       },
-      "net_revenue": 5271192.0,
+      "net_revenue": 5946192.0,
       "cogs": 1826106.92,
-      "gross_margin_amount": 3445085.08,
-      "gross_margin_pct": 65.4
+      "gross_margin_amount": 4120085.08,
+      "gross_margin_pct": 69.3
     },
     {
       "date": "2026-05-25",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 45,
-      "gross_revenue": 9895040.0,
+      "gross_revenue": 9441030.0,
       "total_fee": 3005012.5,
       "fee_breakdown": {
         "Phí cố định": 1535507.0,
@@ -119151,10 +119318,10 @@
         "Phí đơn trả hàng": 32200.0,
         "Các phí khác": 18300.0
       },
-      "net_revenue": 6890027.5,
+      "net_revenue": 6436017.5,
       "cogs": 1754306.833,
-      "gross_margin_amount": 5135720.666999999,
-      "gross_margin_pct": 74.5
+      "gross_margin_amount": 4681710.666999999,
+      "gross_margin_pct": 72.7
     },
     {
       "date": "2026-05-26",
@@ -119209,7 +119376,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
-      "gross_revenue": 5466918.0,
+      "gross_revenue": 5331918.0,
       "total_fee": 1420673.0,
       "fee_breakdown": {
         "Phí cố định": 876279.0,
@@ -119218,17 +119385,17 @@
         "Phí tiếp thị liên kết": 40108.0,
         "Thuế sàn thực tế": 82010.0
       },
-      "net_revenue": 4046245.0,
+      "net_revenue": 3911245.0,
       "cogs": 1199483.839,
-      "gross_margin_amount": 2846761.1610000003,
-      "gross_margin_pct": 70.4
+      "gross_margin_amount": 2711761.1610000003,
+      "gross_margin_pct": 69.3
     },
     {
       "date": "2026-05-26",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 37,
-      "gross_revenue": 5822290.0,
+      "gross_revenue": 5675290.0,
       "total_fee": 1809589.0,
       "fee_breakdown": {
         "Phí cố định": 936658.0,
@@ -119237,10 +119404,10 @@
         "Thuế sàn thực tế": 87336.0,
         "Phí tiếp thị liên kết": 17901.0
       },
-      "net_revenue": 4012701.0,
+      "net_revenue": 3865701.0,
       "cogs": 1483419.017,
-      "gross_margin_amount": 2529281.983,
-      "gross_margin_pct": 63.0
+      "gross_margin_amount": 2382281.983,
+      "gross_margin_pct": 61.6
     },
     {
       "date": "2026-05-26",
@@ -119292,7 +119459,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 40,
-      "gross_revenue": 7048108.0,
+      "gross_revenue": 7391858.0,
       "total_fee": 1756198.0,
       "fee_breakdown": {
         "Phí cố định": 1104177.0,
@@ -119301,17 +119468,17 @@
         "Phí tiếp thị liên kết": 33534.0,
         "Thuế sàn thực tế": 103007.0
       },
-      "net_revenue": 5291910.0,
+      "net_revenue": 5635660.0,
       "cogs": 2066470.651,
-      "gross_margin_amount": 3225439.349,
-      "gross_margin_pct": 61.0
+      "gross_margin_amount": 3569189.349,
+      "gross_margin_pct": 63.3
     },
     {
       "date": "2026-05-27",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 41,
-      "gross_revenue": 8657760.0,
+      "gross_revenue": 8751760.0,
       "total_fee": 2543265.0,
       "fee_breakdown": {
         "Phí cố định": 1319459.0,
@@ -119323,10 +119490,10 @@
         "Hoàn thuế do phát sinh trả hàng": -1410.0,
         "Khoản điều chỉnh": -572.0
       },
-      "net_revenue": 6114495.0,
+      "net_revenue": 6208495.0,
       "cogs": 1919516.507,
-      "gross_margin_amount": 4194978.493,
-      "gross_margin_pct": 68.6
+      "gross_margin_amount": 4288978.493,
+      "gross_margin_pct": 69.1
     },
     {
       "date": "2026-05-27",
@@ -119379,7 +119546,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 22,
-      "gross_revenue": 5725351.0,
+      "gross_revenue": 4942683.0,
       "total_fee": 1437193.0,
       "fee_breakdown": {
         "Phí cố định": 916056.0,
@@ -119388,17 +119555,17 @@
         "Thuế sàn thực tế": 85882.0,
         "Phí tiếp thị liên kết": 33114.0
       },
-      "net_revenue": 4288158.0,
+      "net_revenue": 3505490.0,
       "cogs": 799928.501,
-      "gross_margin_amount": 3488229.499,
-      "gross_margin_pct": 81.3
+      "gross_margin_amount": 2705561.499,
+      "gross_margin_pct": 77.2
     },
     {
       "date": "2026-05-28",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
-      "gross_revenue": 8125010.0,
+      "gross_revenue": 7902391.0,
       "total_fee": 2538867.0,
       "fee_breakdown": {
         "Phí cố định": 1307064.0,
@@ -119407,10 +119574,10 @@
         "Phí tiếp thị liên kết": 53713.0,
         "Thuế sàn thực tế": 121883.0
       },
-      "net_revenue": 5586143.0,
+      "net_revenue": 5363524.0,
       "cogs": 1513546.5320000001,
-      "gross_margin_amount": 4072596.468,
-      "gross_margin_pct": 72.9
+      "gross_margin_amount": 3849977.468,
+      "gross_margin_pct": 71.8
     },
     {
       "date": "2026-05-28",
@@ -119449,7 +119616,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
-      "gross_revenue": 6765898.0,
+      "gross_revenue": 6529389.0,
       "total_fee": 1801652.84,
       "fee_breakdown": {
         "Phí cố định": 1082545.0,
@@ -119460,10 +119627,10 @@
         "Các phí khác": 80000.0,
         "Hoàn thuế do phát sinh trả hàng": -5156.16
       },
-      "net_revenue": 4964245.16,
+      "net_revenue": 4727736.16,
       "cogs": 1470632.3059999999,
-      "gross_margin_amount": 3493612.8540000003,
-      "gross_margin_pct": 70.4
+      "gross_margin_amount": 3257103.8540000003,
+      "gross_margin_pct": 68.9
     },
     {
       "date": "2026-05-29",
@@ -119491,22 +119658,22 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 4,
-      "gross_revenue": 1575000.0,
+      "gross_revenue": 2280000.0,
       "total_fee": 54905.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 54905.0
       },
-      "net_revenue": 1520095.0,
+      "net_revenue": 2225095.0,
       "cogs": 777498.1880000001,
-      "gross_margin_amount": 742596.8119999999,
-      "gross_margin_pct": 48.9
+      "gross_margin_amount": 1447596.812,
+      "gross_margin_pct": 65.1
     },
     {
       "date": "2026-05-30",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 38,
-      "gross_revenue": 8151359.0,
+      "gross_revenue": 8229359.0,
       "total_fee": 1898970.0,
       "fee_breakdown": {
         "Phí cố định": 1197568.0,
@@ -119516,10 +119683,10 @@
         "Thuế sàn thực tế": 112409.0,
         "Hoàn thuế do phát sinh trả hàng": -1470.0
       },
-      "net_revenue": 6252389.0,
+      "net_revenue": 6330389.0,
       "cogs": 2039544.257,
-      "gross_margin_amount": 4212844.743,
-      "gross_margin_pct": 67.4
+      "gross_margin_amount": 4290844.743,
+      "gross_margin_pct": 67.8
     },
     {
       "date": "2026-05-30",
@@ -119678,7 +119845,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 29,
-      "gross_revenue": 5737082.0,
+      "gross_revenue": 5610082.0,
       "total_fee": 1421503.46,
       "fee_breakdown": {
         "Phí cố định": 885319.0,
@@ -119689,17 +119856,17 @@
         "Hoàn thuế do phát sinh trả hàng": -2936.54,
         "Phí đơn trả hàng": 32200.0
       },
-      "net_revenue": 4315578.54,
+      "net_revenue": 4188578.54,
       "cogs": 867693.094,
-      "gross_margin_amount": 3447885.446,
-      "gross_margin_pct": 79.9
+      "gross_margin_amount": 3320885.446,
+      "gross_margin_pct": 79.3
     },
     {
       "date": "2026-06-01",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 34,
-      "gross_revenue": 6449140.0,
+      "gross_revenue": 6470780.0,
       "total_fee": 2205690.4,
       "fee_breakdown": {
         "Phí cố định": 1231786.0,
@@ -119710,10 +119877,10 @@
         "Các phí khác": 18300.0,
         "Hoàn thuế do phát sinh trả hàng": -1734.6
       },
-      "net_revenue": 4243449.6,
+      "net_revenue": 4265089.6,
       "cogs": 1006618.355,
-      "gross_margin_amount": 3236831.2449999996,
-      "gross_margin_pct": 76.3
+      "gross_margin_amount": 3258471.2449999996,
+      "gross_margin_pct": 76.4
     },
     {
       "date": "2026-06-01",
@@ -119767,7 +119934,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 25,
-      "gross_revenue": 5644611.0,
+      "gross_revenue": 5702111.0,
       "total_fee": 1431248.0,
       "fee_breakdown": {
         "Phí cố định": 903138.0,
@@ -119776,10 +119943,10 @@
         "Thuế sàn thực tế": 84673.0,
         "Phí tiếp thị liên kết": 31199.0
       },
-      "net_revenue": 4213363.0,
+      "net_revenue": 4270863.0,
       "cogs": 1429845.499,
-      "gross_margin_amount": 2783517.501,
-      "gross_margin_pct": 66.1
+      "gross_margin_amount": 2841017.501,
+      "gross_margin_pct": 66.5
     },
     {
       "date": "2026-06-02",
@@ -119851,22 +120018,22 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 4,
-      "gross_revenue": 1405000.0,
+      "gross_revenue": 2010000.0,
       "total_fee": 138524.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 138524.0
       },
-      "net_revenue": 1266476.0,
+      "net_revenue": 1871476.0,
       "cogs": 818997.959,
-      "gross_margin_amount": 447478.04099999997,
-      "gross_margin_pct": 35.3
+      "gross_margin_amount": 1052478.041,
+      "gross_margin_pct": 56.2
     },
     {
       "date": "2026-06-03",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 30,
-      "gross_revenue": 6991803.0,
+      "gross_revenue": 7163675.0,
       "total_fee": 1757105.92,
       "fee_breakdown": {
         "Phí cố định": 1091639.0,
@@ -119877,10 +120044,10 @@
         "Các phí khác": 32200.0,
         "Hoàn thuế do phát sinh trả hàng": -2578.08
       },
-      "net_revenue": 5234697.08,
+      "net_revenue": 5406569.08,
       "cogs": 973381.796,
-      "gross_margin_amount": 4261315.284,
-      "gross_margin_pct": 81.4
+      "gross_margin_amount": 4433187.284,
+      "gross_margin_pct": 82.0
     },
     {
       "date": "2026-06-03",
@@ -119941,7 +120108,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 12,
-      "gross_revenue": 2723278.0,
+      "gross_revenue": 2551406.0,
       "total_fee": 693362.0,
       "fee_breakdown": {
         "Phí cố định": 435725.0,
@@ -119950,17 +120117,17 @@
         "Thuế sàn thực tế": 40850.0,
         "Phí tiếp thị liên kết": 16699.0
       },
-      "net_revenue": 2029916.0,
+      "net_revenue": 1858044.0,
       "cogs": 392489.748,
-      "gross_margin_amount": 1637426.2519999999,
-      "gross_margin_pct": 80.7
+      "gross_margin_amount": 1465554.2519999999,
+      "gross_margin_pct": 78.9
     },
     {
       "date": "2026-06-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 30,
-      "gross_revenue": 6652400.0,
+      "gross_revenue": 6852010.0,
       "total_fee": 2159209.6,
       "fee_breakdown": {
         "Phí cố định": 1213052.0,
@@ -119971,10 +120138,10 @@
         "Hoàn thuế do phát sinh trả hàng": -4481.4,
         "Phí đơn trả hàng": 20100.0
       },
-      "net_revenue": 4493190.4,
+      "net_revenue": 4692800.4,
       "cogs": 1152824.745,
-      "gross_margin_amount": 3340365.6550000003,
-      "gross_margin_pct": 74.3
+      "gross_margin_amount": 3539975.6550000003,
+      "gross_margin_pct": 75.4
     },
     {
       "date": "2026-06-04",
@@ -120024,15 +120191,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 3,
-      "gross_revenue": 1020000.0,
+      "gross_revenue": -290000.0,
       "total_fee": 40000.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 40000.0
       },
-      "net_revenue": 980000.0,
+      "net_revenue": -330000.0,
       "cogs": 203728.74599999998,
-      "gross_margin_amount": 776271.254,
-      "gross_margin_pct": 79.2
+      "gross_margin_amount": -533728.746,
+      "gross_margin_pct": 161.7
     },
     {
       "date": "2026-06-05",
@@ -120070,7 +120237,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 31,
-      "gross_revenue": 5855343.0,
+      "gross_revenue": 6455141.0,
       "total_fee": 1474508.0,
       "fee_breakdown": {
         "Phí cố định": 939423.0,
@@ -120079,10 +120246,10 @@
         "Phí tiếp thị liên kết": 13481.0,
         "Thuế sàn thực tế": 87835.0
       },
-      "net_revenue": 4380835.0,
+      "net_revenue": 4980633.0,
       "cogs": 956241.675,
-      "gross_margin_amount": 3424593.325,
-      "gross_margin_pct": 78.2
+      "gross_margin_amount": 4024391.325,
+      "gross_margin_pct": 80.8
     },
     {
       "date": "2026-06-05",
@@ -120171,7 +120338,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 46,
-      "gross_revenue": 8453492.0,
+      "gross_revenue": 8402343.0,
       "total_fee": 2175262.0,
       "fee_breakdown": {
         "Phí cố định": 1357905.0,
@@ -120180,17 +120347,17 @@
         "Phí tiếp thị liên kết": 55779.0,
         "Thuế sàn thực tế": 126806.0
       },
-      "net_revenue": 6278230.0,
+      "net_revenue": 6227081.0,
       "cogs": 1317029.302,
-      "gross_margin_amount": 4961200.698,
-      "gross_margin_pct": 79.0
+      "gross_margin_amount": 4910051.698,
+      "gross_margin_pct": 78.8
     },
     {
       "date": "2026-06-06",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 58,
-      "gross_revenue": 11478450.0,
+      "gross_revenue": 12024310.0,
       "total_fee": 3817742.25,
       "fee_breakdown": {
         "Phí cố định": 2132835.0,
@@ -120201,10 +120368,10 @@
         "Hoàn thuế do phát sinh trả hàng": -5019.75,
         "Phí đơn trả hàng": 32700.0
       },
-      "net_revenue": 7660707.75,
+      "net_revenue": 8206567.75,
       "cogs": 2302009.472,
-      "gross_margin_amount": 5358698.278,
-      "gross_margin_pct": 70.0
+      "gross_margin_amount": 5904558.278,
+      "gross_margin_pct": 71.9
     },
     {
       "date": "2026-06-06",
@@ -120259,7 +120426,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 23,
-      "gross_revenue": 4923612.0,
+      "gross_revenue": 4539603.0,
       "total_fee": 1050291.0,
       "fee_breakdown": {
         "Phí cố định": 662697.0,
@@ -120268,17 +120435,17 @@
         "Thuế sàn thực tế": 61056.0,
         "Phí tiếp thị liên kết": 20185.0
       },
-      "net_revenue": 3873321.0,
+      "net_revenue": 3489312.0,
       "cogs": 1249745.747,
-      "gross_margin_amount": 2623575.253,
-      "gross_margin_pct": 67.7
+      "gross_margin_amount": 2239566.253,
+      "gross_margin_pct": 64.2
     },
     {
       "date": "2026-06-07",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 44,
-      "gross_revenue": 6324240.0,
+      "gross_revenue": 5998880.0,
       "total_fee": 2183163.0,
       "fee_breakdown": {
         "Phí cố định": 1206651.0,
@@ -120287,10 +120454,10 @@
         "Phí tiếp thị liên kết": 35945.0,
         "Thuế sàn thực tế": 94866.0
       },
-      "net_revenue": 4141077.0,
+      "net_revenue": 3815717.0,
       "cogs": 1562591.075,
-      "gross_margin_amount": 2578485.925,
-      "gross_margin_pct": 62.3
+      "gross_margin_amount": 2253125.925,
+      "gross_margin_pct": 59.0
     },
     {
       "date": "2026-06-08",
@@ -120312,7 +120479,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 23,
-      "gross_revenue": 7492229.0,
+      "gross_revenue": 7358729.0,
       "total_fee": 1862457.0,
       "fee_breakdown": {
         "Phí cố định": 1215764.0,
@@ -120321,17 +120488,17 @@
         "Phí tiếp thị liên kết": 21140.0,
         "Thuế sàn thực tế": 112388.0
       },
-      "net_revenue": 5629772.0,
+      "net_revenue": 5496272.0,
       "cogs": 1207588.956,
-      "gross_margin_amount": 4422183.044,
-      "gross_margin_pct": 78.5
+      "gross_margin_amount": 4288683.044,
+      "gross_margin_pct": 78.0
     },
     {
       "date": "2026-06-08",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 36,
-      "gross_revenue": 8190100.0,
+      "gross_revenue": 7969600.0,
       "total_fee": 2785656.0,
       "fee_breakdown": {
         "Phí cố định": 1578754.0,
@@ -120340,10 +120507,10 @@
         "Thuế sàn thực tế": 122855.0,
         "Phí tiếp thị liên kết": 38773.0
       },
-      "net_revenue": 5404444.0,
+      "net_revenue": 5183944.0,
       "cogs": 1578674.345,
-      "gross_margin_amount": 3825769.6550000003,
-      "gross_margin_pct": 70.8
+      "gross_margin_amount": 3605269.6550000003,
+      "gross_margin_pct": 69.5
     },
     {
       "date": "2026-06-08",
@@ -120360,6 +120527,19 @@
       "net_revenue": 108234.0,
       "cogs": 0.0,
       "gross_margin_amount": 108234.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-06-09",
+      "channel": "facebook",
+      "shop_page": "",
+      "orders": 0,
+      "gross_revenue": -6000000.0,
+      "total_fee": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": -6000000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": -6000000.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -120382,7 +120562,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 20,
-      "gross_revenue": 4536205.0,
+      "gross_revenue": 4427205.0,
       "total_fee": 1137256.0,
       "fee_breakdown": {
         "Phí cố định": 728245.0,
@@ -120391,17 +120571,17 @@
         "Phí tiếp thị liên kết": 16807.0,
         "Thuế sàn thực tế": 68043.0
       },
-      "net_revenue": 3398949.0,
+      "net_revenue": 3289949.0,
       "cogs": 718150.97,
-      "gross_margin_amount": 2680798.0300000003,
-      "gross_margin_pct": 78.9
+      "gross_margin_amount": 2571798.0300000003,
+      "gross_margin_pct": 78.2
     },
     {
       "date": "2026-06-09",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 35,
-      "gross_revenue": 6845980.0,
+      "gross_revenue": 7110980.0,
       "total_fee": 2322187.0,
       "fee_breakdown": {
         "Phí cố định": 1309477.0,
@@ -120412,10 +120592,10 @@
         "Hoàn thuế do phát sinh trả hàng": -975.0,
         "Khoản điều chỉnh": -5357.0
       },
-      "net_revenue": 4523793.0,
+      "net_revenue": 4788793.0,
       "cogs": 1041374.194,
-      "gross_margin_amount": 3482418.806,
-      "gross_margin_pct": 77.0
+      "gross_margin_amount": 3747418.806,
+      "gross_margin_pct": 78.3
     },
     {
       "date": "2026-06-09",
@@ -120501,7 +120681,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 38,
-      "gross_revenue": 10442720.0,
+      "gross_revenue": 10127470.0,
       "total_fee": 3504181.0,
       "fee_breakdown": {
         "Phí cố định": 1994448.0,
@@ -120510,10 +120690,10 @@
         "Phí tiếp thị liên kết": 41383.0,
         "Thuế sàn thực tế": 156646.0
       },
-      "net_revenue": 6938539.0,
+      "net_revenue": 6623289.0,
       "cogs": 2203953.35,
-      "gross_margin_amount": 4734585.65,
-      "gross_margin_pct": 68.2
+      "gross_margin_amount": 4419335.65,
+      "gross_margin_pct": 66.7
     },
     {
       "date": "2026-06-10",
@@ -120568,22 +120748,22 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 2,
-      "gross_revenue": 645000.0,
+      "gross_revenue": 1290000.0,
       "total_fee": 55714.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 55714.0
       },
-      "net_revenue": 589286.0,
+      "net_revenue": 1234286.0,
       "cogs": 222585.918,
-      "gross_margin_amount": 366700.082,
-      "gross_margin_pct": 62.2
+      "gross_margin_amount": 1011700.0819999999,
+      "gross_margin_pct": 82.0
     },
     {
       "date": "2026-06-11",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 27,
-      "gross_revenue": 6610504.0,
+      "gross_revenue": 6721702.0,
       "total_fee": 1681111.0,
       "fee_breakdown": {
         "Phí cố định": 1062403.0,
@@ -120592,17 +120772,17 @@
         "Thuế sàn thực tế": 99162.0,
         "Phí tiếp thị liên kết": 45154.0
       },
-      "net_revenue": 4929393.0,
+      "net_revenue": 5040591.0,
       "cogs": 636908.971,
-      "gross_margin_amount": 4292484.029,
-      "gross_margin_pct": 87.1
+      "gross_margin_amount": 4403682.029,
+      "gross_margin_pct": 87.4
     },
     {
       "date": "2026-06-11",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 52,
-      "gross_revenue": 9479220.0,
+      "gross_revenue": 9648220.0,
       "total_fee": 3149397.0,
       "fee_breakdown": {
         "Phí cố định": 1741925.0,
@@ -120613,10 +120793,10 @@
         "Các phí khác": 69800.0,
         "Hoàn thuế do phát sinh trả hàng": -2535.0
       },
-      "net_revenue": 6329823.0,
+      "net_revenue": 6498823.0,
       "cogs": 2362580.088,
-      "gross_margin_amount": 3967242.912,
-      "gross_margin_pct": 62.7
+      "gross_margin_amount": 4136242.912,
+      "gross_margin_pct": 63.6
     },
     {
       "date": "2026-06-12",
@@ -120656,7 +120836,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 24,
-      "gross_revenue": 6298647.0,
+      "gross_revenue": 6461006.0,
       "total_fee": 1595802.01,
       "fee_breakdown": {
         "Phí cố định": 1007783.0,
@@ -120667,10 +120847,10 @@
         "Các phí khác": 40000.0,
         "Hoàn thuế do phát sinh trả hàng": -5489.99
       },
-      "net_revenue": 4702844.99,
+      "net_revenue": 4865203.99,
       "cogs": 821546.898,
-      "gross_margin_amount": 3881298.092,
-      "gross_margin_pct": 82.5
+      "gross_margin_amount": 4043657.092,
+      "gross_margin_pct": 83.1
     },
     {
       "date": "2026-06-12",
@@ -120748,7 +120928,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 34,
-      "gross_revenue": 6454020.0,
+      "gross_revenue": 6572020.0,
       "total_fee": 2194594.0,
       "fee_breakdown": {
         "Phí cố định": 1232224.0,
@@ -120757,10 +120937,10 @@
         "Phí tiếp thị liên kết": 27945.0,
         "Thuế sàn thực tế": 96812.0
       },
-      "net_revenue": 4259426.0,
+      "net_revenue": 4377426.0,
       "cogs": 843811.9180000001,
-      "gross_margin_amount": 3415614.082,
-      "gross_margin_pct": 80.2
+      "gross_margin_amount": 3533614.082,
+      "gross_margin_pct": 80.7
     },
     {
       "date": "2026-06-14",
@@ -120780,15 +120960,15 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 5,
-      "gross_revenue": 2372000.0,
+      "gross_revenue": 1767000.0,
       "total_fee": 172550.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 172550.0
       },
-      "net_revenue": 2199450.0,
+      "net_revenue": 1594450.0,
       "cogs": 637640.193,
-      "gross_margin_amount": 1561809.807,
-      "gross_margin_pct": 71.0
+      "gross_margin_amount": 956809.807,
+      "gross_margin_pct": 60.0
     },
     {
       "date": "2026-06-14",
@@ -120827,7 +121007,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 53,
-      "gross_revenue": 10886290.0,
+      "gross_revenue": 11961050.0,
       "total_fee": 3576859.9,
       "fee_breakdown": {
         "Phí cố định": 2025710.0,
@@ -120838,10 +121018,10 @@
         "Hoàn thuế do phát sinh trả hàng": -4601.1,
         "Phí đơn trả hàng": 20100.0
       },
-      "net_revenue": 7309430.1,
+      "net_revenue": 8384190.1,
       "cogs": 2005358.24,
-      "gross_margin_amount": 5304071.859999999,
-      "gross_margin_pct": 72.6
+      "gross_margin_amount": 6378831.859999999,
+      "gross_margin_pct": 76.1
     },
     {
       "date": "2026-06-15",
@@ -120894,7 +121074,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 34,
-      "gross_revenue": 8238161.0,
+      "gross_revenue": 8506445.0,
       "total_fee": 2059803.93,
       "fee_breakdown": {
         "Phí cố định": 1283804.0,
@@ -120905,17 +121085,17 @@
         "Hoàn thuế do phát sinh trả hàng": -4052.07,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 6178357.07,
+      "net_revenue": 6446641.07,
       "cogs": 2196698.916,
-      "gross_margin_amount": 3981658.154,
-      "gross_margin_pct": 64.4
+      "gross_margin_amount": 4249942.154,
+      "gross_margin_pct": 65.9
     },
     {
       "date": "2026-06-15",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 46,
-      "gross_revenue": 10761900.0,
+      "gross_revenue": 10554140.0,
       "total_fee": 3631499.0,
       "fee_breakdown": {
         "Phí cố định": 2054993.0,
@@ -120924,10 +121104,10 @@
         "Phí tiếp thị liên kết": 53585.0,
         "Thuế sàn thực tế": 161430.0
       },
-      "net_revenue": 7130401.0,
+      "net_revenue": 6922641.0,
       "cogs": 2598056.173,
-      "gross_margin_amount": 4532344.827,
-      "gross_margin_pct": 63.6
+      "gross_margin_amount": 4324584.827,
+      "gross_margin_pct": 62.5
     },
     {
       "date": "2026-06-15",
@@ -120998,7 +121178,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 37,
-      "gross_revenue": 5567134.0,
+      "gross_revenue": 5924101.0,
       "total_fee": 1439401.0,
       "fee_breakdown": {
         "Phí cố định": 892217.0,
@@ -121007,10 +121187,10 @@
         "Phí tiếp thị liên kết": 36797.0,
         "Thuế sàn thực tế": 83508.0
       },
-      "net_revenue": 4127733.0,
+      "net_revenue": 4484700.0,
       "cogs": 1261906.831,
-      "gross_margin_amount": 2865826.1689999998,
-      "gross_margin_pct": 69.4
+      "gross_margin_amount": 3222793.1689999998,
+      "gross_margin_pct": 71.9
     },
     {
       "date": "2026-06-16",
@@ -121100,7 +121280,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 39,
-      "gross_revenue": 7976278.0,
+      "gross_revenue": 7460081.0,
       "total_fee": 2019141.0,
       "fee_breakdown": {
         "Phí cố định": 1248602.0,
@@ -121111,17 +121291,17 @@
         "Hoàn thuế do phát sinh trả hàng": -2925.0,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 5957137.0,
+      "net_revenue": 5440940.0,
       "cogs": 951979.934,
-      "gross_margin_amount": 5005157.066,
-      "gross_margin_pct": 84.0
+      "gross_margin_amount": 4488960.066,
+      "gross_margin_pct": 82.5
     },
     {
       "date": "2026-06-17",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 55,
-      "gross_revenue": 10913920.0,
+      "gross_revenue": 10184920.0,
       "total_fee": 3638422.0,
       "fee_breakdown": {
         "Phí cố định": 2046550.0,
@@ -121132,10 +121312,10 @@
         "Hoàn thuế do phát sinh trả hàng": -2985.0,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 7275498.0,
+      "net_revenue": 6546498.0,
       "cogs": 2590144.413,
-      "gross_margin_amount": 4685353.586999999,
-      "gross_margin_pct": 64.4
+      "gross_margin_amount": 3956353.587,
+      "gross_margin_pct": 60.4
     },
     {
       "date": "2026-06-17",
@@ -121206,7 +121386,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 60,
-      "gross_revenue": 11494522.0,
+      "gross_revenue": 10989522.0,
       "total_fee": 3884199.0,
       "fee_breakdown": {
         "Phí cố định": 2192963.0,
@@ -121215,10 +121395,10 @@
         "Thuế sàn thực tế": 172421.0,
         "Phí tiếp thị liên kết": 37323.0
       },
-      "net_revenue": 7610323.0,
+      "net_revenue": 7105323.0,
       "cogs": 2339773.106,
-      "gross_margin_amount": 5270549.893999999,
-      "gross_margin_pct": 69.3
+      "gross_margin_amount": 4765549.893999999,
+      "gross_margin_pct": 67.1
     },
     {
       "date": "2026-06-18",
@@ -121270,22 +121450,22 @@
       "channel": "facebook",
       "shop_page": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
       "orders": 2,
-      "gross_revenue": 1395000.0,
+      "gross_revenue": 750000.0,
       "total_fee": 25524.0,
       "fee_breakdown": {
         "Phí vận chuyển thanh toán với đối tác": 25524.0
       },
-      "net_revenue": 1369476.0,
+      "net_revenue": 724476.0,
       "cogs": 529894.959,
-      "gross_margin_amount": 839581.041,
-      "gross_margin_pct": 61.3
+      "gross_margin_amount": 194581.04099999997,
+      "gross_margin_pct": 26.9
     },
     {
       "date": "2026-06-19",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
-      "gross_revenue": 5345994.0,
+      "gross_revenue": 5570866.0,
       "total_fee": 1297526.0,
       "fee_breakdown": {
         "Phí cố định": 824162.0,
@@ -121294,17 +121474,17 @@
         "Phí tiếp thị liên kết": 21906.0,
         "Thuế sàn thực tế": 77267.0
       },
-      "net_revenue": 4048468.0,
+      "net_revenue": 4273340.0,
       "cogs": 650041.857,
-      "gross_margin_amount": 3398426.143,
-      "gross_margin_pct": 83.9
+      "gross_margin_amount": 3623298.143,
+      "gross_margin_pct": 84.8
     },
     {
       "date": "2026-06-19",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 63,
-      "gross_revenue": 12186380.0,
+      "gross_revenue": 12196380.0,
       "total_fee": 4063397.0,
       "fee_breakdown": {
         "Phí cố định": 2291257.0,
@@ -121313,9 +121493,9 @@
         "Thuế sàn thực tế": 179557.0,
         "Phí tiếp thị liên kết": 38807.0
       },
-      "net_revenue": 8122983.0,
+      "net_revenue": 8132983.0,
       "cogs": 2566033.116,
-      "gross_margin_amount": 5556949.884,
+      "gross_margin_amount": 5566949.884,
       "gross_margin_pct": 68.4
     },
     {
@@ -121392,7 +121572,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 22,
-      "gross_revenue": 5159581.0,
+      "gross_revenue": 4775001.0,
       "total_fee": 1301704.0,
       "fee_breakdown": {
         "Phí cố định": 824896.0,
@@ -121401,17 +121581,17 @@
         "Thuế sàn thực tế": 77397.0,
         "Phí tiếp thị liên kết": 28334.0
       },
-      "net_revenue": 3857877.0,
+      "net_revenue": 3473297.0,
       "cogs": 967419.041,
-      "gross_margin_amount": 2890457.959,
-      "gross_margin_pct": 74.9
+      "gross_margin_amount": 2505877.959,
+      "gross_margin_pct": 72.1
     },
     {
       "date": "2026-06-20",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 64,
-      "gross_revenue": 12113360.0,
+      "gross_revenue": 12258360.0,
       "total_fee": 4110466.0,
       "fee_breakdown": {
         "Phí cố định": 2313652.0,
@@ -121421,10 +121601,10 @@
         "Thuế sàn thực tế": 181709.0,
         "Hoàn thuế do phát sinh trả hàng": -2925.0
       },
-      "net_revenue": 8002894.0,
+      "net_revenue": 8147894.0,
       "cogs": 2819612.119,
-      "gross_margin_amount": 5183281.881,
-      "gross_margin_pct": 64.8
+      "gross_margin_amount": 5328281.881,
+      "gross_margin_pct": 65.4
     },
     {
       "date": "2026-06-20",
@@ -121509,7 +121689,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 37,
-      "gross_revenue": 6204397.0,
+      "gross_revenue": 6988675.0,
       "total_fee": 1554239.0,
       "fee_breakdown": {
         "Phí cố định": 965292.0,
@@ -121518,17 +121698,17 @@
         "Thuế sàn thực tế": 90269.0,
         "Phí tiếp thị liên kết": 39839.0
       },
-      "net_revenue": 4650158.0,
+      "net_revenue": 5434436.0,
       "cogs": 665605.718,
-      "gross_margin_amount": 3984552.282,
-      "gross_margin_pct": 85.7
+      "gross_margin_amount": 4768830.282,
+      "gross_margin_pct": 87.8
     },
     {
       "date": "2026-06-21",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 43,
-      "gross_revenue": 9422062.0,
+      "gross_revenue": 9472062.0,
       "total_fee": 3205357.0,
       "fee_breakdown": {
         "Phí cố định": 1798623.0,
@@ -121539,10 +121719,10 @@
         "Các phí khác": 40000.0,
         "Hoàn thuế do phát sinh trả hàng": -2925.0
       },
-      "net_revenue": 6216705.0,
+      "net_revenue": 6266705.0,
       "cogs": 2472573.732,
-      "gross_margin_amount": 3744131.268,
-      "gross_margin_pct": 60.2
+      "gross_margin_amount": 3794131.268,
+      "gross_margin_pct": 60.5
     },
     {
       "date": "2026-06-21",
@@ -121581,7 +121761,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 27,
-      "gross_revenue": 5398385.0,
+      "gross_revenue": 4823564.0,
       "total_fee": 1343385.93,
       "fee_breakdown": {
         "Phí cố định": 812244.0,
@@ -121592,17 +121772,17 @@
         "Hoàn thuế do phát sinh trả hàng": -4828.07,
         "Phí đơn trả hàng": 18300.0
       },
-      "net_revenue": 4054999.0700000003,
+      "net_revenue": 3480178.0700000003,
       "cogs": 1184751.0659999999,
-      "gross_margin_amount": 2870248.0040000007,
-      "gross_margin_pct": 70.8
+      "gross_margin_amount": 2295427.0040000007,
+      "gross_margin_pct": 66.0
     },
     {
       "date": "2026-06-22",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 66,
-      "gross_revenue": 15394540.0,
+      "gross_revenue": 15594540.0,
       "total_fee": 5028145.0,
       "fee_breakdown": {
         "Phí cố định": 2855197.0,
@@ -121611,17 +121791,17 @@
         "Phí tiếp thị liên kết": 52579.0,
         "Thuế sàn thực tế": 223064.0
       },
-      "net_revenue": 10366395.0,
+      "net_revenue": 10566395.0,
       "cogs": 3810259.12,
-      "gross_margin_amount": 6556135.88,
-      "gross_margin_pct": 63.2
+      "gross_margin_amount": 6756135.88,
+      "gross_margin_pct": 63.9
     },
     {
       "date": "2026-06-22",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 3,
-      "gross_revenue": 249200.0,
+      "gross_revenue": 324850.0,
       "total_fee": 91976.0,
       "fee_breakdown": {
         "Phí hoa hồng": 32396.0,
@@ -121629,10 +121809,10 @@
         "Phí tiếp thị liên kết": 18690.0,
         "Tổng thuế thực tế": -3740.0
       },
-      "net_revenue": 157224.0,
+      "net_revenue": 232874.0,
       "cogs": 58000.0,
-      "gross_margin_amount": 99224.0,
-      "gross_margin_pct": 63.1
+      "gross_margin_amount": 174874.0,
+      "gross_margin_pct": 75.1
     },
     {
       "date": "2026-06-23",
@@ -121685,7 +121865,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 27,
-      "gross_revenue": 6219781.0,
+      "gross_revenue": 6466541.0,
       "total_fee": 1580925.0,
       "fee_breakdown": {
         "Phí cố định": 1000566.0,
@@ -121694,17 +121874,17 @@
         "Phí tiếp thị liên kết": 41818.0,
         "Thuế sàn thực tế": 93296.0
       },
-      "net_revenue": 4638856.0,
+      "net_revenue": 4885616.0,
       "cogs": 1947363.814,
-      "gross_margin_amount": 2691492.1859999998,
-      "gross_margin_pct": 58.0
+      "gross_margin_amount": 2938252.1859999998,
+      "gross_margin_pct": 60.1
     },
     {
       "date": "2026-06-23",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 67,
-      "gross_revenue": 16049460.0,
+      "gross_revenue": 15849460.0,
       "total_fee": 5372295.0,
       "fee_breakdown": {
         "Phí cố định": 3074368.0,
@@ -121714,26 +121894,26 @@
         "Phí tiếp thị liên kết": 41197.0,
         "Khoản điều chỉnh": -20226.0
       },
-      "net_revenue": 10677165.0,
+      "net_revenue": 10477165.0,
       "cogs": 4881651.485,
-      "gross_margin_amount": 5795513.515,
-      "gross_margin_pct": 54.3
+      "gross_margin_amount": 5595513.515,
+      "gross_margin_pct": 53.4
     },
     {
       "date": "2026-06-23",
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
       "orders": 1,
-      "gross_revenue": 75650.0,
+      "gross_revenue": 0.0,
       "total_fee": 21533.0,
       "fee_breakdown": {
         "Phí hoa hồng": 9834.0,
         "Phí khác": 12833.0,
         "Tổng thuế thực tế": -1134.0
       },
-      "net_revenue": 54117.0,
+      "net_revenue": -21533.0,
       "cogs": 0.0,
-      "gross_margin_amount": 54117.0,
+      "gross_margin_amount": -21533.0,
       "gross_margin_pct": 100.0
     },
     {
@@ -121769,7 +121949,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 38,
-      "gross_revenue": 9989592.0,
+      "gross_revenue": 9781832.0,
       "total_fee": 2565665.0,
       "fee_breakdown": {
         "Phí cố định": 1594695.0,
@@ -121780,17 +121960,17 @@
         "Các phí khác": 37600.0,
         "Hoàn thuế do phát sinh trả hàng": -585.0
       },
-      "net_revenue": 7423927.0,
+      "net_revenue": 7216167.0,
       "cogs": 2198713.428,
-      "gross_margin_amount": 5225213.572000001,
-      "gross_margin_pct": 70.4
+      "gross_margin_amount": 5017453.572000001,
+      "gross_margin_pct": 69.5
     },
     {
       "date": "2026-06-24",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 54,
-      "gross_revenue": 12054040.0,
+      "gross_revenue": 12211100.0,
       "total_fee": 3500490.0,
       "fee_breakdown": {
         "Phí cố định": 1969812.0,
@@ -121801,10 +121981,10 @@
         "Hoàn thuế do phát sinh trả hàng": -26460.0,
         "Phí đơn trả hàng": 40000.0
       },
-      "net_revenue": 8553550.0,
+      "net_revenue": 8710610.0,
       "cogs": 2893898.122,
-      "gross_margin_amount": 5659651.8780000005,
-      "gross_margin_pct": 66.2
+      "gross_margin_amount": 5816711.8780000005,
+      "gross_margin_pct": 66.8
     },
     {
       "date": "2026-06-24",
@@ -121873,7 +122053,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 28,
-      "gross_revenue": 5065066.0,
+      "gross_revenue": 5635998.0,
       "total_fee": 1299239.0,
       "fee_breakdown": {
         "Phí cố định": 822625.0,
@@ -121882,17 +122062,17 @@
         "Phí tiếp thị liên kết": 26744.0,
         "Thuế sàn thực tế": 75977.0
       },
-      "net_revenue": 3765827.0,
+      "net_revenue": 4336759.0,
       "cogs": 1661881.185,
-      "gross_margin_amount": 2103945.815,
-      "gross_margin_pct": 55.9
+      "gross_margin_amount": 2674877.815,
+      "gross_margin_pct": 61.7
     },
     {
       "date": "2026-06-25",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 88,
-      "gross_revenue": 18003100.0,
+      "gross_revenue": 18028800.0,
       "total_fee": 5549411.0,
       "fee_breakdown": {
         "Phí cố định": 3144114.0,
@@ -121901,10 +122081,10 @@
         "Thuế sàn thực tế": 246582.0,
         "Phí tiếp thị liên kết": 62453.0
       },
-      "net_revenue": 12453689.0,
+      "net_revenue": 12479389.0,
       "cogs": 4905656.209,
-      "gross_margin_amount": 7548032.791,
-      "gross_margin_pct": 60.6
+      "gross_margin_amount": 7573732.791,
+      "gross_margin_pct": 60.7
     },
     {
       "date": "2026-06-25",
@@ -121971,7 +122151,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 46,
-      "gross_revenue": 9734359.0,
+      "gross_revenue": 9458427.0,
       "total_fee": 1758040.0,
       "fee_breakdown": {
         "Phí cố định": 1075012.0,
@@ -121982,17 +122162,17 @@
         "Hoàn thuế do phát sinh trả hàng": -4425.0,
         "Phí tiếp thị liên kết": 59165.0
       },
-      "net_revenue": 7976319.0,
+      "net_revenue": 7700387.0,
       "cogs": 2810310.078,
-      "gross_margin_amount": 5166008.922,
-      "gross_margin_pct": 64.8
+      "gross_margin_amount": 4890076.922,
+      "gross_margin_pct": 63.5
     },
     {
       "date": "2026-06-26",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 58,
-      "gross_revenue": 13665440.0,
+      "gross_revenue": 13632680.0,
       "total_fee": 4012314.0,
       "fee_breakdown": {
         "Phí cố định": 2275153.0,
@@ -122001,10 +122181,10 @@
         "Thuế sàn thực tế": 178684.0,
         "Phí tiếp thị liên kết": 51516.0
       },
-      "net_revenue": 9653126.0,
+      "net_revenue": 9620366.0,
       "cogs": 3397297.039,
-      "gross_margin_amount": 6255828.961,
-      "gross_margin_pct": 64.8
+      "gross_margin_amount": 6223068.961,
+      "gross_margin_pct": 64.7
     },
     {
       "date": "2026-06-27",
@@ -122039,7 +122219,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 35,
-      "gross_revenue": 8562409.0,
+      "gross_revenue": 8926129.0,
       "total_fee": 1091441.0,
       "fee_breakdown": {
         "Phí cố định": 684408.0,
@@ -122048,17 +122228,17 @@
         "Thuế sàn thực tế": 64165.0,
         "Phí tiếp thị liên kết": 37255.0
       },
-      "net_revenue": 7470968.0,
+      "net_revenue": 7834688.0,
       "cogs": 3239143.08,
-      "gross_margin_amount": 4231824.92,
-      "gross_margin_pct": 56.6
+      "gross_margin_amount": 4595544.92,
+      "gross_margin_pct": 58.7
     },
     {
       "date": "2026-06-27",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 57,
-      "gross_revenue": 10674660.0,
+      "gross_revenue": 11647660.0,
       "total_fee": 2018706.0,
       "fee_breakdown": {
         "Phí cố định": 1129854.0,
@@ -122069,10 +122249,10 @@
         "Hoàn thuế do phát sinh trả hàng": -2925.0,
         "Phí tiếp thị liên kết": 42400.0
       },
-      "net_revenue": 8655954.0,
+      "net_revenue": 9628954.0,
       "cogs": 3164819.663,
-      "gross_margin_amount": 5491134.336999999,
-      "gross_margin_pct": 63.4
+      "gross_margin_amount": 6464134.336999999,
+      "gross_margin_pct": 67.1
     },
     {
       "date": "2026-06-28",
@@ -122126,7 +122306,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 21,
-      "gross_revenue": 3516100.0,
+      "gross_revenue": 2563100.0,
       "total_fee": 332454.0,
       "fee_breakdown": {
         "Phí cố định": 189636.0,
@@ -122135,10 +122315,10 @@
         "Thuế sàn thực tế": 14500.0,
         "Phí tiếp thị liên kết": 1979.0
       },
-      "net_revenue": 3183646.0,
+      "net_revenue": 2230646.0,
       "cogs": 810587.499,
-      "gross_margin_amount": 2373058.501,
-      "gross_margin_pct": 74.5
+      "gross_margin_amount": 1420058.5010000002,
+      "gross_margin_pct": 63.7
     },
     {
       "date": "2026-06-28",
@@ -122201,7 +122381,7 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 21,
-      "gross_revenue": 3958961.0,
+      "gross_revenue": 3791441.0,
       "total_fee": 158758.0,
       "fee_breakdown": {
         "Các phí khác": 18300.0,
@@ -122211,17 +122391,17 @@
         "Phí thanh toán": 35612.0,
         "Thuế sàn thực tế": 8725.0
       },
-      "net_revenue": 3800203.0,
+      "net_revenue": 3632683.0,
       "cogs": 1257733.736,
-      "gross_margin_amount": 2542469.264,
-      "gross_margin_pct": 66.9
+      "gross_margin_amount": 2374949.264,
+      "gross_margin_pct": 65.4
     },
     {
       "date": "2026-06-29",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 37,
-      "gross_revenue": 7484100.0,
+      "gross_revenue": 7099100.0,
       "total_fee": 301266.0,
       "fee_breakdown": {
         "Phí cố định": 167532.0,
@@ -122230,10 +122410,10 @@
         "Phí tiếp thị liên kết": 7990.0,
         "Thuế sàn thực tế": 12772.0
       },
-      "net_revenue": 7182834.0,
+      "net_revenue": 6797834.0,
       "cogs": 1506228.681,
-      "gross_margin_amount": 5676605.319,
-      "gross_margin_pct": 79.0
+      "gross_margin_amount": 5291605.319,
+      "gross_margin_pct": 77.8
     },
     {
       "date": "2026-06-29",
@@ -122341,13 +122521,13 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 26,
-      "gross_revenue": 4508084.0,
+      "gross_revenue": 4583084.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 4508084.0,
+      "net_revenue": 4583084.0,
       "cogs": 1313503.756,
-      "gross_margin_amount": 3194580.244,
-      "gross_margin_pct": 70.9
+      "gross_margin_amount": 3269580.244,
+      "gross_margin_pct": 71.3
     },
     {
       "date": "2026-07-01",
@@ -122395,26 +122575,26 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 21,
-      "gross_revenue": 3359530.0,
+      "gross_revenue": 2314530.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 3359530.0,
+      "net_revenue": 2314530.0,
       "cogs": 779421.299,
-      "gross_margin_amount": 2580108.701,
-      "gross_margin_pct": 76.8
+      "gross_margin_amount": 1535108.701,
+      "gross_margin_pct": 66.3
     },
     {
       "date": "2026-07-02",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "orders": 46,
-      "gross_revenue": 8306500.0,
+      "gross_revenue": 8131500.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 8306500.0,
+      "net_revenue": 8131500.0,
       "cogs": 1950495.362,
-      "gross_margin_amount": 6356004.638,
-      "gross_margin_pct": 76.5
+      "gross_margin_amount": 6181004.638,
+      "gross_margin_pct": 76.0
     },
     {
       "date": "2026-07-02",
@@ -122449,13 +122629,13 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "orders": 18,
-      "gross_revenue": 3270576.0,
+      "gross_revenue": 3035376.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 3270576.0,
+      "net_revenue": 3035376.0,
       "cogs": 801078.197,
-      "gross_margin_amount": 2469497.803,
-      "gross_margin_pct": 75.5
+      "gross_margin_amount": 2234297.803,
+      "gross_margin_pct": 73.6
     },
     {
       "date": "2026-07-03",
@@ -122513,27 +122693,27 @@
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 24,
-      "gross_revenue": 5023691.0,
+      "orders": 25,
+      "gross_revenue": 5050591.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 5023691.0,
-      "cogs": 1096592.572,
-      "gross_margin_amount": 3927098.4280000003,
+      "net_revenue": 5050591.0,
+      "cogs": 1102092.572,
+      "gross_margin_amount": 3948498.4280000003,
       "gross_margin_pct": 78.2
     },
     {
       "date": "2026-07-04",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 19,
-      "gross_revenue": 3928200.0,
+      "orders": 21,
+      "gross_revenue": 4611300.0,
       "total_fee": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 3928200.0,
-      "cogs": 792796.28,
-      "gross_margin_amount": 3135403.7199999997,
-      "gross_margin_pct": 79.8
+      "net_revenue": 4611300.0,
+      "cogs": 814303.292,
+      "gross_margin_amount": 3796996.708,
+      "gross_margin_pct": 82.3
     },
     {
       "date": "2026-07-04",
@@ -125052,11 +125232,11 @@
     },
     {
       "date": "2026-07-03",
-      "spend": 2199304.0
+      "spend": 2199323.0
     },
     {
       "date": "2026-07-04",
-      "spend": 892173.0
+      "spend": 916175.0
     }
   ],
   "debug_fee_join": {
@@ -125108,7 +125288,7 @@
     ]
   },
   "debug_fee_match": {
-    "total_orders_scanned": 11677,
+    "total_orders_scanned": 11680,
     "waybill_values_count": 6143,
     "son_values_count": 387,
     "top_matching_fields_for_waybill_mã_chứng_từ": [
@@ -125344,13 +125524,13 @@
     },
     "status_distribution_all_orders": {
       "status_distribution": {
-        "status='open'": 254,
-        "status='closed'": 11417,
+        "status='open'": 255,
+        "status='closed'": 11419,
         "status='cancelled'": 6
       },
       "financial_status_distribution": {
+        "financial_status='paid'": 8364,
         "financial_status='pending'": 1852,
-        "financial_status='paid'": 8361,
         "financial_status='partially_paid'": 17,
         "financial_status='refunded'": 1442,
         "financial_status='partially_refunded'": 5
@@ -129271,6 +129451,192 @@
         "diff_total": 35000.0,
         "sum_abs_diff_per_day": 35000.0
       }
+    },
+    "final_check": {
+      "total_abs_diff_net_revenue": 7600584.0,
+      "total_truth_net_revenue": 593261644.0,
+      "rows": [
+        {
+          "date": "2026-06-30",
+          "truth_net_revenue": 21290474.0,
+          "computed_net_revenue": 21290474.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-29",
+          "truth_net_revenue": 14084341.0,
+          "computed_net_revenue": 13694341.0,
+          "diff_net_revenue": -390000.0
+        },
+        {
+          "date": "2026-06-28",
+          "truth_net_revenue": 12278127.0,
+          "computed_net_revenue": 12278127.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-27",
+          "truth_net_revenue": 23471589.0,
+          "computed_net_revenue": 23666589.0,
+          "diff_net_revenue": 195000.0
+        },
+        {
+          "date": "2026-06-26",
+          "truth_net_revenue": 29265307.0,
+          "computed_net_revenue": 29295307.0,
+          "diff_net_revenue": 30000.0
+        },
+        {
+          "date": "2026-06-25",
+          "truth_net_revenue": 28158398.0,
+          "computed_net_revenue": 28323398.0,
+          "diff_net_revenue": 165000.0
+        },
+        {
+          "date": "2026-06-24",
+          "truth_net_revenue": 24993832.0,
+          "computed_net_revenue": 24993832.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-23",
+          "truth_net_revenue": 23179901.0,
+          "computed_net_revenue": 23179901.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-22",
+          "truth_net_revenue": 27905814.0,
+          "computed_net_revenue": 27905814.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-21",
+          "truth_net_revenue": 18466387.0,
+          "computed_net_revenue": 18466387.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-20",
+          "truth_net_revenue": 18814011.0,
+          "computed_net_revenue": 18814011.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-19",
+          "truth_net_revenue": 23217996.0,
+          "computed_net_revenue": 23182996.0,
+          "diff_net_revenue": -35000.0
+        },
+        {
+          "date": "2026-06-18",
+          "truth_net_revenue": 18136124.0,
+          "computed_net_revenue": 18136124.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-17",
+          "truth_net_revenue": 20995001.0,
+          "computed_net_revenue": 20995001.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-16",
+          "truth_net_revenue": 20072723.0,
+          "computed_net_revenue": 20072723.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-15",
+          "truth_net_revenue": 21611635.0,
+          "computed_net_revenue": 21611635.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-14",
+          "truth_net_revenue": 18790487.0,
+          "computed_net_revenue": 18790487.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-13",
+          "truth_net_revenue": 11367804.0,
+          "computed_net_revenue": 11367804.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-12",
+          "truth_net_revenue": 21545186.0,
+          "computed_net_revenue": 21545186.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-11",
+          "truth_net_revenue": 19744922.0,
+          "computed_net_revenue": 19744922.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-10",
+          "truth_net_revenue": 30976244.0,
+          "computed_net_revenue": 30976244.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-09",
+          "truth_net_revenue": 13551835.0,
+          "computed_net_revenue": 7551835.0,
+          "diff_net_revenue": -6000000.0
+        },
+        {
+          "date": "2026-06-08",
+          "truth_net_revenue": 21384429.0,
+          "computed_net_revenue": 21425629.0,
+          "diff_net_revenue": 41200.0
+        },
+        {
+          "date": "2026-06-07",
+          "truth_net_revenue": 12376691.0,
+          "computed_net_revenue": 12443483.0,
+          "diff_net_revenue": 66792.0
+        },
+        {
+          "date": "2026-06-06",
+          "truth_net_revenue": 21474095.0,
+          "computed_net_revenue": 21407303.0,
+          "diff_net_revenue": -66792.0
+        },
+        {
+          "date": "2026-06-05",
+          "truth_net_revenue": 12919411.0,
+          "computed_net_revenue": 12869411.0,
+          "diff_net_revenue": -50000.0
+        },
+        {
+          "date": "2026-06-04",
+          "truth_net_revenue": 11248416.0,
+          "computed_net_revenue": 11357216.0,
+          "diff_net_revenue": 108800.0
+        },
+        {
+          "date": "2026-06-03",
+          "truth_net_revenue": 20921755.0,
+          "computed_net_revenue": 20821755.0,
+          "diff_net_revenue": -100000.0
+        },
+        {
+          "date": "2026-06-02",
+          "truth_net_revenue": 15422197.0,
+          "computed_net_revenue": 15422197.0,
+          "diff_net_revenue": 0.0
+        },
+        {
+          "date": "2026-06-01",
+          "truth_net_revenue": 15596512.0,
+          "computed_net_revenue": 15244512.0,
+          "diff_net_revenue": -352000.0
+        }
+      ]
     }
   }
 }
