@@ -62,16 +62,18 @@ from business_dashboard_revenue import order_revenue_breakdown, refund_events
 _SHOP_TAG_RE = re.compile(r"^(?:Shopee|Tiktok|Lazada)_(.+)$", re.IGNORECASE)
 _PAGE_TAG_RE = re.compile(r"^page_(?!id_)(.+)$", re.IGNORECASE)
 
-# Một số kênh (hiện tại: Facebook) trên thực tế CHỈ chạy Meta Ads cho ĐÚNG 1 page/shop cụ thể,
-# dù trong Sapo có thể có nhiều shop_page được gắn tag "facebook" (VD page phụ ít dùng, hoặc
-# đơn không xác định được page cụ thể -> shop_page rỗng ""). Theo XÁC NHẬN của user: tài khoản
-# Meta Ads hiện tại CHỈ chạy cho "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn" -> thay vì
-# chia ads_spend theo tỷ lệ doanh thu qua nhiều shop_page trong kênh đó (sai lệch, vì các
-# shop_page khác không hề có ads chạy cho chúng), ta CỐ ĐỊNH gán 100% ads_spend của kênh này
-# vào đúng page đó. Kênh nào KHÔNG có trong map này (VD instagram) vẫn dùng cách phân bổ theo
-# tỷ lệ doanh thu như cũ.
+# Cả Facebook VÀ Instagram trên thực tế CHỈ chạy Meta Ads cho ĐÚNG 1 page/shop cụ thể (Instagram
+# gắn liền với Facebook Page đó qua Meta Business Suite, không phải 1 tài khoản Instagram tách
+# biệt) — dù trong Sapo có thể có nhiều shop_page được gắn tag facebook/instagram (VD page phụ ít
+# dùng, hoặc đơn không xác định được page cụ thể -> shop_page rỗng ""). Theo XÁC NHẬN của user:
+# tài khoản Meta Ads (cả 2 kênh) hiện tại CHỈ chạy cho "Aroma Story - Nến Thơm Khắc Tên & Thông
+# Điệp Ẩn" -> thay vì chia ads_spend theo tỷ lệ doanh thu qua nhiều shop_page trong kênh đó (sai
+# lệch, vì các shop_page khác không hề có ads chạy cho chúng), ta CỐ ĐỊNH gán 100% ads_spend của
+# MỖI kênh vào đúng page đó. Kênh nào KHÔNG có trong map này vẫn dùng cách phân bổ theo tỷ lệ
+# doanh thu như cũ (dự phòng nếu sau này có thêm kênh ads khác không rõ page cụ thể).
 FIXED_ADS_SHOP_PAGE_BY_CHANNEL = {
     "facebook": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
+    "instagram": "Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn",
 }
 
 
