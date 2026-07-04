@@ -368,16 +368,20 @@ def _raw_refund_samples(orders_raw: list, max_samples: int = 15) -> list:
     return samples
 
 
-def _raw_dump_for_dates(orders_raw: list, target_dates: set, max_samples: int = 30) -> list:
+def _raw_dump_for_dates(orders_raw: list, target_dates: set, max_per_date: int = 150) -> list:
     """Dump TẤT CẢ order (không chỉ order có refund) có date_vn nằm trong target_dates, kèm
     item_revenue/discount/refund tự tính — dùng để chẩn đoán các ngày lệch NẶNG nhất tìm được
-    từ _final_check (VD lệch tròn 6 triệu ở 1 ngày cụ thể), thay vì chỉ lấy N order đầu tiên
-    theo thứ tự duyệt như _raw_refund_samples (có thể bỏ lỡ đúng order gây lệch)."""
+    từ _final_check (VD lệch tròn 6 triệu ở 1 ngày cụ thể). Cap THEO TỪNG NGÀY (không phải cap
+    tổng toàn bộ) để không bị 1 ngày có nhiều đơn "ăn hết" chỗ trước khi tới ngày cần tìm."""
+    counts_per_date = {}
     samples = []
     for o in orders_raw:
         d = _date_vn(o)
         if d not in target_dates:
             continue
+        if counts_per_date.get(d, 0) >= max_per_date:
+            continue
+        counts_per_date[d] = counts_per_date.get(d, 0) + 1
         item_revenue = _to_float(o.get("total_line_items_price"))
         discount = _to_float(o.get("total_discounts"))
         rev_events = refund_events(o)
@@ -394,8 +398,6 @@ def _raw_dump_for_dates(orders_raw: list, target_dates: set, max_samples: int = 
             "refund_events": rev_events,
             "refund_total": round(sum(amt for _, amt in rev_events), 2),
         })
-        if len(samples) >= max_samples:
-            break
     return samples
 
 
