@@ -319,6 +319,7 @@ def _final_check(orders_raw: list) -> dict:
         before_refund = before_refund_by_date.get(t["date"], 0.0)
         refund = refund_by_date.get(t["date"], 0.0)
         net_revenue = before_refund - refund
+        truth_before_refund = t["item_revenue"] - t["discount"]
         diff_net = round(net_revenue - t["net_revenue"], 2)
         total_abs_diff_net += abs(diff_net)
         rows.append({
@@ -326,6 +327,13 @@ def _final_check(orders_raw: list) -> dict:
             "truth_net_revenue": t["net_revenue"],
             "computed_net_revenue": round(net_revenue, 2),
             "diff_net_revenue": diff_net,
+            # Tách riêng 2 vế để biết lệch nằm ở "trước hoàn" hay ở "refund" — xem docstring.
+            "truth_before_refund": round(truth_before_refund, 2),
+            "computed_before_refund": round(before_refund, 2),
+            "diff_before_refund": round(before_refund - truth_before_refund, 2),
+            "truth_refund": t["refund_value"],
+            "computed_refund": round(refund, 2),
+            "diff_refund": round(refund - t["refund_value"], 2),
         })
     return {
         "total_abs_diff_net_revenue": round(total_abs_diff_net, 2),
@@ -354,6 +362,37 @@ def _raw_refund_samples(orders_raw: list, max_samples: int = 15) -> list:
             "total_discounts": o.get("total_discounts"),
             "computed_refund_price_times_qty": round(_refund_v1_price_times_qty(o), 2),
             "raw_refunds": refunds,
+        })
+        if len(samples) >= max_samples:
+            break
+    return samples
+
+
+def _raw_dump_for_dates(orders_raw: list, target_dates: set, max_samples: int = 30) -> list:
+    """Dump TẤT CẢ order (không chỉ order có refund) có date_vn nằm trong target_dates, kèm
+    item_revenue/discount/refund tự tính — dùng để chẩn đoán các ngày lệch NẶNG nhất tìm được
+    từ _final_check (VD lệch tròn 6 triệu ở 1 ngày cụ thể), thay vì chỉ lấy N order đầu tiên
+    theo thứ tự duyệt như _raw_refund_samples (có thể bỏ lỡ đúng order gây lệch)."""
+    samples = []
+    for o in orders_raw:
+        d = _date_vn(o)
+        if d not in target_dates:
+            continue
+        item_revenue = _to_float(o.get("total_line_items_price"))
+        discount = _to_float(o.get("total_discounts"))
+        rev_events = refund_events(o)
+        samples.append({
+            "name": o.get("name"),
+            "order_number": o.get("order_number"),
+            "date_vn": d,
+            "created_on": o.get("created_on"),
+            "status": o.get("status"),
+            "cancelled_on": o.get("cancelled_on"),
+            "total_line_items_price": item_revenue,
+            "total_discounts": discount,
+            "before_refund": round(item_revenue - discount, 2),
+            "refund_events": rev_events,
+            "refund_total": round(sum(amt for _, amt in rev_events), 2),
         })
         if len(samples) >= max_samples:
             break
@@ -458,6 +497,13 @@ def run_check(orders_raw: list) -> dict:
     refund_date_attribution = _score_refund_date_attribution(orders_raw)
     final_check = _final_check(orders_raw)
 
+    # Dump chi tiết CÁC ĐƠN trong 3 ngày lệch NẶNG NHẤT (theo final_check) để chẩn đoán —
+    # thay vì chỉ 15 order đầu tiên theo thứ tự duyệt (có thể bỏ lỡ đúng order gây lệch).
+    worst_dates = {
+        r["date"] for r in sorted(final_check["rows"], key=lambda r: abs(r["diff_net_revenue"]), reverse=True)[:3]
+    }
+    raw_dump_worst_days = _raw_dump_for_dates(orders_raw, worst_dates)
+
     return {
         "note": "So sánh MA TRẬN (cách lọc đơn huỷ x cách bucket ngày) để tìm tổ hợp khớp nhất với báo cáo Sapo thật.",
         "matrix": matrix,
@@ -480,4 +526,5 @@ def run_check(orders_raw: list) -> dict:
         "raw_refund_samples": raw_refund_samples,
         "refund_date_attribution": refund_date_attribution,
         "final_check": final_check,
+        "raw_dump_worst_days": raw_dump_worst_days,
     }
