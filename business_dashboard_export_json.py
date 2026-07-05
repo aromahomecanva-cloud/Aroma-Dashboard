@@ -34,6 +34,9 @@ from business_dashboard_aggregate import build_summary, build_product_breakdown,
 from business_dashboard_debug_fee_match import run_diagnostics as run_fee_match_diagnostics
 from business_dashboard_debug_revenue import run_check as run_revenue_check
 from business_dashboard_ads_rules import RULES_CONFIG, evaluate_rules, any_rule_active
+from business_dashboard_shopee_ads import (
+    load_shopee_ads_daily_by_channel, load_shopee_ads_total_by_shop, gap_check as shopee_ads_gap_check,
+)
 
 BASE_DIR = Path(__file__).resolve().parent
 OUT_PATH = BASE_DIR / "data.json"
@@ -105,16 +108,31 @@ def main():
     for c in ads_detail["campaigns"]:
         ads_spend_by_channel[c["channel"]] = ads_spend_by_channel.get(c["channel"], 0.0) + c["spend"]
 
+    # Shopee Ads: đọc từ file CSV export THỦ CÔNG (chưa có API chính thức) — xem
+    # business_dashboard_shopee_ads.py + shopee_ads_exports/README.md. Bọc try/except riêng,
+    # không để lỗi đọc file (VD file hỏng/định dạng lạ) làm sập cả job xuất data.json.
+    shopee_ads_error = None
+    try:
+        shopee_ads_daily = load_shopee_ads_daily_by_channel()
+        shopee_ads_total_by_shop = load_shopee_ads_total_by_shop()
+        shopee_ads_gaps = shopee_ads_gap_check()
+    except Exception as e:
+        shopee_ads_error = str(e)
+        print(f"[LỖI Shopee Ads - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {shopee_ads_error}")
+        shopee_ads_daily, shopee_ads_total_by_shop, shopee_ads_gaps = [], [], {}
+
     # Rule cảnh báo ads/ad set (khung đã dựng sẵn, ngưỡng cụ thể user sẽ điền sau — xem
     # business_dashboard_ads_rules.py). Chỉ tính violations nếu có ít nhất 1 rule đã bật.
     ads_violations_ads = evaluate_rules(ads_detail["ads"]) if any_rule_active() else []
     ads_violations_adsets = evaluate_rules(ads_detail["adsets"]) if any_rule_active() else []
 
     summary = build_summary(orders, variant_sku_map, cost_map, ads_data, settlement_df, fee_breakdown_df,
-                             ads_spend_by_channel=ads_spend_by_channel)
+                             ads_spend_by_channel=ads_spend_by_channel,
+                             ads_spend_fixed_rows=shopee_ads_total_by_shop)
     product_breakdown = build_product_breakdown(orders, variant_sku_map, cost_map)
     daily_summary = build_daily_summary(orders, variant_sku_map, cost_map, settlement_df, fee_breakdown_df,
-                                         ads_daily_by_channel=ads_daily_by_channel)
+                                         ads_daily_by_channel=ads_daily_by_channel,
+                                         ads_daily_fixed_rows=shopee_ads_daily)
 
     diag = fee_join_diagnostics(orders, settlement_df)
     # Ghi kèm mẫu order["name"]/order["order_number"] thật + mẫu join_key trong file Chi phí
@@ -152,6 +170,10 @@ def main():
         "ads_daily_by_channel": ads_daily_by_channel,
         "ads_detail": ads_detail,
         "ads_detail_error": ads_detail_error,
+        "shopee_ads_daily": shopee_ads_daily,
+        "shopee_ads_total_by_shop": shopee_ads_total_by_shop,
+        "shopee_ads_missing_dates": shopee_ads_gaps,
+        "shopee_ads_error": shopee_ads_error,
         "ads_rules_config": RULES_CONFIG,
         "ads_violations": {
             "ads": ads_violations_ads,
@@ -185,6 +207,14 @@ def main():
     print(f"Meta Ads chi tiết: {len(ads_detail['campaigns'])} campaign, {len(ads_detail['adsets'])} ad set, "
           f"{len(ads_detail['ads'])} ads")
     print(f"Ads spend theo kênh: " + ", ".join(f"{ch}={spend:,.0f}đ" for ch, spend in ads_spend_by_channel.items()))
+    if shopee_ads_error:
+        print(f"[LỖI Shopee Ads] {shopee_ads_error}")
+    else:
+        print(f"Shopee Ads (file thủ công): {len(shopee_ads_daily)} dòng ngày x shop, "
+              + ", ".join(f"{r['shop_page']}={r['spend']:,.0f}đ" for r in shopee_ads_total_by_shop))
+        for shop, missing in shopee_ads_gaps.items():
+            if missing:
+                print(f"  [Cảnh báo] {shop}: còn THIẾU {len(missing)} ngày dữ liệu Shopee Ads.")
     if any_rule_active():
         print(f"Rule cảnh báo ads đang bật: {[k for k, v in RULES_CONFIG.items() if v is not None]} | "
               f"Số ad vi phạm: {len(ads_violations_ads)} | Số ad set vi phạm: {len(ads_violations_adsets)}")

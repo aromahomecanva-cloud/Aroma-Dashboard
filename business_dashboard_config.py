@@ -55,6 +55,18 @@ class Config:
     # Thư mục chứa file đối soát (settlement) export từ Shopee / TikTok Shop
     SETTLEMENT_DIR = BASE_DIR / "settlement_files"
 
+    # Thư mục chứa file CSV export thủ công "Số liệu thống kê chung" (Shopee Ads / TikTok Ads)
+    # — xem business_dashboard_shopee_ads.py + shopee_ads_exports/README.md.
+    SHOPEE_ADS_DIR = BASE_DIR / "shopee_ads_exports"
+    TIKTOK_ADS_DIR = BASE_DIR / "tiktok_ads_exports"
+
+    # --- VAT (thuế GTGT) cộng thêm vào chi phí Ads sàn ---
+    # Cột "Chi phí" trong file export Shopee Ads / TikTok Ads là số TIỀN QUẢNG CÁO THUẦN,
+    # CHƯA gồm VAT — số tiền THỰC TẾ trừ vào tài khoản/phải trả = Chi phí * (1 + VAT_RATE).
+    # Xác nhận từ user (05/07/2026): Shopee Ads VAT 8%, TikTok Ads VAT 10%.
+    SHOPEE_ADS_VAT_RATE = 0.08
+    TIKTOK_ADS_VAT_RATE = 0.10
+
     # File output
     OUTPUT_DASHBOARD_HTML = BASE_DIR / "dashboard.html"
 

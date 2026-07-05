@@ -294,6 +294,45 @@ def _allocate_ads_spend(df: pd.DataFrame, ads_spend_by_channel: dict | None, rev
     return df
 
 
+def _allocate_fixed_ads_spend_rows(df: pd.DataFrame, rows: list | None, date_col: str | None = None) -> pd.DataFrame:
+    """
+    Gán ads_spend TRỰC TIẾP cho đúng (channel, shop_page[, date]) đã biết CHÍNH XÁC — khác với
+    _allocate_ads_spend()/_allocate_ads_spend_daily() (dùng cho Meta: chỉ biết tổng theo kênh,
+    phải suy luận/phân bổ theo tỷ lệ doanh thu). Dùng cho Shopee Ads (xem
+    business_dashboard_shopee_ads.py): mỗi shop có spend THẬT theo từng ngày, không cần phân bổ.
+
+    rows: list[dict], mỗi dict có "channel", "shop_page", "spend", và thêm "date" nếu
+    date_col được truyền (dùng cho build_daily_summary(); không có date thì dùng cho
+    build_summary() — tổng lifetime).
+    """
+    if "ads_spend" not in df.columns:
+        df["ads_spend"] = 0.0
+    if not rows:
+        return df
+    extra_rows = []
+    for row in rows:
+        spend = row.get("spend", 0.0)
+        if not spend:
+            continue
+        ch = row["channel"]
+        sp = row["shop_page"]
+        if date_col:
+            d = row["date"]
+            mask = (df[date_col] == d) & (df["channel"] == ch) & (df["shop_page"] == sp)
+        else:
+            mask = (df["channel"] == ch) & (df["shop_page"] == sp)
+        if mask.any():
+            df.loc[mask, "ads_spend"] = df.loc[mask, "ads_spend"] + spend
+        else:
+            new_row = {"channel": ch, "shop_page": sp, "ads_spend": spend}
+            if date_col:
+                new_row[date_col] = d
+            extra_rows.append(new_row)
+    if extra_rows:
+        df = pd.concat([df, pd.DataFrame(extra_rows)], ignore_index=True)
+    return df
+
+
 def build_summary(
     orders: list,
     variant_sku_map: dict,
@@ -302,6 +341,7 @@ def build_summary(
     settlement_df: pd.DataFrame,
     fee_breakdown_df: pd.DataFrame | None = None,
     ads_spend_by_channel: dict | None = None,
+    ads_spend_fixed_rows: list | None = None,
 ) -> pd.DataFrame:
     fee_map_by_name, fee_map_by_order_number = _build_fee_maps(settlement_df)
     fee_breakdown_by_name, fee_breakdown_by_order_number = _build_fee_breakdown_maps(fee_breakdown_df)
@@ -341,6 +381,7 @@ def build_summary(
     # (shopee/tiktokshop/...) không có trong ads_spend_by_channel -> vẫn = 0 như trước.
     summary["ads_spend"] = 0.0
     summary = _allocate_ads_spend(summary, ads_spend_by_channel, revenue_col="gross_revenue")
+    summary = _allocate_fixed_ads_spend_rows(summary, ads_spend_fixed_rows)
     summary["fee_breakdown"] = summary["fee_breakdown"].apply(lambda v: v if isinstance(v, dict) else {})
     for col in ["gross_revenue", "cogs", "total_fee"]:
         summary[col] = summary[col].fillna(0)
@@ -539,6 +580,7 @@ def build_daily_summary(
     settlement_df: pd.DataFrame,
     fee_breakdown_df: pd.DataFrame | None = None,
     ads_daily_by_channel: list | None = None,
+    ads_daily_fixed_rows: list | None = None,
 ) -> pd.DataFrame:
     """
     Giống build_summary nhưng tách thêm theo NGÀY (date) — dùng để dashboard
@@ -628,6 +670,7 @@ def build_daily_summary(
     # cho shop/page trong cùng kênh + ngày đó — xem _allocate_ads_spend_daily().
     gross["ads_spend"] = 0.0
     gross = _allocate_ads_spend_daily(gross, ads_daily_by_channel)
+    gross = _allocate_fixed_ads_spend_rows(gross, ads_daily_fixed_rows, date_col="date")
     gross["fee_breakdown"] = gross["fee_breakdown"].apply(lambda v: v if isinstance(v, dict) else {})
     for col in ["gross_revenue", "cogs", "total_fee"]:
         gross[col] = gross[col].fillna(0)
