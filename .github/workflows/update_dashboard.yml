@@ -2,7 +2,10 @@ name: Update Dashboard Data
 
 on:
   schedule:
-    - cron: '0 */3 * * *'   # chạy mỗi 3 tiếng, có thể sửa lại
+    # Chạy mỗi 2 tiếng, từ 8h -> 22h giờ Việt Nam (UTC+7).
+    # Giờ VN 8h-22h = giờ UTC 1h-15h -> liệt kê trực tiếp các mốc UTC: 1,3,5,7,9,11,13,15
+    # (tương ứng 8h,10h,12h,14h,16h,18h,20h,22h giờ VN). GitHub Actions cron LUÔN chạy theo UTC.
+    - cron: '0 1,3,5,7,9,11,13,15 * * *'
   workflow_dispatch: {}      # cho phép bấm "Run workflow" chạy tay trên GitHub
 
 jobs:
