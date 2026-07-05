@@ -235,10 +235,34 @@ def _prep_orders_df(
     # không phải ngày tạo đơn (xem business_dashboard_revenue.refund_events()).
     df["before_refund"] = [r["item_revenue"] - r["discount"] for r in revenues]
 
-    fee_from_name = df["name"].astype(str).map(fee_map_by_name).fillna(0.0) if "name" in df.columns else 0.0
-    fee_from_number = df["order_number"].astype(str).map(fee_map_by_order_number).fillna(0.0) \
-        if "order_number" in df.columns else 0.0
+    # has_fee_data: TRUE nếu order này CÓ dòng khớp trong file Chi phí Sapo (dù giá trị fee
+    # khớp được có thể = 0đ) — PHẢI phân biệt với "không khớp được dòng nào" (map trả về NaN
+    # trước khi fillna). Dùng cho tính năng ước tính phí (xem docstring module + business_
+    # dashboard_export_json.py): đơn SÀN (shopee/tiktokshop) chỉ được Sapo ghi nhận phí SAU KHI
+    # đơn đã HOÀN THÀNH -> đơn mới phát sinh/đang giao/chưa hoàn thành sẽ CHƯA có dòng nào khớp
+    # ở đây (has_fee_data=False), cần ước tính phí thay vì coi total_fee=0 là chính xác.
+    if "name" in df.columns:
+        fee_lookup_by_name = df["name"].astype(str).map(fee_map_by_name)
+        matched_by_name = fee_lookup_by_name.notna()
+        fee_from_name = fee_lookup_by_name.fillna(0.0)
+    else:
+        fee_from_name = 0.0
+        matched_by_name = pd.Series(False, index=df.index)
+    if "order_number" in df.columns:
+        fee_lookup_by_number = df["order_number"].astype(str).map(fee_map_by_order_number)
+        matched_by_number = fee_lookup_by_number.notna()
+        fee_from_number = fee_lookup_by_number.fillna(0.0)
+    else:
+        fee_from_number = 0.0
+        matched_by_number = pd.Series(False, index=df.index)
     df["total_fee"] = fee_from_name + fee_from_number
+    df["has_fee_data"] = matched_by_name | matched_by_number
+    # before_refund_recorded / gross_revenue_recorded: giá trị doanh thu CỦA CHÍNH đơn đó, chỉ
+    # tính khi has_fee_data=True (dùng làm MẪU SỐ khi tính % phí trung bình — xem
+    # business_dashboard_export_json.py / dashboard artifact: % phí = tổng total_fee / tổng
+    # revenue_recorded trong 1 cửa sổ ngày, rồi áp cho phần doanh thu CHƯA ghi nhận phí).
+    df["before_refund_recorded"] = df["before_refund"].where(df["has_fee_data"], 0.0)
+    df["gross_revenue_recorded"] = df["gross_revenue"].where(df["has_fee_data"], 0.0)
 
     fee_breakdown_by_name = fee_breakdown_by_name or {}
     fee_breakdown_by_order_number = fee_breakdown_by_order_number or {}
@@ -358,6 +382,7 @@ def build_summary(
         orders=("id", "count"),
         cogs=("cogs", "sum"),
         total_fee=("total_fee", "sum"),
+        revenue_recorded=("gross_revenue_recorded", "sum"),
     ).rename_axis(["channel", "shop_page"]).reset_index()
 
     # Chi tiết từng loại phí (Phí cố định, Phí dịch vụ, Phí thanh toán, Thuế sàn, aff, ...)
@@ -383,7 +408,7 @@ def build_summary(
     summary = _allocate_ads_spend(summary, ads_spend_by_channel, revenue_col="gross_revenue")
     summary = _allocate_fixed_ads_spend_rows(summary, ads_spend_fixed_rows)
     summary["fee_breakdown"] = summary["fee_breakdown"].apply(lambda v: v if isinstance(v, dict) else {})
-    for col in ["gross_revenue", "cogs", "total_fee"]:
+    for col in ["gross_revenue", "cogs", "total_fee", "revenue_recorded"]:
         summary[col] = summary[col].fillna(0)
     summary["orders"] = summary["orders"].fillna(0).astype(int)
 
@@ -401,8 +426,8 @@ def build_summary(
     )
     summary["net_profit_after_ads"] = summary["gross_margin_amount"]  # giữ cột để tương thích cũ, không trừ thêm nữa
 
-    cols = ["channel", "shop_page", "orders", "gross_revenue", "total_fee", "fee_breakdown", "net_revenue",
-            "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend", "net_profit_after_ads"]
+    cols = ["channel", "shop_page", "orders", "gross_revenue", "total_fee", "revenue_recorded", "fee_breakdown",
+            "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend", "net_profit_after_ads"]
     return summary[cols].sort_values("gross_revenue", ascending=False).reset_index(drop=True)
 
 
@@ -599,7 +624,8 @@ def build_daily_summary(
     """
     if not orders:
         return pd.DataFrame(columns=["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee",
-                                      "fee_breakdown", "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct"])
+                                      "revenue_recorded", "fee_breakdown", "net_revenue", "cogs",
+                                      "gross_margin_amount", "gross_margin_pct"])
 
     fee_map_by_name, fee_map_by_order_number = _build_fee_maps(settlement_df)
     fee_breakdown_by_name, fee_breakdown_by_order_number = _build_fee_breakdown_maps(fee_breakdown_df)
@@ -614,11 +640,16 @@ def build_daily_summary(
 
     # Phần "trước hoàn" (item_revenue - discount) + orders/cogs/total_fee: vẫn gắn theo
     # ngày TẠO ĐƠN như trước (không liên quan tới vấn đề ngày refund).
+    # revenue_recorded (dùng "before_refund_recorded" — CÙNG cơ sở NGÀY/gắn kèm với
+    # revenue_before_refund/total_fee ở trên, tức ngày TẠO ĐƠN, không tách riêng theo ngày
+    # refund — vì has_fee_data là thuộc tính CỦA ĐƠN, không phải của từng sự kiện refund; sai
+    # số nếu có refund rơi khác ngày là không đáng kể so với mục đích ước tính phí trung bình).
     gross = orders_df.groupby(["date", "source_name", "shop_page"]).agg(
         revenue_before_refund=("before_refund", "sum"),
         orders=("id", "count"),
         cogs=("cogs", "sum"),
         total_fee=("total_fee", "sum"),
+        revenue_recorded=("before_refund_recorded", "sum"),
     ).rename_axis(["date", "channel", "shop_page"]).reset_index()
 
     # Phần "hoàn trả" (refund): gắn theo ngày CỦA CHÍNH sự kiện refund (fallback về ngày tạo
@@ -650,6 +681,7 @@ def build_daily_summary(
     gross["orders"] = gross["orders"].fillna(0).astype(int)
     gross["cogs"] = gross["cogs"].fillna(0.0).astype(float)
     gross["total_fee"] = gross["total_fee"].fillna(0.0).astype(float)
+    gross["revenue_recorded"] = gross["revenue_recorded"].fillna(0.0).astype(float)
     gross["gross_revenue"] = gross["revenue_before_refund"] - gross["refund_amount"]
 
     # Xem ghi chú tương tự trong build_summary() — dùng vòng lặp for thường, KHÔNG dùng
@@ -672,7 +704,7 @@ def build_daily_summary(
     gross = _allocate_ads_spend_daily(gross, ads_daily_by_channel)
     gross = _allocate_fixed_ads_spend_rows(gross, ads_daily_fixed_rows, date_col="date")
     gross["fee_breakdown"] = gross["fee_breakdown"].apply(lambda v: v if isinstance(v, dict) else {})
-    for col in ["gross_revenue", "cogs", "total_fee"]:
+    for col in ["gross_revenue", "cogs", "total_fee", "revenue_recorded"]:
         gross[col] = gross[col].fillna(0)
     gross["orders"] = gross["orders"].fillna(0).astype(int)
 
@@ -684,6 +716,6 @@ def build_daily_summary(
         lambda r: round(r["gross_margin_amount"] / r["net_revenue"] * 100, 1) if r["net_revenue"] else 0.0, axis=1
     )
 
-    cols = ["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee", "fee_breakdown",
-            "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend"]
+    cols = ["date", "channel", "shop_page", "orders", "gross_revenue", "total_fee", "revenue_recorded",
+            "fee_breakdown", "net_revenue", "cogs", "gross_margin_amount", "gross_margin_pct", "ads_spend"]
     return gross[cols].sort_values(["date", "channel", "shop_page"]).reset_index(drop=True)
