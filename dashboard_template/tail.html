@@ -1,0 +1,533 @@
+    const allDates = [...new Set(dailyData.map(r => r.date))].sort();
+    const minDate = allDates[0];
+    const maxDate = allDates[allDates.length - 1];
+    const allChannels = [...new Set(dailyData.map(r => r.channel))];
+    const ECOM_CHANNELS = ['shopee', 'tiktokshop', 'lazada', 'web'];
+
+    let dateFrom = minDate, dateTo = maxDate;
+    let activePreset = 'all';
+    let showChannelSummary = false;
+    let expandedRows = new Set();
+    let ecomExpandedRows = new Set();
+
+    let globalChannel = 'ALL';
+    let globalShopPage = 'ALL';
+
+    let prodChannel = 'ALL';
+    let prodShopPage = 'ALL';
+
+    let activeTab = 'overview';
+
+    const columns = [
+      { key: 'channel', label: 'Kênh' },
+      { key: 'shop_page', label: 'Shop/Page' },
+      { key: 'orders', label: 'Số đơn' },
+      { key: 'gross_revenue', label: 'Doanh thu thuần' },
+      { key: 'total_fee', label: 'Tổng phí' },
+      { key: 'net_revenue', label: 'DT thực nhận' },
+      { key: 'cogs', label: 'COGS' },
+      { key: 'ads_spend', label: 'Ads spend' },
+      { key: 'gross_margin_amount', label: 'Gross margin' },
+    ];
+    // Tất cả % trong bảng này tính trên Doanh thu thuần (gross_revenue) làm mốc 100%, để dễ
+    // so sánh tỷ trọng từng khoản mục trong 1 "waterfall": Doanh thu thuần -> Tổng phí -> DT thực nhận -> COGS
+    // -> Ads spend -> Gross margin (Gross margin ĐÃ TRỪ Ads spend).
+    function pctOfRevenue(val, base) {
+      return base ? (val / base * 100).toFixed(1) : '0.0';
+    }
+    let tab1Sort = { key: 'gross_revenue', dir: -1 };
+    let ecomSort = { key: 'gross_revenue', dir: -1 };
+
+    const productColumns = [
+      { key: 'channel', label: 'Kênh' },
+      { key: 'shop_page', label: 'Shop/Page' },
+      { key: 'product', label: 'Sản phẩm' },
+      { key: 'sku', label: 'SKU' },
+      { key: 'quantity', label: 'SL' },
+      { key: 'revenue', label: 'Doanh thu' },
+      { key: 'cogs', label: 'COGS' },
+      { key: 'gross_margin_amount', label: 'Gross margin' },
+      { key: 'gross_margin_pct', label: '%' },
+    ];
+    let prodSortKey = 'revenue', prodSortDir = -1;
+
+    const campaignColumns = [
+      { key: 'campaign_name', label: 'Campaign' },
+      { key: 'channel', label: 'Kênh' },
+      { key: 'spend', label: 'Chi phí' },
+      { key: 'impressions', label: 'Impressions' },
+      { key: 'clicks', label: 'Clicks' },
+      { key: 'ctr', label: 'CTR' },
+      { key: 'cpc', label: 'CPC' },
+      { key: 'results', label: 'Kết quả' },
+      { key: 'cpa', label: 'CPA' },
+    ];
+    let campaignSort = { key: 'spend', dir: -1 };
+    let expandedCampaigns = new Set();
+
+    function fmt(n) { return Math.round(n || 0).toLocaleString('vi-VN'); }
+    function label(ch) { return channelLabels[ch] || ch; }
+    function spLabel(sp, channel) { return sp ? sp : label(channel); }
+    function isCombo(product) { return typeof product === 'string' && product.toLowerCase().startsWith('combo'); }
+
+    function mergeInto(target, source) {
+      if (!source) return;
+      for (const k in source) { target[k] = (target[k] || 0) + source[k]; }
+    }
+
+    function applyPreset(days) {
+      activePreset = days === null ? 'all' : String(days);
+      if (days === null) { dateFrom = minDate; dateTo = maxDate; }
+      else {
+        const to = new Date(maxDate);
+        const from = new Date(to); from.setDate(from.getDate() - (days - 1));
+        dateFrom = from.toISOString().slice(0,10);
+        dateTo = maxDate;
+        if (dateFrom < minDate) dateFrom = minDate;
+      }
+      document.getElementById('dateFrom').value = dateFrom;
+      document.getElementById('dateTo').value = dateTo;
+      renderAll();
+    }
+
+    function getFilteredDaily() {
+      return dailyData.filter(r => r.date >= dateFrom && r.date <= dateTo
+        && (globalChannel === 'ALL' || r.channel === globalChannel)
+        && (globalShopPage === 'ALL' || (r.shop_page || '') === globalShopPage));
+    }
+
+    function computeMarginPct(marginAmt, netRev) {
+      return netRev ? Math.round(marginAmt / netRev * 1000) / 10 : 0;
+    }
+
+    // Ước tính Tổng phí cho đơn Shopee/TikTok CHƯA hoàn thành (Sapo CHƯA ghi nhận phí — xem
+    // banner cuối trang): % phí trung bình = tổng total_fee / tổng revenue_recorded của các
+    // NGÀY trong cửa sổ 30 ngày gần nhất, tính LÙI TỪ ngày CUỐI của khoảng thời gian đang chọn
+    // (dateTo) — KHÔNG phải 30 ngày cuối cùng có data, để số ước tính "đi theo" filter đang xem.
+    // revenue_recorded (từ Python, xem business_dashboard_aggregate.py) = doanh thu CỦA CHÍNH
+    // các đơn ĐÃ có fee ghi nhận -> dùng làm mẫu số cho % phí trung bình, tránh bị pha loãng bởi
+    // doanh thu của đơn CHƯA ghi nhận phí (mẫu số đúng bản chất hơn dùng cả gross_revenue).
+    function computeAvgFeePct(channel, shopPage, endDateStr) {
+      const end = new Date(endDateStr + 'T00:00:00');
+      const start = new Date(end); start.setDate(start.getDate() - 29);
+      const startStr = start.toISOString().slice(0, 10);
+      let feeSum = 0, revSum = 0;
+      for (const r of dailyData) {
+        if (r.channel !== channel) continue;
+        if ((r.shop_page || '') !== shopPage) continue;
+        if (r.date < startStr || r.date > endDateStr) continue;
+        feeSum += (r.total_fee || 0);
+        revSum += (r.revenue_recorded || 0);
+      }
+      return revSum > 0 ? feeSum / revSum : 0;
+    }
+
+    // channelPredicate (tuỳ chọn): lọc thêm theo channel, dùng cho tab "E-com" (chỉ shopee/
+    // tiktokshop/lazada/web) hoặc tab "Facebook Ads" (chỉ facebook/instagram) — tab "Tổng quan"
+    // gọi không truyền predicate (giữ nguyên tất cả kênh, đúng hành vi cũ).
+    function getChannelSummary(channelPredicate, sortState) {
+      let rows = getFilteredDaily();
+      if (channelPredicate) rows = rows.filter(r => channelPredicate(r.channel));
+      const byKey = {};
+      for (const r of rows) {
+        const key = r.channel + '|' + (r.shop_page || '');
+        if (!byKey[key]) byKey[key] = {
+          channel: r.channel, shop_page: r.shop_page || '', orders: 0, gross_revenue: 0, total_fee: 0,
+          revenue_recorded: 0, net_revenue: 0, cogs: 0, gross_margin_amount: 0, ads_spend: 0, fee_breakdown: {},
+        };
+        const b = byKey[key];
+        b.orders += r.orders; b.gross_revenue += r.gross_revenue; b.total_fee += r.total_fee;
+        b.revenue_recorded += (r.revenue_recorded || 0);
+        b.net_revenue += r.net_revenue; b.cogs += r.cogs; b.gross_margin_amount += r.gross_margin_amount;
+        b.ads_spend += (r.ads_spend || 0);
+        mergeInto(b.fee_breakdown, r.fee_breakdown);
+      }
+      let list = Object.values(byKey).map(b => {
+        // total_fee (b.total_fee) tới đây MỚI CHỈ LÀ phần ĐÃ GHI NHẬN THỰC TẾ (Python đảm bảo
+        // đơn chưa có fee ghi nhận đóng góp 0 vào total_fee — xem has_fee_data trong business_
+        // dashboard_aggregate.py). Phần doanh thu CHƯA ghi nhận phí = gross_revenue -
+        // revenue_recorded -> nhân với % phí trung bình (30 ngày gần nhất, tính đến dateTo) để
+        // ƯỚC TÍNH phần phí còn thiếu, cộng dồn vào Tổng phí hiển thị -> tránh bị lệch khi filter
+        // 1 khoảng ngắn (đa số đơn mới chưa hoàn thành/chưa ghi nhận phí).
+        const feeRecorded = b.total_fee;
+        const unrecordedRevenue = Math.max(0, b.gross_revenue - b.revenue_recorded);
+        const avgFeePct = computeAvgFeePct(b.channel, b.shop_page, dateTo);
+        const feeEstimated = avgFeePct * unrecordedRevenue;
+        const totalFeeFinal = feeRecorded + feeEstimated;
+        const netRevenue = b.gross_revenue - totalFeeFinal;
+        const marginAmt = netRevenue - b.cogs - b.ads_spend;
+        return {
+          ...b,
+          total_fee: totalFeeFinal,
+          fee_recorded: feeRecorded,
+          fee_estimated: feeEstimated,
+          net_revenue: netRevenue,
+          gross_margin_amount: marginAmt,
+          gross_margin_pct: computeMarginPct(marginAmt, netRevenue),
+        };
+      });
+      list.sort((a, b) => {
+        const va = a[sortState.key], vb = b[sortState.key];
+        if (typeof va === 'string') return sortState.dir * va.localeCompare(vb);
+        return sortState.dir * (va - vb);
+      });
+      return list;
+    }
+
+    function withChannelSummaryRows(list) {
+      if (!showChannelSummary) return list;
+      const byChannel = {};
+      for (const r of list) {
+        if (!byChannel[r.channel]) byChannel[r.channel] = {
+          channel: r.channel, shop_page: '', orders: 0, gross_revenue: 0, total_fee: 0,
+          fee_recorded: 0, fee_estimated: 0,
+          net_revenue: 0, cogs: 0, gross_margin_amount: 0, ads_spend: 0, fee_breakdown: {}, _isSummary: true,
+        };
+        const b = byChannel[r.channel];
+        b.orders += r.orders; b.gross_revenue += r.gross_revenue; b.total_fee += r.total_fee;
+        b.fee_recorded += (r.fee_recorded || 0); b.fee_estimated += (r.fee_estimated || 0);
+        b.net_revenue += r.net_revenue; b.cogs += r.cogs; b.gross_margin_amount += r.gross_margin_amount;
+        b.ads_spend += (r.ads_spend || 0);
+        mergeInto(b.fee_breakdown, r.fee_breakdown);
+      }
+      const channelsInOrder = [...new Set(list.map(r => r.channel))];
+      const out = [];
+      for (const ch of channelsInOrder) {
+        const s = byChannel[ch];
+        out.push({ ...s, gross_margin_pct: computeMarginPct(s.gross_margin_amount, s.net_revenue) });
+        out.push(...list.filter(r => r.channel === ch));
+      }
+      return out;
+    }
+
+    function renderDateChips() {
+      const box = document.getElementById('dateChips');
+      box.innerHTML = '';
+      const presets = [{d:7,l:'7 ngày'},{d:30,l:'30 ngày'},{d:90,l:'90 ngày'},{d:null,l:'Tất cả'}];
+      presets.forEach(p => {
+        const chip = document.createElement('div');
+        chip.className = 'chip' + (activePreset === (p.d===null?'all':String(p.d)) ? ' active' : '');
+        chip.textContent = p.l;
+        chip.onclick = () => applyPreset(p.d);
+        box.appendChild(chip);
+      });
+    }
+
+    function renderGlobalFilterDropdowns() {
+      const chSel = document.getElementById('channelFilterSelect');
+      const spSel = document.getElementById('shopPageFilterSelect');
+      chSel.innerHTML = '<option value="ALL">Tất cả kênh</option>' +
+        allChannels.map(ch => `<option value="${ch}">${label(ch)}</option>`).join('');
+      chSel.value = globalChannel;
+      const relevant = dailyData.filter(r => globalChannel === 'ALL' || r.channel === globalChannel);
+      const sps = [...new Set(relevant.map(r => r.shop_page || ''))];
+      spSel.innerHTML = '<option value="ALL">Tất cả shop/page</option>' +
+        sps.map(sp => {
+          const chsForSp = [...new Set(relevant.filter(r => (r.shop_page||'') === sp).map(r => r.channel))];
+          const text = sp ? sp : chsForSp.map(label).join('/');
+          return `<option value="${sp}">${text}</option>`;
+        }).join('');
+      spSel.value = sps.includes(globalShopPage) ? globalShopPage : 'ALL';
+    }
+
+    function renderProdFilterDropdowns() {
+      const chSel = document.getElementById('prodChannelFilter');
+      const spSel = document.getElementById('prodShopPageFilter');
+      chSel.innerHTML = '<option value="ALL">Tất cả kênh</option>' +
+        allChannels.map(ch => `<option value="${ch}">${label(ch)}</option>`).join('');
+      chSel.value = prodChannel;
+      const relevant = productBreakdown.filter(r => prodChannel === 'ALL' || r.channel === prodChannel);
+      const sps = [...new Set(relevant.map(r => r.shop_page || ''))];
+      spSel.innerHTML = '<option value="ALL">Tất cả shop/page</option>' +
+        sps.map(sp => {
+          const chsForSp = [...new Set(relevant.filter(r => (r.shop_page||'') === sp).map(r => r.channel))];
+          const text = sp ? sp : chsForSp.map(label).join('/');
+          return `<option value="${sp}">${text}</option>`;
+        }).join('');
+      spSel.value = sps.includes(prodShopPage) ? prodShopPage : 'ALL';
+    }
+
+    function renderTableHeader(theadElId, sortState, onSortChange) {
+      const row = document.getElementById(theadElId);
+      row.innerHTML = columns.map(c => `<th data-key="${c.key}" class="${sortState.key===c.key?'sorted':''}">${c.label}</th>`).join('');
+      row.querySelectorAll('th').forEach(th => {
+        th.onclick = () => {
+          const key = th.dataset.key;
+          if (sortState.key === key) sortState.dir *= -1; else { sortState.key = key; sortState.dir = -1; }
+          onSortChange();
+        };
+      });
+    }
+
+    function renderProductHeader() {
+      const row = document.getElementById('productHeadRow');
+      row.innerHTML = productColumns.map(c => `<th data-key="${c.key}" class="${prodSortKey===c.key?'sorted':''}">${c.label}</th>`).join('');
+      row.querySelectorAll('th').forEach(th => {
+        th.onclick = () => {
+          const key = th.dataset.key;
+          if (prodSortKey === key) prodSortDir *= -1; else { prodSortKey = key; prodSortDir = -1; }
+          renderProductTable();
+        };
+      });
+    }
+
+    function renderTotalCards(list, cardsElId) {
+      const totals = list.reduce((acc, r) => {
+        acc.gross += r.gross_revenue; acc.fee += r.total_fee; acc.net += r.net_revenue; acc.cogs += r.cogs;
+        acc.ads += (r.ads_spend || 0); acc.margin += r.gross_margin_amount; acc.orders += r.orders;
+        return acc;
+      }, { gross:0, fee:0, net:0, cogs:0, ads:0, margin:0, orders:0 });
+
+      // QUAN TRỌNG: totals.margin (tổng r.gross_margin_amount) ĐÃ TRỪ ads_spend NGAY Ở MỖI DÒNG
+      // (xem business_dashboard_aggregate.py: gross_margin_amount = net_revenue - cogs - ads_spend,
+      // ads_spend mỗi dòng đã gồm CẢ Meta (facebook/instagram) LẪN Shopee/TikTok Ads) -> KHÔNG trừ
+      // thêm ads_spend lần nữa ở đây (xem banner cuối trang — trước đây có bug trừ 2 lần).
+      document.getElementById(cardsElId).innerHTML = `
+        <div class="card"><div class="label">Số đơn</div><div class="value">${fmt(totals.orders)}</div></div>
+        <div class="card"><div class="label">Doanh thu thuần</div><div class="value">${fmt(totals.gross)}₫</div></div>
+        <div class="card"><div class="label">Tổng phí</div><div class="value">${fmt(totals.fee)}₫ <span class="fee-pct">(${pctOfRevenue(totals.fee, totals.gross)}%)</span></div></div>
+        <div class="card"><div class="label">Doanh thu thực nhận</div><div class="value">${fmt(totals.net)}₫ <span class="fee-pct">(${pctOfRevenue(totals.net, totals.gross)}%)</span></div></div>
+        <div class="card"><div class="label">Giá vốn (COGS)</div><div class="value">${fmt(totals.cogs)}₫ <span class="fee-pct">(${pctOfRevenue(totals.cogs, totals.gross)}%)</span></div></div>
+        <div class="card" style="border-color:#ff6b6b;"><div class="label">Tổng Ads (Meta + Shopee/TikTok)</div><div class="value">${fmt(totals.ads)}₫ <span class="fee-pct">(${pctOfRevenue(totals.ads, totals.gross)}%)</span></div></div>
+        <div class="card" style="border-color:#37c98b;"><div class="label">Gross margin (đã trừ Ads)</div><div class="value">${fmt(totals.margin)}₫ <span class="fee-pct">(${pctOfRevenue(totals.margin, totals.gross)}%)</span></div></div>
+      `;
+    }
+
+    function renderSummaryBody(list, tbodyElId, expandedSet, rerenderFn) {
+      const displayRows = withChannelSummaryRows(list);
+      let bodyHtml = '';
+      for (const r of displayRows) {
+        const rowKey = (r._isSummary ? 'SUMMARY|' : '') + r.channel + '|' + (r.shop_page || '');
+        const expanded = expandedSet.has(rowKey);
+        const chevron = expanded ? '▾ ' : '▸ ';
+        bodyHtml += `
+          <tr class="${r._isSummary ? 'summary-row' : 'data-row'}" data-rowkey="${rowKey}">
+            <td>${chevron}${label(r.channel)}</td>
+            <td>${r._isSummary ? '— Tổng theo nguồn —' : spLabel(r.shop_page, r.channel)}</td>
+            <td>${fmt(r.orders)}</td>
+            <td>${fmt(r.gross_revenue)}</td>
+            <td>${fmt(r.total_fee)} <span class="fee-pct">(${pctOfRevenue(r.total_fee, r.gross_revenue)}%)</span>
+              <span class="fee-sub">đã hoàn thành: ${fmt(r.fee_recorded)}đ</span>
+              <span class="fee-sub">ước tính: ${fmt(r.fee_estimated)}đ</span>
+            </td>
+            <td>${fmt(r.net_revenue)} <span class="fee-pct">(${pctOfRevenue(r.net_revenue, r.gross_revenue)}%)</span></td>
+            <td>${fmt(r.cogs)} <span class="fee-pct">(${pctOfRevenue(r.cogs, r.gross_revenue)}%)</span></td>
+            <td>${fmt(r.ads_spend)} <span class="fee-pct">(${pctOfRevenue(r.ads_spend, r.gross_revenue)}%)</span></td>
+            <td>${fmt(r.gross_margin_amount)} <span class="fee-pct">(${pctOfRevenue(r.gross_margin_amount, r.gross_revenue)}%)</span></td>
+          </tr>
+        `;
+        if (expanded) {
+          const entries = Object.entries(r.fee_breakdown || {}).sort((a,b) => b[1]-a[1]);
+          let detailBody;
+          if (!entries.length) {
+            detailBody = '<div class="detail-empty">Không có phí nào cho khoảng/kênh này.</div>';
+          } else {
+            const pctBase = r.gross_revenue || 0;
+            detailBody = '<div class="detail-fees">' + entries.map(([name, amt]) => {
+              const pct = pctBase ? (amt / pctBase * 100).toFixed(1) : '0.0';
+              return `<div class="fee-line"><span>${name}</span><span>${fmt(amt)}₫ <span class="fee-pct">(${pct}%)</span></span></div>`;
+            }).join('') + '</div>';
+          }
+          if (r.fee_estimated > 0.5) {
+            detailBody += `<div class="detail-empty" style="margin-top:6px;">+ ${fmt(r.fee_estimated)}đ phí ƯỚC TÍNH cho đơn chưa hoàn thành/chưa ghi nhận phí (dựa trên % phí trung bình 30 ngày gần nhất) — chưa có chi tiết từng loại.</div>`;
+          }
+          bodyHtml += `<tr class="detail-row"><td colspan="${columns.length}">${detailBody}</td></tr>`;
+        }
+      }
+      document.getElementById(tbodyElId).innerHTML = bodyHtml;
+
+      document.querySelectorAll(`#${tbodyElId} tr[data-rowkey] td:first-child`).forEach(td => {
+        td.addEventListener('click', () => {
+          const rowKey = td.parentElement.dataset.rowkey;
+          if (expandedSet.has(rowKey)) expandedSet.delete(rowKey); else expandedSet.add(rowKey);
+          rerenderFn();
+        });
+      });
+    }
+
+    function renderOverviewTab() {
+      renderTableHeader('tableHeadRow', tab1Sort, renderOverviewTab);
+      const list = getChannelSummary(null, tab1Sort);
+      renderTotalCards(list, 'totalCards');
+      document.getElementById('emptyNote').style.display = list.length ? 'none' : 'block';
+      renderSummaryBody(list, 'tableBody', expandedRows, renderOverviewTab);
+    }
+
+    function renderEcomTab() {
+      renderTableHeader('ecomTableHeadRow', ecomSort, renderEcomTab);
+      const list = getChannelSummary(ch => ECOM_CHANNELS.includes(ch), ecomSort);
+      renderTotalCards(list, 'ecomCards');
+      document.getElementById('ecomEmptyNote').style.display = list.length ? 'none' : 'block';
+      renderSummaryBody(list, 'ecomTableBody', ecomExpandedRows, renderEcomTab);
+    }
+
+    function getFilteredProductRows() {
+      return productBreakdown.filter(r =>
+        r.date >= dateFrom && r.date <= dateTo &&
+        (globalChannel === 'ALL' || r.channel === globalChannel) &&
+        (globalShopPage === 'ALL' || (r.shop_page || '') === globalShopPage) &&
+        (prodChannel === 'ALL' || r.channel === prodChannel) &&
+        (prodShopPage === 'ALL' || (r.shop_page || '') === prodShopPage)
+      );
+    }
+
+    function renderProductTable() {
+      const filtered = getFilteredProductRows();
+
+      // Cộng dồn lại theo product+sku+channel+shop_page (vì dữ liệu gốc tách theo NGÀY).
+      const byKey = {};
+      for (const r of filtered) {
+        const key = [r.channel, r.shop_page || '', r.product, r.sku || ''].join('||');
+        if (!byKey[key]) byKey[key] = {
+          channel: r.channel, shop_page: r.shop_page || '', product: r.product, sku: r.sku || '',
+          quantity: 0, revenue: 0, cogs: 0,
+        };
+        const b = byKey[key];
+        b.quantity += r.quantity; b.revenue += r.revenue; b.cogs += r.cogs;
+      }
+      let rows = Object.values(byKey).map(b => ({
+        ...b,
+        gross_margin_amount: b.revenue - b.cogs,
+        gross_margin_pct: b.revenue ? Math.round((b.revenue - b.cogs) / b.revenue * 1000) / 10 : 0,
+      }));
+
+      rows.sort((a, b) => {
+        const va = a[prodSortKey], vb = b[prodSortKey];
+        if (typeof va === 'string') return prodSortDir * va.localeCompare(vb);
+        return prodSortDir * (va - vb);
+      });
+      document.getElementById('productBody').innerHTML = rows.map(r => `
+        <tr>
+          <td>${label(r.channel)}</td>
+          <td>${spLabel(r.shop_page, r.channel)}</td>
+          <td>${r.product}${isCombo(r.product) ? '<span class="combo-badge">COMBO</span>' : ''}</td>
+          <td>${r.sku || '-'}</td>
+          <td>${fmt(r.quantity)}</td>
+          <td>${fmt(r.revenue)}</td>
+          <td>${fmt(r.cogs)}</td>
+          <td>${fmt(r.gross_margin_amount)}</td>
+          <td>${r.gross_margin_pct}%</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderCampaignHeader() {
+      const row = document.getElementById('campaignHeadRow');
+      row.innerHTML = campaignColumns.map(c => `<th data-key="${c.key}" class="${campaignSort.key===c.key?'sorted':''}">${c.label}</th>`).join('');
+      row.querySelectorAll('th').forEach(th => {
+        th.onclick = () => {
+          const key = th.dataset.key;
+          if (campaignSort.key === key) campaignSort.dir *= -1; else { campaignSort.key = key; campaignSort.dir = -1; }
+          renderFbAdsTab();
+        };
+      });
+    }
+
+    function renderFbAdsTab() {
+      renderCampaignHeader();
+
+      // Doanh thu/Tổng phí/Gross margin CHỈ TÍNH cho kênh facebook + instagram, theo CÙNG bộ lọc
+      // ngày/kênh/shop-page ở trên (dùng chung getChannelSummary/renderTotalCards với tab Tổng
+      // quan/E-com) — để so sánh hiệu quả ads với doanh thu thực tế 2 kênh này mang lại. Dùng
+      // chung tab1Sort cho tham số sortState (không ảnh hưởng tới card tổng, chỉ cần cho hàm).
+      const bizList = getChannelSummary(ch => ch === 'facebook' || ch === 'instagram', tab1Sort);
+      renderTotalCards(bizList, 'fbBusinessCards');
+
+      const totalSpend = campaignsData.reduce((s,c) => s + (c.spend || 0), 0);
+      const totalResults = campaignsData.reduce((s,c) => s + (c.results || 0), 0);
+      const totalClicks = campaignsData.reduce((s,c) => s + (c.clicks || 0), 0);
+      const totalImpr = campaignsData.reduce((s,c) => s + (c.impressions || 0), 0);
+      document.getElementById('fbCards').innerHTML = `
+        <div class="card" style="border-color:#ff6b6b;"><div class="label">Tổng chi phí (toàn bộ lịch sử)</div><div class="value">${fmt(totalSpend)}₫</div></div>
+        <div class="card"><div class="label">Impressions</div><div class="value">${fmt(totalImpr)}</div></div>
+        <div class="card"><div class="label">Clicks</div><div class="value">${fmt(totalClicks)}</div></div>
+        <div class="card"><div class="label">Tổng kết quả (results)</div><div class="value">${fmt(totalResults)}</div></div>
+        <div class="card"><div class="label">Số campaign</div><div class="value">${fmt(campaignsData.length)}</div></div>
+      `;
+
+      let list = [...campaignsData];
+      list.sort((a, b) => {
+        const va = a[campaignSort.key], vb = b[campaignSort.key];
+        if (typeof va === 'string') return campaignSort.dir * va.localeCompare(vb);
+        return campaignSort.dir * ((va || 0) - (vb || 0));
+      });
+
+      let bodyHtml = '';
+      for (const c of list) {
+        const expanded = expandedCampaigns.has(c.campaign_id);
+        const chevron = expanded ? '▾ ' : '▸ ';
+        bodyHtml += `
+          <tr class="data-row" data-campid="${c.campaign_id}">
+            <td>${chevron}${c.campaign_name}</td>
+            <td>${label(c.channel)}</td>
+            <td>${fmt(c.spend)}₫</td>
+            <td>${fmt(c.impressions)}</td>
+            <td>${fmt(c.clicks)}</td>
+            <td>${(c.ctr || 0).toFixed(2)}%</td>
+            <td>${fmt(c.cpc)}₫</td>
+            <td>${fmt(c.results)}</td>
+            <td>${fmt(c.cpa)}₫</td>
+          </tr>
+        `;
+        if (expanded) {
+          const subsets = adsetsData.filter(a => a.campaign_id === c.campaign_id).sort((a,b) => (b.spend||0) - (a.spend||0));
+          let detailBody;
+          if (!subsets.length) {
+            detailBody = '<div class="detail-empty">Không có ad set nào.</div>';
+          } else {
+            detailBody = '<div class="detail-fees">' + subsets.map(a => (
+              `<div class="fee-line"><span>${a.adset_name}</span><span>${fmt(a.spend)}₫ (${fmt(a.results)} kết quả, CPA ${fmt(a.cpa)}₫)</span></div>`
+            )).join('') + '</div>';
+          }
+          bodyHtml += `<tr class="detail-row"><td colspan="${campaignColumns.length}">${detailBody}</td></tr>`;
+        }
+      }
+      document.getElementById('campaignBody').innerHTML = bodyHtml;
+
+      document.querySelectorAll('#campaignBody tr[data-campid] td:first-child').forEach(td => {
+        td.addEventListener('click', () => {
+          const id = td.parentElement.dataset.campid;
+          if (expandedCampaigns.has(id)) expandedCampaigns.delete(id); else expandedCampaigns.add(id);
+          renderFbAdsTab();
+        });
+      });
+    }
+
+    function switchTab(tab) {
+      activeTab = tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+      document.getElementById('tab-overview').classList.toggle('hidden', tab !== 'overview');
+      document.getElementById('tab-ecom').classList.toggle('hidden', tab !== 'ecom');
+      document.getElementById('tab-fbads').classList.toggle('hidden', tab !== 'fbads');
+    }
+
+    function renderAll() {
+      renderDateChips();
+      renderGlobalFilterDropdowns();
+      renderOverviewTab();
+      renderEcomTab();
+      renderProductHeader();
+      renderProdFilterDropdowns();
+      renderProductTable();
+      renderFbAdsTab();
+    }
+
+    document.getElementById('dateFrom').min = minDate;
+    document.getElementById('dateFrom').max = maxDate;
+    document.getElementById('dateTo').min = minDate;
+    document.getElementById('dateTo').max = maxDate;
+    document.getElementById('dateFrom').addEventListener('change', e => { dateFrom = e.target.value; activePreset = ''; renderAll(); });
+    document.getElementById('dateTo').addEventListener('change', e => { dateTo = e.target.value; activePreset = ''; renderAll(); });
+    document.getElementById('showSummaryToggle').addEventListener('change', e => { showChannelSummary = e.target.checked; renderAll(); });
+    document.getElementById('channelFilterSelect').addEventListener('change', e => { globalChannel = e.target.value; globalShopPage = 'ALL'; renderAll(); });
+    document.getElementById('shopPageFilterSelect').addEventListener('change', e => { globalShopPage = e.target.value; renderAll(); });
+    document.getElementById('prodChannelFilter').addEventListener('change', e => { prodChannel = e.target.value; prodShopPage = 'ALL'; renderProductTable(); });
+    document.getElementById('prodShopPageFilter').addEventListener('change', e => { prodShopPage = e.target.value; renderProductTable(); });
+    document.querySelectorAll('.tab-btn').forEach(b => {
+      b.addEventListener('click', () => switchTab(b.dataset.tab));
+    });
+
+    applyPreset(null);
+  </script>
+</body>
+</html>

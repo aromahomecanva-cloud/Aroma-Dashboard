@@ -1,0 +1,196 @@
+<!DOCTYPE html><script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Business Dashboard",
+  "schemaVersion": 1,
+  "description": "Dashboard doanh thu/ads/gross margin theo kênh bán hàng (Shopee, TikTok Shop, Facebook...), đã kết nối dữ liệu thật từ Sapo + Meta Ads, khớp ~98.7% với báo cáo Sapo. Có 3 tab: Tổng quan / E-com / Facebook Ads."
+}
+</script>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background:#f7f8fa; color:#1a1d24; margin:0; padding:20px; }
+  h1 { font-size:18px; margin:0 0 4px 0; }
+  h2 { font-size:14px; margin:24px 0 10px 0; }
+  .sub { color:#666; font-size:12px; margin-bottom:14px; }
+  .banner { background:#fff4d6; border:1px solid #e8b93a; padding:10px 14px; border-radius:8px; margin-bottom:16px; font-size:12.5px; line-height:1.5; }
+
+  .controls { display:flex; gap:20px; flex-wrap:wrap; align-items:flex-start; background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:12px 16px; margin-bottom:16px; }
+  .control-group { display:flex; flex-direction:column; gap:6px; }
+  .control-group .title { font-size:11px; color:#777; font-weight:600; text-transform:uppercase; letter-spacing:.03em; }
+  .chip-row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; max-width:640px; }
+  .chip { border:1px solid #d7dae0; background:#fff; color:#333; padding:5px 12px; border-radius:999px; font-size:12.5px; cursor:pointer; user-select:none; transition:.15s; }
+  .chip.active { background:#1a1d24; color:#fff; border-color:#1a1d24; }
+  input[type=date] { border:1px solid #d7dae0; border-radius:6px; padding:4px 8px; font-size:12.5px; }
+  select.filter-select { border:1px solid #d7dae0; border-radius:6px; padding:5px 8px; font-size:12.5px; background:#fff; max-width:280px; }
+  label.check-label { display:flex; align-items:center; gap:6px; font-size:12.5px; cursor:pointer; user-select:none; }
+  label.check-label input { width:15px; height:15px; cursor:pointer; }
+
+  .tab-nav { display:flex; gap:4px; margin-bottom:16px; border-bottom:2px solid #e5e7eb; }
+  .tab-btn { padding:9px 18px; border:none; background:none; font-size:13px; font-weight:600; color:#888; cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; }
+  .tab-btn:hover { color:#333; }
+  .tab-btn.active { color:#1a1d24; border-bottom-color:#1a1d24; }
+  .tab-panel.hidden { display:none; }
+
+  .cards { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+  .card { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:14px 16px; min-width:150px; flex:1; }
+  .card .label { font-size:11.5px; color:#777; margin-bottom:4px; }
+  .card .value { font-size:18px; font-weight:600; }
+
+  table { width:100%; border-collapse: collapse; background:#fff; border:1px solid #e5e7eb; border-radius:10px; overflow:hidden; margin-bottom:20px; font-size:12.5px; }
+  th, td { padding:8px 10px; text-align:right; border-bottom:1px solid #eee; }
+  th:first-child, td:first-child { text-align:left; }
+  th { color:#777; font-weight:500; background:#fafafa; cursor:pointer; user-select:none; position:sticky; top:0; }
+  th.sorted::after { content:" ▾"; font-size:10px; }
+  tr:last-child td { border-bottom:none; }
+  tr.summary-row td { background:#eef1f6; font-weight:700; }
+  tr.data-row td:first-child, tr.summary-row td:first-child { cursor:pointer; }
+  tr.detail-row td { background:#fbfbfd; text-align:left; padding:10px 16px; }
+  .detail-fees { display:flex; flex-wrap:wrap; gap:6px 18px; }
+  .fee-line { display:flex; gap:8px; font-size:12px; color:#333; white-space:nowrap; }
+  .fee-line span:first-child { color:#777; }
+  .fee-line span:last-child { font-weight:600; }
+  .fee-pct { font-weight:400; color:#999; font-size:10.5px; display:block; margin-top:1px; }
+  .fee-line .fee-pct { display:inline; margin-left:2px; margin-top:0; }
+  .fee-sub { font-weight:400; color:#aaa; font-size:10px; display:block; margin-top:1px; white-space:nowrap; }
+  .detail-empty { font-size:12px; color:#999; font-style:italic; }
+  .table-scroll { max-height:420px; overflow-y:auto; border:1px solid #e5e7eb; border-radius:10px; margin-bottom:20px; }
+  .table-scroll table { border:none; border-radius:0; margin-bottom:0; }
+
+  .empty-note { font-size:12px; color:#999; padding:10px; }
+  .section-note { font-size:11.5px; color:#999; margin:-4px 0 10px 0; }
+  .prod-filter-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+  .combo-badge { display:inline-block; background:#eef2ff; color:#3949ab; font-size:10.5px; padding:1px 6px; border-radius:4px; margin-left:6px; font-weight:600; }
+</style>
+</head>
+<body>
+  <h1>Business Dashboard — Doanh thu / Ads / Gross Margin theo kênh &amp; shop/page</h1>
+  <div class="sub" id="statusLine">Dữ liệu thật từ Sapo (đơn hàng + giá vốn) + Meta Ads — cập nhật lúc __UPDATED_AT__</div>
+
+  <div class="controls">
+    <div class="control-group">
+      <div class="title">Khoảng thời gian</div>
+      <div class="chip-row" id="dateChips"></div>
+      <div class="chip-row" style="margin-top:4px;">
+        <input type="date" id="dateFrom"> <span style="font-size:12px;color:#999;">đến</span> <input type="date" id="dateTo">
+      </div>
+    </div>
+    <div class="control-group">
+      <div class="title">Kênh (platform)</div>
+      <select class="filter-select" id="channelFilterSelect"></select>
+    </div>
+    <div class="control-group">
+      <div class="title">Shop / Page cụ thể</div>
+      <select class="filter-select" id="shopPageFilterSelect"></select>
+    </div>
+    <div class="control-group">
+      <div class="title">Tuỳ chọn bảng</div>
+      <label class="check-label"><input type="checkbox" id="showSummaryToggle"> Hiện dòng tổng theo nguồn</label>
+    </div>
+  </div>
+  <div class="section-note">Bộ lọc ngày/kênh/shop-page ở trên áp dụng cho cả 3 tab (Facebook Ads: phần doanh thu/margin áp dụng bộ lọc, riêng phần chi tiết campaign/ad set là TOÀN BỘ lịch sử — xem ghi chú trong tab đó).</div>
+
+  <div class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="overview">Tổng quan</button>
+    <button class="tab-btn" data-tab="ecom">E-com</button>
+    <button class="tab-btn" data-tab="fbads">Facebook Ads</button>
+  </div>
+
+  <div id="tab-overview" class="tab-panel">
+    <div class="cards" id="totalCards"></div>
+
+    <h2>Theo kênh &amp; shop/page</h2>
+    <div class="section-note">Bấm tiêu đề cột để sắp xếp. Bấm vào TÊN KÊNH của 1 dòng để xem chi tiết từng loại phí. Tick "Hiện dòng tổng theo nguồn" để thêm dòng tổng (in đậm) cho mỗi kênh.</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr id="tableHeadRow"></tr></thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <div class="empty-note" id="emptyNote" style="display:none;">Không có kênh nào được chọn.</div>
+  </div>
+
+  <div id="tab-ecom" class="tab-panel hidden">
+    <div class="section-note">Chỉ hiện các kênh sàn TMĐT/website (Shopee, TikTok Shop, Lazada, Website) — theo cùng bộ lọc ngày/kênh/shop-page ở trên.</div>
+    <div class="cards" id="ecomCards"></div>
+
+    <h2>E-com — Theo kênh &amp; shop/page</h2>
+    <div class="section-note">Bấm tiêu đề cột để sắp xếp. Bấm vào TÊN KÊNH của 1 dòng để xem chi tiết từng loại phí.</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr id="ecomTableHeadRow"></tr></thead>
+        <tbody id="ecomTableBody"></tbody>
+      </table>
+    </div>
+    <div class="empty-note" id="ecomEmptyNote" style="display:none;">Không có kênh e-com nào trong khoảng đã chọn.</div>
+
+    <h2>Theo sản phẩm (trong khoảng thời gian / kênh / shop-page đã chọn)</h2>
+    <div class="section-note">Combo đã được ghép lại thành 1 dòng (xem badge COMBO) — không tách theo sản phẩm thành tố. Bảng này chạy theo khoảng thời gian chọn ở đầu trang. Bấm tiêu đề cột để sắp xếp.</div>
+    <div class="prod-filter-row">
+      <select class="filter-select" id="prodChannelFilter"></select>
+      <select class="filter-select" id="prodShopPageFilter"></select>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr id="productHeadRow"></tr></thead>
+        <tbody id="productBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="tab-fbads" class="tab-panel hidden">
+    <div class="section-note">Doanh thu / phí / Gross margin dưới đây CHỈ TÍNH cho kênh Facebook + Instagram, theo CÙNG bộ lọc ngày/kênh/shop-page ở trên (giống tab Tổng quan/E-com) — để so sánh hiệu quả ads với doanh thu thực tế 2 kênh này mang lại.</div>
+    <div class="cards" id="fbBusinessCards"></div>
+
+    <h2>Chi tiết Ads (Meta) — toàn bộ lịch sử</h2>
+    <div class="section-note">Số liệu Facebook/Instagram Ads dưới đây là TOÀN BỘ LỊCH SỬ (KHÔNG áp dụng bộ lọc ngày ở trên) — Meta API chỉ cho lấy tổng theo campaign/ad set, không tách theo ngày ở mức chi tiết này.</div>
+    <div class="cards" id="fbCards"></div>
+
+    <h2>Campaigns</h2>
+    <div class="section-note">Bấm vào TÊN CAMPAIGN để xem chi tiết Ad Set bên trong. Bấm tiêu đề cột để sắp xếp.</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr id="campaignHeadRow"></tr></thead>
+        <tbody id="campaignBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="banner">
+    <b>Doanh thu thuần</b> (trước đây gọi "DT gộp") giờ TÍNH ĐÚNG theo công thức báo cáo
+    "Doanh thu theo thời gian" của Sapo: Tiền hàng − Giảm giá − Tiền hàng trả lại. Đã đối
+    chiếu với báo cáo Sapo thật: khớp ~98.7% (KHÔNG lọc đơn huỷ — Sapo tự bao gồm tất cả
+    trong báo cáo này; ngày tính theo giờ Việt Nam; tiền hàng trả lại gắn theo đúng ngày
+    xảy ra hoàn tiền, không phải ngày tạo đơn). <b>Tổng phí</b> (phí sàn +
+    ship + voucher + aff + thuế... theo file Chi phí Sapo) đã khớp 100% qua join Mã chứng
+    từ/Tham chiếu. Bấm vào TÊN KÊNH ở mỗi dòng để xem chi tiết TỪNG LOẠI PHÍ (Phí cố định,
+    Phí dịch vụ, Phí thanh toán, Thuế sàn, aff...).
+    <b>Ads Meta</b> giờ ĐÃ được gán theo từng kênh (Facebook/Instagram) — cả 2 kênh hiện chỉ
+    chạy ads cho đúng 1 page ("Aroma Story - Nến Thơm Khắc Tên & Thông Điệp Ẩn") nên 100% chi
+    phí mỗi kênh được gán thẳng vào page đó (không chia theo doanh thu). <b>Gross
+    margin</b> ở mọi nơi trong dashboard này ĐÃ TRỪ Ads spend. Số tuyệt đối hiển thị phía trên,
+    % (tính trên Doanh thu thuần) hiển thị ở dòng dưới cho Tổng phí/DT thực nhận/COGS/Ads
+    spend/Gross margin. <b>Combo</b>: đã ghép lại đúng số lượng
+    combo bán được (badge <span class="combo-badge">COMBO</span>), không tách theo sản phẩm
+    thành tố. Bảng "Theo sản phẩm" (trong tab E-com) chạy theo khoảng thời gian chọn ở đầu trang.
+    <b>Shopee Ads / TikTok Ads</b>: chi phí đã CỘNG VAT (Shopee 8%, TikTok 10%) — là số tiền
+    thực chi, không phải số thuần trên báo cáo Shopee.
+    <b>Tổng phí ước tính</b>: phí sàn (Shopee/TikTok...) chỉ được Sapo ghi nhận SAU KHI
+    đơn hoàn thành — filter khoảng ngày gần (VD 7 ngày) sẽ có nhiều đơn CHƯA hoàn thành/chưa
+    ghi nhận phí, làm Tổng phí bị THẤP giả tạo. Giờ Tổng phí = phí ĐÃ ghi nhận thực tế + phí
+    ƯỚC TÍNH cho phần doanh thu chưa ghi nhận (ước tính = % phí trung bình của các đơn ĐÃ hoàn
+    thành trong 30 ngày gần nhất, tính lùi từ ngày cuối của khoảng đang chọn, nhân với doanh
+    thu chưa ghi nhận phí). Dưới mỗi dòng Tổng phí có 2 số nhỏ: "đã hoàn thành" (thực tế) và
+    "ước tính" — DT thực nhận/Gross margin đã tính theo Tổng phí đã gồm phần ước tính này.
+    <b>Card tổng ở tab Tổng quan/E-com/Facebook Ads</b>: gồm card "Tổng phí" và "Tổng Ads (Meta +
+    Shopee/TikTok)" — gộp đủ CẢ 3 nguồn ads. Gross margin ở các card này KHÔNG bị trừ Ads 2 lần
+    (Ads đã trừ sẵn ở từng dòng của bảng).
+    <b>Dashboard giờ có 3 tab</b>: "Tổng quan" (tất cả kênh), "E-com" (chỉ Shopee/TikTok
+    Shop/Lazada/Website + bảng sản phẩm), "Facebook Ads" (doanh thu/margin của riêng kênh
+    Facebook+Instagram theo bộ lọc ngày, cộng thêm chi tiết campaign/ad set từ Meta — phần
+    campaign/ad set LÀ TOÀN BỘ lịch sử, không lọc theo ngày).
+  </div>
+
+  <script>
+    const channelLabels = {"shopee": "Shopee", "facebook": "Facebook", "instagram": "Instagram", "tiktokshop": "TikTok Shop", "pos": "POS (tại quầy)", "zalo-oa": "Zalo OA", "admin": "Admin (nhập tay)", "lazada": "Lazada", "zalo": "Zalo", "web": "Website", "other": "Khác"};
