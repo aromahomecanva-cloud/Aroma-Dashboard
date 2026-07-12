@@ -11,6 +11,16 @@ on:
     paths:
       - 'shopee_ads_exports/**'   # tự chạy ngay khi có CSV Shopee Ads mới được push lên
 
+# Nếu 2 trigger (VD: push CSV mới + bấm chạy tay, hoặc cron trùng giờ) khởi động gần như cùng lúc,
+# cả 2 run sẽ cùng build data.json từ cùng 1 điểm xuất phát rồi cùng push -> run nào push sau bị
+# GitHub từ chối ("remote rejected ... cannot lock ref") vì nhánh đã bị run kia đẩy trước đó 1-2
+# giây. Dữ liệu KHÔNG bị mất (run đầu vẫn thành công) nhưng run sau báo lỗi đỏ gây hoang mang.
+# concurrency ở đây đảm bảo chỉ 1 run chạy job "update" tại 1 thời điểm; run đến sau sẽ XẾP HÀNG
+# chờ (không huỷ run đang chạy dở, không bị mất dữ liệu) thay vì chạy song song rồi giành nhau push.
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -56,4 +66,9 @@ jobs:
           shopt -s nullglob
           git add data.json cache_*.json.gz
           git diff --staged --quiet || git commit -m "Update dashboard data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          # Phòng trường hợp main đã bị đẩy lên bởi 1 commit khác (VD Huy push tay) ngay trong lúc
+          # job này đang chạy -- rebase commit của bot lên trên đầu mới nhất rồi mới push, tránh bị
+          # GitHub từ chối vì "remote rejected". Kết hợp với concurrency ở trên để chặn race giữa
+          # 2 run của chính workflow này.
+          git pull --rebase origin main
           git push
