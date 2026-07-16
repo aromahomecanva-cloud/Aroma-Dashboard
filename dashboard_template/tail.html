@@ -50,6 +50,25 @@
       { key: 'gross_margin_pct', label: '%' },
     ];
     let prodSortKey = 'revenue', prodSortDir = -1;
+    let expandedProductCategories = new Set();
+
+    // Phân nhóm ngành hàng cho bảng "Theo sản phẩm" — dựa theo TỪ KHOÁ trong TÊN sản phẩm
+    // (KHÔNG dùng SKU: phần lớn dòng trong product_breakdown có sku rỗng, xem business_
+    // dashboard_aggregate.py). Thứ tự if/else CÓ Ý NGHĨA: "khuếch tán" phải kiểm tra TRƯỚC
+    // "nước hoa" vì một số sản phẩm tinh dầu khuếch tán lại có chữ "Nước Hoa" trong tên gọi
+    // (VD "Tinh Dầu Nước Hoa Thơm Phòng Cắm Que Khuếch Tán..." thực chất là hàng khuếch tán).
+    // Cùng quy tắc/thứ tự đã dùng khi phân loại campaign Shopee Ads trong các phân tích trước.
+    function categorizeProduct(name) {
+      const n = (name || '').toLowerCase();
+      if (n.includes('khuếch tán')) return 'Tinh Dầu Khuếch Tán';
+      if (n.includes('nước hoa')) return 'Nước Hoa';
+      if (n.includes('xịt thơm') || n.includes('xịt phòng')) return 'Xịt Thơm Phòng';
+      if (n.includes('xông phòng') || n.includes('10ml') || n.includes('tinh dầu')) return 'Tinh Dầu 10ml (Nguyên Chất)';
+      if (n.includes('nến')) return 'Nến Thơm';
+      if (n.includes('set quà') || n.includes('combo') || n.includes('tdkt') || n.includes('quà tặng')) return 'Set Quà / Combo';
+      if (n.includes('cốc') || n.includes('diêm') || n.includes('bấc') || n.includes('đế kẹp') || n.includes('lọ tán hương') || n.includes('chong chóng')) return 'Phụ kiện';
+      return 'Khác';
+    }
 
     const campaignColumns = [
       { key: 'campaign_name', label: 'Campaign' },
@@ -387,28 +406,84 @@
       }
       let rows = Object.values(byKey).map(b => ({
         ...b,
+        category: categorizeProduct(b.product),
         gross_margin_amount: b.revenue - b.cogs,
         gross_margin_pct: b.revenue ? Math.round((b.revenue - b.cogs) / b.revenue * 1000) / 10 : 0,
       }));
 
-      rows.sort((a, b) => {
-        const va = a[prodSortKey], vb = b[prodSortKey];
-        if (typeof va === 'string') return prodSortDir * va.localeCompare(vb);
-        return prodSortDir * (va - vb);
+      // Gom theo NHÓM NGÀNH HÀNG — mỗi nhóm có 1 dòng tổng (in đậm), bấm vào để mở/đóng chi
+      // tiết từng sản phẩm bên trong (cùng kiểu tương tác với dòng tổng theo nguồn ở bảng trên).
+      const byCat = {};
+      for (const r of rows) {
+        if (!byCat[r.category]) byCat[r.category] = { category: r.category, quantity: 0, revenue: 0, cogs: 0, products: [] };
+        const c = byCat[r.category];
+        c.quantity += r.quantity; c.revenue += r.revenue; c.cogs += r.cogs;
+        c.products.push(r);
+      }
+      let categories = Object.values(byCat).map(c => ({
+        ...c,
+        gross_margin_amount: c.revenue - c.cogs,
+        gross_margin_pct: c.revenue ? Math.round((c.revenue - c.cogs) / c.revenue * 1000) / 10 : 0,
+      }));
+
+      // Sắp xếp nhóm theo CÙNG cột đang chọn nếu là cột số (SL/Doanh thu/COGS/Gross margin/%);
+      // các cột tên (Kênh/Shop/Sản phẩm/SKU) không có nghĩa ở mức nhóm -> mặc định theo Doanh thu giảm dần.
+      const numericKeys = ['quantity', 'revenue', 'cogs', 'gross_margin_amount', 'gross_margin_pct'];
+      if (numericKeys.includes(prodSortKey)) {
+        categories.sort((a, b) => prodSortDir * (a[prodSortKey] - b[prodSortKey]));
+      } else {
+        categories.sort((a, b) => b.revenue - a.revenue);
+      }
+
+      const sortProducts = (list) => {
+        const l = [...list];
+        l.sort((a, b) => {
+          const va = a[prodSortKey], vb = b[prodSortKey];
+          if (typeof va === 'string') return prodSortDir * va.localeCompare(vb);
+          return prodSortDir * (va - vb);
+        });
+        return l;
+      };
+
+      let bodyHtml = '';
+      for (const c of categories) {
+        const expanded = expandedProductCategories.has(c.category);
+        const chevron = expanded ? '▾ ' : '▸ ';
+        bodyHtml += `
+          <tr class="summary-row" data-catkey="${c.category}">
+            <td colspan="4">${chevron}${c.category}</td>
+            <td>${fmt(c.quantity)}</td>
+            <td>${fmt(c.revenue)}</td>
+            <td>${fmt(c.cogs)}</td>
+            <td>${fmt(c.gross_margin_amount)}</td>
+            <td>${c.gross_margin_pct}%</td>
+          </tr>
+        `;
+        if (expanded) {
+          bodyHtml += sortProducts(c.products).map(r => `
+            <tr class="data-row">
+              <td>${label(r.channel)}</td>
+              <td>${spLabel(r.shop_page, r.channel)}</td>
+              <td>${r.product}${isCombo(r.product) ? '<span class="combo-badge">COMBO</span>' : ''}</td>
+              <td>${r.sku || '-'}</td>
+              <td>${fmt(r.quantity)}</td>
+              <td>${fmt(r.revenue)}</td>
+              <td>${fmt(r.cogs)}</td>
+              <td>${fmt(r.gross_margin_amount)}</td>
+              <td>${r.gross_margin_pct}%</td>
+            </tr>
+          `).join('');
+        }
+      }
+      document.getElementById('productBody').innerHTML = bodyHtml;
+
+      document.querySelectorAll('#productBody tr[data-catkey] td:first-child').forEach(td => {
+        td.addEventListener('click', () => {
+          const cat = td.parentElement.dataset.catkey;
+          if (expandedProductCategories.has(cat)) expandedProductCategories.delete(cat); else expandedProductCategories.add(cat);
+          renderProductTable();
+        });
       });
-      document.getElementById('productBody').innerHTML = rows.map(r => `
-        <tr>
-          <td>${label(r.channel)}</td>
-          <td>${spLabel(r.shop_page, r.channel)}</td>
-          <td>${r.product}${isCombo(r.product) ? '<span class="combo-badge">COMBO</span>' : ''}</td>
-          <td>${r.sku || '-'}</td>
-          <td>${fmt(r.quantity)}</td>
-          <td>${fmt(r.revenue)}</td>
-          <td>${fmt(r.cogs)}</td>
-          <td>${fmt(r.gross_margin_amount)}</td>
-          <td>${r.gross_margin_pct}%</td>
-        </tr>
-      `).join('');
     }
 
     function renderCampaignHeader() {
