@@ -62,7 +62,9 @@
   .section-note { font-size:11.5px; color:#999; margin:-4px 0 10px 0; }
   .prod-filter-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
   .combo-badge { display:inline-block; background:#eef2ff; color:#3949ab; font-size:10.5px; padding:1px 6px; border-radius:4px; margin-left:6px; font-weight:600; }
+  .chart-box { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:16px; margin-bottom:20px; height:340px; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
 </head>
 <body>
   <h1>Business Dashboard — Doanh thu / Ads / Gross Margin theo kênh &amp; shop/page</h1>
@@ -109,6 +111,14 @@
       </table>
     </div>
     <div class="empty-note" id="emptyNote" style="display:none;">Không có kênh nào được chọn.</div>
+
+    <h2>Doanh thu thuần / Ads / Gross margin theo ngày</h2>
+    <div class="section-note">Theo khoảng thời gian đã chọn ở trên (chips/ngày). 2 filter dưới đây lọc THÊM theo kênh/shop-page riêng cho biểu đồ này (độc lập, kết hợp AND với bộ lọc chung ở đầu trang) — giống cách bảng "Theo sản phẩm" ở tab E-com đang lọc.</div>
+    <div class="prod-filter-row">
+      <select class="filter-select" id="trendChannelFilter"></select>
+      <select class="filter-select" id="trendShopPageFilter"></select>
+    </div>
+    <div class="chart-box"><canvas id="trendChart"></canvas></div>
   </div>
 
   <div id="tab-ecom" class="tab-panel hidden">

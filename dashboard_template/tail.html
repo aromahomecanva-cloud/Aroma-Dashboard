@@ -16,6 +16,10 @@
     let prodChannel = 'ALL';
     let prodShopPage = 'ALL';
 
+    let trendChannel = 'ALL';
+    let trendShopPage = 'ALL';
+    let trendChartInstance = null;
+
     let activeTab = 'overview';
 
     const columns = [
@@ -264,6 +268,84 @@
           return `<option value="${sp}">${text}</option>`;
         }).join('');
       spSel.value = sps.includes(prodShopPage) ? prodShopPage : 'ALL';
+    }
+
+    function renderTrendFilterDropdowns() {
+      const chSel = document.getElementById('trendChannelFilter');
+      const spSel = document.getElementById('trendShopPageFilter');
+      chSel.innerHTML = '<option value="ALL">Tất cả kênh</option>' +
+        allChannels.map(ch => `<option value="${ch}">${label(ch)}</option>`).join('');
+      chSel.value = trendChannel;
+      const relevant = dailyData.filter(r => trendChannel === 'ALL' || r.channel === trendChannel);
+      const sps = [...new Set(relevant.map(r => r.shop_page || ''))];
+      spSel.innerHTML = '<option value="ALL">Tất cả shop/page</option>' +
+        sps.map(sp => {
+          const chsForSp = [...new Set(relevant.filter(r => (r.shop_page||'') === sp).map(r => r.channel))];
+          const text = sp ? sp : chsForSp.map(label).join('/');
+          return `<option value="${sp}">${text}</option>`;
+        }).join('');
+      spSel.value = sps.includes(trendShopPage) ? trendShopPage : 'ALL';
+    }
+
+    // Doanh thu thuần (gross_revenue) + Ads spend theo ngày (bar, trục trái) và Gross margin %
+    // (line, trục phải) — margin % tính theo CÙNG quy ước với các card/bảng khác trong dashboard
+    // (gross_margin_amount / gross_revenue * 100, xem hàm pctOfRevenue) để nhất quán, KHÔNG dùng
+    // net_revenue làm mẫu số. Áp dụng bộ lọc ngày chung (dateFrom/dateTo) + filter riêng
+    // trendChannel/trendShopPage (kết hợp AND với bộ lọc kênh/shop-page chung ở đầu trang, giống
+    // cách bảng "Theo sản phẩm" đang lọc).
+    function renderTrendChart() {
+      const rows = dailyData.filter(r => r.date >= dateFrom && r.date <= dateTo
+        && (globalChannel === 'ALL' || r.channel === globalChannel)
+        && (globalShopPage === 'ALL' || (r.shop_page || '') === globalShopPage)
+        && (trendChannel === 'ALL' || r.channel === trendChannel)
+        && (trendShopPage === 'ALL' || (r.shop_page || '') === trendShopPage));
+
+      const byDate = {};
+      for (const r of rows) {
+        if (!byDate[r.date]) byDate[r.date] = { revenue: 0, ads: 0, margin: 0 };
+        const b = byDate[r.date];
+        b.revenue += r.gross_revenue;
+        b.ads += (r.ads_spend || 0);
+        b.margin += r.gross_margin_amount;
+      }
+      const dates = Object.keys(byDate).sort();
+      const revenueArr = dates.map(d => Math.round(byDate[d].revenue));
+      const adsArr = dates.map(d => Math.round(byDate[d].ads));
+      const marginPctArr = dates.map(d => byDate[d].revenue ? Math.round(byDate[d].margin / byDate[d].revenue * 1000) / 10 : 0);
+      const dateLabels = dates.map(d => d.slice(5).split('-').reverse().join('/'));
+
+      const canvas = document.getElementById('trendChart');
+      if (trendChartInstance) { trendChartInstance.destroy(); trendChartInstance = null; }
+      if (!dates.length) return;
+
+      trendChartInstance = new Chart(canvas.getContext('2d'), {
+        data: {
+          labels: dateLabels,
+          datasets: [
+            { type: 'bar', label: 'Doanh thu thuần', data: revenueArr, backgroundColor: '#4c6ef599', yAxisID: 'y' },
+            { type: 'bar', label: 'Ads spend', data: adsArr, backgroundColor: '#ff6b6b99', yAxisID: 'y' },
+            { type: 'line', label: 'Gross margin %', data: marginPctArr, borderColor: '#37c98b', backgroundColor: '#37c98b', yAxisID: 'y1', tension: 0.25, pointRadius: 2 },
+          ],
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          scales: {
+            y: { position: 'left', ticks: { callback: v => fmt(v) + '₫' } },
+            y1: { position: 'right', grid: { drawOnChartArea: false }, ticks: { callback: v => v + '%' } },
+          },
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => ctx.dataset.yAxisID === 'y1'
+                  ? `${ctx.dataset.label}: ${ctx.formattedValue}%`
+                  : `${ctx.dataset.label}: ${fmt(ctx.raw)}₫`,
+              },
+            },
+          },
+        },
+      });
     }
 
     function renderTableHeader(theadElId, sortState, onSortChange) {
@@ -574,12 +656,17 @@
       document.getElementById('tab-overview').classList.toggle('hidden', tab !== 'overview');
       document.getElementById('tab-ecom').classList.toggle('hidden', tab !== 'ecom');
       document.getElementById('tab-fbads').classList.toggle('hidden', tab !== 'fbads');
+      // Chart.js không tự resize đúng khi canvas nằm trong panel display:none lúc khởi tạo/khi
+      // panel bị ẩn rồi hiện lại -> gọi resize() thủ công mỗi lần quay lại tab Tổng quan.
+      if (tab === 'overview' && trendChartInstance) trendChartInstance.resize();
     }
 
     function renderAll() {
       renderDateChips();
       renderGlobalFilterDropdowns();
       renderOverviewTab();
+      renderTrendFilterDropdowns();
+      renderTrendChart();
       renderEcomTab();
       renderProductHeader();
       renderProdFilterDropdowns();
@@ -598,6 +685,8 @@
     document.getElementById('shopPageFilterSelect').addEventListener('change', e => { globalShopPage = e.target.value; renderAll(); });
     document.getElementById('prodChannelFilter').addEventListener('change', e => { prodChannel = e.target.value; prodShopPage = 'ALL'; renderProductTable(); });
     document.getElementById('prodShopPageFilter').addEventListener('change', e => { prodShopPage = e.target.value; renderProductTable(); });
+    document.getElementById('trendChannelFilter').addEventListener('change', e => { trendChannel = e.target.value; trendShopPage = 'ALL'; renderTrendFilterDropdowns(); renderTrendChart(); });
+    document.getElementById('trendShopPageFilter').addEventListener('change', e => { trendShopPage = e.target.value; renderTrendChart(); });
     document.querySelectorAll('.tab-btn').forEach(b => {
       b.addEventListener('click', () => switchTab(b.dataset.tab));
     });
