@@ -311,6 +311,7 @@
       const dates = Object.keys(byDate).sort();
       const revenueArr = dates.map(d => Math.round(byDate[d].revenue));
       const adsArr = dates.map(d => Math.round(byDate[d].ads));
+      const marginAmtArr = dates.map(d => Math.round(byDate[d].margin));
       const marginPctArr = dates.map(d => byDate[d].revenue ? Math.round(byDate[d].margin / byDate[d].revenue * 1000) / 10 : 0);
       const dateLabels = dates.map(d => d.slice(5).split('-').reverse().join('/'));
 
@@ -318,13 +319,19 @@
       if (trendChartInstance) { trendChartInstance.destroy(); trendChartInstance = null; }
       if (!dates.length) return;
 
+      // Gross margin hiện CẢ giá trị tuyệt đối (bar, trục trái, cùng đơn vị đ với doanh thu/ads
+      // để so sánh trực tiếp) LẪN tỉ lệ % (line, trục phải, tính trên gross_revenue — cùng quy
+      // ước với pctOfRevenue). % có thể nhảy rất mạnh (âm sâu hoặc >100%) ở những ngày doanh thu
+      // gần 0 nhưng vẫn có ads spend/phí -> xem thêm giá trị tuyệt đối để biết mức độ đó có
+      // đáng kể hay chỉ là nhiễu do mẫu số quá nhỏ.
       trendChartInstance = new Chart(canvas.getContext('2d'), {
         data: {
           labels: dateLabels,
           datasets: [
             { type: 'bar', label: 'Doanh thu thuần', data: revenueArr, backgroundColor: '#4c6ef599', yAxisID: 'y' },
             { type: 'bar', label: 'Ads spend', data: adsArr, backgroundColor: '#ff6b6b99', yAxisID: 'y' },
-            { type: 'line', label: 'Gross margin %', data: marginPctArr, borderColor: '#37c98b', backgroundColor: '#37c98b', yAxisID: 'y1', tension: 0.25, pointRadius: 2 },
+            { type: 'bar', label: 'Gross margin (₫)', data: marginAmtArr, backgroundColor: '#37c98b99', yAxisID: 'y' },
+            { type: 'line', label: 'Gross margin %', data: marginPctArr, borderColor: '#3949ab', backgroundColor: '#3949ab', yAxisID: 'y1', tension: 0.25, pointRadius: 2 },
           ],
         },
         options: {
