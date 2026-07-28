@@ -113,7 +113,7 @@
     <div class="empty-note" id="emptyNote" style="display:none;">Không có kênh nào được chọn.</div>
 
     <h2>Doanh thu thuần / Ads / Gross margin theo ngày</h2>
-    <div class="section-note">Theo khoảng thời gian đã chọn ở trên (chips/ngày). 2 filter dưới đây lọc THÊM theo kênh/shop-page riêng cho biểu đồ này (độc lập, kết hợp AND với bộ lọc chung ở đầu trang) — giống cách bảng "Theo sản phẩm" ở tab E-com đang lọc.</div>
+    <div class="section-note">Theo khoảng thời gian đã chọn ở trên (chips/ngày). 2 filter dưới đây lọc THÊM theo kênh/shop-page riêng cho biểu đồ này (độc lập, kết hợp AND với bộ lọc chung ở đầu trang) — giống cách bảng "Theo sản phẩm" ở tab E-com đang lọc. Gross margin ở đây ĐÃ trừ phí sàn + ads + COGS, và đã bao gồm phần phí sàn ƯỚC TÍNH cho đơn chưa hoàn thành (xem banner cuối trang) — nên vài ngày gần nhất có thể còn dao động nhẹ khi Sapo ghi nhận phí đầy đủ hơn.</div>
     <div class="prod-filter-row">
       <select class="filter-select" id="trendChannelFilter"></select>
       <select class="filter-select" id="trendShopPageFilter"></select>
@@ -158,7 +158,7 @@
     <div class="cards" id="fbCards"></div>
 
     <h2>Campaigns</h2>
-    <div class="section-note">Bấm vào TÊN CAMPAIGN để xem chi tiết Ad Set bên trong. Bấm tiêu đề cột để sắp xếp.</div>
+    <div class="section-note">Bấm vào TÊN CAMPAIGN để xem chi tiết Ad Set bên trong. Bấm tiêu đề cột để sắp xếp. <b>Order/Cost per Order/Revenue/ROAS</b> lấy từ sự kiện Purchase Meta trả về (action_type omni_purchase/purchase, KHÁC với "Kết quả" — Kết quả là tổng MỌI loại action: click, tin nhắn, tương tác...). Nếu campaign không track Purchase event (VD tối ưu Tin nhắn/Tương tác — nhiều campaign của Huy đang chạy kiểu này) thì Meta không trả giá trị -> hiện "—" (KHÔNG phải 0đ thật). Đây LÀ số Meta tự ghi nhận trên nền tảng của họ, KHÔNG PHẢI đơn hàng thật từ Sapo (Sapo không gắn đơn theo từng campaign cụ thể) — chỉ dùng để so sánh hiệu quả TƯƠNG ĐỐI giữa các campaign CÓ tracking Purchase, không nên cộng dồn số này vào doanh thu thật ở tab Tổng quan/E-com.</div>
     <div class="table-scroll">
       <table>
         <thead><tr id="campaignHeadRow"></tr></thead>

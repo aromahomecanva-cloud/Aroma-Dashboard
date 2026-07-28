@@ -45,6 +45,42 @@ def _infer_channel(campaign_name) -> str:
     return "facebook"
 
 
+# Các action_type Meta dùng cho sự kiện MUA HÀNG (Purchase) — ưu tiên "omni_purchase" (Meta
+# khuyến nghị, gộp mọi nguồn purchase kể cả offline/omnichannel) nếu có, nếu không thì cộng
+# dồn các loại purchase khác. Đây LÀ khác với "results" (results = TỔNG mọi loại action, kể
+# cả link_click/page_engagement/message... không chỉ purchase) — orders/revenue dưới đây CHỈ
+# tính riêng sự kiện mua hàng, nếu tài khoản Meta của Huy KHÔNG track Purchase event (VD
+# campaign chạy mục tiêu Tin nhắn/Tương tác, không có Pixel/CAPI purchase) thì sẽ ra 0 — đây
+# là kết quả ĐÚNG (không có dữ liệu thật), không phải lỗi.
+_PURCHASE_ACTION_TYPES = {"omni_purchase", "purchase", "offsite_conversion.fb_pixel_purchase"}
+
+
+def _extract_purchase_orders_revenue(actions: list, action_values: list) -> tuple[float, float]:
+    """Trả về (orders, revenue) từ 2 field "actions"/"action_values" Meta trả về — chỉ cộng
+    action_type nằm trong _PURCHASE_ACTION_TYPES. Nếu có "omni_purchase" thì DÙNG DUY NHẤT nó
+    (đã bao gồm mọi purchase khác, cộng thêm sẽ bị đếm trùng); nếu không có thì cộng các loại
+    purchase còn lại."""
+    orders_by_type = {}
+    revenue_by_type = {}
+    for a in (actions or []):
+        atype = a.get("action_type")
+        if atype in _PURCHASE_ACTION_TYPES:
+            try:
+                orders_by_type[atype] = orders_by_type.get(atype, 0.0) + float(a.get("value", 0))
+            except (TypeError, ValueError):
+                pass
+    for a in (action_values or []):
+        atype = a.get("action_type")
+        if atype in _PURCHASE_ACTION_TYPES:
+            try:
+                revenue_by_type[atype] = revenue_by_type.get(atype, 0.0) + float(a.get("value", 0))
+            except (TypeError, ValueError):
+                pass
+    if "omni_purchase" in orders_by_type or "omni_purchase" in revenue_by_type:
+        return orders_by_type.get("omni_purchase", 0.0), revenue_by_type.get("omni_purchase", 0.0)
+    return sum(orders_by_type.values()), sum(revenue_by_type.values())
+
+
 def _rollup(ads: list, group_keys: list) -> list:
     """Cộng dồn list các dòng 'ads' (mức chi tiết nhất) lại theo group_keys (VD theo
     campaign_id, hoặc theo adset_id) — tính lại ctr/cpc SAU KHI đã cộng dồn (không cộng
@@ -57,11 +93,18 @@ def _rollup(ads: list, group_keys: list) -> list:
         g["impressions"] = g.get("impressions", 0) + a.get("impressions", 0)
         g["clicks"] = g.get("clicks", 0) + a.get("clicks", 0)
         g["results"] = g.get("results", 0.0) + a.get("results", 0.0)
+        g["orders"] = g.get("orders", 0.0) + a.get("orders", 0.0)
+        g["revenue"] = g.get("revenue", 0.0) + a.get("revenue", 0.0)
     out = []
     for g in groups.values():
         g["ctr"] = round(g["clicks"] / g["impressions"] * 100, 2) if g["impressions"] else 0.0
         g["cpc"] = round(g["spend"] / g["clicks"], 2) if g["clicks"] else 0.0
         g["cpa"] = round(g["spend"] / g["results"], 2) if g["results"] else None
+        # cost_per_order/roas chỉ có nghĩa khi orders/revenue > 0 (tức tài khoản CÓ track
+        # Purchase event) — nếu không track thì cả 2 sẽ là None (hiển thị "—" ở dashboard,
+        # KHÔNG hiển thị 0 để tránh hiểu nhầm là "0đ doanh thu thật").
+        g["cost_per_order"] = round(g["spend"] / g["orders"], 2) if g.get("orders") else None
+        g["roas"] = round(g["revenue"] / g["spend"], 2) if g.get("revenue") and g["spend"] else None
         out.append(g)
     return out
 
@@ -208,7 +251,7 @@ def get_ads_detail(days: int | None = None) -> dict:
     params = {
         "level": "ad",
         "fields": "ad_id,ad_name,adset_id,adset_name,campaign_id,campaign_name,"
-                  "spend,impressions,clicks,ctr,cpc,actions",
+                  "spend,impressions,clicks,ctr,cpc,actions,action_values",
         "date_preset": "maximum" if days is None else f"last_{days}d",
         "access_token": Config.META_ACCESS_TOKEN,
     }
@@ -223,6 +266,7 @@ def get_ads_detail(days: int | None = None) -> dict:
                 results += float(a.get("value", 0))
             except (TypeError, ValueError):
                 pass
+        orders, revenue = _extract_purchase_orders_revenue(row.get("actions"), row.get("action_values"))
         campaign_name = row.get("campaign_name")
         ads.append({
             "ad_id": row.get("ad_id"), "ad_name": row.get("ad_name"),
@@ -236,6 +280,10 @@ def get_ads_detail(days: int | None = None) -> dict:
             "cpc": float(row.get("cpc", 0)),
             "results": results,
             "cpa": round(spend / results, 2) if results else None,
+            "orders": orders,
+            "revenue": revenue,
+            "cost_per_order": round(spend / orders, 2) if orders else None,
+            "roas": round(revenue / spend, 2) if revenue and spend else None,
             "actions_raw": row.get("actions") or [],
         })
 
@@ -637,6 +685,8 @@ def _demo_ads_detail() -> dict:
                 clicks = random.randint(50, 800)
                 impressions = random.randint(5_000, 60_000)
                 results = random.randint(0, 20)
+                orders = random.randint(0, 5)
+                revenue = round(orders * random.uniform(150_000, 400_000), 0) if orders else 0.0
                 ads.append({
                     "ad_id": adid, "ad_name": f"{asname} - Ad {ad_i + 1}",
                     "adset_id": asid, "adset_name": asname,
@@ -649,6 +699,10 @@ def _demo_ads_detail() -> dict:
                     "cpc": round(spend / clicks, 0) if clicks else 0.0,
                     "results": results,
                     "cpa": round(spend / results, 2) if results else None,
+                    "orders": orders,
+                    "revenue": revenue,
+                    "cost_per_order": round(spend / orders, 2) if orders else None,
+                    "roas": round(revenue / spend, 2) if revenue and spend else None,
                     "actions_raw": [],
                 })
     campaigns = _rollup(ads, ["campaign_id", "campaign_name", "channel"])
