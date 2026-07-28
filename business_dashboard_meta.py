@@ -45,33 +45,33 @@ def _infer_channel(campaign_name) -> str:
     return "facebook"
 
 
-# Các action_type Meta dùng cho sự kiện MUA HÀNG (Purchase) — ưu tiên "omni_purchase" (Meta
-# khuyến nghị, gộp mọi nguồn purchase kể cả offline/omnichannel) nếu có, nếu không thì cộng
-# dồn các loại purchase khác. Đây LÀ khác với "results" (results = TỔNG mọi loại action, kể
-# cả link_click/page_engagement/message... không chỉ purchase) — orders/revenue dưới đây CHỈ
-# tính riêng sự kiện mua hàng, nếu tài khoản Meta của Huy KHÔNG track Purchase event (VD
-# campaign chạy mục tiêu Tin nhắn/Tương tác, không có Pixel/CAPI purchase) thì sẽ ra 0 — đây
-# là kết quả ĐÚNG (không có dữ liệu thật), không phải lỗi.
-_PURCHASE_ACTION_TYPES = {"omni_purchase", "purchase", "offsite_conversion.fb_pixel_purchase"}
-
-
+# Đã ĐỐI CHIẾU với report thật Huy xuất từ Facebook Ads Manager (Ads-FB.xlsx, cột "Purchases"
+# + "Purchases conversion value") — XÁC NHẬN tài khoản CÓ track purchase thật (VD ngày
+# 27/07/2026, ad "Thông Điệp Ẩn_Post_09.07.2026 2" có Purchases=2, giá trị 800.000đ), nên bản
+# fetch trước đó ra toàn 0 là do danh sách action_type liệt kê CỨNG bị THIẾU đúng loại tài
+# khoản này đang dùng (khả năng cao là custom conversion event đặt tên riêng, không nằm trong
+# các action_type "chuẩn" đã liệt kê) — KHÔNG PHẢI do tài khoản không track. Sửa lại: match
+# theo SUBSTRING "purchase" (không phân biệt hoa/thường) trong action_type thay vì danh sách
+# cứng, để tự động bắt được MỌI biến thể action_type có chữ "purchase", robust hơn nhiều so
+# với liệt kê thủ công. Vẫn giữ quy tắc "omni_purchase" ưu tiên (dùng DUY NHẤT nó nếu có, vì nó
+# đã gộp sẵn mọi nguồn purchase khác — cộng thêm sẽ bị đếm trùng).
 def _extract_purchase_orders_revenue(actions: list, action_values: list) -> tuple[float, float]:
-    """Trả về (orders, revenue) từ 2 field "actions"/"action_values" Meta trả về — chỉ cộng
-    action_type nằm trong _PURCHASE_ACTION_TYPES. Nếu có "omni_purchase" thì DÙNG DUY NHẤT nó
-    (đã bao gồm mọi purchase khác, cộng thêm sẽ bị đếm trùng); nếu không có thì cộng các loại
-    purchase còn lại."""
+    """Trả về (orders, revenue) từ 2 field "actions"/"action_values" Meta trả về — cộng MỌI
+    action_type có chứa "purchase" (không phân biệt hoa/thường). Nếu có "omni_purchase" thì
+    DÙNG DUY NHẤT nó (đã bao gồm mọi purchase khác, cộng thêm sẽ bị đếm trùng); nếu không có
+    thì cộng các loại purchase còn lại."""
     orders_by_type = {}
     revenue_by_type = {}
     for a in (actions or []):
-        atype = a.get("action_type")
-        if atype in _PURCHASE_ACTION_TYPES:
+        atype = a.get("action_type") or ""
+        if "purchase" in atype.lower():
             try:
                 orders_by_type[atype] = orders_by_type.get(atype, 0.0) + float(a.get("value", 0))
             except (TypeError, ValueError):
                 pass
     for a in (action_values or []):
-        atype = a.get("action_type")
-        if atype in _PURCHASE_ACTION_TYPES:
+        atype = a.get("action_type") or ""
+        if "purchase" in atype.lower():
             try:
                 revenue_by_type[atype] = revenue_by_type.get(atype, 0.0) + float(a.get("value", 0))
             except (TypeError, ValueError):
@@ -95,6 +95,13 @@ def _rollup(ads: list, group_keys: list) -> list:
         g["results"] = g.get("results", 0.0) + a.get("results", 0.0)
         g["orders"] = g.get("orders", 0.0) + a.get("orders", 0.0)
         g["revenue"] = g.get("revenue", 0.0) + a.get("revenue", 0.0)
+        # purchase_roas là 1 TỶ LỆ (không cộng dồn trực tiếp được) — quy đổi ngược ra "doanh
+        # thu ngụ ý" (= roas * spend của CHÍNH ad đó) rồi cộng dồn, để rollup lên campaign/adset
+        # vẫn ra 1 con số purchase_roas_meta nhất quán (tổng doanh thu ngụ ý / tổng spend CÓ
+        # purchase_roas — không tính spend của ad không có field này vào mẫu số).
+        if a.get("purchase_roas_meta") is not None:
+            g["_meta_roas_revenue"] = g.get("_meta_roas_revenue", 0.0) + a["purchase_roas_meta"] * a.get("spend", 0.0)
+            g["_meta_roas_spend"] = g.get("_meta_roas_spend", 0.0) + a.get("spend", 0.0)
     out = []
     for g in groups.values():
         g["ctr"] = round(g["clicks"] / g["impressions"] * 100, 2) if g["impressions"] else 0.0
@@ -105,6 +112,9 @@ def _rollup(ads: list, group_keys: list) -> list:
         # KHÔNG hiển thị 0 để tránh hiểu nhầm là "0đ doanh thu thật").
         g["cost_per_order"] = round(g["spend"] / g["orders"], 2) if g.get("orders") else None
         g["roas"] = round(g["revenue"] / g["spend"], 2) if g.get("revenue") and g["spend"] else None
+        meta_roas_spend = g.pop("_meta_roas_spend", 0.0)
+        meta_roas_revenue = g.pop("_meta_roas_revenue", 0.0)
+        g["purchase_roas_meta"] = round(meta_roas_revenue / meta_roas_spend, 2) if meta_roas_spend else None
         out.append(g)
     return out
 
@@ -251,7 +261,7 @@ def get_ads_detail(days: int | None = None) -> dict:
     params = {
         "level": "ad",
         "fields": "ad_id,ad_name,adset_id,adset_name,campaign_id,campaign_name,"
-                  "spend,impressions,clicks,ctr,cpc,actions,action_values",
+                  "spend,impressions,clicks,ctr,cpc,actions,action_values,purchase_roas",
         "date_preset": "maximum" if days is None else f"last_{days}d",
         "access_token": Config.META_ACCESS_TOKEN,
     }
@@ -267,6 +277,18 @@ def get_ads_detail(days: int | None = None) -> dict:
             except (TypeError, ValueError):
                 pass
         orders, revenue = _extract_purchase_orders_revenue(row.get("actions"), row.get("action_values"))
+        # purchase_roas: field RIÊNG của Meta (KHÔNG suy ra từ actions/action_values) — Meta tự
+        # tính sẵn ROAS cho đúng loại action mua hàng mà tài khoản đang track, dùng làm nguồn
+        # ĐỐI CHIẾU/dự phòng: nếu orders/revenue ở trên ra 0 (do action_type không khớp danh
+        # sách _PURCHASE_ACTION_TYPES) nhưng purchase_roas CÓ giá trị -> biết ngay là do thiếu
+        # action_type trong danh sách (cần bổ sung), không phải tài khoản thật sự không track.
+        purchase_roas_meta = None
+        for pr in (row.get("purchase_roas") or []):
+            try:
+                purchase_roas_meta = float(pr.get("value", 0))
+                break
+            except (TypeError, ValueError):
+                pass
         campaign_name = row.get("campaign_name")
         ads.append({
             "ad_id": row.get("ad_id"), "ad_name": row.get("ad_name"),
@@ -284,7 +306,9 @@ def get_ads_detail(days: int | None = None) -> dict:
             "revenue": revenue,
             "cost_per_order": round(spend / orders, 2) if orders else None,
             "roas": round(revenue / spend, 2) if revenue and spend else None,
+            "purchase_roas_meta": purchase_roas_meta,
             "actions_raw": row.get("actions") or [],
+            "action_values_raw": row.get("action_values") or [],
         })
 
     campaigns = _rollup(ads, ["campaign_id", "campaign_name", "channel"])
@@ -480,12 +504,20 @@ def get_ads_spend_daily_by_channel_cached(cache_path, incremental_days: int = 3)
 def _get_ads_detail_rows_range(since: str | None, until: str | None) -> list:
     """Gọi Graph API level="ad" + time_increment=1 (MỖI DÒNG = 1 ad x 1 ngày). since/until=None
     -> lấy TOÀN BỘ lịch sử (date_preset="maximum"); ngược lại lấy đúng khoảng [since, until].
-    Trả về list dòng THÔ (chưa gộp lifetime) — dùng để CACHE theo (ad_id, date)."""
+    Trả về list dòng THÔ (chưa gộp lifetime) — dùng để CACHE theo (ad_id, date).
+
+    QUAN TRỌNG: đây là đường lấy dữ liệu THẬT SỰ được dùng trong pipeline (qua
+    get_ads_detail_cached) — bản get_ads_detail() không cache ở trên chỉ dùng khi
+    Config.DEMO_MODE=False và không có cache_path (hiếm khi gọi trực tiếp). Trước đây hàm này
+    KHÔNG lấy field "action_values"/"purchase_roas" và KHÔNG tách orders/revenue — đây là lý do
+    THẬT SỰ khiến cột Order/Revenue/ROAS ra 0 cho toàn bộ 224 campaign dù tài khoản CÓ track
+    Purchase thật (đã xác nhận qua report Ads-FB.xlsx Huy cung cấp). Đã bổ sung action_values +
+    purchase_roas vào fields và tách orders/revenue/purchase_roas_meta giống hệt get_ads_detail()."""
     url = f"https://graph.facebook.com/{Config.META_API_VERSION}/{Config.META_AD_ACCOUNT_ID}/insights"
     params = {
         "level": "ad",
         "fields": "ad_id,ad_name,adset_id,adset_name,campaign_id,campaign_name,"
-                  "spend,impressions,clicks,actions",
+                  "spend,impressions,clicks,actions,action_values,purchase_roas",
         "time_increment": 1,
         "access_token": Config.META_ACCESS_TOKEN,
     }
@@ -504,6 +536,14 @@ def _get_ads_detail_rows_range(since: str | None, until: str | None) -> list:
                 results += float(a.get("value", 0))
             except (TypeError, ValueError):
                 pass
+        orders, revenue = _extract_purchase_orders_revenue(row.get("actions"), row.get("action_values"))
+        purchase_roas_meta = None
+        for pr in (row.get("purchase_roas") or []):
+            try:
+                purchase_roas_meta = float(pr.get("value", 0))
+                break
+            except (TypeError, ValueError):
+                pass
         campaign_name = row.get("campaign_name")
         rows.append({
             "ad_id": row.get("ad_id"), "ad_name": row.get("ad_name"),
@@ -515,6 +555,9 @@ def _get_ads_detail_rows_range(since: str | None, until: str | None) -> list:
             "impressions": int(row.get("impressions", 0)),
             "clicks": int(row.get("clicks", 0)),
             "results": results,
+            "orders": orders,
+            "revenue": revenue,
+            "purchase_roas_meta": purchase_roas_meta,
         })
     return rows
 
@@ -532,11 +575,20 @@ def _rows_to_ads(rows: list) -> list:
             "campaign_id": r.get("campaign_id"), "campaign_name": r.get("campaign_name"),
             "channel": r.get("channel"),
             "spend": 0.0, "impressions": 0, "clicks": 0, "results": 0.0,
+            "orders": 0.0, "revenue": 0.0,
         })
         g["spend"] += r.get("spend", 0.0)
         g["impressions"] += r.get("impressions", 0)
         g["clicks"] += r.get("clicks", 0)
         g["results"] += r.get("results", 0.0)
+        g["orders"] += r.get("orders", 0.0)
+        g["revenue"] += r.get("revenue", 0.0)
+        # purchase_roas là TỶ LỆ theo ngày, không cộng dồn trực tiếp được — quy đổi ngược ra
+        # "doanh thu ngụ ý" (roas * spend CỦA NGÀY ĐÓ) rồi cộng dồn, giống hệt cách _rollup()
+        # gộp từ ad lên campaign/adset (xem comment ở _rollup).
+        if r.get("purchase_roas_meta") is not None:
+            g["_meta_roas_revenue"] = g.get("_meta_roas_revenue", 0.0) + r["purchase_roas_meta"] * r.get("spend", 0.0)
+            g["_meta_roas_spend"] = g.get("_meta_roas_spend", 0.0) + r.get("spend", 0.0)
         if r.get("ad_name"):  # ưu tiên tên mới nhất nếu ad có đổi tên
             g["ad_name"] = r.get("ad_name")
             g["campaign_name"] = r.get("campaign_name")
@@ -546,6 +598,11 @@ def _rows_to_ads(rows: list) -> list:
         g["ctr"] = round(g["clicks"] / g["impressions"] * 100, 2) if g["impressions"] else 0.0
         g["cpc"] = round(g["spend"] / g["clicks"], 2) if g["clicks"] else 0.0
         g["cpa"] = round(g["spend"] / g["results"], 2) if g["results"] else None
+        g["cost_per_order"] = round(g["spend"] / g["orders"], 2) if g.get("orders") else None
+        g["roas"] = round(g["revenue"] / g["spend"], 2) if g.get("revenue") and g["spend"] else None
+        meta_roas_spend = g.pop("_meta_roas_spend", 0.0)
+        meta_roas_revenue = g.pop("_meta_roas_revenue", 0.0)
+        g["purchase_roas_meta"] = round(meta_roas_revenue / meta_roas_spend, 2) if meta_roas_spend else None
         g["actions_raw"] = []  # đã cộng vào "results", không giữ actions_raw thô ở mức lifetime
         out.append(g)
     return out
