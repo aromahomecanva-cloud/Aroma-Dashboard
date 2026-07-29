@@ -608,6 +608,58 @@ def _rows_to_ads(rows: list) -> list:
     return out
 
 
+def _rows_to_campaigns_daily(rows: list) -> list:
+    """Gộp các dòng (ad_id, date) lại theo (campaign_id, date) — giữ granularity NGÀY (KHÁC
+    _rows_to_ads gộp về lifetime) — dùng để bảng "Campaigns" ở tab Facebook Ads có thể lọc
+    theo khoảng ngày đã chọn ở đầu trang, thay vì luôn hiện toàn bộ lịch sử. Không cộng dồn
+    purchase_roas_meta ở đây (không dùng ở UI theo ngày) — orders/revenue đã đủ để tính lại
+    cost_per_order/roas SAU KHI lọc theo ngày ở phía JS (xem renderFbAdsTab)."""
+    by_key = {}
+    for r in rows:
+        key = (r.get("campaign_id"), r.get("date"))
+        g = by_key.setdefault(key, {
+            "campaign_id": r.get("campaign_id"), "campaign_name": r.get("campaign_name"),
+            "channel": r.get("channel"), "date": r.get("date"),
+            "spend": 0.0, "impressions": 0, "clicks": 0, "results": 0.0,
+            "orders": 0.0, "revenue": 0.0,
+        })
+        g["spend"] += r.get("spend", 0.0)
+        g["impressions"] += r.get("impressions", 0)
+        g["clicks"] += r.get("clicks", 0)
+        g["results"] += r.get("results", 0.0)
+        g["orders"] += r.get("orders", 0.0)
+        g["revenue"] += r.get("revenue", 0.0)
+        if r.get("campaign_name"):
+            g["campaign_name"] = r.get("campaign_name")
+            g["channel"] = r.get("channel")
+    return list(by_key.values())
+
+
+def _rows_to_adsets_daily(rows: list) -> list:
+    """Giống _rows_to_campaigns_daily nhưng gộp theo (adset_id, date) — dùng để phần chi tiết
+    ad set (khi bấm mở rộng 1 campaign trong bảng) cũng lọc được theo ngày.
+
+    CHỈ giữ field JS thực sự dùng (xem getAdsetsFilteredForCampaign trong tail.html — chỉ cộng
+    spend/results/orders/revenue, KHÔNG dùng impressions/clicks/campaign_name/channel ở cấp ad
+    set) — bỏ bớt các field thừa để giảm kích thước data.json/artifact (dataset này x theo NGÀY
+    nên số dòng lớn hơn nhiều so với bảng lifetime, mỗi field thừa nhân lên đáng kể)."""
+    by_key = {}
+    for r in rows:
+        key = (r.get("adset_id"), r.get("date"))
+        g = by_key.setdefault(key, {
+            "adset_id": r.get("adset_id"), "adset_name": r.get("adset_name"),
+            "campaign_id": r.get("campaign_id"), "date": r.get("date"),
+            "spend": 0.0, "results": 0.0, "orders": 0.0, "revenue": 0.0,
+        })
+        g["spend"] += r.get("spend", 0.0)
+        g["results"] += r.get("results", 0.0)
+        g["orders"] += r.get("orders", 0.0)
+        g["revenue"] += r.get("revenue", 0.0)
+        if r.get("adset_name"):
+            g["adset_name"] = r.get("adset_name")
+    return list(by_key.values())
+
+
 def _get_ads_detail_rows_full_history_chunked(chunk_days: int = 90, max_total_days: int = 1100) -> list:
     """
     Kéo TOÀN BỘ lịch sử (ad_id, date) theo TỪNG ĐỢT ~chunk_days ngày (đi lùi từ hôm nay), thay
@@ -683,9 +735,34 @@ def get_ads_detail_cached(cache_path, incremental_days: int = 3) -> dict:
     ads = _rows_to_ads(all_rows)
     campaigns = _rollup(ads, ["campaign_id", "campaign_name", "channel"])
     adsets = _rollup(ads, ["adset_id", "adset_name", "campaign_id", "campaign_name", "channel"])
+    # THEO NGÀY (không gộp lifetime) — dùng để dashboard lọc bảng Campaigns/ad set theo đúng
+    # khoảng ngày đã chọn ở đầu trang, thay vì luôn cố định "toàn bộ lịch sử" như trước.
+    campaigns_daily = _rows_to_campaigns_daily(all_rows)
+    adsets_daily = _rows_to_adsets_daily(all_rows)
+    # THEO NGÀY ở CẤP AD (sâu nhất) — all_rows ĐÃ SẴN LÀ granularity (ad_id, date) rồi (mỗi dòng
+    # = 1 ad x 1 ngày, xem _get_ads_detail_rows_range), nên không cần GỘP thêm gì, chỉ cần LƯỢC
+    # BỚT field thừa trước khi xuất — xem getAdsFilteredForAdset trong tail.html: chỉ cần
+    # ad_id/ad_name/adset_id/date/spend/results/orders/revenue, KHÔNG dùng campaign_id/
+    # campaign_name/channel/impressions/clicks/purchase_roas_meta ở cấp ad. Dataset này có SỐ
+    # DÒNG LỚN NHẤT (1 dòng/ad/ngày, ~13k dòng) nên field thừa ảnh hưởng kích thước nhiều nhất —
+    # đã từng vượt giới hạn 10MB của artifact khi giữ nguyên toàn bộ field thô.
+    ads_daily = [
+        {
+            "ad_id": r.get("ad_id"), "ad_name": r.get("ad_name"),
+            "adset_id": r.get("adset_id"), "date": r.get("date"),
+            "spend": r.get("spend", 0.0), "results": r.get("results", 0.0),
+            "orders": r.get("orders", 0.0), "revenue": r.get("revenue", 0.0),
+        }
+        for r in all_rows
+    ]
     print(f"[Meta ads_detail cache] Tổng: {len(rows_by_key)} dòng (ad x ngày) trong cache -> "
-          f"{len(ads)} ads, {len(adsets)} ad set, {len(campaigns)} campaign.")
-    return {"ads": ads, "adsets": adsets, "campaigns": campaigns}
+          f"{len(ads)} ads, {len(adsets)} ad set, {len(campaigns)} campaign "
+          f"({len(campaigns_daily)} dòng campaign x ngày, {len(adsets_daily)} dòng ad set x ngày, "
+          f"{len(ads_daily)} dòng ad x ngày).")
+    return {
+        "ads": ads, "adsets": adsets, "campaigns": campaigns,
+        "campaigns_daily": campaigns_daily, "adsets_daily": adsets_daily, "ads_daily": ads_daily,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -722,6 +799,7 @@ def _demo_ads_spend_daily(days: int) -> list:
 
 
 def _demo_ads_detail() -> dict:
+    import datetime as _dt
     random.seed(13)
     campaign_names = [
         "Facebook - Video Ads Q3",
@@ -729,7 +807,9 @@ def _demo_ads_detail() -> dict:
         "Facebook - Livestream Sales",
         "IG Story Ads - Sản phẩm mới",
     ]
-    ads = []
+    now = _dt.datetime.now()
+    day_offsets = list(range(30))  # 30 ngày gần nhất, để test filter theo ngày ở demo mode
+    daily_rows = []  # dòng THÔ (ad_id, date) — giống shape _get_ads_detail_rows_range() trả về
     for cname in campaign_names:
         cid = f"C{abs(hash(cname)) % 100000}"
         channel = _infer_channel(cname)
@@ -738,33 +818,32 @@ def _demo_ads_detail() -> dict:
             asname = f"{cname} - Ad Set {aset_i + 1}"
             for ad_i in range(3):
                 adid = f"A{abs(hash(cname + str(aset_i) + str(ad_i))) % 100000}"
-                spend = round(random.uniform(200_000, 2_000_000), 0)
-                clicks = random.randint(50, 800)
-                impressions = random.randint(5_000, 60_000)
-                results = random.randint(0, 20)
-                orders = random.randint(0, 5)
-                revenue = round(orders * random.uniform(150_000, 400_000), 0) if orders else 0.0
-                ads.append({
-                    "ad_id": adid, "ad_name": f"{asname} - Ad {ad_i + 1}",
-                    "adset_id": asid, "adset_name": asname,
-                    "campaign_id": cid, "campaign_name": cname,
-                    "channel": channel,
-                    "spend": spend,
-                    "impressions": impressions,
-                    "clicks": clicks,
-                    "ctr": round(clicks / impressions * 100, 2) if impressions else 0.0,
-                    "cpc": round(spend / clicks, 0) if clicks else 0.0,
-                    "results": results,
-                    "cpa": round(spend / results, 2) if results else None,
-                    "orders": orders,
-                    "revenue": revenue,
-                    "cost_per_order": round(spend / orders, 2) if orders else None,
-                    "roas": round(revenue / spend, 2) if revenue and spend else None,
-                    "actions_raw": [],
-                })
+                for off in day_offsets:
+                    date = (now - _dt.timedelta(days=off)).strftime("%Y-%m-%d")
+                    spend = round(random.uniform(20_000, 150_000), 0)
+                    clicks = random.randint(5, 60)
+                    impressions = random.randint(500, 5_000)
+                    results = random.randint(0, 3)
+                    orders = 1 if random.random() < 0.05 else 0
+                    revenue = round(orders * random.uniform(150_000, 400_000), 0) if orders else 0.0
+                    daily_rows.append({
+                        "ad_id": adid, "ad_name": f"{asname} - Ad {ad_i + 1}",
+                        "adset_id": asid, "adset_name": asname,
+                        "campaign_id": cid, "campaign_name": cname,
+                        "channel": channel, "date": date,
+                        "spend": spend, "impressions": impressions, "clicks": clicks,
+                        "results": results, "orders": orders, "revenue": revenue,
+                        "purchase_roas_meta": None,
+                    })
+    ads = _rows_to_ads(daily_rows)
     campaigns = _rollup(ads, ["campaign_id", "campaign_name", "channel"])
     adsets = _rollup(ads, ["adset_id", "adset_name", "campaign_id", "campaign_name", "channel"])
-    return {"ads": ads, "adsets": adsets, "campaigns": campaigns}
+    campaigns_daily = _rows_to_campaigns_daily(daily_rows)
+    adsets_daily = _rows_to_adsets_daily(daily_rows)
+    return {
+        "ads": ads, "adsets": adsets, "campaigns": campaigns,
+        "campaigns_daily": campaigns_daily, "adsets_daily": adsets_daily, "ads_daily": daily_rows,
+    }
 
 
 def _demo_ads_spend_daily_by_channel(days: int) -> list:

@@ -91,7 +91,7 @@ def main():
     except Exception as e:
         ads_detail_error = str(e)
         print(f"[LỖI Meta ads_detail - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {ads_detail_error}")
-        ads_detail = {"ads": [], "adsets": [], "campaigns": []}
+        ads_detail = {"ads": [], "adsets": [], "campaigns": [], "campaigns_daily": [], "adsets_daily": []}
 
     try:
         ads_daily_by_channel = get_ads_spend_daily_by_channel_cached(
@@ -169,6 +169,15 @@ def main():
         "ads_daily": ads_daily,
         "ads_daily_by_channel": ads_daily_by_channel,
         "ads_detail": ads_detail,
+        # THEO NGÀY (campaign x ngày / ad set x ngày / ad x ngày) — TÁCH RIÊNG khỏi ads_detail
+        # (vốn chỉ có lifetime) để bảng "Campaigns" + chi tiết ad set/ad ở tab Facebook Ads lọc
+        # được theo đúng khoảng ngày đã chọn ở đầu trang (dateFrom/dateTo), thay vì luôn cố định
+        # toàn bộ lịch sử. Đặt tên "ads_ads_daily" (KHÔNG phải "ads_daily") để KHÔNG đè lên field
+        # "ads_daily" đã có từ trước (đó là tổng chi phí ads theo NGÀY, không tách campaign/ad —
+        # dùng cho mục đích khác, xem get_ads_spend_daily_cached ở trên).
+        "ads_campaigns_daily": ads_detail.get("campaigns_daily", []),
+        "ads_adsets_daily": ads_detail.get("adsets_daily", []),
+        "ads_ads_daily": ads_detail.get("ads_daily", []),
         "ads_detail_error": ads_detail_error,
         "shopee_ads_daily": shopee_ads_daily,
         "shopee_ads_total_by_shop": shopee_ads_total_by_shop,
@@ -205,7 +214,9 @@ def main():
     print(f"[Chẩn đoán join total_fee] Số dòng 'Mã chứng từ' trong file Chi phí: {diag['settlement_rows']} | "
           f"Khớp với order['name'] thật: {diag['matched']} | Tỷ lệ khớp: {diag['match_rate']}%")
     print(f"Meta Ads chi tiết: {len(ads_detail['campaigns'])} campaign, {len(ads_detail['adsets'])} ad set, "
-          f"{len(ads_detail['ads'])} ads")
+          f"{len(ads_detail['ads'])} ads ({len(ads_detail.get('campaigns_daily', []))} dòng campaign x ngày, "
+          f"{len(ads_detail.get('adsets_daily', []))} dòng ad set x ngày, "
+          f"{len(ads_detail.get('ads_daily', []))} dòng ad x ngày)")
     print(f"Ads spend theo kênh: " + ", ".join(f"{ch}={spend:,.0f}đ" for ch, spend in ads_spend_by_channel.items()))
     if shopee_ads_error:
         print(f"[LỖI Shopee Ads] {shopee_ads_error}")

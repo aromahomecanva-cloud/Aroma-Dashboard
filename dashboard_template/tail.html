@@ -91,6 +91,89 @@
     ];
     let campaignSort = { key: 'spend', dir: -1 };
     let expandedCampaigns = new Set();
+    let expandedAdsets = new Set();
+
+    // Gộp các dòng campaign x ngày (campaignsDailyData, xem business_dashboard_meta.py
+    // _rows_to_campaigns_daily) lại theo campaign_id, CHỈ trong khoảng [dateFrom, dateTo] đang
+    // chọn ở đầu trang — để bảng Campaigns lọc được theo ngày thay vì luôn cố định toàn bộ lịch
+    // sử. Tính lại ctr/cpc/cpa/cost_per_order/roas SAU KHI cộng dồn (không cộng trực tiếp các
+    // tỷ lệ này của từng ngày).
+    function getCampaignsFiltered() {
+      const rows = (campaignsDailyData || []).filter(r => r.date >= dateFrom && r.date <= dateTo);
+      const groups = {};
+      for (const r of rows) {
+        const g = groups[r.campaign_id] || (groups[r.campaign_id] = {
+          campaign_id: r.campaign_id, campaign_name: r.campaign_name, channel: r.channel,
+          spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0,
+        });
+        g.spend += r.spend || 0;
+        g.impressions += r.impressions || 0;
+        g.clicks += r.clicks || 0;
+        g.results += r.results || 0;
+        g.orders += r.orders || 0;
+        g.revenue += r.revenue || 0;
+        if (r.campaign_name) { g.campaign_name = r.campaign_name; g.channel = r.channel; }
+      }
+      return Object.values(groups).map(g => ({
+        ...g,
+        ctr: g.impressions ? Math.round(g.clicks / g.impressions * 10000) / 100 : 0,
+        cpc: g.clicks ? Math.round(g.spend / g.clicks) : 0,
+        cpa: g.results ? Math.round(g.spend / g.results) : null,
+        cost_per_order: g.orders ? Math.round(g.spend / g.orders) : null,
+        roas: (g.revenue && g.spend) ? Math.round(g.revenue / g.spend * 100) / 100 : null,
+      }));
+    }
+
+    // Giống getCampaignsFiltered() nhưng gộp theo adset_id, CHỈ trong phạm vi 1 campaign_id —
+    // dùng cho phần chi tiết ad set khi bấm mở rộng 1 dòng campaign.
+    function getAdsetsFilteredForCampaign(campaignId) {
+      const rows = (adsetsDailyData || []).filter(r => r.date >= dateFrom && r.date <= dateTo && r.campaign_id === campaignId);
+      const groups = {};
+      for (const r of rows) {
+        const g = groups[r.adset_id] || (groups[r.adset_id] = {
+          adset_id: r.adset_id, adset_name: r.adset_name, campaign_id: r.campaign_id,
+          spend: 0, results: 0, orders: 0, revenue: 0,
+        });
+        g.spend += r.spend || 0;
+        g.results += r.results || 0;
+        g.orders += r.orders || 0;
+        g.revenue += r.revenue || 0;
+        if (r.adset_name) g.adset_name = r.adset_name;
+      }
+      return Object.values(groups).map(g => ({
+        ...g,
+        cpa: g.results ? Math.round(g.spend / g.results) : null,
+        roas: (g.revenue && g.spend) ? Math.round(g.revenue / g.spend * 100) / 100 : null,
+      }));
+    }
+
+    // Giống getAdsetsFilteredForCampaign() nhưng gộp theo ad_id, CHỈ trong phạm vi 1 adset_id —
+    // dùng cho phần chi tiết TỪNG AD khi bấm mở rộng 1 ad set (cấp sâu nhất: campaign -> ad set
+    // -> ad). adsDailyData mỗi dòng ĐÃ là 1 ad x 1 ngày rồi (xem business_dashboard_meta.py
+    // get_ads_detail_cached), nên chỉ cần lọc + cộng dồn qua các ngày trong khoảng đã chọn,
+    // không cần gộp thêm cấp nào khác.
+    function getAdsFilteredForAdset(adsetId) {
+      // adLevelDailyData (KHÁC adsDailyData — cái đó là tổng chi phí ads/ngày không tách
+      // campaign/ad, dùng cho mục đích khác) chứa dòng (ad_id, date) với đủ campaign/adset id.
+      const rows = (adLevelDailyData || []).filter(r => r.date >= dateFrom && r.date <= dateTo && r.adset_id === adsetId);
+      const groups = {};
+      for (const r of rows) {
+        const g = groups[r.ad_id] || (groups[r.ad_id] = {
+          ad_id: r.ad_id, ad_name: r.ad_name, adset_id: r.adset_id,
+          spend: 0, results: 0, orders: 0, revenue: 0,
+        });
+        g.spend += r.spend || 0;
+        g.results += r.results || 0;
+        g.orders += r.orders || 0;
+        g.revenue += r.revenue || 0;
+        if (r.ad_name) g.ad_name = r.ad_name;
+      }
+      return Object.values(groups).map(g => ({
+        ...g,
+        cpa: g.results ? Math.round(g.spend / g.results) : null,
+        roas: (g.revenue && g.spend) ? Math.round(g.revenue / g.spend * 100) / 100 : null,
+      }));
+    }
 
     function fmt(n) { return Math.round(n || 0).toLocaleString('vi-VN'); }
     // Orders/Cost per order/Revenue/ROAS ở bảng Campaigns lấy từ sự kiện Purchase Meta trả về
@@ -620,25 +703,27 @@
       const bizList = getChannelSummary(ch => ch === 'facebook' || ch === 'instagram', tab1Sort);
       renderTotalCards(bizList, 'fbBusinessCards');
 
-      const totalSpend = campaignsData.reduce((s,c) => s + (c.spend || 0), 0);
-      const totalResults = campaignsData.reduce((s,c) => s + (c.results || 0), 0);
-      const totalClicks = campaignsData.reduce((s,c) => s + (c.clicks || 0), 0);
-      const totalImpr = campaignsData.reduce((s,c) => s + (c.impressions || 0), 0);
-      const totalOrders = campaignsData.reduce((s,c) => s + (c.orders || 0), 0);
-      const totalRevenue = campaignsData.reduce((s,c) => s + (c.revenue || 0), 0);
+      const campaignsFiltered = getCampaignsFiltered();
+
+      const totalSpend = campaignsFiltered.reduce((s,c) => s + (c.spend || 0), 0);
+      const totalResults = campaignsFiltered.reduce((s,c) => s + (c.results || 0), 0);
+      const totalClicks = campaignsFiltered.reduce((s,c) => s + (c.clicks || 0), 0);
+      const totalImpr = campaignsFiltered.reduce((s,c) => s + (c.impressions || 0), 0);
+      const totalOrders = campaignsFiltered.reduce((s,c) => s + (c.orders || 0), 0);
+      const totalRevenue = campaignsFiltered.reduce((s,c) => s + (c.revenue || 0), 0);
       const totalRoas = totalRevenue && totalSpend ? (totalRevenue / totalSpend) : null;
       document.getElementById('fbCards').innerHTML = `
-        <div class="card" style="border-color:#ff6b6b;"><div class="label">Tổng chi phí (toàn bộ lịch sử)</div><div class="value">${fmt(totalSpend)}₫</div></div>
+        <div class="card" style="border-color:#ff6b6b;"><div class="label">Tổng chi phí</div><div class="value">${fmt(totalSpend)}₫</div></div>
         <div class="card"><div class="label">Impressions</div><div class="value">${fmt(totalImpr)}</div></div>
         <div class="card"><div class="label">Clicks</div><div class="value">${fmt(totalClicks)}</div></div>
         <div class="card"><div class="label">Tổng kết quả (results)</div><div class="value">${fmt(totalResults)}</div></div>
-        <div class="card"><div class="label">Số campaign</div><div class="value">${fmt(campaignsData.length)}</div></div>
+        <div class="card"><div class="label">Số campaign</div><div class="value">${fmt(campaignsFiltered.length)}</div></div>
         <div class="card"><div class="label">Order (Purchase event)</div><div class="value">${fmtOrNa(totalOrders)}</div></div>
         <div class="card" style="border-color:#37c98b;"><div class="label">Revenue (Purchase event)</div><div class="value">${fmtOrNa(totalRevenue, '₫')}</div></div>
         <div class="card"><div class="label">ROAS</div><div class="value">${totalRoas === null ? '—' : totalRoas.toFixed(2) + 'x'}</div></div>
       `;
 
-      let list = [...campaignsData];
+      let list = [...campaignsFiltered];
       list.sort((a, b) => {
         const va = a[campaignSort.key], vb = b[campaignSort.key];
         if (typeof va === 'string') return campaignSort.dir * va.localeCompare(vb);
@@ -667,14 +752,27 @@
           </tr>
         `;
         if (expanded) {
-          const subsets = adsetsData.filter(a => a.campaign_id === c.campaign_id).sort((a,b) => (b.spend||0) - (a.spend||0));
+          const subsets = getAdsetsFilteredForCampaign(c.campaign_id).sort((a,b) => (b.spend||0) - (a.spend||0));
           let detailBody;
           if (!subsets.length) {
             detailBody = '<div class="detail-empty">Không có ad set nào.</div>';
           } else {
-            detailBody = '<div class="detail-fees">' + subsets.map(a => (
-              `<div class="fee-line"><span>${a.adset_name}</span><span>${fmt(a.spend)}₫ (${fmt(a.results)} kết quả, CPA ${fmt(a.cpa)}₫${a.orders ? `, ${fmt(a.orders)} order, ROAS ${a.roas ? a.roas.toFixed(2)+'x' : '—'}` : ''})</span></div>`
-            )).join('') + '</div>';
+            detailBody = '<div class="detail-fees">' + subsets.map(a => {
+              const asExpanded = expandedAdsets.has(a.adset_id);
+              const asChevron = asExpanded ? '▾ ' : '▸ ';
+              let nested = '';
+              if (asExpanded) {
+                const ads = getAdsFilteredForAdset(a.adset_id).sort((x,y) => (y.spend||0) - (x.spend||0));
+                if (!ads.length) {
+                  nested = '<div class="detail-empty">Không có ad nào.</div>';
+                } else {
+                  nested = '<div class="detail-fees" style="margin-left:16px;">' + ads.map(ad => (
+                    `<div class="fee-line"><span>${ad.ad_name}</span><span>${fmt(ad.spend)}₫ (${fmt(ad.results)} kết quả, CPA ${fmt(ad.cpa)}₫${ad.orders ? `, ${fmt(ad.orders)} order, ROAS ${ad.roas ? ad.roas.toFixed(2)+'x' : '—'}` : ''})</span></div>`
+                  )).join('') + '</div>';
+                }
+              }
+              return `<div class="fee-line adset-line" data-adsetid="${a.adset_id}" style="cursor:pointer;"><span>${asChevron}${a.adset_name}</span><span>${fmt(a.spend)}₫ (${fmt(a.results)} kết quả, CPA ${fmt(a.cpa)}₫${a.orders ? `, ${fmt(a.orders)} order, ROAS ${a.roas ? a.roas.toFixed(2)+'x' : '—'}` : ''})</span></div>${nested}`;
+            }).join('') + '</div>';
           }
           bodyHtml += `<tr class="detail-row"><td colspan="${campaignColumns.length}">${detailBody}</td></tr>`;
         }
@@ -685,6 +783,16 @@
         td.addEventListener('click', () => {
           const id = td.parentElement.dataset.campid;
           if (expandedCampaigns.has(id)) expandedCampaigns.delete(id); else expandedCampaigns.add(id);
+          renderFbAdsTab();
+        });
+      });
+      // Bấm vào 1 dòng ad set (trong phần chi tiết đã mở rộng của campaign) để mở rộng thêm
+      // 1 cấp nữa, xem từng ad riêng lẻ bên trong ad set đó (campaign -> ad set -> ad).
+      document.querySelectorAll('#campaignBody .adset-line').forEach(div => {
+        div.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = div.dataset.adsetid;
+          if (expandedAdsets.has(id)) expandedAdsets.delete(id); else expandedAdsets.add(id);
           renderFbAdsTab();
         });
       });

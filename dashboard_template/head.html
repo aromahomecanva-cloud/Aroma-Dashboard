@@ -153,12 +153,12 @@
     <div class="section-note">Doanh thu / phí / Gross margin dưới đây CHỈ TÍNH cho kênh Facebook + Instagram, theo CÙNG bộ lọc ngày/kênh/shop-page ở trên (giống tab Tổng quan/E-com) — để so sánh hiệu quả ads với doanh thu thực tế 2 kênh này mang lại.</div>
     <div class="cards" id="fbBusinessCards"></div>
 
-    <h2>Chi tiết Ads (Meta) — toàn bộ lịch sử</h2>
-    <div class="section-note">Số liệu Facebook/Instagram Ads dưới đây là TOÀN BỘ LỊCH SỬ (KHÔNG áp dụng bộ lọc ngày ở trên) — Meta API chỉ cho lấy tổng theo campaign/ad set, không tách theo ngày ở mức chi tiết này.</div>
+    <h2>Chi tiết Ads (Meta)</h2>
+    <div class="section-note">Số liệu Facebook/Instagram Ads dưới đây lọc theo ĐÚNG khoảng ngày đã chọn ở đầu trang (chips/ngày) — giống mọi phần khác của dashboard. Dữ liệu Purchase (Order/Cost per Order/Revenue/ROAS) chỉ có ở những ngày Meta ĐÃ ĐƯỢC LẤY LẠI kể từ khi tính năng này được bật — các ngày cũ hơn (chưa được lấy lại) hiện "—" cho các cột này dù vẫn có đủ chi phí/impressions/clicks; dữ liệu Purchase sẽ đầy dần theo thời gian khi workflow chạy mỗi lần.</div>
     <div class="cards" id="fbCards"></div>
 
     <h2>Campaigns</h2>
-    <div class="section-note">Bấm vào TÊN CAMPAIGN để xem chi tiết Ad Set bên trong. Bấm tiêu đề cột để sắp xếp. <b>Order/Cost per Order/Revenue/ROAS</b> lấy từ sự kiện Purchase Meta trả về (action_type omni_purchase/purchase, KHÁC với "Kết quả" — Kết quả là tổng MỌI loại action: click, tin nhắn, tương tác...). Nếu campaign không track Purchase event (VD tối ưu Tin nhắn/Tương tác — nhiều campaign của Huy đang chạy kiểu này) thì Meta không trả giá trị -> hiện "—" (KHÔNG phải 0đ thật). Đây LÀ số Meta tự ghi nhận trên nền tảng của họ, KHÔNG PHẢI đơn hàng thật từ Sapo (Sapo không gắn đơn theo từng campaign cụ thể) — chỉ dùng để so sánh hiệu quả TƯƠNG ĐỐI giữa các campaign CÓ tracking Purchase, không nên cộng dồn số này vào doanh thu thật ở tab Tổng quan/E-com.</div>
+    <div class="section-note">Bấm vào TÊN CAMPAIGN để xem chi tiết Ad Set bên trong; bấm tiếp vào 1 Ad Set để xem từng Ad riêng lẻ bên trong nó. Bấm tiêu đề cột để sắp xếp. <b>Order/Cost per Order/Revenue/ROAS</b> lấy từ sự kiện Purchase Meta trả về (action_type omni_purchase/purchase, KHÁC với "Kết quả" — Kết quả là tổng MỌI loại action: click, tin nhắn, tương tác...). Nếu campaign không track Purchase event (VD tối ưu Tin nhắn/Tương tác — nhiều campaign của Huy đang chạy kiểu này) thì Meta không trả giá trị -> hiện "—" (KHÔNG phải 0đ thật). Đây LÀ số Meta tự ghi nhận trên nền tảng của họ, KHÔNG PHẢI đơn hàng thật từ Sapo (Sapo không gắn đơn theo từng campaign cụ thể) — chỉ dùng để so sánh hiệu quả TƯƠNG ĐỐI giữa các campaign CÓ tracking Purchase, không nên cộng dồn số này vào doanh thu thật ở tab Tổng quan/E-com.</div>
     <div class="table-scroll">
       <table>
         <thead><tr id="campaignHeadRow"></tr></thead>
