@@ -17,14 +17,30 @@ ngoại sàn còn thiếu):
 
 Cách dùng:
 1. Vào Sapo -> mục "Chi phí" -> Xuất file báo cáo chi phí bán hàng, chọn "Tất cả nguồn"
-   (.xls/.xlsx)
-2. Bỏ vào thư mục "settlement_files/" (tự tạo cạnh các file .py này). Nếu xuất nhiều lần
-   / nhiều khoảng ngày, có thể bỏ nhiều file vào cùng thư mục — tool tự gộp và khử trùng
-   lặp ở mức dòng (Ngày ghi nhận + Mã chứng từ + Tên chi phí + Giá trị ghi nhận).
+   (.xls/.xlsx) — TÊN FILE MẶC ĐỊNH Sapo đặt khi tải về có dạng
+   "xuat_file_bao_cao_chi_phi_ban_hang_DD-MM-YYYY_HH-MM.xls" (DD-MM-YYYY_HH-MM = thời điểm
+   XUẤT file, KHÔNG phải khoảng ngày dữ liệu bên trong) — GIỮ NGUYÊN tên này khi bỏ vào repo,
+   xem _file_export_timestamp() bên dưới để biết vì sao quan trọng.
+2. Bỏ vào thư mục "settlement_files/" (tự tạo cạnh các file .py này). Theo quy trình của Huy:
+   xuất định kỳ, nối tiếp nhau (VD 1/6-30/6, rồi 1/7-31/7...), KHÔNG xoá file cũ — cứ bỏ thêm
+   file mới vào cùng thư mục.
 3. Chạy lại chương trình.
+
+XỬ LÝ NHIỀU FILE CHỒNG LẤN — 2 tầng, xem _load_combined_expense_rows():
+  a) Dòng TRÙNG Y HỆT (cùng Ngày ghi nhận + Mã chứng từ + Tên chi phí + Giá trị ghi nhận) giữa
+     2 file export chồng khoảng ngày -> khử trùng lặp bình thường (đây là re-export cùng 1 dòng
+     sổ cái, không phải 2 sự kiện khác nhau).
+  b) CÙNG 1 Mã chứng từ (đơn hàng) xuất hiện trong NHIỀU file KHÁC NHAU nhưng dữ liệu không
+     khớp y hệt (VD đơn tạo cuối tháng 6, được Sapo đưa vào cả export tháng 6 lẫn export tháng 7
+     với giá trị/số dòng phí khác nhau do lúc export tháng 6 đơn CHƯA hoàn thành hết) -> theo
+     yêu cầu của Huy: ưu tiên TOÀN BỘ dữ liệu của đơn đó từ file có thời điểm XUẤT MỚI NHẤT
+     (parse từ tên file, xem _file_export_timestamp), bỏ hẳn dữ liệu đơn đó từ (các) file cũ hơn
+     — KHÔNG cộng dồn 2 nguồn cho cùng 1 đơn (tránh đếm trùng phí khi đơn đó "known-later-state"
+     đã có ở file mới).
 """
 
 import re
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
@@ -36,6 +52,25 @@ REQUIRED_COLS = {"Mã chứng từ", "Giá trị ghi nhận"}
 MARKETPLACE_SOURCES = {"shopee", "tiktokshop", "lazada"}
 NON_MARKETPLACE_SOURCES = {"facebook", "instagram", "zalo", "zalo-oa", "admin", "pos", "other", "web"}
 # "Sổ quỹ" và các nguồn khác không nằm trong 2 tập trên -> không join theo order.
+
+# Tên file mặc định Sapo đặt: "xuat_file_bao_cao_chi_phi_ban_hang_04-08-2026_16-53.xls"
+# -> nhóm (\d{2})-(\d{2})-(\d{4})_(\d{2})-(\d{2}) = ngày-tháng-năm_giờ-phút XUẤT file.
+_FILENAME_TS_RE = re.compile(r"(\d{2})-(\d{2})-(\d{4})_(\d{2})-(\d{2})")
+
+
+def _file_export_timestamp(path: Path) -> datetime:
+    """Thời điểm file được XUẤT từ Sapo — ưu tiên parse từ tên file (đúng thời điểm export
+    thật), fallback về mtime trên đĩa nếu tên file bị đổi/không khớp pattern mặc định của Sapo
+    (VD Huy đổi tên file thủ công) — mtime kém tin cậy hơn (có thể đổi khi git clone/checkout)
+    nhưng vẫn tốt hơn là không có gì để so sánh."""
+    m = _FILENAME_TS_RE.search(path.stem)
+    if m:
+        dd, mm, yyyy, hh, mi = m.groups()
+        try:
+            return datetime(int(yyyy), int(mm), int(dd), int(hh), int(mi))
+        except ValueError:
+            pass
+    return datetime.fromtimestamp(path.stat().st_mtime)
 
 
 def _all_expense_files() -> list[Path]:
@@ -100,12 +135,16 @@ def _load_combined_expense_rows() -> pd.DataFrame:
         total_rows = len(raw)
         df = raw.dropna(subset=["Mã chứng từ"]).copy()
         dropped = total_rows - len(df)
-        print(f"[Chi phí] File {f.name}: {total_rows} dòng, giữ lại {len(df)} dòng có Mã chứng từ (bỏ {dropped} dòng).")
+        file_ts = _file_export_timestamp(f)
+        print(f"[Chi phí] File {f.name} (xuất lúc {file_ts}): {total_rows} dòng, "
+              f"giữ lại {len(df)} dòng có Mã chứng từ (bỏ {dropped} dòng).")
         if "Nguồn ghi nhận" in df.columns:
             print(f"  Nguồn ghi nhận trong file này: {df['Nguồn ghi nhận'].value_counts().to_dict()}")
 
         df["Mã chứng từ"] = df["Mã chứng từ"].astype(str).str.strip()
         df["Giá trị ghi nhận"] = pd.to_numeric(df["Giá trị ghi nhận"], errors="coerce").fillna(0)
+        df["_file_ts"] = file_ts
+        df["_file_name"] = f.name
         raw_frames.append(df)
 
     if not raw_frames:
@@ -113,12 +152,32 @@ def _load_combined_expense_rows() -> pd.DataFrame:
 
     all_rows = pd.concat(raw_frames, ignore_index=True)
 
-    # Nhiều file export có thể CHỒNG LẤN khoảng ngày -> khử trùng ở mức DÒNG.
+    # Nhiều file export có thể CHỒNG LẤN khoảng ngày -> khử trùng ở mức DÒNG (cùng Ngày ghi
+    # nhận + Mã chứng từ + Tên chi phí + Giá trị ghi nhận = re-export cùng 1 dòng sổ cái thật).
     dedup_cols = [c for c in ["Ngày ghi nhận", "Mã chứng từ", "Tên chi phí", "Giá trị ghi nhận"] if c in all_rows.columns]
     before = len(all_rows)
     all_rows = all_rows.drop_duplicates(subset=dedup_cols)
     if before != len(all_rows):
         print(f"[Chi phí] Đã bỏ {before - len(all_rows)} dòng trùng lặp giữa các file export chồng lấn.")
+
+    # CÙNG 1 đơn hàng (Mã chứng từ) xuất hiện ở NHIỀU file KHÁC NHAU (nguồn) với dữ liệu KHÔNG
+    # khớp y hệt (VD đơn cuối tháng 6 vừa lọt vào export tháng 6 lúc chưa hoàn thành hết, vừa
+    # lọt vào export tháng 7 với đầy đủ hơn) -> theo yêu cầu của Huy: chỉ giữ TOÀN BỘ dòng của
+    # đơn đó từ file có thời điểm XUẤT MỚI NHẤT, bỏ hẳn dòng của (các) file cũ hơn cho đúng
+    # đơn đó (không cộng dồn 2 nguồn cho cùng 1 đơn -> tránh đếm trùng phí).
+    order_file_counts = all_rows.groupby("Mã chứng từ")["_file_ts"].nunique()
+    conflicted_orders = order_file_counts[order_file_counts > 1].index
+    if len(conflicted_orders):
+        latest_ts_per_order = all_rows.groupby("Mã chứng từ")["_file_ts"].transform("max")
+        is_conflicted = all_rows["Mã chứng từ"].isin(conflicted_orders)
+        keep_mask = (~is_conflicted) | (all_rows["_file_ts"] == latest_ts_per_order)
+        dropped_rows = (~keep_mask).sum()
+        print(f"[Chi phí] {len(conflicted_orders)} đơn hàng xuất hiện ở >1 file export khác thời "
+              f"điểm với dữ liệu không khớp y hệt -> giữ dữ liệu từ file MỚI NHẤT cho các đơn "
+              f"này, bỏ {dropped_rows} dòng từ file cũ hơn (tránh cộng trùng).")
+        all_rows = all_rows[keep_mask]
+
+    all_rows = all_rows.drop(columns=["_file_ts", "_file_name"])
 
     source_col = all_rows["Nguồn ghi nhận"] if "Nguồn ghi nhận" in all_rows.columns else pd.Series("", index=all_rows.index)
 
