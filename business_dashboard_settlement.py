@@ -53,6 +53,63 @@ MARKETPLACE_SOURCES = {"shopee", "tiktokshop", "lazada"}
 NON_MARKETPLACE_SOURCES = {"facebook", "instagram", "zalo", "zalo-oa", "admin", "pos", "other", "web"}
 # "Sổ quỹ" và các nguồn khác không nằm trong 2 tập trên -> không join theo order.
 
+# Phát hiện 04/08/2026: trong file export "Tất cả nguồn" (04-08-2026_16-53), cột "Tên chi phí"
+# có 2 "phong cách" đặt tên khác nhau CHO CÙNG 1 loại phí, tuỳ theo đơn hàng rơi vào khoảng
+# thời gian nào (Sapo tự chuyển đổi format tên cột phía họ, KHÔNG phải Huy hay Claude sửa gì):
+#   - Đa số đơn (VN, ~6.7k đơn, 09/03 -> 31/07): tên tiếng Việt do Sapo dịch, VD "Phí cố định".
+#   - 1 dải đơn hẹp (EN, ~1.78k đơn, 21/06 -> 26/07, gối 1 phần vào dải VN): tên RAW field
+#     tiếng Anh/snake_case y hệt Shopee trả về, VD "commission_fee" — đây là 1 giai đoạn
+#     chuyển tiếp ngắn (gradual cutover thấy rõ qua số dòng/ngày: VN giảm dần 21/06->01/07,
+#     EN tăng dần, rồi EN giảm dần 22/07->26/07 quay lại VN) — KHÔNG liên quan tới shop
+#     (Góc Hương Thơm / The Art Of Scent đều có cả 2 kiểu tên, tỷ lệ tương đương) và KHÔNG
+#     phải 2 loại phí khác nhau bị cộng trùng cho cùng 1 đơn (đã kiểm chứng: 0% đơn hàng nào
+#     có cả 2 tên cho cùng 1 loại phí -> Tổng phí (total_fee) KHÔNG bị sai/trùng, chỉ có phần
+#     hiển thị "chi tiết theo loại phí" (load_settlement_fee_breakdown) bị xé lẻ thành 2 dòng
+#     tưởng như trùng lặp).
+# -> chuẩn hoá về 1 tên tiếng Việt duy nhất cho các cặp đã xác định rõ ràng (dựa trên tên
+# field + so sánh độ lớn/số đơn của 2 phía) để phần "chi tiết theo loại phí" gộp đúng nhóm.
+# Cặp nào KHÔNG rõ ràng thì giữ nguyên tên gốc (không đoán bừa).
+FEE_NAME_NORMALIZE = {
+    # Phí lớn nhất, phát sinh ở hầu hết mọi đơn — khớp theo cùng độ phổ biến (~6.4-6.5k đơn VN
+    # <-> ~1.75k đơn EN, đều là phí bắt buộc/áp dụng gần như mọi đơn):
+    "commission_fee": "Phí cố định",
+    "seller_transaction_fee": "Phí thanh toán",
+    # Tên field trùng nghĩa trực tiếp:
+    "service_fee": "Phí dịch vụ",
+    "actual_shipping_fee": "Phí vận chuyển thực tế",
+    "actual_shipping_fee_amount": "Phí vận chuyển thực tế",
+    # Voucher/giảm giá:
+    "voucher_from_shopee": "Giàm giá Shopee",
+    "shopee_discount": "Giàm giá Shopee",
+    "voucher_from_seller": "Mã ưu đãi do Người Bán chịu",
+    "seller_discount_amount": "Khuyến mãi của người bán",
+    # Vận chuyển (trợ giá/người mua trả/chiết khấu) — cùng dấu âm (khoản được trừ ngược):
+    "shopee_shipping_rebate": "Phí vận chuyển được trợ giá từ Shopee",
+    "buyer_paid_shipping_fee": "Phí vận chuyển do người mua trả",
+    "customer_paid_shipping_fee_amount": "Phí vận chuyển do người mua trả",
+    "shipping_fee_discount_amount": "Chiết khấu phí vận chuyển nền tảng",
+    "reverse_shipping_fee": "Phí vận chuyển trả hàng (đơn Trả hàng/hoàn tiền)",
+    "final_return_to_seller_shipping_fee": "Phí vận chuyển trả hàng do người bán trả",
+    # Thuế:
+    "withholding_pit_tax": "Thuế TNCN",
+    "pit_amount": "Thuế TNCN",
+    "withholding_tax_pit": "Thuế TNCN",
+    "withholding_vat_tax": "Thuế GTGT",
+    "vat_amount": "Thuế GTGT",
+    # Hoa hồng / tiếp thị liên kết:
+    "commission": "Phí hoa hồng",
+    "platform_commission_amount": "Phí hoa hồng nền tảng",
+    "affiliate_commission_amount": "Phí hoa hồng liên kết",
+    "affiliate_ads_commission_amount": "Phí hoa hồng quảng cáo",
+    "order_ams_commission_fee": "Phí tiếp thị liên kết",
+    # Khác:
+    "vn_fix_infrastructure_fee": "Phí hạ tầng cố định",
+    "coins": "Shopee Xu",
+    "other_fee": "Phí khác",
+    "transaction_fee_amount": "Phí thanh toán",
+    "payment_fee": "Phí thanh toán",
+}
+
 # Tên file mặc định Sapo đặt: "xuat_file_bao_cao_chi_phi_ban_hang_04-08-2026_16-53.xls"
 # -> nhóm (\d{2})-(\d{2})-(\d{4})_(\d{2})-(\d{2}) = ngày-tháng-năm_giờ-phút XUẤT file.
 _FILENAME_TS_RE = re.compile(r"(\d{2})-(\d{2})-(\d{4})_(\d{2})-(\d{2})")
@@ -191,6 +248,7 @@ def _load_combined_expense_rows() -> pd.DataFrame:
     if "Tên chi phí" not in all_rows.columns:
         all_rows["Tên chi phí"] = "Khác"
     all_rows["Tên chi phí"] = all_rows["Tên chi phí"].fillna("Khác").astype(str).str.strip()
+    all_rows["Tên chi phí"] = all_rows["Tên chi phí"].replace(FEE_NAME_NORMALIZE)
 
     frames = []
 
