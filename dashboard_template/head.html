@@ -190,9 +190,15 @@
     đơn hoàn thành — filter khoảng ngày gần (VD 7 ngày) sẽ có nhiều đơn CHƯA hoàn thành/chưa
     ghi nhận phí, làm Tổng phí bị THẤP giả tạo. Giờ Tổng phí = phí ĐÃ ghi nhận thực tế + phí
     ƯỚC TÍNH cho phần doanh thu chưa ghi nhận (ước tính = % phí trung bình của các đơn ĐÃ hoàn
-    thành trong 30 ngày gần nhất, tính lùi từ ngày cuối của khoảng đang chọn, nhân với doanh
-    thu chưa ghi nhận phí). Dưới mỗi dòng Tổng phí có 2 số nhỏ: "đã hoàn thành" (thực tế) và
-    "ước tính" — DT thực nhận/Gross margin đã tính theo Tổng phí đã gồm phần ước tính này.
+    thành, ưu tiên lấy trong 30 ngày gần nhất tính lùi từ ngày cuối của khoảng đang chọn — nếu
+    30 ngày đó không có dữ liệu thật (VD file Chi phí Sapo lâu chưa được export lại — xem dưới),
+    tự nới rộng cửa sổ (90/180/365 ngày/toàn bộ lịch sử) tới khi tìm được giai đoạn gần nhất CÓ
+    dữ liệu thật để làm % ước tính, thay vì báo sai thành 0đ. Nhân % này với doanh thu chưa ghi
+    nhận phí). Dưới mỗi dòng Tổng phí có 2 số nhỏ: "đã hoàn thành" (thực tế) và "ước tính" — DT
+    thực nhận/Gross margin đã tính theo Tổng phí đã gồm phần ước tính này. LƯU Ý: file "Chi phí"
+    Sapo (nguồn của total_fee) hiện PHẢI export tay định kỳ từ Sapo Admin (Sapo không có API
+    công khai cho báo cáo này) — nếu lâu không export lại, phần "ước tính" ở trên vẫn hoạt động
+    (dùng % của lần export gần nhất) nhưng sẽ ngày càng kém chính xác nếu cơ cấu phí thay đổi.
     <b>Card tổng ở tab Tổng quan/E-com/Facebook Ads</b>: gồm card "Tổng phí" và "Tổng Ads (Meta +
     Shopee/TikTok)" — gộp đủ CẢ 3 nguồn ads. Gross margin ở các card này KHÔNG bị trừ Ads 2 lần
     (Ads đã trừ sẵn ở từng dòng của bảng).

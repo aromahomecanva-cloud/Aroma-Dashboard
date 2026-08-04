@@ -218,24 +218,35 @@
 
     // Ước tính Tổng phí cho đơn Shopee/TikTok CHƯA hoàn thành (Sapo CHƯA ghi nhận phí — xem
     // banner cuối trang): % phí trung bình = tổng total_fee / tổng revenue_recorded của các
-    // NGÀY trong cửa sổ 30 ngày gần nhất, tính LÙI TỪ ngày CUỐI của khoảng thời gian đang chọn
-    // (dateTo) — KHÔNG phải 30 ngày cuối cùng có data, để số ước tính "đi theo" filter đang xem.
+    // NGÀY trong 1 cửa sổ gần nhất, tính LÙI TỪ ngày CUỐI của khoảng thời gian đang chọn (dateTo)
+    // — KHÔNG phải 30 ngày cuối cùng có data, để số ước tính "đi theo" filter đang xem.
     // revenue_recorded (từ Python, xem business_dashboard_aggregate.py) = doanh thu CỦA CHÍNH
     // các đơn ĐÃ có fee ghi nhận -> dùng làm mẫu số cho % phí trung bình, tránh bị pha loãng bởi
     // doanh thu của đơn CHƯA ghi nhận phí (mẫu số đúng bản chất hơn dùng cả gross_revenue).
+    //
+    // WIDEN CỬA SỔ KHI FILE CHI PHÍ BỊ CŨ (xem section-note cuối tab Tổng quan/E-com): file
+    // "Chi phí" Sapo là export TAY (không có API tự động — đã xác nhận, không phải lỗi), nên có
+    // thể có khoảng thời gian dài KHÔNG có total_fee/revenue_recorded nào cả (file chưa được
+    // export lại). Nếu cứng 30 ngày và cửa sổ đó hoàn toàn rỗng, % phí sẽ ra 0% SAI (không phải
+    // "phí = 0", mà là "không biết phí"). Thay vào đó: thử 30 ngày trước, nếu rỗng thì NỚI RỘNG
+    // dần (90 / 180 / 365 / toàn bộ lịch sử) cho tới khi tìm được dữ liệu thật gần nhất — dùng %
+    // phí trung bình CỦA GIAI ĐOẠN GẦN NHẤT CÓ DỮ LIỆU làm ước tính, thay vì im lặng trả về 0.
     function computeAvgFeePct(channel, shopPage, endDateStr) {
       const end = new Date(endDateStr + 'T00:00:00');
-      const start = new Date(end); start.setDate(start.getDate() - 29);
-      const startStr = start.toISOString().slice(0, 10);
-      let feeSum = 0, revSum = 0;
-      for (const r of dailyData) {
-        if (r.channel !== channel) continue;
-        if ((r.shop_page || '') !== shopPage) continue;
-        if (r.date < startStr || r.date > endDateStr) continue;
-        feeSum += (r.total_fee || 0);
-        revSum += (r.revenue_recorded || 0);
+      for (const windowDays of [30, 90, 180, 365, 3650]) {
+        const start = new Date(end); start.setDate(start.getDate() - (windowDays - 1));
+        const startStr = start.toISOString().slice(0, 10);
+        let feeSum = 0, revSum = 0;
+        for (const r of dailyData) {
+          if (r.channel !== channel) continue;
+          if ((r.shop_page || '') !== shopPage) continue;
+          if (r.date < startStr || r.date > endDateStr) continue;
+          feeSum += (r.total_fee || 0);
+          revSum += (r.revenue_recorded || 0);
+        }
+        if (revSum > 0) return feeSum / revSum;
       }
-      return revSum > 0 ? feeSum / revSum : 0;
+      return 0;
     }
 
     // channelPredicate (tuỳ chọn): lọc thêm theo channel, dùng cho tab "E-com" (chỉ shopee/
