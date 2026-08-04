@@ -26,6 +26,11 @@ Cách dùng:
    file mới vào cùng thư mục.
 3. Chạy lại chương trình.
 
+QUY TẮC LOẠI TRỪ MỘT SỐ DÒNG PHÍ (shopee/tiktokshop, xác nhận 04/08/2026) — xem
+_EXCLUDED_FEE_NAMES_SHOPEE_TIKTOK trong _load_combined_expense_rows(): giảm giá/voucher do
+sàn hoặc do shop tài trợ, và phí vận chuyển (thực tế/người mua trả/Shopee trợ giá) KHÔNG được
+tính vào "Tổng phí" — không phải chi phí thật của seller hoặc đã bị cấn trừ vào doanh thu rồi.
+
 XỬ LÝ NHIỀU FILE CHỒNG LẤN — 2 tầng, xem _load_combined_expense_rows():
   a) Dòng TRÙNG Y HỆT (cùng Ngày ghi nhận + Mã chứng từ + Tên chi phí + Giá trị ghi nhận) giữa
      2 file export chồng khoảng ngày -> khử trùng lặp bình thường (đây là re-export cùng 1 dòng
@@ -249,6 +254,38 @@ def _load_combined_expense_rows() -> pd.DataFrame:
         all_rows["Tên chi phí"] = "Khác"
     all_rows["Tên chi phí"] = all_rows["Tên chi phí"].fillna("Khác").astype(str).str.strip()
     all_rows["Tên chi phí"] = all_rows["Tên chi phí"].replace(FEE_NAME_NORMALIZE)
+
+    # Theo xác nhận của Huy (04/08/2026), CHỈ áp dụng cho nguồn shopee/tiktokshop (KHÔNG áp
+    # dụng cho lazada — Huy không nhắc tới lazada nên giữ nguyên logic cũ cho nguồn này):
+    #   - Giảm giá/voucher DO SÀN (Shopee/TikTok) tài trợ -> seller vẫn nhận đủ phần này, sàn tự
+    #     chịu, không phải chi phí thật của seller -> loại khỏi "chi phí".
+    #   - Giảm giá/voucher DO SHOP tự tài trợ -> đã bị cấn trừ thẳng vào doanh thu thuần rồi ->
+    #     tính thêm vào chi phí sẽ bị đếm trùng (double-count) -> loại khỏi "chi phí".
+    #   - Phí vận chuyển (Phí vận chuyển thực tế + phần người mua trả + phần Shopee trợ giá):
+    #     3 mảnh này cộng lại là toàn bộ chi phí ship, được người mua + Shopee gánh hết ->
+    #     seller không thực trả -> loại cả 3 khỏi "chi phí" (không phải chỉ loại phần trợ giá).
+    # Loại hẳn khỏi cả total_fee (load_settlement_fees) lẫn breakdown (load_settlement_fee_
+    # breakdown) vì đây không phải "chi phí" theo định nghĩa của Huy, không phải chỉ ẩn khỏi
+    # hiển thị.
+    _EXCLUDED_FEE_NAMES_SHOPEE_TIKTOK = {
+        "Giàm giá Shopee",
+        "Trợ giá từ Tiktok",
+        "Mã ưu đãi do Người Bán chịu",
+        "Khuyến mãi của người bán",
+        "Hoàn lại khuyến mãi của người bán",
+        "Phí vận chuyển do người mua trả",
+        "Phí vận chuyển được trợ giá từ Shopee",
+        "Phí vận chuyển thực tế",
+    }
+    exclude_mask = (
+        all_rows["Tên chi phí"].isin(_EXCLUDED_FEE_NAMES_SHOPEE_TIKTOK)
+        & source_col.isin({"shopee", "tiktokshop"})
+    )
+    if exclude_mask.any():
+        print(f"[Chi phí] Loại {exclude_mask.sum()} dòng (nguồn shopee/tiktokshop) khỏi Tổng phí "
+              f"theo xác nhận của Huy: giảm giá/voucher do sàn hoặc shop tài trợ, và phí vận "
+              f"chuyển (thực tế/người mua trả/Shopee trợ giá) — không phải chi phí thật của seller.")
+        all_rows = all_rows[~exclude_mask]
 
     frames = []
 
