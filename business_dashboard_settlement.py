@@ -264,6 +264,9 @@ def _load_combined_expense_rows() -> pd.DataFrame:
     #   - Phí vận chuyển (Phí vận chuyển thực tế + phần người mua trả + phần Shopee trợ giá):
     #     3 mảnh này cộng lại là toàn bộ chi phí ship, được người mua + Shopee gánh hết ->
     #     seller không thực trả -> loại cả 3 khỏi "chi phí" (không phải chỉ loại phần trợ giá).
+    #   - Shopee Xu (đánh dấu X trực tiếp trên ảnh chụp màn hình 04/08/2026): Shopee tự bỏ tiền
+    #     tài trợ Xu cho người mua, tương tự "Giảm giá Shopee" -> không phải chi phí thật của
+    #     seller -> loại khỏi "chi phí".
     # Loại hẳn khỏi cả total_fee (load_settlement_fees) lẫn breakdown (load_settlement_fee_
     # breakdown) vì đây không phải "chi phí" theo định nghĩa của Huy, không phải chỉ ẩn khỏi
     # hiển thị.
@@ -275,6 +278,7 @@ def _load_combined_expense_rows() -> pd.DataFrame:
         "Hoàn lại khuyến mãi của người bán",
         "Phí vận chuyển do người mua trả",
         "Phí vận chuyển được trợ giá từ Shopee",
+        "Shopee Xu",
         "Phí vận chuyển thực tế",
     }
     exclude_mask = (
