@@ -66,9 +66,19 @@ jobs:
           shopt -s nullglob
           git add data.json cache_*.json.gz
           git diff --staged --quiet || git commit -m "Update dashboard data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          # Phòng trường hợp main đã bị đẩy lên bởi 1 commit khác (VD Huy push tay) ngay trong lúc
-          # job này đang chạy -- rebase commit của bot lên trên đầu mới nhất rồi mới push, tránh bị
-          # GitHub từ chối vì "remote rejected". Kết hợp với concurrency ở trên để chặn race giữa
-          # 2 run của chính workflow này.
-          git pull --rebase origin main
+          # Phòng trường hợp main đã bị đẩy lên bởi 1 commit khác (VD Huy push tay 1 file CSV mới
+          # trong shopee_ads_exports/ đúng lúc job này đang chạy fetch data, ~1-2 phút) ngay trong
+          # lúc job này đang chạy -- cần đồng bộ lại với main mới nhất trước khi push.
+          #
+          # QUAN TRỌNG: dùng "git merge -X ours" thay vì "git pull --rebase" (đã đổi 28/08/2026
+          # sau khi gặp lỗi thật). Lý do: cache_*.json.gz là file NHỊ PHÂN (binary), git không thể
+          # merge nội dung 2 bên nên MỌI xung đột trên các file này đều là "Cannot merge binary
+          # files" -> rebase thất bại cứng (không tự giải quyết được) mỗi khi 2 lần chạy job này
+          # đụng nhau. Vì data.json + cache_*.json.gz là DUY NHẤT các file job này từng đổi (job
+          # không bao giờ đụng vào shopee_ads_exports/, settlement_files/, *.py...), nên nếu có
+          # xung đột thì chắc chắn xảy ra ở đúng các file này -- lấy luôn bản mới vừa fetch (ours)
+          # là an toàn và đúng ý muốn (dữ liệu vừa fetch luôn mới hơn), không làm mất commit nào
+          # khác của Huy (các file khác Huy đổi không hề bị đụng tới nên merge tự động bình thường).
+          git fetch origin main
+          git merge origin/main -X ours --no-edit -m "Merge remote main (auto-resolve data.json/cache to freshly-fetched version)"
           git push
