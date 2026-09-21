@@ -82,3 +82,23 @@ jobs:
           git fetch origin main
           git merge origin/main -X ours --no-edit -m "Merge remote main (auto-resolve data.json/cache to freshly-fetched version)"
           git push
+
+      - name: Build static dashboard site
+        run: python build_static_site.py --data data.json --out netlify_site/index.html
+
+      - name: Deploy to Netlify (internal website)
+        # Chỉ chạy khi Huy đã setup Netlify (thêm 2 secrets NETLIFY_AUTH_TOKEN + NETLIFY_SITE_ID).
+        # Nếu chưa setup thì bỏ qua bước này, KHÔNG làm fail cả pipeline chính (Sapo/Meta vẫn
+        # chạy và commit data.json bình thường ở trên) -- xem hướng dẫn setup trong README hoặc
+        # tin nhắn Claude đã gửi khi thêm tính năng này.
+        if: ${{ secrets.NETLIFY_AUTH_TOKEN != '' && secrets.NETLIFY_SITE_ID != '' }}
+        run: |
+          npm install -g netlify-cli@17
+          netlify deploy --prod --dir=netlify_site --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+      - name: Netlify chưa được setup (nhắc Huy)
+        if: ${{ secrets.NETLIFY_AUTH_TOKEN == '' || secrets.NETLIFY_SITE_ID == '' }}
+        run: echo "::notice::Bỏ qua deploy Netlify vì chưa có secret NETLIFY_AUTH_TOKEN/NETLIFY_SITE_ID. Dashboard nội bộ sẽ chưa được publish cho tới khi setup xong."

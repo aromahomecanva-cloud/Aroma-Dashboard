@@ -1,0 +1,7 @@
+[build]
+  publish = "netlify_site"
+  edge_functions = "netlify/edge-functions"
+
+[[edge_functions]]
+  path = "/*"
+  function = "auth"
