@@ -24,6 +24,13 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    # Đưa 2 secret Netlify ra thành biến env ở cấp JOB (thay vì đọc secrets.* trực tiếp trong
+    # điều kiện if: bên dưới) -- vì GitHub Actions KHÔNG cho phép dùng context "secrets" trong
+    # if: (lỗi "Unrecognized named-value: 'secrets'"), chỉ cho phép dùng trong "run:"/"env:".
+    # Nếu Huy chưa setup Netlify thì 2 biến này rỗng, if: env.NETLIFY_... != '' sẽ tự false.
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
     steps:
       - uses: actions/checkout@v4
 
@@ -91,14 +98,11 @@ jobs:
         # Nếu chưa setup thì bỏ qua bước này, KHÔNG làm fail cả pipeline chính (Sapo/Meta vẫn
         # chạy và commit data.json bình thường ở trên) -- xem hướng dẫn setup trong README hoặc
         # tin nhắn Claude đã gửi khi thêm tính năng này.
-        if: ${{ secrets.NETLIFY_AUTH_TOKEN != '' && secrets.NETLIFY_SITE_ID != '' }}
+        if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
         run: |
           npm install -g netlify-cli@17
           netlify deploy --prod --dir=netlify_site --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 
       - name: Netlify chưa được setup (nhắc Huy)
-        if: ${{ secrets.NETLIFY_AUTH_TOKEN == '' || secrets.NETLIFY_SITE_ID == '' }}
+        if: ${{ env.NETLIFY_AUTH_TOKEN == '' || env.NETLIFY_SITE_ID == '' }}
         run: echo "::notice::Bỏ qua deploy Netlify vì chưa có secret NETLIFY_AUTH_TOKEN/NETLIFY_SITE_ID. Dashboard nội bộ sẽ chưa được publish cho tới khi setup xong."
