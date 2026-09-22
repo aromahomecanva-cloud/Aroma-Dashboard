@@ -232,13 +232,12 @@
     // creative riêng cho ads), và Meta KHÔNG trả field "loại creative" (post thường vs Reel) qua
     // API insights cho trường hợp này. Cách gần đúng nhất hiện có: dựa theo quy ước đặt tên ad
     // Huy đang dùng (VD "Engage_Opt_Sale_ABO_30.07_Reel" -> Reel, "..._Post 4" -> Post). Tên
-    // không khớp cả 2 từ khoá (VD "..._Video 20.05") -> "Other", KHÔNG mặc định gộp vào Post, để
-    // tránh đếm nhầm -- Huy xác nhận 22/09/2026 loại này thật ra vẫn có thể phân định được qua
-    // link bài viết gốc (adPostLinks) nhưng cần thêm field từ Meta API (chưa làm, để sau nếu cần
-    // thu hẹp nhóm Other). Nếu sau này đổi quy ước đặt tên ad, phải sửa lại hàm này cho khớp.
+    // ghi "Video" (VD "..._Video 20.05") CŨNG tính là Reel -- Huy xác nhận 22/09/2026 các ad
+    // "Video" của Huy bản chất chính là Reel, không phải video post thường. "Other" chỉ còn là
+    // lưới an toàn cho tên không khớp từ khoá nào (nếu phát sinh quy ước đặt tên mới sau này).
     function classifyCreativeType(adName) {
       const n = adName || '';
-      if (/reel/i.test(n)) return 'Reel';
+      if (/reel|video/i.test(n)) return 'Reel';
       if (/post/i.test(n)) return 'Post';
       return 'Other';
     }

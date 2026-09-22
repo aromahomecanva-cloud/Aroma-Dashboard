@@ -46,7 +46,11 @@
   tr:last-child td { border-bottom:none; }
   tr.summary-row td { background:#eef1f6; font-weight:700; }
   tr.data-row td:first-child, tr.summary-row td:first-child { cursor:pointer; }
-  tr.grand-total-row td { background:#2d3748; color:#fff; font-weight:700; border-top:2px solid #1a202c; }
+  /* position:sticky + bottom:0 giữ dòng TỔNG CỘNG luôn hiện ở ĐÁY khung cuộn (.table-scroll,
+     max-height:420px + overflow-y:auto) thay vì phải lướt xuống hết bảng mới thấy -- áp dụng
+     chung cho cả 3 bảng đang dùng class này (Theo kênh & shop/page, Campaigns, Breakdown Post/
+     Reel). z-index để dòng này luôn nổi TRÊN các dòng data cuộn qua bên dưới nó. */
+  tr.grand-total-row td { background:#2d3748; color:#fff; font-weight:700; border-top:2px solid #1a202c; position:sticky; bottom:0; z-index:5; }
   tr.grand-total-row .fee-pct, tr.grand-total-row .fee-sub { color:#cbd5e0; }
   tr.detail-row td { background:#fbfbfd; text-align:left; padding:10px 16px; }
   .detail-fees { display:flex; flex-wrap:wrap; gap:6px 18px; }
@@ -206,7 +210,7 @@
     </div>
 
     <h2>Breakdown theo loại Creative (Post/Reel)</h2>
-    <div class="section-note">Gộp TOÀN BỘ ads (mọi campaign) trong khoảng ngày đang chọn ở đầu trang, chia theo loại creative dựa vào TÊN AD: tên chứa chữ "Reel" (không phân biệt hoa/thường) tính là Reel, tên chứa chữ "Post" tính là Post, còn lại (VD tên chỉ ghi "Video...") xếp vào <b>Other</b> — KHÔNG mặc định gộp Other vào Post để tránh đếm nhầm. Đây là cách phân loại GẦN ĐÚNG dựa theo quy ước đặt tên ad Huy đang dùng — Meta không trả field "loại creative" riêng qua API cho việc boost post có sẵn. Bấm vào từng dòng để xem chi tiết từng ad bên trong (kèm link bài viết Facebook 🔗 nếu có, cột và chỉ số y hệt bảng Campaigns phía trên).</div>
+    <div class="section-note">Gộp TOÀN BỘ ads (mọi campaign) trong khoảng ngày đang chọn ở đầu trang, chia theo loại creative dựa vào TÊN AD: tên chứa chữ "Reel" hoặc "Video" (không phân biệt hoa/thường) tính là Reel, tên chứa chữ "Post" tính là Post, còn lại xếp vào <b>Other</b> (dự phòng cho quy ước đặt tên phát sinh sau này). Đây là cách phân loại GẦN ĐÚNG dựa theo quy ước đặt tên ad Huy đang dùng — Meta không trả field "loại creative" riêng qua API cho việc boost post có sẵn. Bấm vào từng dòng để xem chi tiết từng ad bên trong (kèm link bài viết Facebook 🔗 nếu có, cột và chỉ số y hệt bảng Campaigns phía trên).</div>
     <div class="table-scroll">
       <table>
         <thead><tr id="creativeTypeHeadRow"></tr></thead>
