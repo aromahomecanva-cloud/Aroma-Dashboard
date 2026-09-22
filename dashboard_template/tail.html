@@ -101,6 +101,7 @@
     let expandedCampaigns = new Set();
     let expandedAdsets = new Set();
     let expandedCreativeTypes = new Set(); // dùng cho section breakdown Post/Reel bên dưới bảng Campaigns
+    let creativeTypeSort = { key: 'spend', dir: -1 }; // cho phép bấm tiêu đề cột để sắp xếp, giống bảng Campaigns
 
     // Gộp các dòng campaign x ngày (campaignsDailyData, xem business_dashboard_meta.py
     // _rows_to_campaigns_daily) lại theo campaign_id, CHỈ trong khoảng [dateFrom, dateTo] đang
@@ -230,20 +231,27 @@
     // Phân loại creative Post/Reel dựa vào TÊN AD -- Huy chỉ chạy boost post có sẵn (không tạo
     // creative riêng cho ads), và Meta KHÔNG trả field "loại creative" (post thường vs Reel) qua
     // API insights cho trường hợp này. Cách gần đúng nhất hiện có: dựa theo quy ước đặt tên ad
-    // Huy đang dùng (VD "Engage_Opt_Sale_ABO_30.07_Reel" -> Reel). Nếu sau này đổi quy ước đặt
-    // tên ad, phải sửa lại hàm này cho khớp.
+    // Huy đang dùng (VD "Engage_Opt_Sale_ABO_30.07_Reel" -> Reel, "..._Post 4" -> Post). Tên
+    // không khớp cả 2 từ khoá (VD "..._Video 20.05") -> "Other", KHÔNG mặc định gộp vào Post, để
+    // tránh đếm nhầm -- Huy xác nhận 22/09/2026 loại này thật ra vẫn có thể phân định được qua
+    // link bài viết gốc (adPostLinks) nhưng cần thêm field từ Meta API (chưa làm, để sau nếu cần
+    // thu hẹp nhóm Other). Nếu sau này đổi quy ước đặt tên ad, phải sửa lại hàm này cho khớp.
     function classifyCreativeType(adName) {
-      return /reel/i.test(adName || '') ? 'Reel' : 'Post';
+      const n = adName || '';
+      if (/reel/i.test(n)) return 'Reel';
+      if (/post/i.test(n)) return 'Post';
+      return 'Other';
     }
 
-    // Gộp kết quả getAllAdsFiltered() theo loại creative (Post/Reel) -- luôn trả về đúng 2 dòng
-    // tổng (kể cả khi 1 loại không có ad nào trong khoảng ngày đang chọn, để bảng không bị "nhảy"
-    // khi đổi filter).
+    // Gộp kết quả getAllAdsFiltered() theo loại creative (Post/Reel/Other) -- luôn trả về đúng 3
+    // dòng tổng (kể cả khi 1 loại không có ad nào trong khoảng ngày đang chọn, để bảng không bị
+    // "nhảy" khi đổi filter).
     function getCreativeTypeBreakdown() {
       const ads = getAllAdsFiltered();
       const groups = {
         Post: { type: 'Post', spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0 },
         Reel: { type: 'Reel', spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0 },
+        Other: { type: 'Other', spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0 },
       };
       for (const a of ads) {
         const g = groups[classifyCreativeType(a.ad_name)];
@@ -942,6 +950,34 @@
           }
         }
       }
+
+      // Dòng TỔNG CỘNG (toàn bộ campaign trong khoảng ngày đang chọn, KHÔNG phụ thuộc campaign
+      // nào đang mở rộng) -- luôn nằm CUỐI bảng, tính lại ctr/cpc/cpa/cost_per_order/roas SAU
+      // KHI cộng dồn, cùng cách làm với dòng TỔNG CỘNG ở bảng "Theo kênh & shop/page" và bảng
+      // Breakdown Post/Reel bên dưới (renderCreativeTypeSection).
+      if (list.length) {
+        const grand = list.reduce((acc, c) => {
+          acc.spend += c.spend || 0;
+          acc.impressions += c.impressions || 0;
+          acc.clicks += c.clicks || 0;
+          acc.results += c.results || 0;
+          acc.orders += c.orders || 0;
+          acc.revenue += c.revenue || 0;
+          return acc;
+        }, { spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0 });
+        grand.ctr = grand.impressions ? Math.round(grand.clicks / grand.impressions * 10000) / 100 : 0;
+        grand.cpc = grand.clicks ? Math.round(grand.spend / grand.clicks) : 0;
+        grand.cpa = grand.results ? Math.round(grand.spend / grand.results) : null;
+        grand.cost_per_order = grand.orders ? Math.round(grand.spend / grand.orders) : null;
+        grand.roas = (grand.revenue && grand.spend) ? Math.round(grand.revenue / grand.spend * 100) / 100 : null;
+        bodyHtml += `
+          <tr class="grand-total-row">
+            <td colspan="2">TỔNG CỘNG</td>
+            ${metricTds(grand)}
+          </tr>
+        `;
+      }
+
       document.getElementById('campaignBody').innerHTML = bodyHtml;
 
       document.querySelectorAll('#campaignBody tr[data-campid] td:first-child').forEach(td => {
@@ -972,11 +1008,25 @@
     function renderCreativeTypeSection() {
       const headRow = document.getElementById('creativeTypeHeadRow');
       if (!headRow) return; // phòng khi build từ template cũ chưa có section này
+      // Bấm tiêu đề cột để sắp xếp -- y hệt cơ chế renderCampaignHeader() ở bảng Campaigns phía
+      // trên, để mọi chỉ số (Chi phí, Impressions, CTR, ROAS...) đều sort được, không chỉ Chi phí.
       headRow.innerHTML = campaignColumns
-        .map(c => `<th>${c.key === 'campaign_name' ? 'Loại creative' : c.label}</th>`)
+        .map(c => `<th data-key="${c.key}" class="${creativeTypeSort.key===c.key?'sorted':''}">${c.key === 'campaign_name' ? 'Loại creative' : c.label}</th>`)
         .join('');
+      headRow.querySelectorAll('th').forEach(th => {
+        th.onclick = () => {
+          const key = th.dataset.key;
+          if (creativeTypeSort.key === key) creativeTypeSort.dir *= -1; else { creativeTypeSort.key = key; creativeTypeSort.dir = -1; }
+          renderCreativeTypeSection();
+        };
+      });
 
-      const breakdown = getCreativeTypeBreakdown().sort((a, b) => (b.spend || 0) - (a.spend || 0));
+      const breakdown = getCreativeTypeBreakdown().sort((a, b) => {
+        const key = creativeTypeSort.key === 'campaign_name' ? 'type' : creativeTypeSort.key;
+        const va = a[key], vb = b[key];
+        if (typeof va === 'string') return creativeTypeSort.dir * va.localeCompare(vb);
+        return creativeTypeSort.dir * ((va || 0) - (vb || 0));
+      });
       const allAds = getAllAdsFiltered();
 
       let bodyHtml = '';
@@ -1012,6 +1062,33 @@
           }
         }
       }
+
+      // Dòng TỔNG CỘNG (Post + Reel gộp lại) -- luôn nằm CUỐI bảng bất kể dòng nào đang mở rộng,
+      // tính lại ctr/cpc/cpa/cost_per_order/roas SAU KHI cộng dồn (không cộng trực tiếp các tỷ lệ
+      // này của Post/Reel), cùng cách làm với dòng TỔNG CỘNG ở bảng "Theo kênh & shop/page".
+      if (breakdown.length) {
+        const grand = breakdown.reduce((acc, g) => {
+          acc.spend += g.spend || 0;
+          acc.impressions += g.impressions || 0;
+          acc.clicks += g.clicks || 0;
+          acc.results += g.results || 0;
+          acc.orders += g.orders || 0;
+          acc.revenue += g.revenue || 0;
+          return acc;
+        }, { spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0 });
+        grand.ctr = grand.impressions ? Math.round(grand.clicks / grand.impressions * 10000) / 100 : 0;
+        grand.cpc = grand.clicks ? Math.round(grand.spend / grand.clicks) : 0;
+        grand.cpa = grand.results ? Math.round(grand.spend / grand.results) : null;
+        grand.cost_per_order = grand.orders ? Math.round(grand.spend / grand.orders) : null;
+        grand.roas = (grand.revenue && grand.spend) ? Math.round(grand.revenue / grand.spend * 100) / 100 : null;
+        bodyHtml += `
+          <tr class="grand-total-row">
+            <td colspan="2">TỔNG CỘNG</td>
+            ${metricTds(grand)}
+          </tr>
+        `;
+      }
+
       document.getElementById('creativeTypeBody').innerHTML = bodyHtml;
 
       document.querySelectorAll('#creativeTypeBody tr[data-creativetype] td:first-child').forEach(td => {
