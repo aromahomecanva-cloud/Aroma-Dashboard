@@ -741,16 +741,23 @@ def get_ads_detail_cached(cache_path, incremental_days: int = 3) -> dict:
     adsets_daily = _rows_to_adsets_daily(all_rows)
     # THEO NGÀY ở CẤP AD (sâu nhất) — all_rows ĐÃ SẴN LÀ granularity (ad_id, date) rồi (mỗi dòng
     # = 1 ad x 1 ngày, xem _get_ads_detail_rows_range), nên không cần GỘP thêm gì, chỉ cần LƯỢC
-    # BỚT field thừa trước khi xuất — xem getAdsFilteredForAdset trong tail.html: chỉ cần
-    # ad_id/ad_name/adset_id/date/spend/results/orders/revenue, KHÔNG dùng campaign_id/
-    # campaign_name/channel/impressions/clicks/purchase_roas_meta ở cấp ad. Dataset này có SỐ
-    # DÒNG LỚN NHẤT (1 dòng/ad/ngày, ~13k dòng) nên field thừa ảnh hưởng kích thước nhiều nhất —
-    # đã từng vượt giới hạn 10MB của artifact khi giữ nguyên toàn bộ field thô.
+    # BỚT field thừa trước khi xuất — xem getAdsFilteredForAdset trong tail.html: cần
+    # ad_id/ad_name/adset_id/date/spend/impressions/clicks/results/orders/revenue (đã thêm
+    # impressions/clicks trở lại 22/09/2026 theo yêu cầu Huy để bảng "Ad" trong dropdown
+    # Campaign -> Ad Set -> Ad hiện đủ CTR/CPC lọc ĐÚNG theo khoảng ngày đang chọn, thay vì
+    # phải dùng số liệu lifetime không lọc theo ngày). KHÔNG dùng campaign_id/campaign_name/
+    # channel/purchase_roas_meta ở cấp ad (không cần cho UI). Dataset này có SỐ DÒNG LỚN NHẤT
+    # (1 dòng/ad/ngày, ~14k dòng) nên field thừa ảnh hưởng kích thước nhiều nhất — ĐàTỪNG vượt
+    # giới hạn ~10MB của artifact khi giữ nguyên toàn bộ field thô, và việc thêm lại 2 field này
+    # cũng làm file lớn thêm ~500KB (đã cân nhắc, Huy chấp nhận đánh đổi để số liệu nhất quán
+    # với bộ lọc ngày — artifact xem trước trong chat có thể bị ảnh hưởng, Netlify thì không).
     ads_daily = [
         {
             "ad_id": r.get("ad_id"), "ad_name": r.get("ad_name"),
             "adset_id": r.get("adset_id"), "date": r.get("date"),
-            "spend": r.get("spend", 0.0), "results": r.get("results", 0.0),
+            "spend": r.get("spend", 0.0),
+            "impressions": r.get("impressions", 0), "clicks": r.get("clicks", 0),
+            "results": r.get("results", 0.0),
             "orders": r.get("orders", 0.0), "revenue": r.get("revenue", 0.0),
         }
         for r in all_rows
