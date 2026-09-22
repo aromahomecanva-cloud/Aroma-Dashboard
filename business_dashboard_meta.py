@@ -639,19 +639,23 @@ def _rows_to_adsets_daily(rows: list) -> list:
     """Giống _rows_to_campaigns_daily nhưng gộp theo (adset_id, date) — dùng để phần chi tiết
     ad set (khi bấm mở rộng 1 campaign trong bảng) cũng lọc được theo ngày.
 
-    CHỈ giữ field JS thực sự dùng (xem getAdsetsFilteredForCampaign trong tail.html — chỉ cộng
-    spend/results/orders/revenue, KHÔNG dùng impressions/clicks/campaign_name/channel ở cấp ad
-    set) — bỏ bớt các field thừa để giảm kích thước data.json/artifact (dataset này x theo NGÀY
-    nên số dòng lớn hơn nhiều so với bảng lifetime, mỗi field thừa nhân lên đáng kể)."""
+    Đã thêm lại impressions/clicks (22/09/2026, cùng đợt với cấp Ad — xem ads_daily ở
+    get_ads_detail_cached) theo yêu cầu Huy: cấp Ad Set giờ hiện ĐẦY ĐỦ chỉ số (CTR/CPC...)
+    thẳng cột với bảng Campaigns, không chỉ tên suông. VẪN KHÔNG giữ campaign_name/channel ở
+    cấp này (JS không cần, cột Kênh hiện "—" cho ad set/ad — xem renderFbAdsTab trong
+    tail.html) để đỡ tốn thêm dung lượng không cần thiết."""
     by_key = {}
     for r in rows:
         key = (r.get("adset_id"), r.get("date"))
         g = by_key.setdefault(key, {
             "adset_id": r.get("adset_id"), "adset_name": r.get("adset_name"),
             "campaign_id": r.get("campaign_id"), "date": r.get("date"),
-            "spend": 0.0, "results": 0.0, "orders": 0.0, "revenue": 0.0,
+            "spend": 0.0, "impressions": 0, "clicks": 0, "results": 0.0,
+            "orders": 0.0, "revenue": 0.0,
         })
         g["spend"] += r.get("spend", 0.0)
+        g["impressions"] += r.get("impressions", 0)
+        g["clicks"] += r.get("clicks", 0)
         g["results"] += r.get("results", 0.0)
         g["orders"] += r.get("orders", 0.0)
         g["revenue"] += r.get("revenue", 0.0)

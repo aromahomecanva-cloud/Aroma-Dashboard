@@ -135,14 +135,18 @@
     // Giống getCampaignsFiltered() nhưng gộp theo adset_id, CHỈ trong phạm vi 1 campaign_id —
     // dùng cho phần chi tiết ad set khi bấm mở rộng 1 dòng campaign.
     function getAdsetsFilteredForCampaign(campaignId) {
+      // Đã có impressions/clicks (thêm lại 22/09/2026, cùng đợt với cấp Ad) để hiện ĐẦY ĐỦ chỉ
+      // số (CTR/CPC...) ở cấp Ad Set, thẳng cột với bảng Campaigns — theo yêu cầu Huy.
       const rows = (adsetsDailyData || []).filter(r => r.date >= dateFrom && r.date <= dateTo && r.campaign_id === campaignId);
       const groups = {};
       for (const r of rows) {
         const g = groups[r.adset_id] || (groups[r.adset_id] = {
           adset_id: r.adset_id, adset_name: r.adset_name, campaign_id: r.campaign_id,
-          spend: 0, results: 0, orders: 0, revenue: 0,
+          spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0,
         });
         g.spend += r.spend || 0;
+        g.impressions += r.impressions || 0;
+        g.clicks += r.clicks || 0;
         g.results += r.results || 0;
         g.orders += r.orders || 0;
         g.revenue += r.revenue || 0;
@@ -150,7 +154,10 @@
       }
       return Object.values(groups).map(g => ({
         ...g,
+        ctr: g.impressions ? Math.round(g.clicks / g.impressions * 10000) / 100 : 0,
+        cpc: g.clicks ? Math.round(g.spend / g.clicks) : 0,
         cpa: g.results ? Math.round(g.spend / g.results) : null,
+        cost_per_order: g.orders ? Math.round(g.spend / g.orders) : null,
         roas: (g.revenue && g.spend) ? Math.round(g.revenue / g.spend * 100) / 100 : null,
       }));
     }
@@ -188,6 +195,24 @@
         cost_per_order: g.orders ? Math.round(g.spend / g.orders) : null,
         roas: (g.revenue && g.spend) ? Math.round(g.revenue / g.spend * 100) / 100 : null,
       }));
+    }
+
+    // 11 cột chỉ số dùng chung cho cả Campaign/Ad Set/Ad (bỏ 2 cột đầu Tên + Kênh, mỗi cấp tự
+    // render 2 cột đó riêng) -- CÙNG THỨ TỰ với campaignColumns để 3 cấp thẳng cột với nhau.
+    function metricTds(row) {
+      return `
+        <td>${fmt(row.spend)}₫</td>
+        <td>${fmt(row.impressions)}</td>
+        <td>${fmt(row.clicks)}</td>
+        <td>${(row.ctr || 0).toFixed(2)}%</td>
+        <td>${fmt(row.cpc)}₫</td>
+        <td>${fmt(row.results)}</td>
+        <td>${fmt(row.cpa)}₫</td>
+        <td>${fmtOrNa(row.orders)}</td>
+        <td>${fmtOrNa(row.cost_per_order, '₫')}</td>
+        <td>${fmtOrNa(row.revenue, '₫')}</td>
+        <td>${row.roas === null || row.roas === undefined ? '—' : row.roas.toFixed(2) + 'x'}</td>
+      `;
     }
 
     function fmt(n) { return Math.round(n || 0).toLocaleString('vi-VN'); }
@@ -806,58 +831,41 @@
         `;
         if (expanded) {
           const subsets = getAdsetsFilteredForCampaign(c.campaign_id).sort((a,b) => (b.spend||0) - (a.spend||0));
-          let detailBody;
           if (!subsets.length) {
-            detailBody = '<div class="detail-empty">Không có ad set nào.</div>';
+            bodyHtml += `<tr class="detail-row"><td colspan="${campaignColumns.length}"><div class="detail-empty">Không có ad set nào.</div></td></tr>`;
           } else {
-            // Cấp 1 (ad set): CHỈ hiện TÊN, bấm vào mới mở rộng xem từng ad bên trong (theo yêu
-            // cầu Huy 22/09/2026 — trước đây có kèm số liệu tóm tắt ở dòng ad set, giờ bỏ để
-            // dồn hết chi tiết xuống bảng đầy đủ chỉ số ở cấp ad bên dưới).
-            detailBody = '<div class="adset-block">' + subsets.map(a => {
+            // Ad set + ad hiện thành DÒNG THẬT trong CÙNG bảng (không phải bảng lồng riêng) --
+            // theo yêu cầu Huy 22/09/2026: số liệu phải thẳng cột với header chung (Chi phí,
+            // Impressions, Clicks...), không lặp lại tiêu đề cột ở mỗi cấp. Chỉ thụt lề tên để
+            // phân biệt cấp Campaign/Ad Set/Ad.
+            for (const a of subsets) {
               const asExpanded = expandedAdsets.has(a.adset_id);
               const asChevron = asExpanded ? '▾ ' : '▸ ';
-              let nested = '';
+              bodyHtml += `
+                <tr class="adset-row" data-adsetid="${a.adset_id}">
+                  <td style="padding-left:28px;">${asChevron}${a.adset_name}</td>
+                  <td>—</td>
+                  ${metricTds(a)}
+                </tr>
+              `;
               if (asExpanded) {
                 const ads = getAdsFilteredForAdset(a.adset_id).sort((x,y) => (y.spend||0) - (x.spend||0));
                 if (!ads.length) {
-                  nested = '<div class="detail-empty" style="margin-left:16px;">Không có ad nào.</div>';
+                  bodyHtml += `<tr class="ad-row"><td style="padding-left:48px;" colspan="${campaignColumns.length}"><div class="detail-empty">Không có ad nào.</div></td></tr>`;
                 } else {
-                  // Cấp 2 (ad): bảng đầy đủ chỉ số, CÙNG cột với bảng Campaigns ở trên, đã lọc
-                  // theo đúng khoảng ngày đang chọn (xem getAdsFilteredForAdset).
-                  nested = `
-                    <div class="table-scroll" style="margin:4px 0 10px 20px; max-height:280px;">
-                      <table>
-                        <thead><tr>
-                          <th style="text-align:left;">Ad</th>
-                          <th>Chi phí</th><th>Impressions</th><th>Clicks</th><th>CTR</th><th>CPC</th>
-                          <th>Kết quả</th><th>CPA</th><th>Order</th><th>Cost/Order</th><th>Revenue</th><th>ROAS</th>
-                        </tr></thead>
-                        <tbody>
-                          ${ads.map(ad => `
-                            <tr>
-                              <td style="text-align:left;">${ad.ad_name}</td>
-                              <td>${fmt(ad.spend)}₫</td>
-                              <td>${fmt(ad.impressions)}</td>
-                              <td>${fmt(ad.clicks)}</td>
-                              <td>${(ad.ctr || 0).toFixed(2)}%</td>
-                              <td>${fmt(ad.cpc)}₫</td>
-                              <td>${fmt(ad.results)}</td>
-                              <td>${fmt(ad.cpa)}₫</td>
-                              <td>${fmtOrNa(ad.orders)}</td>
-                              <td>${fmtOrNa(ad.cost_per_order, '₫')}</td>
-                              <td>${fmtOrNa(ad.revenue, '₫')}</td>
-                              <td>${ad.roas === null || ad.roas === undefined ? '—' : ad.roas.toFixed(2) + 'x'}</td>
-                            </tr>
-                          `).join('')}
-                        </tbody>
-                      </table>
-                    </div>`;
+                  for (const ad of ads) {
+                    bodyHtml += `
+                      <tr class="ad-row">
+                        <td style="padding-left:48px;">${ad.ad_name}</td>
+                        <td>—</td>
+                        ${metricTds(ad)}
+                      </tr>
+                    `;
+                  }
                 }
               }
-              return `<div class="adset-name-line" data-adsetid="${a.adset_id}">${asChevron}${a.adset_name}</div>${nested}`;
-            }).join('') + '</div>';
+            }
           }
-          bodyHtml += `<tr class="detail-row"><td colspan="${campaignColumns.length}">${detailBody}</td></tr>`;
         }
       }
       document.getElementById('campaignBody').innerHTML = bodyHtml;
@@ -871,10 +879,10 @@
       });
       // Bấm vào 1 dòng ad set (trong phần chi tiết đã mở rộng của campaign) để mở rộng thêm
       // 1 cấp nữa, xem từng ad riêng lẻ bên trong ad set đó (campaign -> ad set -> ad).
-      document.querySelectorAll('#campaignBody .adset-name-line').forEach(div => {
-        div.addEventListener('click', (e) => {
+      document.querySelectorAll('#campaignBody tr.adset-row td:first-child').forEach(td => {
+        td.addEventListener('click', (e) => {
           e.stopPropagation();
-          const id = div.dataset.adsetid;
+          const id = td.parentElement.dataset.adsetid;
           if (expandedAdsets.has(id)) expandedAdsets.delete(id); else expandedAdsets.add(id);
           renderFbAdsTab();
         });
