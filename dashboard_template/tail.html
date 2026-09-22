@@ -22,6 +22,14 @@
 
     let activeTab = 'overview';
 
+    // Cổng phân quyền xem theo role (BOD = xem full, MKT = chỉ xem tab Facebook Ads).
+    // Đây là lớp mã thứ 2, phía SAU lớp mật khẩu chung của cả site (Netlify Edge Function) --
+    // chỉ để tránh xem nhầm/tình cờ trong nội bộ, KHÔNG chống được người cố tình mở DevTools/
+    // View Source (toàn bộ số liệu vẫn nhúng sẵn trong file HTML này cho cả 2 role).
+    const ROLE_CODES = { bod: 'financial', mkt: 'mkt2026' };
+    let currentRole = null;
+    let selectedRoleForCode = null;
+
     const columns = [
       { key: 'channel', label: 'Kênh' },
       { key: 'shop_page', label: 'Shop/Page' },
@@ -875,6 +883,63 @@
     document.getElementById('trendShopPageFilter').addEventListener('change', e => { trendShopPage = e.target.value; renderTrendChart(); });
     document.querySelectorAll('.tab-btn').forEach(b => {
       b.addEventListener('click', () => switchTab(b.dataset.tab));
+    });
+
+    function selectRole(role) {
+      selectedRoleForCode = role;
+      document.getElementById('roleBtnBod').classList.toggle('selected', role === 'bod');
+      document.getElementById('roleBtnMkt').classList.toggle('selected', role === 'mkt');
+      document.getElementById('roleCodeRow').classList.add('show');
+      document.getElementById('roleError').textContent = '';
+      const input = document.getElementById('roleCodeInput');
+      input.value = '';
+      input.focus();
+    }
+
+    function submitRoleCode() {
+      if (!selectedRoleForCode) return;
+      const code = document.getElementById('roleCodeInput').value;
+      if (code === ROLE_CODES[selectedRoleForCode]) {
+        unlockRole(selectedRoleForCode);
+      } else {
+        document.getElementById('roleError').textContent = 'Mã không đúng, thử lại.';
+      }
+    }
+
+    function applyRoleRestrictions() {
+      const overviewBtn = document.querySelector('.tab-btn[data-tab="overview"]');
+      const ecomBtn = document.querySelector('.tab-btn[data-tab="ecom"]');
+      if (currentRole === 'mkt') {
+        overviewBtn.style.display = 'none';
+        ecomBtn.style.display = 'none';
+        switchTab('fbads');
+      } else {
+        overviewBtn.style.display = '';
+        ecomBtn.style.display = '';
+      }
+    }
+
+    function unlockRole(role) {
+      currentRole = role;
+      document.getElementById('roleGate').style.display = 'none';
+      document.getElementById('dashboardContent').style.display = 'block';
+      applyRoleRestrictions();
+      if (trendChartInstance) trendChartInstance.resize();
+    }
+
+    document.getElementById('roleBtnBod').addEventListener('click', () => selectRole('bod'));
+    document.getElementById('roleBtnMkt').addEventListener('click', () => selectRole('mkt'));
+    document.getElementById('roleCodeSubmit').addEventListener('click', submitRoleCode);
+    document.getElementById('roleCodeInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitRoleCode(); });
+    document.getElementById('roleSwitchBtn').addEventListener('click', () => {
+      currentRole = null;
+      selectedRoleForCode = null;
+      document.getElementById('dashboardContent').style.display = 'none';
+      document.getElementById('roleGate').style.display = 'block';
+      document.getElementById('roleBtnBod').classList.remove('selected');
+      document.getElementById('roleBtnMkt').classList.remove('selected');
+      document.getElementById('roleCodeRow').classList.remove('show');
+      document.getElementById('roleError').textContent = '';
     });
 
     applyPreset(null);

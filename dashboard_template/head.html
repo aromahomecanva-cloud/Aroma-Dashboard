@@ -65,10 +65,43 @@
   .prod-filter-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
   .combo-badge { display:inline-block; background:#eef2ff; color:#3949ab; font-size:10.5px; padding:1px 6px; border-radius:4px; margin-left:6px; font-weight:600; }
   .chart-box { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:16px; margin-bottom:20px; height:340px; }
+
+  .role-gate { max-width:420px; margin:60px auto; text-align:center; }
+  .role-gate h1 { font-size:20px; margin-bottom:6px; }
+  .role-gate .sub2 { color:#777; font-size:13px; margin-bottom:26px; }
+  .role-picker { display:flex; gap:14px; justify-content:center; margin-bottom:20px; }
+  .role-btn { flex:1; max-width:170px; padding:18px 10px; border:1px solid #d7dae0; background:#fff; border-radius:10px; cursor:pointer; font-size:14px; font-weight:700; color:#1a1d24; transition:.15s; }
+  .role-btn:hover { border-color:#1a1d24; }
+  .role-btn.selected { border-color:#1a1d24; background:#1a1d24; color:#fff; }
+  .role-btn .role-desc { display:block; font-size:11px; font-weight:400; color:#999; margin-top:4px; }
+  .role-btn.selected .role-desc { color:#ccc; }
+  .role-code-row { display:none; gap:8px; justify-content:center; align-items:center; }
+  .role-code-row.show { display:flex; }
+  .role-code-row input[type=password] { border:1px solid #d7dae0; border-radius:6px; padding:8px 10px; font-size:13px; width:160px; }
+  .role-code-row button { border:none; background:#1a1d24; color:#fff; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:600; cursor:pointer; }
+  .role-error { color:#c0392b; font-size:12px; margin-top:10px; min-height:16px; }
+  .role-switch-bar { display:flex; justify-content:flex-end; margin-bottom:8px; }
+  .role-switch-bar button { border:1px solid #d7dae0; background:#fff; color:#777; padding:5px 12px; border-radius:6px; font-size:11.5px; cursor:pointer; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
 </head>
 <body>
+  <div class="role-gate" id="roleGate">
+    <h1>Business Dashboard</h1>
+    <div class="sub2">Chọn chế độ xem và nhập mã truy cập</div>
+    <div class="role-picker">
+      <button class="role-btn" id="roleBtnBod" data-role="bod">BOD<span class="role-desc">Báo cáo đầy đủ</span></button>
+      <button class="role-btn" id="roleBtnMkt" data-role="mkt">MKT<span class="role-desc">Facebook Ads</span></button>
+    </div>
+    <div class="role-code-row" id="roleCodeRow">
+      <input type="password" id="roleCodeInput" placeholder="Nhập mã truy cập">
+      <button id="roleCodeSubmit">Vào xem</button>
+    </div>
+    <div class="role-error" id="roleError"></div>
+  </div>
+
+  <div id="dashboardContent" style="display:none;">
+  <div class="role-switch-bar"><button id="roleSwitchBtn">Đổi chế độ xem</button></div>
   <h1>Business Dashboard — Doanh thu / Ads / Gross Margin theo kênh &amp; shop/page</h1>
   <div class="sub" id="statusLine">Dữ liệu thật từ Sapo (đơn hàng + giá vốn) + Meta Ads — cập nhật lúc __UPDATED_AT__</div>
 
@@ -209,6 +242,7 @@
     Facebook+Instagram theo bộ lọc ngày, cộng thêm chi tiết campaign/ad set từ Meta — phần
     campaign/ad set LÀ TOÀN BỘ lịch sử, không lọc theo ngày).
   </div>
+  </div><!-- /#dashboardContent -->
 
   <script>
     const channelLabels = {"shopee": "Shopee", "facebook": "Facebook", "instagram": "Instagram", "tiktokshop": "TikTok Shop", "pos": "POS (tại quầy)", "zalo-oa": "Zalo OA", "admin": "Admin (nhập tay)", "lazada": "Lazada", "zalo": "Zalo", "web": "Website", "other": "Khác"};
