@@ -521,6 +521,16 @@
     function renderSummaryBody(list, tbodyElId, expandedSet, rerenderFn) {
       const displayRows = withChannelSummaryRows(list);
       let bodyHtml = '';
+      // Dòng "TỔNG CỘNG" gộp toàn bộ list hiện tại (đã áp bộ lọc ngày/kênh/shop-page) -- CÙNG
+      // số với các card tổng phía trên (renderTotalCards), chỉ khác là hiện ngay trong bảng để
+      // không phải kéo lên xem card khi đang xem bảng dài.
+      const grand = list.reduce((acc, r) => {
+        acc.orders += r.orders; acc.gross_revenue += r.gross_revenue; acc.total_fee += r.total_fee;
+        acc.fee_recorded += (r.fee_recorded || 0); acc.fee_estimated += (r.fee_estimated || 0);
+        acc.net_revenue += r.net_revenue; acc.cogs += r.cogs; acc.ads_spend += (r.ads_spend || 0);
+        acc.gross_margin_amount += r.gross_margin_amount;
+        return acc;
+      }, { orders:0, gross_revenue:0, total_fee:0, fee_recorded:0, fee_estimated:0, net_revenue:0, cogs:0, ads_spend:0, gross_margin_amount:0 });
       for (const r of displayRows) {
         const rowKey = (r._isSummary ? 'SUMMARY|' : '') + r.channel + '|' + (r.shop_page || '');
         const expanded = expandedSet.has(rowKey);
@@ -558,6 +568,23 @@
           }
           bodyHtml += `<tr class="detail-row"><td colspan="${columns.length}">${detailBody}</td></tr>`;
         }
+      }
+      if (list.length) {
+        bodyHtml += `
+          <tr class="grand-total-row">
+            <td colspan="2">TỔNG CỘNG</td>
+            <td>${fmt(grand.orders)}</td>
+            <td>${fmt(grand.gross_revenue)}</td>
+            <td>${fmt(grand.total_fee)} <span class="fee-pct">(${pctOfRevenue(grand.total_fee, grand.gross_revenue)}%)</span>
+              <span class="fee-sub">đã hoàn thành: ${fmt(grand.fee_recorded)}đ</span>
+              <span class="fee-sub">ước tính: ${fmt(grand.fee_estimated)}đ</span>
+            </td>
+            <td>${fmt(grand.net_revenue)} <span class="fee-pct">(${pctOfRevenue(grand.net_revenue, grand.gross_revenue)}%)</span></td>
+            <td>${fmt(grand.cogs)} <span class="fee-pct">(${pctOfRevenue(grand.cogs, grand.gross_revenue)}%)</span></td>
+            <td>${fmt(grand.ads_spend)} <span class="fee-pct">(${pctOfRevenue(grand.ads_spend, grand.gross_revenue)}%)</span></td>
+            <td>${fmt(grand.gross_margin_amount)} <span class="fee-pct">(${pctOfRevenue(grand.gross_margin_amount, grand.gross_revenue)}%)</span></td>
+          </tr>
+        `;
       }
       document.getElementById(tbodyElId).innerHTML = bodyHtml;
 
