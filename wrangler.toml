@@ -1,0 +1,10 @@
+name = "aroma-dashboard"
+compatibility_date = "2026-09-22"
+main = "./worker/index.js"
+
+[assets]
+directory = "./netlify_site"
+binding = "ASSETS"
+# BẮT BUỘC true -- đảm bảo worker/index.js (kiểm tra mật khẩu) LUÔN chạy trước khi Cloudflare
+# phục vụ file tĩnh, thay vì mặc định phục vụ file tĩnh trước rồi mới chạy Worker.
+run_worker_first = true

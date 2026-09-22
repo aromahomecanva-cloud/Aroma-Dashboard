@@ -24,13 +24,17 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    # Đưa 2 secret Netlify ra thành biến env ở cấp JOB (thay vì đọc secrets.* trực tiếp trong
+    # Đưa 2 secret Cloudflare ra thành biến env ở cấp JOB (thay vì đọc secrets.* trực tiếp trong
     # điều kiện if: bên dưới) -- vì GitHub Actions KHÔNG cho phép dùng context "secrets" trong
     # if: (lỗi "Unrecognized named-value: 'secrets'"), chỉ cho phép dùng trong "run:"/"env:".
-    # Nếu Huy chưa setup Netlify thì 2 biến này rỗng, if: env.NETLIFY_... != '' sẽ tự false.
+    # Nếu Huy chưa setup Cloudflare thì 2 biến này rỗng, if: env.CLOUDFLARE_... != '' sẽ tự false.
+    #
+    # ĐÃ CHUYỂN từ Netlify sang Cloudflare Pages (22/09/2026): gói free Netlify chỉ 300
+    # credit/tháng, mỗi lần deploy production tốn 15 credit -> chỉ ~20 lần deploy/tháng, không đủ
+    # cho lịch chạy 8 lần/ngày (~240 lần/tháng). Cloudflare Pages free 500 lần deploy/tháng.
     env:
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     steps:
       - uses: actions/checkout@v4
 
@@ -93,16 +97,26 @@ jobs:
       - name: Build static dashboard site
         run: python build_static_site.py --data data.json --out netlify_site/index.html
 
-      - name: Deploy to Netlify (internal website)
-        # Chỉ chạy khi Huy đã setup Netlify (thêm 2 secrets NETLIFY_AUTH_TOKEN + NETLIFY_SITE_ID).
-        # Nếu chưa setup thì bỏ qua bước này, KHÔNG làm fail cả pipeline chính (Sapo/Meta vẫn
-        # chạy và commit data.json bình thường ở trên) -- xem hướng dẫn setup trong README hoặc
-        # tin nhắn Claude đã gửi khi thêm tính năng này.
-        if: ${{ env.NETLIFY_AUTH_TOKEN != '' && env.NETLIFY_SITE_ID != '' }}
-        run: |
-          npm install -g netlify-cli@17
-          netlify deploy --prod --dir=netlify_site --site="$NETLIFY_SITE_ID" --auth="$NETLIFY_AUTH_TOKEN"
+      - name: Deploy to Cloudflare Workers (internal website)
+        # Chỉ chạy khi Huy đã setup Cloudflare (thêm 2 secrets CLOUDFLARE_API_TOKEN +
+        # CLOUDFLARE_ACCOUNT_ID). Nếu chưa setup thì bỏ qua bước này, KHÔNG làm fail cả pipeline
+        # chính (Sapo/Meta vẫn chạy và commit data.json bình thường ở trên).
+        #
+        # QUAN TRỌNG (cập nhật 22/09/2026): Cloudflare đã gộp Pages vào Workers -- project tạo
+        # qua "Workers & Pages > Upload your static files" giờ là kiểu "Workers with static
+        # assets", KHÔNG phải Pages project truyền thống nữa. Vì vậy KHÔNG dùng lệnh
+        # "pages deploy --project-name=..." nữa (đã lỗi thời) mà dùng "deploy" trơn -- toàn bộ
+        # cấu hình (tên project, worker script, thư mục assets) đọc từ wrangler.toml ở gốc repo.
+        # worker/index.js (làm lớp mật khẩu Basic Auth) chạy trước, sau đó gọi env.ASSETS.fetch()
+        # để trả file tĩnh netlify_site/index.html -- thay cho functions/_middleware.js (kiểu
+        # Pages Functions cũ, không còn dùng nữa).
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
 
-      - name: Netlify chưa được setup (nhắc Huy)
-        if: ${{ env.NETLIFY_AUTH_TOKEN == '' || env.NETLIFY_SITE_ID == '' }}
-        run: echo "::notice::Bỏ qua deploy Netlify vì chưa có secret NETLIFY_AUTH_TOKEN/NETLIFY_SITE_ID. Dashboard nội bộ sẽ chưa được publish cho tới khi setup xong."
+      - name: Cloudflare chưa được setup (nhắc Huy)
+        if: ${{ env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == '' }}
+        run: echo "::notice::Bỏ qua deploy Cloudflare Workers vì chưa có secret CLOUDFLARE_API_TOKEN/CLOUDFLARE_ACCOUNT_ID. Dashboard nội bộ sẽ chưa được publish cho tới khi setup xong."
