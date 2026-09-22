@@ -100,6 +100,7 @@
     let campaignSort = { key: 'spend', dir: -1 };
     let expandedCampaigns = new Set();
     let expandedAdsets = new Set();
+    let expandedCreativeTypes = new Set(); // dùng cho section breakdown Post/Reel bên dưới bảng Campaigns
 
     // Gộp các dòng campaign x ngày (campaignsDailyData, xem business_dashboard_meta.py
     // _rows_to_campaigns_daily) lại theo campaign_id, CHỈ trong khoảng [dateFrom, dateTo] đang
@@ -186,6 +187,72 @@
         g.orders += r.orders || 0;
         g.revenue += r.revenue || 0;
         if (r.ad_name) g.ad_name = r.ad_name;
+      }
+      return Object.values(groups).map(g => ({
+        ...g,
+        ctr: g.impressions ? Math.round(g.clicks / g.impressions * 10000) / 100 : 0,
+        cpc: g.clicks ? Math.round(g.spend / g.clicks) : 0,
+        cpa: g.results ? Math.round(g.spend / g.results) : null,
+        cost_per_order: g.orders ? Math.round(g.spend / g.orders) : null,
+        roas: (g.revenue && g.spend) ? Math.round(g.revenue / g.spend * 100) / 100 : null,
+      }));
+    }
+
+    // Giống getAdsFilteredForAdset() nhưng gộp TOÀN BỘ ads trong khoảng ngày đang chọn, KHÔNG
+    // giới hạn theo 1 adset_id cụ thể -- dùng cho section breakdown Post/Reel (gộp mọi campaign
+    // lại, xem getCreativeTypeBreakdown() ngay dưới).
+    function getAllAdsFiltered() {
+      const rows = (adLevelDailyData || []).filter(r => r.date >= dateFrom && r.date <= dateTo);
+      const groups = {};
+      for (const r of rows) {
+        const g = groups[r.ad_id] || (groups[r.ad_id] = {
+          ad_id: r.ad_id, ad_name: r.ad_name, adset_id: r.adset_id,
+          spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0,
+        });
+        g.spend += r.spend || 0;
+        g.impressions += r.impressions || 0;
+        g.clicks += r.clicks || 0;
+        g.results += r.results || 0;
+        g.orders += r.orders || 0;
+        g.revenue += r.revenue || 0;
+        if (r.ad_name) g.ad_name = r.ad_name;
+      }
+      return Object.values(groups).map(g => ({
+        ...g,
+        ctr: g.impressions ? Math.round(g.clicks / g.impressions * 10000) / 100 : 0,
+        cpc: g.clicks ? Math.round(g.spend / g.clicks) : 0,
+        cpa: g.results ? Math.round(g.spend / g.results) : null,
+        cost_per_order: g.orders ? Math.round(g.spend / g.orders) : null,
+        roas: (g.revenue && g.spend) ? Math.round(g.revenue / g.spend * 100) / 100 : null,
+      }));
+    }
+
+    // Phân loại creative Post/Reel dựa vào TÊN AD -- Huy chỉ chạy boost post có sẵn (không tạo
+    // creative riêng cho ads), và Meta KHÔNG trả field "loại creative" (post thường vs Reel) qua
+    // API insights cho trường hợp này. Cách gần đúng nhất hiện có: dựa theo quy ước đặt tên ad
+    // Huy đang dùng (VD "Engage_Opt_Sale_ABO_30.07_Reel" -> Reel). Nếu sau này đổi quy ước đặt
+    // tên ad, phải sửa lại hàm này cho khớp.
+    function classifyCreativeType(adName) {
+      return /reel/i.test(adName || '') ? 'Reel' : 'Post';
+    }
+
+    // Gộp kết quả getAllAdsFiltered() theo loại creative (Post/Reel) -- luôn trả về đúng 2 dòng
+    // tổng (kể cả khi 1 loại không có ad nào trong khoảng ngày đang chọn, để bảng không bị "nhảy"
+    // khi đổi filter).
+    function getCreativeTypeBreakdown() {
+      const ads = getAllAdsFiltered();
+      const groups = {
+        Post: { type: 'Post', spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0 },
+        Reel: { type: 'Reel', spend: 0, impressions: 0, clicks: 0, results: 0, orders: 0, revenue: 0 },
+      };
+      for (const a of ads) {
+        const g = groups[classifyCreativeType(a.ad_name)];
+        g.spend += a.spend || 0;
+        g.impressions += a.impressions || 0;
+        g.clicks += a.clicks || 0;
+        g.results += a.results || 0;
+        g.orders += a.orders || 0;
+        g.revenue += a.revenue || 0;
       }
       return Object.values(groups).map(g => ({
         ...g,
@@ -892,6 +959,66 @@
           const id = td.parentElement.dataset.adsetid;
           if (expandedAdsets.has(id)) expandedAdsets.delete(id); else expandedAdsets.add(id);
           renderFbAdsTab();
+        });
+      });
+
+      renderCreativeTypeSection();
+    }
+
+    // Section riêng dưới bảng Campaigns: gộp TOÀN BỘ ads (mọi campaign) theo loại creative
+    // Post/Reel (xem classifyCreativeType/getCreativeTypeBreakdown ở trên) -- theo yêu cầu Huy
+    // 22/09/2026. Luôn hiện đúng 2 dòng tổng Post/Reel, bấm vào để xổ ra từng ad bên trong (kèm
+    // link Facebook 🔗 nếu có), dùng lại metricTds() nên cột thẳng hàng y hệt bảng Campaigns.
+    function renderCreativeTypeSection() {
+      const headRow = document.getElementById('creativeTypeHeadRow');
+      if (!headRow) return; // phòng khi build từ template cũ chưa có section này
+      headRow.innerHTML = campaignColumns
+        .map(c => `<th>${c.key === 'campaign_name' ? 'Loại creative' : c.label}</th>`)
+        .join('');
+
+      const breakdown = getCreativeTypeBreakdown().sort((a, b) => (b.spend || 0) - (a.spend || 0));
+      const allAds = getAllAdsFiltered();
+
+      let bodyHtml = '';
+      for (const g of breakdown) {
+        const expanded = expandedCreativeTypes.has(g.type);
+        const chevron = expanded ? '▾ ' : '▸ ';
+        bodyHtml += `
+          <tr class="data-row" data-creativetype="${g.type}">
+            <td>${chevron}${g.type}</td>
+            <td>—</td>
+            ${metricTds(g)}
+          </tr>
+        `;
+        if (expanded) {
+          const ads = allAds.filter(a => classifyCreativeType(a.ad_name) === g.type)
+            .sort((x, y) => (y.spend || 0) - (x.spend || 0));
+          if (!ads.length) {
+            bodyHtml += `<tr class="ad-row"><td style="padding-left:28px;" colspan="${campaignColumns.length}"><div class="detail-empty">Không có ad nào.</div></td></tr>`;
+          } else {
+            for (const ad of ads) {
+              const postUrl = (adPostLinks || {})[ad.ad_id];
+              const nameHtml = postUrl
+                ? `${ad.ad_name} <a href="${postUrl}" target="_blank" rel="noopener" title="Xem bài viết trên Facebook" onclick="event.stopPropagation()" style="text-decoration:none;">🔗</a>`
+                : ad.ad_name;
+              bodyHtml += `
+                <tr class="ad-row">
+                  <td style="padding-left:28px;">${nameHtml}</td>
+                  <td>—</td>
+                  ${metricTds(ad)}
+                </tr>
+              `;
+            }
+          }
+        }
+      }
+      document.getElementById('creativeTypeBody').innerHTML = bodyHtml;
+
+      document.querySelectorAll('#creativeTypeBody tr[data-creativetype] td:first-child').forEach(td => {
+        td.addEventListener('click', () => {
+          const type = td.parentElement.dataset.creativetype;
+          if (expandedCreativeTypes.has(type)) expandedCreativeTypes.delete(type); else expandedCreativeTypes.add(type);
+          renderCreativeTypeSection();
         });
       });
     }
