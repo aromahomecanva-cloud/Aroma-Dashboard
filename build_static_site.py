@@ -37,6 +37,7 @@ def main():
     campaigns_daily = data.get("ads_campaigns_daily", [])
     adsets_daily = data.get("ads_adsets_daily", [])
     ads_ads_daily = data.get("ads_ads_daily", [])
+    ad_post_links = data.get("ad_post_links", {})
 
     updated_at_raw = data.get("updated_at", "")
     try:
@@ -66,7 +67,8 @@ def main():
         f"    const adsetsData = {j(adsets)};\n"
         f"    const campaignsDailyData = {j(campaigns_daily)};\n"
         f"    const adsetsDailyData = {j(adsets_daily)};\n"
-        f"    const adLevelDailyData = {j(ads_ads_daily)};\n\n"
+        f"    const adLevelDailyData = {j(ads_ads_daily)};\n"
+        f"    const adPostLinks = {j(ad_post_links)};\n\n"
     )
 
     full = head + "\n" + middle + tail

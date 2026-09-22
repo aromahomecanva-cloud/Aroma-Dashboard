@@ -28,6 +28,7 @@ from business_dashboard_sapo import get_orders_cached, get_variant_sku_map
 from business_dashboard_costs import load_cost_map
 from business_dashboard_meta import (
     get_ads_spend, get_ads_spend_daily_cached, get_ads_detail_cached, get_ads_spend_daily_by_channel_cached,
+    get_ad_post_links_cached,
 )
 from business_dashboard_settlement import load_settlement_fees, load_settlement_fee_breakdown
 from business_dashboard_aggregate import build_summary, build_product_breakdown, build_daily_summary, fee_join_diagnostics
@@ -50,6 +51,7 @@ SAPO_ORDERS_CACHE = BASE_DIR / "cache_sapo_orders.json.gz"
 META_ADS_DAILY_CACHE = BASE_DIR / "cache_meta_ads_daily.json.gz"
 META_ADS_DAILY_BY_CHANNEL_CACHE = BASE_DIR / "cache_meta_ads_daily_by_channel.json.gz"
 META_ADS_DETAIL_CACHE = BASE_DIR / "cache_meta_ads_detail.json.gz"
+META_AD_POST_LINKS_CACHE = BASE_DIR / "cache_meta_ad_post_links.json.gz"
 
 SAPO_INCREMENTAL_DAYS = 60
 META_INCREMENTAL_DAYS = 3
@@ -107,6 +109,17 @@ def main():
     ads_spend_by_channel = {}
     for c in ads_detail["campaigns"]:
         ads_spend_by_channel[c["channel"]] = ads_spend_by_channel.get(c["channel"], 0.0) + c["spend"]
+
+    # Link bài viết Facebook gốc cho từng ad (Huy chỉ chạy boost post có sẵn) -- thêm
+    # 22/09/2026, lỗi riêng KHÔNG chặn phần còn lại của pipeline (cùng nguyên tắc try/except
+    # riêng từng phần như ads_detail/ads_daily_by_channel ở trên).
+    ad_post_links_error = None
+    try:
+        ad_post_links = get_ad_post_links_cached(META_AD_POST_LINKS_CACHE)
+    except Exception as e:
+        ad_post_links_error = str(e)
+        print(f"[LỖI Meta ad_post_links - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {ad_post_links_error}")
+        ad_post_links = {}
 
     # Shopee Ads: đọc từ file CSV export THỦ CÔNG (chưa có API chính thức) — xem
     # business_dashboard_shopee_ads.py + shopee_ads_exports/README.md. Bọc try/except riêng,
@@ -179,6 +192,11 @@ def main():
         "ads_adsets_daily": ads_detail.get("adsets_daily", []),
         "ads_ads_daily": ads_detail.get("ads_daily", []),
         "ads_detail_error": ads_detail_error,
+        # Link bài viết Facebook gốc cho từng ad (Huy chỉ chạy boost post có sẵn) -- {ad_id: url}
+        # xem get_ad_post_links_cached trong business_dashboard_meta.py. Ad nào không có trong
+        # dict này = không lấy được link (VD ad dùng creative tự thiết kế, không phải boost post).
+        "ad_post_links": ad_post_links,
+        "ad_post_links_error": ad_post_links_error,
         "shopee_ads_daily": shopee_ads_daily,
         "shopee_ads_total_by_shop": shopee_ads_total_by_shop,
         "shopee_ads_missing_dates": shopee_ads_gaps,

@@ -854,9 +854,16 @@
                   bodyHtml += `<tr class="ad-row"><td style="padding-left:48px;" colspan="${campaignColumns.length}"><div class="detail-empty">Không có ad nào.</div></td></tr>`;
                 } else {
                   for (const ad of ads) {
+                    // Huy chỉ chạy boost post có sẵn -- nếu Meta trả được link bài viết gốc
+                    // (adPostLinks, xem get_ad_post_links_cached ở backend) thì gắn icon 🔗 mở
+                    // thẳng bài viết trên Facebook ở tab mới, ngay cạnh tên ad.
+                    const postUrl = (adPostLinks || {})[ad.ad_id];
+                    const nameHtml = postUrl
+                      ? `${ad.ad_name} <a href="${postUrl}" target="_blank" rel="noopener" title="Xem bài viết trên Facebook" onclick="event.stopPropagation()" style="text-decoration:none;">🔗</a>`
+                      : ad.ad_name;
                     bodyHtml += `
                       <tr class="ad-row">
-                        <td style="padding-left:48px;">${ad.ad_name}</td>
+                        <td style="padding-left:48px;">${nameHtml}</td>
                         <td>—</td>
                         ${metricTds(ad)}
                       </tr>

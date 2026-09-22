@@ -776,6 +776,58 @@ def get_ads_detail_cached(cache_path, incremental_days: int = 3) -> dict:
     }
 
 
+def get_ad_post_links_cached(cache_path) -> dict:
+    """Lấy link bài viết Facebook GỐC (trên Trang) mà mỗi ad đang boost -- thêm 22/09/2026 theo
+    yêu cầu Huy: Huy CHỈ chạy kiểu "boost bài viết có sẵn" (Page Post Engagement), không tự tạo
+    creative riêng cho từng ad, nên mỗi ad luôn gắn với ĐÚNG 1 bài viết trên Trang, lấy qua field
+    creative{effective_object_story_id} (dạng "{page_id}_{post_id}") -- gọi endpoint /ads (KHÔNG
+    phải /insights, /insights không trả field creative) để lấy 1 lần cho TOÀN BỘ ads trong tài
+    khoản, không tách theo ngày.
+
+    Cache VĨNH VIỄN theo ad_id (effective_object_story_id KHÔNG đổi sau khi ad được tạo) -- mỗi
+    lần chạy chỉ hỏi thêm ad_id CHƯA có trong cache (ads mới tạo từ lần chạy trước), không hỏi
+    lại toàn bộ mỗi lần (đỡ tốn quota Meta). Trả về {ad_id: post_url}; ad nào không lấy được
+    effective_object_story_id (VD ad dùng creative tự thiết kế, không phải boost post) thì
+    KHÔNG có trong dict -- dashboard tự hiểu là không có link để hiện.
+
+    LƯU Ý: hàm này CHƯA được test với API thật (không có access token trong môi trường code) --
+    nếu field "creative{effective_object_story_id}" sai tên/không đủ quyền, lỗi sẽ được BẮT và
+    GHI VÀO ads_detail_error (xem business_dashboard_export_json.py) thay vì làm sập cả pipeline,
+    nhưng cần xem log GitHub Actions lần chạy đầu để xác nhận có lấy được data thật hay không."""
+    if Config.DEMO_MODE:
+        return {}
+
+    cache = _load_cache(cache_path)
+    links = cache.get("links", {})
+    known_ad_ids = set(links.keys())
+
+    url = f"https://graph.facebook.com/{Config.META_API_VERSION}/{Config.META_AD_ACCOUNT_ID}/ads"
+    params = {
+        "fields": "id,creative{effective_object_story_id}",
+        "limit": 500,
+        "access_token": Config.META_ACCESS_TOKEN,
+    }
+    rows = _get_paginated(url, params)
+
+    added = 0
+    for row in rows:
+        ad_id = row.get("id")
+        if not ad_id or ad_id in known_ad_ids:
+            continue
+        creative = row.get("creative") or {}
+        story_id = creative.get("effective_object_story_id")
+        if story_id and "_" in story_id:
+            page_id, post_id = story_id.split("_", 1)
+            links[ad_id] = f"https://www.facebook.com/{page_id}/posts/{post_id}"
+            added += 1
+
+    print(f"[Meta ad_post_links cache] Quét {len(rows)} ad, thêm {added} link bài viết mới -> "
+          f"tổng {len(links)} ad có link.")
+    cache["links"] = links
+    _save_cache(cache_path, cache)
+    return links
+
+
 # ---------------------------------------------------------------------------
 # DEMO DATA
 # ---------------------------------------------------------------------------
