@@ -621,14 +621,22 @@
       // (xem business_dashboard_aggregate.py: gross_margin_amount = net_revenue - cogs - ads_spend,
       // ads_spend mỗi dòng đã gồm CẢ Meta (facebook/instagram) LẪN Shopee/TikTok Ads) -> KHÔNG trừ
       // thêm ads_spend lần nữa ở đây (xem banner cuối trang — trước đây có bug trừ 2 lần).
+      //
+      // Role MKT (mã mkt2026) chỉ xem được tab Facebook Ads, và trong đó KHÔNG được thấy giá vốn
+      // (COGS)/Gross margin (số liệu tài chính nội bộ, ngoài phạm vi công việc MKT) -- yêu cầu
+      // Huy 23/09/2026. Chỉ ẩn ở card "fbBusinessCards" (tab Facebook Ads); tab Tổng quan/E-com
+      // (chỉ BOD mới xem được, xem applyRoleRestrictions) vẫn hiện đầy đủ như cũ.
+      const hideCogsMargin = currentRole === 'mkt' && cardsElId === 'fbBusinessCards';
+      const cogsCardHtml = hideCogsMargin ? '' : `<div class="card"><div class="label">Giá vốn (COGS)</div><div class="value">${fmt(totals.cogs)}₫ <span class="fee-pct">(${pctOfRevenue(totals.cogs, totals.gross)}%)</span></div></div>`;
+      const marginCardHtml = hideCogsMargin ? '' : `<div class="card" style="border-color:#37c98b;"><div class="label">Gross margin (đã trừ Ads)</div><div class="value">${fmt(totals.margin)}₫ <span class="fee-pct">(${pctOfRevenue(totals.margin, totals.gross)}%)</span></div></div>`;
       document.getElementById(cardsElId).innerHTML = `
         <div class="card"><div class="label">Số đơn</div><div class="value">${fmt(totals.orders)}</div></div>
         <div class="card"><div class="label">Doanh thu thuần</div><div class="value">${fmt(totals.gross)}₫</div></div>
         <div class="card"><div class="label">Tổng phí</div><div class="value">${fmt(totals.fee)}₫ <span class="fee-pct">(${pctOfRevenue(totals.fee, totals.gross)}%)</span></div></div>
         <div class="card"><div class="label">Doanh thu thực nhận</div><div class="value">${fmt(totals.net)}₫ <span class="fee-pct">(${pctOfRevenue(totals.net, totals.gross)}%)</span></div></div>
-        <div class="card"><div class="label">Giá vốn (COGS)</div><div class="value">${fmt(totals.cogs)}₫ <span class="fee-pct">(${pctOfRevenue(totals.cogs, totals.gross)}%)</span></div></div>
+        ${cogsCardHtml}
         <div class="card" style="border-color:#ff6b6b;"><div class="label">Tổng Ads (Meta + Shopee/TikTok)</div><div class="value">${fmt(totals.ads)}₫ <span class="fee-pct">(${pctOfRevenue(totals.ads, totals.gross)}%)</span></div></div>
-        <div class="card" style="border-color:#37c98b;"><div class="label">Gross margin (đã trừ Ads)</div><div class="value">${fmt(totals.margin)}₫ <span class="fee-pct">(${pctOfRevenue(totals.margin, totals.gross)}%)</span></div></div>
+        ${marginCardHtml}
       `;
     }
 
@@ -1172,6 +1180,11 @@
         overviewBtn.style.display = '';
         ecomBtn.style.display = '';
       }
+      // renderAll() (chạy 1 lần lúc tải trang, TRƯỚC KHI chọn role) đã vẽ sẵn tab Facebook Ads
+      // với currentRole = null -> phải render lại tab này SAU KHI currentRole được set (bấm chọn
+      // BOD/MKT) để card COGS/Gross margin ẩn/hiện đúng theo role (xem renderTotalCards) -- nếu
+      // không, switchTab('fbads') ở trên chỉ đổi hiển thị chứ không vẽ lại nội dung.
+      renderFbAdsTab();
     }
 
     function unlockRole(role) {
