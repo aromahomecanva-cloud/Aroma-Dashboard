@@ -19,6 +19,7 @@ def main():
     ap.add_argument("--head", default="dashboard_template/head.html")
     ap.add_argument("--tail", default="dashboard_template/tail.html")
     ap.add_argument("--out", default="netlify_site/index.html")
+    ap.add_argument("--overhead", default="monthly_overhead.json")
     args = ap.parse_args()
 
     try:
@@ -27,6 +28,20 @@ def main():
     except Exception as e:
         print(f"FAILED to parse {args.data}: {e}", file=sys.stderr)
         sys.exit(1)
+
+    # Chi phí vận hành hàng tháng (nhân viên + mặt bằng) -- file RIÊNG, KHÔNG nằm trong data.json
+    # vì đây là số Huy tự nhập tay (từ bảng lương/hợp đồng thuê), không lấy từ Sapo/Meta API nào.
+    # Không bắt buộc phải có file này (dashboard vẫn chạy bình thường, chỉ là thiếu 2 card "Chi
+    # phí vận hành"/"Lợi nhuận ròng ước tính" ở tab Tổng quan -- xem computeOverheadForRange() ở
+    # dashboard_template/tail.html).
+    try:
+        with open(args.overhead, encoding="utf-8") as f:
+            monthly_overhead = json.load(f)
+    except FileNotFoundError:
+        monthly_overhead = {}
+    except Exception as e:
+        print(f"WARNING: failed to parse {args.overhead}: {e} -- bỏ qua, dashboard vẫn build bình thường.", file=sys.stderr)
+        monthly_overhead = {}
 
     daily = data.get("daily", [])
     ads_daily = data.get("ads_daily", [])
@@ -68,7 +83,8 @@ def main():
         f"    const campaignsDailyData = {j(campaigns_daily)};\n"
         f"    const adsetsDailyData = {j(adsets_daily)};\n"
         f"    const adLevelDailyData = {j(ads_ads_daily)};\n"
-        f"    const adPostLinks = {j(ad_post_links)};\n\n"
+        f"    const adPostLinks = {j(ad_post_links)};\n"
+        f"    const monthlyOverhead = {j(monthly_overhead)};\n\n"
     )
 
     full = head + "\n" + middle + tail

@@ -610,6 +610,53 @@
       });
     }
 
+    // Cộng dồn chi phí vận hành (nhân viên + mặt bằng, xem monthly_overhead.json) phân bổ theo
+    // NGÀY qua khoảng [fromStr, toStr] đang chọn -- số tiền/tháng chia đều cho số ngày CỦA THÁNG
+    // ĐÓ rồi cộng dồn từng ngày, để 1 khoảng ngày lỡ vắt qua 2 tháng vẫn tính đúng tỷ lệ (không
+    // cộng nguyên cả 2 tháng). Nhân viên: dùng staff_cost_by_month[tháng] nếu có số liệu lương
+    // THẬT của tháng đó, không thì dùng staff_cost_default (= trung bình 07-09/2026, Huy xác
+    // nhận 24/09/2026 dùng cách này ước tính cho các tháng cũ hơn chưa có bảng lương). Mặt bằng:
+    // tương tự, dùng rent_cost_by_month[tháng] nếu có override riêng, không thì rent_cost_default.
+    function computeOverheadForRange(fromStr, toStr) {
+      const overhead = monthlyOverhead || {};
+      const staffByMonth = overhead.staff_cost_by_month || {};
+      const staffDefault = overhead.staff_cost_default;
+      const rentByMonth = overhead.rent_cost_by_month || {};
+      const rentDefault = overhead.rent_cost_default;
+
+      let staffTotal = 0, rentTotal = 0;
+      const missingStaffMonths = new Set(); // tháng hoàn toàn không tính được (thiếu cả số thật lẫn default)
+      const estimatedStaffMonths = new Set(); // tháng dùng staff_cost_default (không có số lương thật)
+      const from = new Date(fromStr + 'T00:00:00');
+      const to = new Date(toStr + 'T00:00:00');
+      for (let d = new Date(from); d <= to; d.setDate(d.getDate() + 1)) {
+        const y = d.getFullYear(), m = d.getMonth() + 1;
+        const monthKey = `${y}-${String(m).padStart(2, '0')}`;
+        const daysInMonth = new Date(y, m, 0).getDate();
+
+        if (staffByMonth[monthKey] !== undefined) {
+          staffTotal += staffByMonth[monthKey] / daysInMonth;
+        } else if (staffDefault !== undefined) {
+          staffTotal += staffDefault / daysInMonth;
+          estimatedStaffMonths.add(monthKey);
+        } else {
+          missingStaffMonths.add(monthKey);
+        }
+
+        const rentMonthAmt = rentByMonth[monthKey] !== undefined ? rentByMonth[monthKey] : rentDefault;
+        if (rentMonthAmt !== undefined) {
+          rentTotal += rentMonthAmt / daysInMonth;
+        }
+      }
+      return {
+        staff: staffTotal,
+        rent: rentTotal,
+        total: staffTotal + rentTotal,
+        missingStaffMonths: [...missingStaffMonths].sort(),
+        estimatedStaffMonths: [...estimatedStaffMonths].sort(),
+      };
+    }
+
     function renderTotalCards(list, cardsElId) {
       const totals = list.reduce((acc, r) => {
         acc.gross += r.gross_revenue; acc.fee += r.total_fee; acc.net += r.net_revenue; acc.cogs += r.cogs;
@@ -629,6 +676,39 @@
       const hideCogsMargin = currentRole === 'mkt' && cardsElId === 'fbBusinessCards';
       const cogsCardHtml = hideCogsMargin ? '' : `<div class="card"><div class="label">Giá vốn (COGS)</div><div class="value">${fmt(totals.cogs)}₫ <span class="fee-pct">(${pctOfRevenue(totals.cogs, totals.gross)}%)</span></div></div>`;
       const marginCardHtml = hideCogsMargin ? '' : `<div class="card" style="border-color:#37c98b;"><div class="label">Gross margin (đã trừ Ads)</div><div class="value">${fmt(totals.margin)}₫ <span class="fee-pct">(${pctOfRevenue(totals.margin, totals.gross)}%)</span></div></div>`;
+
+      // Chi phí vận hành (nhân viên + mặt bằng) và Lợi nhuận ròng ước tính -- CHỈ hiện ở card tổng
+      // của tab Tổng quan ('totalCards', gộp MỌI kênh), KHÔNG hiện ở E-com/Facebook Ads (2 tab đó
+      // chỉ là 1 phần doanh thu công ty, trừ nguyên chi phí vận hành CẢ CÔNG TY vào đó sẽ sai) --
+      // yêu cầu Huy 23-24/09/2026. Số liệu KHÔNG lấy từ Sapo/Meta, Huy tự nhập tay ở
+      // monthly_overhead.json (xem computeOverheadForRange() ở trên) nên gọi là "ước tính".
+      let overheadCardsHtml = '';
+      if (cardsElId === 'totalCards') {
+        const overhead = computeOverheadForRange(dateFrom, dateTo);
+        const netMargin = totals.margin - overhead.total;
+        // Khoảng ngày dài (VD "Toàn bộ lịch sử") có thể có RẤT NHIỀU tháng phải dùng lương ước
+        // tính (chỉ mới có bảng lương thật từ 07/2026) -- liệt kê hết sẽ tràn card, nên > 3 tháng
+        // thì rút gọn thành số lượng thay vì liệt kê từng tháng. "estimatedStaffMonths" (dùng
+        // staff_cost_default) khác "missingStaffMonths" (hoàn toàn không tính được, không có cả
+        // default) -- ưu tiên báo missing trước vì đó là lỗi cấu hình thật sự cần Huy để ý.
+        let noteParts = [];
+        if (overhead.missingStaffMonths.length) {
+          noteParts.push(overhead.missingStaffMonths.length > 3
+            ? `thiếu lương ${overhead.missingStaffMonths.length} tháng`
+            : `thiếu lương tháng ${overhead.missingStaffMonths.join(', ')}`);
+        }
+        if (overhead.estimatedStaffMonths.length) {
+          noteParts.push(overhead.estimatedStaffMonths.length > 3
+            ? `lương ${overhead.estimatedStaffMonths.length} tháng là ước tính (trung bình 07-09/2026)`
+            : `lương tháng ${overhead.estimatedStaffMonths.join(', ')} là ước tính (trung bình 07-09/2026)`);
+        }
+        const missingNote = noteParts.length ? ` <span class="fee-pct">(${noteParts.join('; ')})</span>` : '';
+        overheadCardsHtml = `
+          <div class="card"><div class="label">Chi phí vận hành (NV + mặt bằng)</div><div class="value">${fmt(overhead.total)}₫${missingNote}</div></div>
+          <div class="card" style="border-color:#37c98b;"><div class="label">Lợi nhuận ròng ước tính</div><div class="value">${fmt(netMargin)}₫ <span class="fee-pct">(${pctOfRevenue(netMargin, totals.gross)}%)</span></div></div>
+        `;
+      }
+
       document.getElementById(cardsElId).innerHTML = `
         <div class="card"><div class="label">Số đơn</div><div class="value">${fmt(totals.orders)}</div></div>
         <div class="card"><div class="label">Doanh thu thuần</div><div class="value">${fmt(totals.gross)}₫</div></div>
@@ -637,6 +717,7 @@
         ${cogsCardHtml}
         <div class="card" style="border-color:#ff6b6b;"><div class="label">Tổng Ads (Meta + Shopee/TikTok)</div><div class="value">${fmt(totals.ads)}₫ <span class="fee-pct">(${pctOfRevenue(totals.ads, totals.gross)}%)</span></div></div>
         ${marginCardHtml}
+        ${overheadCardsHtml}
       `;
     }
 

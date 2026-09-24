@@ -1,0 +1,17 @@
+{
+  "_comment": "Chi phí vận hành hàng tháng (nhân viên + mặt bằng) -- KHÔNG lấy từ Sapo/Meta API, Huy tự cập nhật thủ công file này khi có số liệu mới (từ bảng lương, hợp đồng thuê mặt bằng...). Dashboard dùng để tính 'Lợi nhuận ròng ước tính' = Gross margin - chi phí NV - chi phí mặt bằng, phân bổ theo NGÀY trong khoảng thời gian đang chọn (số tiền/tháng chia đều cho số ngày của tháng đó).",
+
+  "staff_cost_by_month": {
+    "_comment": "Lấy từ bảng theo dõi lương (cột 'Tổng CP NV' = thực nhận + BHXH 32%). Key dạng 'YYYY-MM'. Tháng nào CHƯA có trong đây thì dùng staff_cost_default bên dưới (Huy xác nhận 24/09/2026 dùng trung bình 3 tháng đã có làm ước tính cho các tháng cũ hơn).",
+    "2026-07": 75484831,
+    "2026-08": 105553689,
+    "2026-09": 104258673
+  },
+  "staff_cost_default": 95099064,
+  "_staff_default_comment": "= trung bình cộng 3 tháng 07-09/2026 ((75.484.831+105.553.689+104.258.673)/3), dùng làm ƯỚC TÍNH chi phí nhân viên cho các tháng CHƯA có số liệu thật trong staff_cost_by_month (chủ yếu là các tháng trước 07/2026). Khi có thêm số liệu lương tháng mới, thêm vào staff_cost_by_month ở trên; có thể cân nhắc tính lại trung bình này định kỳ nếu muốn chính xác hơn.",
+
+  "rent_cost_default": 33000000,
+  "_rent_comment": "rent_cost_default = ước tính mặt bằng hàng tháng, áp dụng cho MỌI tháng không có override riêng trong rent_cost_by_month bên dưới. Breakdown 23/09/2026 (Huy cung cấp): (1) 20/1/5 Đặng Thùy Trâm: thuê 17.000.000 + điện 4.000.000 = 21.000.000, dùng 100% cho kinh doanh -> tính đủ 21.000.000. (2) 20/1/10 Đặng Thùy Trâm: thuê 22.000.000 + điện 2.000.000 = 24.000.000, chỉ dùng ~50% cho kinh doanh (chủ yếu làm kho + ở, do thu hẹp kinh doanh) -> tính 50% = 12.000.000. Tổng = 21.000.000 + 12.000.000 = 33.000.000. Nếu tỷ lệ sử dụng hoặc tiền thuê/điện thay đổi, sửa lại số này (hoặc thêm override theo tháng cụ thể vào rent_cost_by_month).",
+  "rent_cost_by_month": {
+  }
+}
