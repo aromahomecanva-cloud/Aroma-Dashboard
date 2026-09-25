@@ -49,6 +49,12 @@ _HEADER_RANGE_RE = re.compile(r"^Khoảng thời gian,(\d{2}/\d{2}/\d{4})\s*-\s*
 _HEADER_ROW_PREFIX = "Thứ tự,"
 
 REQUIRED_COL = "Chi phí"
+# Tên chiến dịch "Dịch Vụ Hiển thị" -- THƯỜNG đặt theo tên sản phẩm (VD "NẾN TOP 1 - V1",
+# "Nước Hoa Nam - 12.8") nên dùng được để phân loại theo NHÓM NGÀNH HÀNG (categorizeProduct() ở
+# dashboard_template/tail.html) khi so sánh hiệu quả ads theo cate -- xem load_shopee_ads_
+# campaign_daily(). Không phải mã sản phẩm chuẩn (cột "Mã sản phẩm" hầu như luôn rỗng "-" trong
+# thực tế), nên đây là cách suy luận GẦN ĐÚNG theo tên, không phải join chính xác theo SKU.
+NAME_COL = "Tên Dịch vụ Hiển thị"
 # "Doanh số" = doanh thu Shopee TỰ GHI NHẬN do quảng cáo mang lại (gồm cả chuyển đổi gián tiếp,
 # KHÁC "Doanh số trực tiếp" chỉ tính chuyển đổi trực tiếp từ quảng cáo) -- dùng để tính CIR Ads
 # (= Chi phí / Doanh thu do ads mang lại, theo yêu cầu Huy 25/09/2026, về bản chất giống cột
@@ -138,12 +144,33 @@ def _read_one_export(path: Path) -> dict | None:
     else:
         ads_revenue = 0.0
 
+    # Breakdown theo TỪNG DÒNG (~1 "Dịch Vụ Hiển thị" = gần giống 1 campaign/sản phẩm quảng cáo)
+    # -- dùng cho so sánh hiệu quả ads theo NHÓM NGÀNH HÀNG (yêu cầu Huy 25/09/2026). Gộp theo
+    # TÊN (nhiều dòng có thể trùng tên nếu Shopee tách theo vị trí hiển thị) để mỗi sản phẩm chỉ
+    # có 1 dòng/file.
+    campaigns = []
+    if NAME_COL in df.columns:
+        tmp = df[[NAME_COL, REQUIRED_COL] + ([REVENUE_COL] if REVENUE_COL in df.columns else [])].copy()
+        tmp[REQUIRED_COL] = pd.to_numeric(tmp[REQUIRED_COL], errors="coerce").fillna(0)
+        if REVENUE_COL in df.columns:
+            tmp[REVENUE_COL] = pd.to_numeric(tmp[REVENUE_COL], errors="coerce").fillna(0)
+        else:
+            tmp[REVENUE_COL] = 0.0
+        grouped = tmp.groupby(NAME_COL, as_index=False).sum(numeric_only=True)
+        for _, row in grouped.iterrows():
+            campaigns.append({
+                "name": str(row[NAME_COL]),
+                "spend": float(row[REQUIRED_COL]) * (1 + Config.SHOPEE_ADS_VAT_RATE),
+                "ads_revenue": float(row[REVENUE_COL]),
+            })
+
     return {
         "shop_name": shop_name,
         "date": date_from,
         "spend": spend,
         "spend_before_vat": spend_before_vat,
         "ads_revenue": ads_revenue,
+        "campaigns": campaigns,
         "rows": len(df),
         "file": path.name,
     }
@@ -162,7 +189,7 @@ def load_shopee_ads_daily() -> pd.DataFrame:
     spend_before_vat (số thuần, tiện đối chiếu/debug).
     """
     root = Config.SHOPEE_ADS_DIR
-    cols = ["date", "shop_name", "spend", "spend_before_vat", "ads_revenue"]
+    cols = ["date", "shop_name", "spend", "spend_before_vat", "ads_revenue", "campaigns"]
     if not root.exists():
         return pd.DataFrame(columns=cols)
 
@@ -187,7 +214,7 @@ def load_shopee_ads_daily() -> pd.DataFrame:
     # riêng lẻ từng cột, để 3 số này LUÔN cùng 1 nguồn, không bị lệch cặp (VD lấy nhầm spend của
     # file A nhưng ads_revenue của file B).
     idx = df.groupby(["shop_name", "date"])["spend"].idxmax()
-    agg = df.loc[idx, ["shop_name", "date", "spend", "spend_before_vat", "ads_revenue"]]
+    agg = df.loc[idx, ["shop_name", "date", "spend", "spend_before_vat", "ads_revenue", "campaigns"]]
     return agg.sort_values(["shop_name", "date"]).reset_index(drop=True)
 
 
@@ -223,6 +250,31 @@ def load_shopee_ads_revenue_daily() -> list:
         {"date": r["date"], "shop_name": r["shop_name"], "ads_revenue": r["ads_revenue"]}
         for _, r in daily.iterrows()
     ]
+
+
+def load_shopee_ads_campaign_daily() -> list:
+    """
+    Trả về [{"date", "shop_name", "campaign_name", "spend", "ads_revenue"}] -- breakdown theo
+    TỪNG "Dịch Vụ Hiển thị" (~1 dòng = 1 sản phẩm/campaign quảng cáo, xem NAME_COL) theo ngày x
+    shop. Dùng để so sánh hiệu quả ads theo NHÓM NGÀNH HÀNG ở dashboard (categorizeProduct() ở
+    dashboard_template/tail.html suy luận nhóm hàng từ campaign_name, vì tên "Dịch Vụ Hiển thị"
+    Huy đặt thường trùng/gần tên sản phẩm) -- yêu cầu Huy 25/09/2026. Granular hơn
+    load_shopee_ads_revenue_daily() (chỉ có tổng/ngày/shop, không tách theo sản phẩm).
+    """
+    daily = load_shopee_ads_daily()
+    if daily.empty:
+        return []
+    out = []
+    for _, r in daily.iterrows():
+        for c in (r["campaigns"] or []):
+            out.append({
+                "date": r["date"],
+                "shop_name": r["shop_name"],
+                "campaign_name": c["name"],
+                "spend": c["spend"],
+                "ads_revenue": c["ads_revenue"],
+            })
+    return out
 
 
 def load_shopee_ads_total_by_shop() -> list:

@@ -37,7 +37,7 @@ from business_dashboard_debug_revenue import run_check as run_revenue_check
 from business_dashboard_ads_rules import RULES_CONFIG, evaluate_rules, any_rule_active
 from business_dashboard_shopee_ads import (
     load_shopee_ads_daily_by_channel, load_shopee_ads_total_by_shop, load_shopee_ads_revenue_daily,
-    gap_check as shopee_ads_gap_check,
+    load_shopee_ads_campaign_daily, gap_check as shopee_ads_gap_check,
 )
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -135,11 +135,15 @@ def main():
         # RIÊNG khỏi shopee_ads_daily (chỉ có spend) vì đây không phải input cho pipeline doanh
         # thu chính, chỉ phục vụ so sánh hiệu quả ads giữa các shop.
         shopee_ads_revenue_daily = load_shopee_ads_revenue_daily()
+        # Breakdown theo TỪNG sản phẩm/campaign quảng cáo (không chỉ tổng/ngày) -- dùng cho view
+        # "Hiệu quả ads theo nhóm ngành hàng" ở dashboard (yêu cầu Huy 25/09/2026).
+        shopee_ads_campaign_daily = load_shopee_ads_campaign_daily()
     except Exception as e:
         shopee_ads_error = str(e)
         print(f"[LỖI Shopee Ads - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {shopee_ads_error}")
         shopee_ads_daily, shopee_ads_total_by_shop, shopee_ads_gaps = [], [], {}
         shopee_ads_revenue_daily = []
+        shopee_ads_campaign_daily = []
 
     # Rule cảnh báo ads/ad set (khung đã dựng sẵn, ngưỡng cụ thể user sẽ điền sau — xem
     # business_dashboard_ads_rules.py). Chỉ tính violations nếu có ít nhất 1 rule đã bật.
@@ -207,6 +211,7 @@ def main():
         "shopee_ads_daily": shopee_ads_daily,
         "shopee_ads_total_by_shop": shopee_ads_total_by_shop,
         "shopee_ads_revenue_daily": shopee_ads_revenue_daily,
+        "shopee_ads_campaign_daily": shopee_ads_campaign_daily,
         "shopee_ads_missing_dates": shopee_ads_gaps,
         "shopee_ads_error": shopee_ads_error,
         "ads_rules_config": RULES_CONFIG,
