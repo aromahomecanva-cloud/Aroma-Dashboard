@@ -36,7 +36,8 @@ from business_dashboard_debug_fee_match import run_diagnostics as run_fee_match_
 from business_dashboard_debug_revenue import run_check as run_revenue_check
 from business_dashboard_ads_rules import RULES_CONFIG, evaluate_rules, any_rule_active
 from business_dashboard_shopee_ads import (
-    load_shopee_ads_daily_by_channel, load_shopee_ads_total_by_shop, gap_check as shopee_ads_gap_check,
+    load_shopee_ads_daily_by_channel, load_shopee_ads_total_by_shop, load_shopee_ads_revenue_daily,
+    gap_check as shopee_ads_gap_check,
 )
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -129,10 +130,16 @@ def main():
         shopee_ads_daily = load_shopee_ads_daily_by_channel()
         shopee_ads_total_by_shop = load_shopee_ads_total_by_shop()
         shopee_ads_gaps = shopee_ads_gap_check()
+        # Doanh thu do Shopee Ads tự ghi nhận (cột "Doanh số"), theo ngày x shop -- dùng để tính
+        # CIR Ads ở dashboard (Chi phí ads / Doanh thu ads), theo yêu cầu Huy 25/09/2026. TÁCH
+        # RIÊNG khỏi shopee_ads_daily (chỉ có spend) vì đây không phải input cho pipeline doanh
+        # thu chính, chỉ phục vụ so sánh hiệu quả ads giữa các shop.
+        shopee_ads_revenue_daily = load_shopee_ads_revenue_daily()
     except Exception as e:
         shopee_ads_error = str(e)
         print(f"[LỖI Shopee Ads - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {shopee_ads_error}")
         shopee_ads_daily, shopee_ads_total_by_shop, shopee_ads_gaps = [], [], {}
+        shopee_ads_revenue_daily = []
 
     # Rule cảnh báo ads/ad set (khung đã dựng sẵn, ngưỡng cụ thể user sẽ điền sau — xem
     # business_dashboard_ads_rules.py). Chỉ tính violations nếu có ít nhất 1 rule đã bật.
@@ -199,6 +206,7 @@ def main():
         "ad_post_links_error": ad_post_links_error,
         "shopee_ads_daily": shopee_ads_daily,
         "shopee_ads_total_by_shop": shopee_ads_total_by_shop,
+        "shopee_ads_revenue_daily": shopee_ads_revenue_daily,
         "shopee_ads_missing_dates": shopee_ads_gaps,
         "shopee_ads_error": shopee_ads_error,
         "ads_rules_config": RULES_CONFIG,

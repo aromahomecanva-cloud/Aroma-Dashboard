@@ -13,6 +13,7 @@
   body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background:#f7f8fa; color:#1a1d24; margin:0; padding:20px; }
   h1 { font-size:18px; margin:0 0 4px 0; }
   h2 { font-size:14px; margin:24px 0 10px 0; }
+  h3 { font-size:12.5px; margin:18px 0 8px 0; color:#444; }
   .sub { color:#666; font-size:12px; margin-bottom:14px; }
   .banner { background:#fff4d6; border:1px solid #e8b93a; padding:10px 14px; border-radius:8px; margin-bottom:16px; font-size:12.5px; line-height:1.5; }
 
@@ -71,6 +72,8 @@
   .empty-note { font-size:12px; color:#999; padding:10px; }
   .section-note { font-size:11.5px; color:#999; margin:-4px 0 10px 0; }
   .prod-filter-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:10px; }
+  .whatif-row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:14px; font-size:12.5px; }
+  .whatif-row input[type="number"] { border:1px solid #d7dae0; border-radius:6px; padding:5px 8px; font-size:12.5px; width:150px; }
   .combo-badge { display:inline-block; background:#eef2ff; color:#3949ab; font-size:10.5px; padding:1px 6px; border-radius:4px; margin-left:6px; font-weight:600; }
   .chart-box { background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:16px; margin-bottom:20px; height:340px; }
 
@@ -189,6 +192,46 @@
       <table>
         <thead><tr id="productHeadRow"></tr></thead>
         <tbody id="productBody"></tbody>
+      </table>
+    </div>
+
+    <h2>Shopee Ads: Phân bổ ngân sách 2 shop</h2>
+    <div class="section-note">4 view dưới đây phục vụ mục tiêu tối đa hoá lợi nhuận khi phân bổ ngân sách Shopee Ads giữa 2 shop — theo yêu cầu Huy 25/09/2026, sau khi phát hiện shop Mall (The Art Of Scent) có phí sàn (~31-32% doanh thu ĐÃ HOÀN THÀNH) cao hơn shop thường (Góc Hương Thơm, ~24%) và COGS cũng cao hơn đáng kể. <b>Fee % ở đây tính trên doanh thu ĐÃ GHI NHẬN phí thật (revenue_recorded)</b>, KHÔNG tính trên tổng doanh thu gộp (sẽ bị pha loãng bởi đơn chưa hoàn thành, ra số thấp giả tạo — xem lại banner cuối trang). Cả 4 view đều lọc theo khoảng ngày đang chọn ở đầu trang, CHỈ tính 2 shop Shopee chính (Góc Hương Thơm, The Art Of Scent), không gồm shop/kênh khác.</div>
+
+    <h3>1. So sánh hiệu quả 2 shop</h3>
+    <div class="section-note">"Lợi nhuận/1đ ads" = (Doanh thu thực nhận − COGS − Ads spend) ÷ Ads spend — chỉ số nên dùng để QUYẾT ĐỊNH rót ngân sách, vì ROAS (doanh thu/ads) bỏ qua chênh lệch phí sàn + COGS giữa 2 shop nên có thể đánh lừa là 2 shop hiệu quả ngang nhau. <b>CIR Ads</b> = Ads spend ÷ Doanh thu DO ADS MANG LẠI (Shopee tự ghi nhận qua cột "Doanh số" trong file export) — đo hiệu quả CỦA RIÊNG hoạt động chạy ads, càng THẤP càng tốt. <b>CIR Total</b> = Ads spend ÷ Doanh thu TOÀN SHOP (gồm cả đơn không đến từ ads) — đo ads đang "ăn" bao nhiêu % trên tổng doanh thu shop, phản ánh mức độ phụ thuộc vào ads của cả shop.</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr id="shopeeCompareHeadRow"></tr></thead>
+        <tbody id="shopeeCompareBody"></tbody>
+      </table>
+    </div>
+
+    <h3>2. Hiệu suất theo mức chi ads/ngày</h3>
+    <div class="section-note">Mỗi điểm = 1 ngày của 1 shop. Trục ngang = Ads spend ngày đó, trục dọc = Lợi nhuận/1đ ads ngày đó. Nếu 1 shop có xu hướng điểm đi XUỐNG khi trục ngang tăng (chi càng nhiều, lợi nhuận/đồng càng giảm) — đó là dấu hiệu shop đó đang "bão hoà" ngân sách, tăng thêm tiền sẽ kém hiệu quả dần.</div>
+    <div class="chart-box"><canvas id="shopeeEfficiencyChart"></canvas></div>
+
+    <h3>3. Mô phỏng dịch chuyển ngân sách (what-if)</h3>
+    <div class="section-note">Ước tính lợi nhuận thay đổi NẾU dịch chuyển 1 phần ads spend từ shop này sang shop kia, dựa trên "Lợi nhuận/1đ ads" TRUNG BÌNH của khoảng ngày đang chọn (view 1). <b>Đây là ngoại suy tuyến tính đơn giản, KHÔNG phải dự báo chắc chắn</b> — hiệu suất thực tế thường giảm dần khi tăng mạnh ngân sách một shop (xem view 2), nên số ước tính này có thể lạc quan hơn thực tế nếu dịch chuyển số tiền lớn.</div>
+    <div class="whatif-row">
+      <span>Dịch chuyển</span>
+      <input type="number" id="shopeeWhatIfAmount" value="10000000" step="1000000" min="0">
+      <span>₫ từ</span>
+      <select class="filter-select" id="shopeeWhatIfFrom"></select>
+      <span>sang</span>
+      <select class="filter-select" id="shopeeWhatIfTo"></select>
+    </div>
+    <div class="cards" id="shopeeWhatIfResult"></div>
+
+    <h3>4. So sánh cơ cấu sản phẩm theo nhóm ngành hàng</h3>
+    <div class="section-note">So sánh COGS%/Gross margin% theo từng nhóm ngành hàng giữa 2 shop — giúp xác định chênh lệch COGS tổng thể (mục 1) đến từ cơ cấu sản phẩm bán ra khác nhau hay từ giá vốn/giá bán khác nhau CÙNG 1 nhóm hàng.</div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr id="shopeeCategoryHeadRow"></tr>
+          <tr id="shopeeCategorySubHeadRow"></tr>
+        </thead>
+        <tbody id="shopeeCategoryBody"></tbody>
       </table>
     </div>
   </div>

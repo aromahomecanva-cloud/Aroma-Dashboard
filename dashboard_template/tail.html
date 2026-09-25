@@ -3,6 +3,12 @@
     const maxDate = allDates[allDates.length - 1];
     const allChannels = [...new Set(dailyData.map(r => r.channel))];
     const ECOM_CHANNELS = ['shopee', 'tiktokshop', 'lazada', 'web'];
+    // 2 shop Shopee chính dùng cho section "Phân bổ ngân sách 2 shop" (tab E-com) -- Góc Hương
+    // Thơm = shop thường, The Art Of Scent = shop Mall (phí sàn cao hơn ~7-9 điểm % theo Huy xác
+    // nhận 25/09/2026). Bỏ qua "Aroma Story | Perfume & Beauty" (shop cũ gần như không phát sinh
+    // đơn nữa) và giá trị rỗng (đơn lỗi/chưa gắn shop).
+    const SHOPEE_SHOPS = ['Aroma Story - Góc Hương Thơm', 'Aroma Story - The Art Of Scent'];
+    let shopeeEfficiencyChartInstance = null;
 
     let dateFrom = minDate, dateTo = maxDate;
     let activePreset = 'all';
@@ -814,6 +820,262 @@
       renderTotalCards(list, 'ecomCards');
       document.getElementById('ecomEmptyNote').style.display = list.length ? 'none' : 'block';
       renderSummaryBody(list, 'ecomTableBody', ecomExpandedRows, renderEcomTab);
+      renderShopeeShopSection();
+    }
+
+    // ===== Shopee Ads: Phân bổ ngân sách 2 shop (4 view, yêu cầu Huy 25/09/2026) =====
+
+    // Dùng lại getChannelSummary() (đã có sẵn cơ chế ước tính phí cho đơn chưa hoàn thành, xem
+    // computeAvgFeePct) lọc CHỈ 2 shop trong SHOPEE_SHOPS, rồi tính thêm "profit_per_ad_dong" =
+    // lợi nhuận (đã trừ phí sàn + COGS + ads) trên mỗi đồng ads spend -- chỉ số CHÍNH để so sánh
+    // hiệu quả rót ngân sách giữa 2 shop (ROAS không đủ vì bỏ qua chênh lệch phí sàn/COGS).
+    // Doanh thu Shopee TỰ GHI NHẬN do quảng cáo mang lại (cột "Doanh số" trong file export, xem
+    // business_dashboard_shopee_ads.py load_shopee_ads_revenue_daily()) trong khoảng ngày đang
+    // chọn -- dùng làm mẫu số cho CIR Ads. Tách hàm riêng vì shopeeAdsRevenueDaily là mảng
+    // (date, shop_name, ads_revenue) phẳng, không nằm trong dailyData/getChannelSummary.
+    function getShopeeAdsRevenueForRange(shop, fromStr, toStr) {
+      return (shopeeAdsRevenueDaily || [])
+        .filter(r => r.shop_name === shop && r.date >= fromStr && r.date <= toStr)
+        .reduce((s, r) => s + (r.ads_revenue || 0), 0);
+    }
+
+    function getShopeeShopCompare() {
+      const list = getChannelSummary(
+        ch => ch === 'shopee',
+        { key: 'ads_spend', dir: -1 }
+      ).filter(r => SHOPEE_SHOPS.includes(r.shop_page));
+      return list.map(r => {
+        const adsRevenue = getShopeeAdsRevenueForRange(r.shop_page, dateFrom, dateTo);
+        return {
+          ...r,
+          // fee_pct_recorded: dùng fee_recorded/revenue_recorded (CHỈ đơn đã hoàn thành thật, xem
+          // yêu cầu Huy 24/09/2026) -- KHÔNG dùng total_fee/gross_revenue (bị pha loãng, ra số
+          // thấp giả tạo khi nhiều đơn chưa hoàn thành).
+          fee_pct_recorded: r.revenue_recorded ? Math.round(r.fee_recorded / r.revenue_recorded * 1000) / 10 : null,
+          cogs_pct: r.net_revenue ? Math.round(r.cogs / r.net_revenue * 1000) / 10 : 0,
+          profit_per_ad_dong: r.ads_spend ? Math.round((r.gross_margin_amount / r.ads_spend) * 100) / 100 : null,
+          roas: r.ads_spend ? Math.round((r.net_revenue / r.ads_spend) * 100) / 100 : null,
+          // CIR Ads = Chi phí ads / Doanh thu DO ADS MANG LẠI (Shopee tự ghi nhận qua "Doanh
+          // số") -- đo hiệu quả CỦA RIÊNG hoạt động ads. CIR Total = Chi phí ads / doanh thu
+          // TOÀN SHOP (gross_revenue, gồm cả đơn không đến từ ads) -- đo ads đang "ăn" bao nhiêu %
+          // trên tổng doanh thu shop, phản ánh mức phụ thuộc vào ads của cả shop. Theo yêu cầu
+          // Huy 25/09/2026: "CIR Ads sẽ tính doanh thu từ ads, CIR total sẽ tính trên doanh thu
+          // toàn shop". adsRevenue = 0 (chưa export ads cho khoảng ngày này) -> null, KHÔNG hiện
+          // 0%/Infinity gây hiểu nhầm.
+          ads_revenue: adsRevenue,
+          cir_ads: adsRevenue ? Math.round(r.ads_spend / adsRevenue * 1000) / 10 : null,
+          cir_total: r.gross_revenue ? Math.round(r.ads_spend / r.gross_revenue * 1000) / 10 : null,
+        };
+      });
+    }
+
+    function renderShopeeCompareTable() {
+      const head = document.getElementById('shopeeCompareHeadRow');
+      if (!head) return; // phòng template cũ chưa có section này
+      const cols = [
+        { key: 'shop_page', label: 'Shop' },
+        { key: 'orders', label: 'Đơn' },
+        { key: 'ads_spend', label: 'Ads spend' },
+        { key: 'fee_pct_recorded', label: 'Phí sàn % (đơn xong)' },
+        { key: 'cogs_pct', label: 'COGS % (DT thực nhận)' },
+        { key: 'gross_margin_amount', label: 'Lợi nhuận (đã trừ Ads)' },
+        { key: 'roas', label: 'ROAS' },
+        { key: 'profit_per_ad_dong', label: 'Lợi nhuận/1đ ads' },
+        { key: 'cir_ads', label: 'CIR Ads' },
+        { key: 'cir_total', label: 'CIR Total' },
+      ];
+      head.innerHTML = cols.map(c => `<th>${c.label}</th>`).join('');
+
+      const rows = getShopeeShopCompare().sort((a, b) => (b.profit_per_ad_dong || 0) - (a.profit_per_ad_dong || 0));
+      let bodyHtml = rows.map(r => `
+        <tr>
+          <td>${r.shop_page}</td>
+          <td>${fmt(r.orders)}</td>
+          <td>${fmt(r.ads_spend)}₫</td>
+          <td>${r.fee_pct_recorded === null ? '—' : r.fee_pct_recorded + '%'}</td>
+          <td>${fmt(r.cogs_pct)}%</td>
+          <td>${fmt(r.gross_margin_amount)}₫</td>
+          <td>${r.roas === null ? '—' : r.roas.toFixed(2) + 'x'}</td>
+          <td><b>${r.profit_per_ad_dong === null ? '—' : r.profit_per_ad_dong.toFixed(2) + '₫'}</b></td>
+          <td>${r.cir_ads === null ? '—' : r.cir_ads + '%'}</td>
+          <td>${r.cir_total === null ? '—' : r.cir_total + '%'}</td>
+        </tr>
+      `).join('');
+      if (!rows.length) {
+        bodyHtml = `<tr><td colspan="${cols.length}"><div class="detail-empty">Không có dữ liệu Shopee trong khoảng ngày này.</div></td></tr>`;
+      }
+      document.getElementById('shopeeCompareBody').innerHTML = bodyHtml;
+    }
+
+    // View 2: mỗi điểm = 1 ngày của 1 shop -- trục ngang ads spend/ngày, trục dọc lợi nhuận/1đ
+    // ads NGÀY ĐÓ (KHÔNG phải trung bình cả kỳ) -- để thấy xu hướng hiệu suất đổi theo mức chi.
+    // Dùng LẠI đúng cách tính margin theo ngày của renderTrendChart() (ước tính phí cho đơn chưa
+    // hoàn thành qua computeAvgFeePct) để nhất quán số liệu toàn dashboard.
+    function getShopeeDailyEfficiency() {
+      const rows = dailyData.filter(r => r.channel === 'shopee' && SHOPEE_SHOPS.includes(r.shop_page)
+        && r.date >= dateFrom && r.date <= dateTo);
+      const points = { };
+      for (const shop of SHOPEE_SHOPS) points[shop] = [];
+      for (const r of rows) {
+        const adsSpend = r.ads_spend || 0;
+        if (!adsSpend) continue; // ngày không chạy ads -> bỏ qua, không chia cho 0
+        const feeRecorded = r.total_fee || 0;
+        const unrecordedRevenue = Math.max(0, r.gross_revenue - (r.revenue_recorded || 0));
+        const avgFeePct = computeAvgFeePct(r.channel, r.shop_page || '', dateTo);
+        const feeEstimated = avgFeePct * unrecordedRevenue;
+        const netRevenue = r.gross_revenue - (feeRecorded + feeEstimated);
+        const margin = netRevenue - r.cogs - adsSpend;
+        points[r.shop_page].push({ x: Math.round(adsSpend), y: Math.round((margin / adsSpend) * 100) / 100, date: r.date });
+      }
+      return points;
+    }
+
+    function renderShopeeEfficiencyChart() {
+      const canvas = document.getElementById('shopeeEfficiencyChart');
+      if (!canvas) return;
+      if (shopeeEfficiencyChartInstance) { shopeeEfficiencyChartInstance.destroy(); shopeeEfficiencyChartInstance = null; }
+
+      const points = getShopeeDailyEfficiency();
+      const colors = ['#4c6ef5', '#ff6b6b'];
+      const datasets = SHOPEE_SHOPS.map((shop, i) => ({
+        label: shop,
+        data: points[shop],
+        backgroundColor: colors[i] + 'aa',
+        borderColor: colors[i],
+      }));
+      if (!datasets.some(d => d.data.length)) return;
+
+      shopeeEfficiencyChartInstance = new Chart(canvas.getContext('2d'), {
+        type: 'scatter',
+        data: { datasets },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: {
+            x: { title: { display: true, text: 'Ads spend/ngày (₫)' }, ticks: { callback: v => fmt(v) + '₫' } },
+            y: { title: { display: true, text: 'Lợi nhuận/1đ ads' }, ticks: { callback: v => v + '₫' } },
+          },
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label} (${ctx.raw.date}): spend ${fmt(ctx.raw.x)}₫, lợi nhuận/1đ = ${ctx.raw.y}₫`,
+              },
+            },
+          },
+        },
+      });
+    }
+
+    // View 3: mô phỏng dịch chuyển ngân sách -- dùng profit_per_ad_dong TRUNG BÌNH của khoảng
+    // ngày đang chọn (view 1) làm giả định hiệu suất biên, NGOẠI SUY TUYẾN TÍNH đơn giản (xem
+    // ghi chú cảnh báo trong head.html) -- không tính đến hiệu ứng bão hoà thực tế (view 2).
+    function renderShopeeWhatIf() {
+      const fromSel = document.getElementById('shopeeWhatIfFrom');
+      const toSel = document.getElementById('shopeeWhatIfTo');
+      if (!fromSel || !toSel) return;
+
+      if (!fromSel.dataset.wired) {
+        fromSel.innerHTML = SHOPEE_SHOPS.map(s => `<option value="${s}">${s}</option>`).join('');
+        toSel.innerHTML = SHOPEE_SHOPS.map(s => `<option value="${s}">${s}</option>`).join('');
+        toSel.selectedIndex = 1;
+        fromSel.addEventListener('change', renderShopeeWhatIf);
+        toSel.addEventListener('change', renderShopeeWhatIf);
+        document.getElementById('shopeeWhatIfAmount').addEventListener('input', renderShopeeWhatIf);
+        fromSel.dataset.wired = '1';
+      }
+
+      const compare = getShopeeShopCompare();
+      const byShop = {};
+      compare.forEach(r => { byShop[r.shop_page] = r; });
+
+      const amount = Number(document.getElementById('shopeeWhatIfAmount').value) || 0;
+      const fromShop = fromSel.value, toShop = toSel.value;
+      const fromRate = byShop[fromShop] ? byShop[fromShop].profit_per_ad_dong : null;
+      const toRate = byShop[toShop] ? byShop[toShop].profit_per_ad_dong : null;
+
+      const resultEl = document.getElementById('shopeeWhatIfResult');
+      if (fromShop === toShop) {
+        resultEl.innerHTML = `<div class="card"><div class="label">Kết quả</div><div class="value">Chọn 2 shop khác nhau</div></div>`;
+        return;
+      }
+      if (fromRate === null || toRate === null) {
+        resultEl.innerHTML = `<div class="card"><div class="label">Kết quả</div><div class="value">Thiếu dữ liệu ads/lợi nhuận cho 1 trong 2 shop ở khoảng ngày này</div></div>`;
+        return;
+      }
+      const delta = amount * (toRate - fromRate);
+      const sign = delta >= 0 ? '+' : '';
+      resultEl.innerHTML = `
+        <div class="card"><div class="label">Lợi nhuận/1đ ads — ${fromShop}</div><div class="value">${fromRate.toFixed(2)}₫</div></div>
+        <div class="card"><div class="label">Lợi nhuận/1đ ads — ${toShop}</div><div class="value">${toRate.toFixed(2)}₫</div></div>
+        <div class="card" style="border-color:${delta >= 0 ? '#37c98b' : '#ff6b6b'};"><div class="label">Ước tính lợi nhuận thay đổi</div><div class="value">${sign}${fmt(delta)}₫</div></div>
+      `;
+    }
+
+    // View 4: so sánh COGS%/Gross margin% theo NHÓM NGÀNH HÀNG (categorizeProduct, dùng chung
+    // với bảng "Theo sản phẩm") giữa 2 shop -- xem chênh lệch COGS tổng thể (view 1) đến từ cơ
+    // cấu sản phẩm khác nhau hay từ giá vốn/giá bán khác nhau CÙNG 1 nhóm hàng.
+    function getShopeeCategoryCompare() {
+      const rows = productBreakdown.filter(r => r.channel === 'shopee' && SHOPEE_SHOPS.includes(r.shop_page)
+        && r.date >= dateFrom && r.date <= dateTo);
+      const byCatShop = {};
+      for (const r of rows) {
+        const cat = categorizeProduct(r.product);
+        if (!byCatShop[cat]) byCatShop[cat] = {};
+        const shopKey = r.shop_page;
+        if (!byCatShop[cat][shopKey]) byCatShop[cat][shopKey] = { revenue: 0, cogs: 0 };
+        byCatShop[cat][shopKey].revenue += r.revenue || 0;
+        byCatShop[cat][shopKey].cogs += r.cogs || 0;
+      }
+      return Object.keys(byCatShop).sort().map(cat => {
+        const perShop = SHOPEE_SHOPS.map(shop => {
+          const d = byCatShop[cat][shop] || { revenue: 0, cogs: 0 };
+          const marginPct = d.revenue ? Math.round((d.revenue - d.cogs) / d.revenue * 1000) / 10 : null;
+          const cogsPct = d.revenue ? Math.round(d.cogs / d.revenue * 1000) / 10 : null;
+          return { ...d, marginPct, cogsPct };
+        });
+        return { category: cat, perShop };
+      });
+    }
+
+    function renderShopeeCategoryCompareTable() {
+      const head = document.getElementById('shopeeCategoryHeadRow');
+      if (!head) return;
+      head.innerHTML = `<th>Nhóm ngành hàng</th>` + SHOPEE_SHOPS.map(s =>
+        `<th colspan="3">${s}</th>`
+      ).join('');
+      // dòng phụ ghi rõ 3 cột con (Doanh thu/COGS%/Margin%) dưới mỗi shop -- <tr> cố định sẵn
+      // trong head.html (KHÔNG tạo mới bằng appendChild mỗi lần render, tránh cộng dồn trùng lặp
+      // qua các lần renderEcomTab() gọi lại khi đổi filter/ngày).
+      document.getElementById('shopeeCategorySubHeadRow').innerHTML = `<th></th>` + SHOPEE_SHOPS.map(() =>
+        `<th>Doanh thu</th><th>COGS%</th><th>Margin%</th>`
+      ).join('');
+
+      const rows = getShopeeCategoryCompare().sort((a, b) => {
+        const totalA = a.perShop.reduce((s, x) => s + x.revenue, 0);
+        const totalB = b.perShop.reduce((s, x) => s + x.revenue, 0);
+        return totalB - totalA;
+      });
+      let bodyHtml = rows.map(r => `
+        <tr>
+          <td>${r.category}</td>
+          ${r.perShop.map(d => `
+            <td>${fmt(d.revenue)}₫</td>
+            <td>${d.cogsPct === null ? '—' : d.cogsPct + '%'}</td>
+            <td>${d.marginPct === null ? '—' : d.marginPct + '%'}</td>
+          `).join('')}
+        </tr>
+      `).join('');
+      if (!rows.length) {
+        bodyHtml = `<tr><td colspan="${1 + SHOPEE_SHOPS.length * 3}"><div class="detail-empty">Không có dữ liệu.</div></td></tr>`;
+      }
+      document.getElementById('shopeeCategoryBody').innerHTML = bodyHtml;
+    }
+
+    function renderShopeeShopSection() {
+      renderShopeeCompareTable();
+      renderShopeeEfficiencyChart();
+      renderShopeeWhatIf();
+      renderShopeeCategoryCompareTable();
     }
 
     function getFilteredProductRows() {
@@ -1195,8 +1457,9 @@
       document.getElementById('tab-ecom').classList.toggle('hidden', tab !== 'ecom');
       document.getElementById('tab-fbads').classList.toggle('hidden', tab !== 'fbads');
       // Chart.js không tự resize đúng khi canvas nằm trong panel display:none lúc khởi tạo/khi
-      // panel bị ẩn rồi hiện lại -> gọi resize() thủ công mỗi lần quay lại tab Tổng quan.
+      // panel bị ẩn rồi hiện lại -> gọi resize() thủ công mỗi lần quay lại tab Tổng quan/E-com.
       if (tab === 'overview' && trendChartInstance) trendChartInstance.resize();
+      if (tab === 'ecom' && shopeeEfficiencyChartInstance) shopeeEfficiencyChartInstance.resize();
     }
 
     function renderAll() {

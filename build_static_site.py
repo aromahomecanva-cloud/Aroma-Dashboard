@@ -53,6 +53,7 @@ def main():
     adsets_daily = data.get("ads_adsets_daily", [])
     ads_ads_daily = data.get("ads_ads_daily", [])
     ad_post_links = data.get("ad_post_links", {})
+    shopee_ads_revenue_daily = data.get("shopee_ads_revenue_daily", [])
 
     updated_at_raw = data.get("updated_at", "")
     try:
@@ -84,7 +85,8 @@ def main():
         f"    const adsetsDailyData = {j(adsets_daily)};\n"
         f"    const adLevelDailyData = {j(ads_ads_daily)};\n"
         f"    const adPostLinks = {j(ad_post_links)};\n"
-        f"    const monthlyOverhead = {j(monthly_overhead)};\n\n"
+        f"    const monthlyOverhead = {j(monthly_overhead)};\n"
+        f"    const shopeeAdsRevenueDaily = {j(shopee_ads_revenue_daily)};\n\n"
     )
 
     full = head + "\n" + middle + tail

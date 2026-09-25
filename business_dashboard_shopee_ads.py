@@ -49,6 +49,13 @@ _HEADER_RANGE_RE = re.compile(r"^Khoảng thời gian,(\d{2}/\d{2}/\d{4})\s*-\s*
 _HEADER_ROW_PREFIX = "Thứ tự,"
 
 REQUIRED_COL = "Chi phí"
+# "Doanh số" = doanh thu Shopee TỰ GHI NHẬN do quảng cáo mang lại (gồm cả chuyển đổi gián tiếp,
+# KHÁC "Doanh số trực tiếp" chỉ tính chuyển đổi trực tiếp từ quảng cáo) -- dùng để tính CIR Ads
+# (= Chi phí / Doanh thu do ads mang lại, theo yêu cầu Huy 25/09/2026, về bản chất giống cột
+# "ACOS" Shopee đã có sẵn trong file, nhưng ta tự tính lại để cộng dồn được theo khoảng ngày Huy
+# chọn trên dashboard thay vì chỉ xem được đúng 1 ngày/file). Cột này KHÔNG BẮT BUỘC phải có
+# (file cũ/định dạng khác có thể thiếu) -- nếu thiếu thì ads_revenue = 0, KHÔNG làm fail cả file.
+REVENUE_COL = "Doanh số"
 
 
 def _dmy_to_iso(s: str) -> str:
@@ -123,11 +130,20 @@ def _read_one_export(path: Path) -> dict | None:
 
     spend_before_vat = float(pd.to_numeric(df[REQUIRED_COL], errors="coerce").fillna(0).sum())
     spend = spend_before_vat * (1 + Config.SHOPEE_ADS_VAT_RATE)
+
+    # ads_revenue = doanh thu do Shopee Ads mang lại (cột "Doanh số") -- không nhân VAT (VAT chỉ
+    # áp cho phí quảng cáo, không áp cho doanh thu bán hàng).
+    if REVENUE_COL in df.columns:
+        ads_revenue = float(pd.to_numeric(df[REVENUE_COL], errors="coerce").fillna(0).sum())
+    else:
+        ads_revenue = 0.0
+
     return {
         "shop_name": shop_name,
         "date": date_from,
         "spend": spend,
         "spend_before_vat": spend_before_vat,
+        "ads_revenue": ads_revenue,
         "rows": len(df),
         "file": path.name,
     }
@@ -146,7 +162,7 @@ def load_shopee_ads_daily() -> pd.DataFrame:
     spend_before_vat (số thuần, tiện đối chiếu/debug).
     """
     root = Config.SHOPEE_ADS_DIR
-    cols = ["date", "shop_name", "spend", "spend_before_vat"]
+    cols = ["date", "shop_name", "spend", "spend_before_vat", "ads_revenue"]
     if not root.exists():
         return pd.DataFrame(columns=cols)
 
@@ -166,11 +182,12 @@ def load_shopee_ads_daily() -> pd.DataFrame:
             print(f"[Shopee Ads] Trùng ngày {date} - {shop}: {len(grp)} file "
                   f"({', '.join(grp['file'])}) -> lấy Chi phí LỚN NHẤT trong số đó.")
 
-    # spend và spend_before_vat luôn tỷ lệ thuận (cùng hệ số VAT cố định) -> lấy "max" cho cả
-    # 2 cột vẫn ra đúng cùng 1 dòng nguồn, không bị lệch cặp.
-    agg = df.groupby(["shop_name", "date"]).agg(
-        spend=("spend", "max"), spend_before_vat=("spend_before_vat", "max"),
-    ).reset_index()
+    # spend, spend_before_vat và ads_revenue đều lấy từ CÙNG 1 file (bản export có Chi phí lớn
+    # nhất trong số các bản trùng) -- dùng idxmax trên "spend" rồi lấy đúng dòng đó thay vì "max"
+    # riêng lẻ từng cột, để 3 số này LUÔN cùng 1 nguồn, không bị lệch cặp (VD lấy nhầm spend của
+    # file A nhưng ads_revenue của file B).
+    idx = df.groupby(["shop_name", "date"])["spend"].idxmax()
+    agg = df.loc[idx, ["shop_name", "date", "spend", "spend_before_vat", "ads_revenue"]]
     return agg.sort_values(["shop_name", "date"]).reset_index(drop=True)
 
 
@@ -186,6 +203,24 @@ def load_shopee_ads_daily_by_channel() -> list:
         return []
     return [
         {"date": r["date"], "channel": "shopee", "shop_page": r["shop_name"], "spend": r["spend"]}
+        for _, r in daily.iterrows()
+    ]
+
+
+def load_shopee_ads_revenue_daily() -> list:
+    """
+    Trả về [{"date", "shop_name", "ads_revenue"}] -- doanh thu Shopee TỰ GHI NHẬN do quảng cáo
+    mang lại (cột "Doanh số"), theo NGÀY x SHOP. Dùng để tính CIR Ads (= ads_spend / ads_revenue)
+    ở dashboard (xem computeCirForRange() trong dashboard_template/tail.html) -- TÁCH RIÊNG khỏi
+    load_shopee_ads_daily_by_channel() (chỉ trả spend, dùng cho build_daily_summary()) vì
+    ads_revenue KHÔNG phải là 1 field mà pipeline doanh thu chính (business_dashboard_aggregate)
+    hiểu/dùng tới -- nó CHỈ phục vụ riêng cho việc so sánh hiệu quả ads giữa các shop.
+    """
+    daily = load_shopee_ads_daily()
+    if daily.empty:
+        return []
+    return [
+        {"date": r["date"], "shop_name": r["shop_name"], "ads_revenue": r["ads_revenue"]}
         for _, r in daily.iterrows()
     ]
 
