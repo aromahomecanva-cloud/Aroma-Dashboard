@@ -1068,6 +1068,29 @@
       `).join('');
       if (!rows.length) {
         bodyHtml = `<tr><td colspan="${1 + SHOPEE_SHOPS.length * 3}"><div class="detail-empty">Không có dữ liệu.</div></td></tr>`;
+      } else {
+        // Dòng TỔNG CỘNG -- cộng dồn doanh thu/cogs qua MỌI nhóm ngành hàng rồi tính lại COGS%/
+        // Margin% SAU KHI cộng (không cộng trực tiếp % của từng nhóm) -- dùng chung class
+        // "grand-total-row" nên tự động "dính" ở đáy khung cuộn (position:sticky, xem head.html).
+        const shopTotals = SHOPEE_SHOPS.map((_, i) => rows.reduce((acc, r) => {
+          const d = r.perShop[i];
+          acc.revenue += d.revenue; acc.cogs += d.cogs;
+          return acc;
+        }, { revenue: 0, cogs: 0 }));
+        bodyHtml += `
+          <tr class="grand-total-row">
+            <td>TỔNG CỘNG</td>
+            ${shopTotals.map(t => {
+              const cogsPct = t.revenue ? Math.round(t.cogs / t.revenue * 1000) / 10 : null;
+              const marginPct = t.revenue ? Math.round((t.revenue - t.cogs) / t.revenue * 1000) / 10 : null;
+              return `
+                <td>${fmt(t.revenue)}₫</td>
+                <td>${cogsPct === null ? '—' : cogsPct + '%'}</td>
+                <td>${marginPct === null ? '—' : marginPct + '%'}</td>
+              `;
+            }).join('')}
+          </tr>
+        `;
       }
       document.getElementById('shopeeCategoryBody').innerHTML = bodyHtml;
     }
@@ -1184,6 +1207,35 @@
           }
         }
       }
+
+      if (rows.length) {
+        // Dòng TỔNG CỘNG -- cộng dồn spend/ads_revenue/shop_revenue qua MỌI nhóm ngành hàng
+        // (nhóm ngành hàng KHÔNG chồng lấn nhau, xem categorizeProduct(), nên cộng thẳng không
+        // sợ đếm trùng) rồi tính lại CIR Ads/CIR Total SAU KHI cộng -- "dính" đáy khung cuộn nhờ
+        // class "grand-total-row" (position:sticky, xem head.html).
+        const shopTotals = SHOPEE_SHOPS.map((_, i) => rows.reduce((acc, r) => {
+          const s = r.perShop[i];
+          acc.spend += s.spend; acc.adsRevenue += s.adsRevenue; acc.shopRevenue += s.shopRevenue;
+          return acc;
+        }, { spend: 0, adsRevenue: 0, shopRevenue: 0 }));
+        bodyHtml += `
+          <tr class="grand-total-row">
+            <td>TỔNG CỘNG</td>
+            ${shopTotals.map(t => {
+              const cirAds = t.adsRevenue ? Math.round(t.spend / t.adsRevenue * 1000) / 10 : null;
+              const cirTotal = t.shopRevenue ? Math.round(t.spend / t.shopRevenue * 1000) / 10 : null;
+              return `
+                <td>${fmt(t.spend)}₫</td>
+                <td>${fmt(t.adsRevenue)}₫</td>
+                <td>${cirAds === null ? '—' : cirAds + '%'}</td>
+                <td>${fmt(t.shopRevenue)}₫</td>
+                <td>${cirTotal === null ? '—' : cirTotal + '%'}</td>
+              `;
+            }).join('')}
+          </tr>
+        `;
+      }
+
       document.getElementById('shopeeCategoryAdsBody').innerHTML = bodyHtml
         || `<tr><td colspan="${totalCols}"><div class="detail-empty">Không có dữ liệu Shopee Ads trong khoảng ngày này.</div></td></tr>`;
 
