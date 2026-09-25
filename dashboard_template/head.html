@@ -236,10 +236,13 @@
     </div>
 
     <h3>5. Hiệu quả ads theo nhóm ngành hàng</h3>
-    <div class="section-note">Mỗi dòng = 1 nhóm ngành hàng của 1 shop. Nhóm ngành hàng suy luận từ TÊN "Dịch Vụ Hiển thị" trong file Shopee Ads (thường trùng/gần tên sản phẩm) — GẦN ĐÚNG, không phải join chính xác theo mã SKU. Bấm vào 1 dòng để xem chi tiết từng sản phẩm/dịch vụ hiển thị bên trong nhóm đó (chỉ có Ads spend/Doanh thu ads/CIR Ads ở mức chi tiết này — "Doanh thu toàn shop"/CIR Total chỉ tính được ở mức NHÓM NGÀNH HÀNG, vì không đối chiếu được 1-1 giữa tên chiến dịch ads và tên sản phẩm thật trong Sapo).</div>
+    <div class="section-note">Mỗi dòng = 1 nhóm ngành hàng, tách 2 shop theo CỘT (giống bảng mục 4 phía trên). Nhóm ngành hàng suy luận từ TÊN "Dịch Vụ Hiển thị" trong file Shopee Ads (thường trùng/gần tên sản phẩm) — GẦN ĐÚNG, không phải join chính xác theo mã SKU. Bấm vào TÊN NHÓM để xem chi tiết từng sản phẩm/dịch vụ hiển thị bên trong (chỉ có Ads spend/Doanh thu ads/CIR Ads ở mức chi tiết này — "Doanh thu toàn shop"/CIR Total chỉ tính được ở mức NHÓM NGÀNH HÀNG, vì không đối chiếu được 1-1 giữa tên chiến dịch ads và tên sản phẩm thật trong Sapo; ô "—" nghĩa là sản phẩm đó không chạy ads ở shop tương ứng).</div>
     <div class="table-scroll">
       <table>
-        <thead><tr id="shopeeCategoryAdsHeadRow"></tr></thead>
+        <thead>
+          <tr id="shopeeCategoryAdsHeadRow"></tr>
+          <tr id="shopeeCategoryAdsSubHeadRow"></tr>
+        </thead>
         <tbody id="shopeeCategoryAdsBody"></tbody>
       </table>
     </div>

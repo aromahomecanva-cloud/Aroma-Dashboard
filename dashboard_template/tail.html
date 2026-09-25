@@ -1078,6 +1078,9 @@
     // chiếu productBreakdown để lấy "doanh thu toàn shop" của CÙNG nhóm ngành hàng đó (không phải
     // join theo từng sản phẩm cụ thể, vì tên chiến dịch ads và tên sản phẩm Sapo không join được
     // 1-1 đáng tin cậy -- chỉ join được ở MỨC NHÓM NGÀNH HÀNG qua categorizeProduct()).
+    // Gộp theo NHÓM NGÀNH HÀNG trước (KHÔNG theo shop), mỗi shop giữ 1 nhánh dữ liệu riêng
+    // (perShopData) để render CỘT SONG SONG 2 shop -- giống cấu trúc bảng mục 4
+    // (getShopeeCategoryCompare) thay vì mỗi shop 1 dòng riêng như bản trước.
     function getShopeeCategoryAdsRows() {
       const adsRows = (shopeeAdsCampaignDaily || []).filter(r => SHOPEE_SHOPS.includes(r.shop_name)
         && r.date >= dateFrom && r.date <= dateTo);
@@ -1090,12 +1093,12 @@
         shopRevByCatShop[key] = (shopRevByCatShop[key] || 0) + (r.revenue || 0);
       }
 
-      const byGroup = {};
+      const byCat = {};
       for (const r of adsRows) {
         const cat = categorizeProduct(r.campaign_name);
-        const key = cat + '||' + r.shop_name;
-        if (!byGroup[key]) byGroup[key] = { category: cat, shop: r.shop_name, spend: 0, adsRevenue: 0, products: {} };
-        const g = byGroup[key];
+        if (!byCat[cat]) byCat[cat] = {};
+        if (!byCat[cat][r.shop_name]) byCat[cat][r.shop_name] = { spend: 0, adsRevenue: 0, products: {} };
+        const g = byCat[cat][r.shop_name];
         g.spend += r.spend || 0;
         g.adsRevenue += r.ads_revenue || 0;
         if (!g.products[r.campaign_name]) g.products[r.campaign_name] = { name: r.campaign_name, spend: 0, adsRevenue: 0 };
@@ -1103,59 +1106,78 @@
         g.products[r.campaign_name].adsRevenue += r.ads_revenue || 0;
       }
 
-      return Object.values(byGroup).map(g => {
-        const shopRevenue = shopRevByCatShop[g.category + '||' + g.shop] || 0;
-        return {
-          category: g.category,
-          shop: g.shop,
-          spend: g.spend,
-          adsRevenue: g.adsRevenue,
-          cirAds: g.adsRevenue ? Math.round(g.spend / g.adsRevenue * 1000) / 10 : null,
-          shopRevenue,
-          cirTotal: shopRevenue ? Math.round(g.spend / shopRevenue * 1000) / 10 : null,
-          products: Object.values(g.products).sort((a, b) => b.spend - a.spend),
-        };
+      return Object.keys(byCat).map(cat => {
+        const perShop = SHOPEE_SHOPS.map(shop => {
+          const g = byCat[cat][shop] || { spend: 0, adsRevenue: 0, products: {} };
+          const shopRevenue = shopRevByCatShop[cat + '||' + shop] || 0;
+          return {
+            shop,
+            spend: g.spend,
+            adsRevenue: g.adsRevenue,
+            cirAds: g.adsRevenue ? Math.round(g.spend / g.adsRevenue * 1000) / 10 : null,
+            shopRevenue,
+            cirTotal: shopRevenue ? Math.round(g.spend / shopRevenue * 1000) / 10 : null,
+            products: g.products,
+          };
+        });
+        return { category: cat, perShop, totalSpend: perShop.reduce((s, x) => s + x.spend, 0) };
       });
     }
 
     function renderShopeeCategoryAdsTable() {
       const head = document.getElementById('shopeeCategoryAdsHeadRow');
       if (!head) return;
-      const cols = ['Nhóm ngành hàng', 'Shop', 'Ads spend', 'Doanh thu từ ads', 'CIR Ads', 'Doanh thu toàn shop', 'CIR Total'];
-      head.innerHTML = cols.map(c => `<th>${c}</th>`).join('');
+      head.innerHTML = `<th>Nhóm ngành hàng</th>` + SHOPEE_SHOPS.map(s => `<th colspan="5">${s}</th>`).join('');
+      document.getElementById('shopeeCategoryAdsSubHeadRow').innerHTML = `<th></th>` + SHOPEE_SHOPS.map(() =>
+        `<th>Ads spend</th><th>Doanh thu ads</th><th>CIR Ads</th><th>Doanh thu toàn shop</th><th>CIR Total</th>`
+      ).join('');
 
-      const rows = getShopeeCategoryAdsRows().sort((a, b) => b.spend - a.spend);
+      const totalCols = 1 + SHOPEE_SHOPS.length * 5;
+      const rows = getShopeeCategoryAdsRows().sort((a, b) => b.totalSpend - a.totalSpend);
       let bodyHtml = '';
       for (const r of rows) {
-        const key = r.category + '||' + r.shop;
-        const expanded = expandedShopeeCatAds.has(key);
+        const expanded = expandedShopeeCatAds.has(r.category);
         const chevron = expanded ? '▾ ' : '▸ ';
         bodyHtml += `
-          <tr class="data-row" data-catadskey="${key}">
+          <tr class="data-row" data-shopeecatads="${r.category}">
             <td>${chevron}${r.category}</td>
-            <td>${r.shop}</td>
-            <td>${fmt(r.spend)}₫</td>
-            <td>${fmt(r.adsRevenue)}₫</td>
-            <td>${r.cirAds === null ? '—' : r.cirAds + '%'}</td>
-            <td>${fmt(r.shopRevenue)}₫</td>
-            <td>${r.cirTotal === null ? '—' : r.cirTotal + '%'}</td>
+            ${r.perShop.map(s => `
+              <td>${fmt(s.spend)}₫</td>
+              <td>${fmt(s.adsRevenue)}₫</td>
+              <td>${s.cirAds === null ? '—' : s.cirAds + '%'}</td>
+              <td>${fmt(s.shopRevenue)}₫</td>
+              <td>${s.cirTotal === null ? '—' : s.cirTotal + '%'}</td>
+            `).join('')}
           </tr>
         `;
         if (expanded) {
-          if (!r.products.length) {
-            bodyHtml += `<tr class="ad-row"><td style="padding-left:28px;" colspan="${cols.length}"><div class="detail-empty">Không có dữ liệu.</div></td></tr>`;
+          // Hợp nhất danh sách sản phẩm của CẢ 2 shop (1 sản phẩm có thể chỉ chạy ads ở 1 trong 2
+          // shop) -- sắp theo tổng chi phí 2 shop giảm dần, thiếu bên nào thì hiện "—" bên đó.
+          const allNames = new Set();
+          r.perShop.forEach(s => Object.keys(s.products).forEach(n => allNames.add(n)));
+          const names = [...allNames].sort((a, b) => {
+            const spendOf = (n) => r.perShop.reduce((sum, s) => sum + (s.products[n] ? s.products[n].spend : 0), 0);
+            return spendOf(b) - spendOf(a);
+          });
+          if (!names.length) {
+            bodyHtml += `<tr class="ad-row"><td style="padding-left:28px;" colspan="${totalCols}"><div class="detail-empty">Không có dữ liệu.</div></td></tr>`;
           } else {
-            for (const p of r.products) {
-              const pCirAds = p.adsRevenue ? Math.round(p.spend / p.adsRevenue * 1000) / 10 : null;
+            for (const name of names) {
               bodyHtml += `
                 <tr class="ad-row">
-                  <td style="padding-left:28px;">${p.name}</td>
-                  <td>—</td>
-                  <td>${fmt(p.spend)}₫</td>
-                  <td>${fmt(p.adsRevenue)}₫</td>
-                  <td>${pCirAds === null ? '—' : pCirAds + '%'}</td>
-                  <td>—</td>
-                  <td>—</td>
+                  <td style="padding-left:28px;">${name}</td>
+                  ${r.perShop.map(s => {
+                    const p = s.products[name];
+                    if (!p) return `<td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>`;
+                    const pCirAds = p.adsRevenue ? Math.round(p.spend / p.adsRevenue * 1000) / 10 : null;
+                    return `
+                      <td>${fmt(p.spend)}₫</td>
+                      <td>${fmt(p.adsRevenue)}₫</td>
+                      <td>${pCirAds === null ? '—' : pCirAds + '%'}</td>
+                      <td>—</td>
+                      <td>—</td>
+                    `;
+                  }).join('')}
                 </tr>
               `;
             }
@@ -1163,12 +1185,12 @@
         }
       }
       document.getElementById('shopeeCategoryAdsBody').innerHTML = bodyHtml
-        || `<tr><td colspan="${cols.length}"><div class="detail-empty">Không có dữ liệu Shopee Ads trong khoảng ngày này.</div></td></tr>`;
+        || `<tr><td colspan="${totalCols}"><div class="detail-empty">Không có dữ liệu Shopee Ads trong khoảng ngày này.</div></td></tr>`;
 
-      document.querySelectorAll('#shopeeCategoryAdsBody tr[data-catadskey] td:first-child').forEach(td => {
+      document.querySelectorAll('#shopeeCategoryAdsBody tr[data-shopeecatads] td:first-child').forEach(td => {
         td.addEventListener('click', () => {
-          const key = td.parentElement.dataset.catadskey;
-          if (expandedShopeeCatAds.has(key)) expandedShopeeCatAds.delete(key); else expandedShopeeCatAds.add(key);
+          const cat = td.parentElement.dataset.shopeecatads;
+          if (expandedShopeeCatAds.has(cat)) expandedShopeeCatAds.delete(cat); else expandedShopeeCatAds.add(cat);
           renderShopeeCategoryAdsTable();
         });
       });
