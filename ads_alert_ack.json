@@ -1,0 +1,4 @@
+{
+  "_comment": "Ad set/ad Huy đã xem và quyết định KHÔNG tắt -> bot thôi nhắc. Thêm 1 mục vào 'acks': {\"id\": \"<adset_id hoặc ad_id>\", \"name\": \"tên để dễ nhớ\", \"reason\": \"lý do không tắt\", \"until\": \"YYYY-MM-DD hoặc bỏ trống = mãi mãi\"}. Nhờ Claude thêm cũng được (chỉ cần nói tên ad set/ad + lý do).",
+  "acks": []
+}

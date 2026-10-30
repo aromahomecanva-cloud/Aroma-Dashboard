@@ -28,7 +28,7 @@ from business_dashboard_sapo import get_orders_cached, get_variant_sku_map
 from business_dashboard_costs import load_cost_map
 from business_dashboard_meta import (
     get_ads_spend, get_ads_spend_daily_cached, get_ads_detail_cached, get_ads_spend_daily_by_channel_cached,
-    get_ad_post_links_cached,
+    get_ad_post_links_cached, get_active_status,
 )
 from business_dashboard_settlement import load_settlement_fees, load_settlement_fee_breakdown
 from business_dashboard_aggregate import build_summary, build_product_breakdown, build_daily_summary, fee_join_diagnostics
@@ -122,6 +122,16 @@ def main():
         print(f"[LỖI Meta ad_post_links - BỎ QUA, phần còn lại của báo cáo vẫn chạy tiếp] {ad_post_links_error}")
         ad_post_links = {}
 
+    # Ad set / ad đang ACTIVE (cho cảnh báo Telegram chỉ xét cái đang chạy). Lỗi riêng, không
+    # chặn pipeline; khi lỗi để None -> ads_alerts.py xét tất cả và ghi chú trong tin nhắn.
+    active_status_error = None
+    try:
+        active_status = get_active_status()
+    except Exception as e:
+        active_status_error = str(e)
+        print(f"[LỖI Meta active_status - BỎ QUA] {active_status_error}")
+        active_status = {"adsets": None, "ads": None}
+
     # Shopee Ads: đọc từ file CSV export THỦ CÔNG (chưa có API chính thức) — xem
     # business_dashboard_shopee_ads.py + shopee_ads_exports/README.md. Bọc try/except riêng,
     # không để lỗi đọc file (VD file hỏng/định dạng lạ) làm sập cả job xuất data.json.
@@ -208,6 +218,9 @@ def main():
         # dict này = không lấy được link (VD ad dùng creative tự thiết kế, không phải boost post).
         "ad_post_links": ad_post_links,
         "ad_post_links_error": ad_post_links_error,
+        "active_adset_ids": active_status["adsets"],
+        "active_ad_ids": active_status["ads"],
+        "active_status_error": active_status_error,
         "shopee_ads_daily": shopee_ads_daily,
         "shopee_ads_total_by_shop": shopee_ads_total_by_shop,
         "shopee_ads_revenue_daily": shopee_ads_revenue_daily,

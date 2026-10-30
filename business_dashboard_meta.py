@@ -828,6 +828,30 @@ def get_ad_post_links_cached(cache_path) -> dict:
     return links
 
 
+def get_active_status() -> dict:
+    """Danh sách ad set và ad ĐANG CHẠY (effective_status = ACTIVE) -- dùng cho cảnh báo
+    ads_alerts.py để bỏ qua những ad set/ad Huy đã tắt (thêm 30/10/2026).
+
+    effective_status của 1 ad chỉ là ACTIVE khi cả ad set và campaign cha cũng đang chạy
+    (nếu cha bị tắt, ad sẽ ở trạng thái ADSET_PAUSED/CAMPAIGN_PAUSED), nên danh sách ad ACTIVE
+    đã bao gồm điều kiện cha đang bật. Không cache -- trạng thái đổi bất cứ lúc nào, chỉ 2 lời
+    gọi nhẹ (chỉ lấy id) mỗi lần chạy. Trả về {"adsets": [id,...], "ads": [id,...]}."""
+    if Config.DEMO_MODE:
+        return {"adsets": [], "ads": []}
+    base = f"https://graph.facebook.com/{Config.META_API_VERSION}/{Config.META_AD_ACCOUNT_ID}"
+    out = {}
+    for key, edge in (("adsets", "adsets"), ("ads", "ads")):
+        rows = _get_paginated(f"{base}/{edge}", {
+            "fields": "id",
+            "effective_status": '["ACTIVE"]',
+            "limit": 500,
+            "access_token": Config.META_ACCESS_TOKEN,
+        })
+        out[key] = [r["id"] for r in rows if r.get("id")]
+    print(f"[Meta active status] {len(out['adsets'])} ad set và {len(out['ads'])} ad đang ACTIVE.")
+    return out
+
+
 # ---------------------------------------------------------------------------
 # DEMO DATA
 # ---------------------------------------------------------------------------
