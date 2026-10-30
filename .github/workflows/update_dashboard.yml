@@ -70,12 +70,21 @@ jobs:
           META_ACCESS_TOKEN: ${{ secrets.META_ACCESS_TOKEN }}
           META_AD_ACCOUNT_ID: ${{ secrets.META_AD_ACCOUNT_ID }}
 
+      - name: Cảnh báo Facebook Ads (Telegram)
+        # Áp rule trong ads_alert_rules.json lên data.json vừa tạo, gửi Telegram những cảnh báo mới.
+        # Thiếu secret TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID -> chỉ in log. Lỗi ở đây KHÔNG làm fail pipeline.
+        continue-on-error: true
+        run: python ads_alerts.py
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
       - name: Commit data.json + cache back to repo
         run: |
           git config user.name "dashboard-bot"
           git config user.email "bot@users.noreply.github.com"
           shopt -s nullglob
-          git add data.json cache_*.json.gz
+          git add data.json cache_*.json.gz ads_alert_state.json
           git diff --staged --quiet || git commit -m "Update dashboard data $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           # Phòng trường hợp main đã bị đẩy lên bởi 1 commit khác (VD Huy push tay 1 file CSV mới
           # trong shopee_ads_exports/ đúng lúc job này đang chạy fetch data, ~1-2 phút) ngay trong

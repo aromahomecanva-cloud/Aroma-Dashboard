@@ -1,0 +1,12 @@
+{
+  "_comment": "Ngưỡng cảnh báo Facebook Ads. Sửa số trực tiếp rồi push. enabled=false để tắt 1 rule. Cửa sổ tính = window_days ngày gần nhất trong data.json (tính cả ngày mới nhất). Tiền = VND.",
+  "window_days": 3,
+  "rules": {
+    "spend_no_results": {"enabled": true, "min_spend": 300000, "_note": "Ad tiêu >= min_spend trong cửa sổ mà 0 kết quả (tin nhắn/lượt chuyển đổi)"},
+    "cost_per_result_high": {"enabled": true, "min_spend": 300000, "max_cpr": 25000, "_note": "Chi phí/kết quả > max_cpr"},
+    "cpm_high": {"enabled": true, "min_spend": 300000, "max_cpm": 150000, "_note": "CPM (chi phí/1000 lượt hiển thị) > max_cpm"},
+    "cpc_high": {"enabled": true, "min_spend": 300000, "max_cpc": 8000, "_note": "CPC (chi phí/click) > max_cpc"},
+    "roas_low": {"enabled": true, "min_spend": 500000, "min_roas": 2.0, "_note": "ROAS = doanh thu quy đổi / chi tiêu < min_roas (tương đương CIR > 1/min_roas). Chỉ xét ad có doanh thu quy đổi > 0 hoặc chi tiêu >= min_spend"},
+    "spend_spike": {"enabled": true, "ratio": 1.5, "min_spend": 1000000, "baseline_days": 7, "_note": "Chi tiêu ngày mới nhất của campaign > ratio x trung bình baseline_days ngày trước và >= min_spend"}
+  }
+}
