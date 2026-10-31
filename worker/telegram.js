@@ -22,6 +22,15 @@ const b64encode = (s) => {
   return btoa(bin);
 };
 
+// Bỏ dấu cách/xuống dòng thừa khi dán secret vào Cloudflare
+function clean(env) {
+  const out = Object.create(env);
+  for (const k of ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID", "TG_WEBHOOK_SECRET", "GITHUB_TOKEN", "ANTHROPIC_API_KEY", "GITHUB_REPO", "ANTHROPIC_MODEL"]) {
+    if (typeof env[k] === "string") out[k] = env[k].trim();
+  }
+  return out;
+}
+
 function todayVN() {
   return new Date(Date.now() + 7 * 3600e3).toISOString().slice(0, 10);
 }
@@ -81,7 +90,7 @@ async function addAcks(env, newAcks) {
 // ---------- Telegram ----------
 async function reply(env, chatId, text, replyTo) {
   for (let i = 0; i < text.length; i += 3800) {
-    await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -91,6 +100,7 @@ async function reply(env, chatId, text, replyTo) {
         disable_web_page_preview: true,
       }),
     });
+    if (!r.ok) console.error("Telegram sendMessage", r.status, await r.text());
   }
 }
 
@@ -200,7 +210,11 @@ async function handleUpdate(update, env) {
   const msg = update.message || update.edited_message;
   if (!msg?.text) return;
   const chatId = msg.chat.id;
-  if (String(chatId) !== String(env.TELEGRAM_CHAT_ID)) return; // chỉ nghe nhóm/chat của Huy
+  if (String(chatId) !== String(env.TELEGRAM_CHAT_ID)) {
+    // Không im lặng nữa: báo chat ID thật để sửa secret TELEGRAM_CHAT_ID (không đọc/ghi dữ liệu gì)
+    console.log("chat id mismatch", chatId);
+    return reply(env, chatId, `Bot chưa được cấu hình cho chat này. Chat ID của chat này là ${chatId}. Nếu đây là chat nhận cảnh báo, đặt secret TELEGRAM_CHAT_ID = ${chatId} trong Cloudflare.`, msg.message_id);
+  }
   const text = msg.text.replace(/@\w+bot\b/gi, "").trim();
 
   try {
@@ -252,12 +266,14 @@ async function handleUpdate(update, env) {
     if (missing.length) out += `\n\nKhông thấy mã ${missing.map((c) => "#" + c).join(", ")} trong cảnh báo ngày ${state.date}.`;
     await reply(env, chatId, out.trim() || "Mình chưa hiểu ý bạn.\n\n" + HELP, msg.message_id);
   } catch (e) {
+    console.error("handleUpdate", e);
     await reply(env, chatId, `Bot gặp lỗi, chưa ghi được gì: ${String(e.message || e).slice(0, 300)}`, msg.message_id);
   }
 }
 
 // POST /tg-webhook: Telegram gọi vào. Trả 200 ngay, xử lý phía sau để Telegram không gửi lại.
-export async function telegramWebhook(request, env, ctx) {
+export async function telegramWebhook(request, rawEnv, ctx) {
+  const env = clean(rawEnv);
   const secret = request.headers.get("X-Telegram-Bot-Api-Secret-Token") || "";
   if (!env.TG_WEBHOOK_SECRET || secret !== env.TG_WEBHOOK_SECRET) return new Response("forbidden", { status: 403 });
   const update = await request.json().catch(() => null);
@@ -266,7 +282,8 @@ export async function telegramWebhook(request, env, ctx) {
 }
 
 // GET /tg-setup (sau khi đăng nhập dashboard): đăng ký webhook với Telegram.
-export async function telegramSetup(request, env) {
+export async function telegramSetup(request, rawEnv) {
+  const env = clean(rawEnv);
   const missing = ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID", "TG_WEBHOOK_SECRET", "GITHUB_TOKEN"].filter((k) => !env[k]);
   if (missing.length) return new Response(`Thiếu secret: ${missing.join(", ")}`, { status: 500 });
   const url = new URL("/tg-webhook", request.url).toString();
