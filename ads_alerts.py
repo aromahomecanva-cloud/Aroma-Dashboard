@@ -216,7 +216,8 @@ def main():
     n = len(items) + len(alerts)
     print(f"{n} cảnh báo (dữ liệu đến {last}).")
     state = {"date": last, "window_days": shown_w, "ad_window_days": AD_W, "items": items,
-             "other": [t for _, t in alerts], "generated_at": today_vn}
+             "other": [t for _, t in alerts], "generated_at": today_vn,
+             "updated_at": data.get("updated_at"), "summary": summary(camps, d_last)}
     with open("ads_alert_state.json", "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=1)
     if not n:
@@ -225,6 +226,29 @@ def main():
     msg = render(items, [t for _, t in alerts], last, shown_w, AD_W, unknown_status)
     print(msg)
     send(msg)
+
+
+def summary(camps, d_last):
+    """Tổng quan FB Ads 7 ngày gần nhất (toàn tài khoản + theo campaign) cho lệnh "hôm nay" và cho Claude trả lời câu hỏi."""
+    st = (d_last - dt.timedelta(days=6)).isoformat()
+    days = defaultdict(lambda: [0.0, 0.0, 0.0, 0.0])  # spend, orders, revenue, results
+    cs = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0, 0.0, 0.0]))
+    cname = {}
+    for c in camps:
+        if c["date"] < st:
+            continue
+        v = [c.get("spend") or 0, c.get("orders") or 0, c.get("revenue") or 0, c.get("results") or 0]
+        cname[c["campaign_id"]] = c.get("campaign_name", "")
+        for i in range(4):
+            days[c["date"]][i] += v[i]
+            cs[c["campaign_id"]][c["date"]][i] += v[i]
+    r = lambda v: [round(v[0]), round(v[1], 1), round(v[2]), round(v[3])]
+    return {
+        "_cols": "[chi tiêu, đơn, doanh thu, kết quả theo mục tiêu campaign]",
+        "account_daily": {d: r(v) for d, v in sorted(days.items())},
+        "campaigns": [{"name": cname[cid], "daily": {d: r(v) for d, v in sorted(dd.items())}}
+                      for cid, dd in cs.items() if sum(v[0] for v in dd.values()) > 0],
+    }
 
 
 def money(x):

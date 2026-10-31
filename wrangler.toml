@@ -8,3 +8,7 @@ binding = "ASSETS"
 # BẮT BUỘC true -- đảm bảo worker/index.js (kiểm tra mật khẩu) LUÔN chạy trước khi Cloudflare
 # phục vụ file tĩnh, thay vì mặc định phục vụ file tĩnh trước rồi mới chạy Worker.
 run_worker_first = true
+
+# Workers AI (miễn phí 10.000 neurons/ngày) để bot Telegram hiểu câu hỏi tự do khi chưa có ANTHROPIC_API_KEY
+[ai]
+binding = "AI"

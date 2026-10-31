@@ -8,7 +8,7 @@
 //   TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID   (giống secrets trên GitHub)
 //   TG_WEBHOOK_SECRET   chuỗi ngẫu nhiên tự đặt, chống người lạ gọi webhook
 //   GITHUB_TOKEN        fine-grained token, chỉ repo Aroma-Dashboard, quyền Contents: Read and write
-//   ANTHROPIC_API_KEY   (tuỳ chọn) để bot hiểu câu tự do và trả lời câu hỏi
+//   ANTHROPIC_API_KEY   (tuỳ chọn) dùng Claude để hiểu câu tự do; không có thì dùng Workers AI miễn phí (binding AI)
 // Biến tuỳ chọn: GITHUB_REPO (mặc định aromahomecanva-cloud/Aroma-Dashboard), ANTHROPIC_MODEL.
 // Sau khi đặt xong: đăng nhập dashboard rồi mở <domain>/tg-setup một lần để đăng ký webhook.
 
@@ -140,15 +140,45 @@ function quickParse(text) {
   if (m) return { kind: "off", codes: [...m[1].matchAll(/\d+/g)].map((x) => +x[0]) };
   if (/^\/?(?:list|ds|danh sách|danh sach|xem lại|xem lai)$/i.test(t)) return { kind: "list" };
   if (/^\/?(?:help|start|hướng dẫn|huong dan)$/i.test(t)) return { kind: "help" };
+  if (/^\/?(?:hôm nay|hom nay|today|tổng|tong|tổng quan|tong quan)$/i.test(t)) return { kind: "today" };
   return null;
 }
 
-const HELP =
-  "Mình đọc được các kiểu tin sau:\n" +
-  "• giữ 3 vì đang test creative mới tới 5/11 → thôi nhắc #3 (tới ngày đó, bỏ trống = mãi mãi)\n" +
-  "• đã tắt 1 2 → ghi nhận, lần chạy sau tự kiểm tra trên Meta\n" +
+const HELP_CMDS =
+  "• hôm nay → tổng quan chi tiêu, đơn, ROAS hôm nay + 7 ngày\n" +
   "• list → xem lại cảnh báo đang mở\n" +
-  "• hỏi tự do, VD: \"#1 mấy ngày nay chạy sao?\"";
+  "• giữ 3 vì đang test creative mới tới 5/11 → thôi nhắc #3 (tới ngày đó, bỏ trống = mãi mãi)\n" +
+  "• đã tắt 1 2 → ghi nhận, lần chạy sau tự kiểm tra trên Meta";
+const hasLLM = (env) => Boolean(env.ANTHROPIC_API_KEY || env.AI);
+const help = (env) =>
+  "Mình đọc được các lệnh:\n" + HELP_CMDS +
+  (hasLLM(env)
+    ? "\n• hỏi tự do, VD: \"#1 mấy ngày nay chạy sao?\""
+    : "\n\nHỏi tự do (VD \"ads hôm nay sao\") chưa bật.");
+
+const ddmm = (d) => d.slice(8, 10) + "/" + d.slice(5, 7);
+const roasTxt = (v) => (v[0] > 0 && v[2] > 0 ? ` · ROAS ${(v[2] / v[0]).toFixed(2).replace(".", ",")}` : "");
+const line = (v) => `${money(v[0])} · ${Math.round(v[1])} đơn${roasTxt(v)}`;
+
+function todayText(state) {
+  const sm = state.summary;
+  if (!sm?.account_daily) return "Chưa có số liệu tổng quan, đợi lần cập nhật dashboard tới (mỗi 2 tiếng).";
+  const days = Object.keys(sm.account_daily).sort();
+  const last = days[days.length - 1];
+  const sum = (vs) => vs.reduce((a, v) => a.map((x, i) => x + v[i]), [0, 0, 0, 0]);
+  const tot7 = sum(Object.values(sm.account_daily));
+  const upd = state.updated_at ? ` (cập nhật ${state.updated_at.slice(11, 16)} UTC)` : "";
+  let out = `📊 Facebook Ads ${ddmm(last)}${upd}\nHôm nay: ${line(sm.account_daily[last])}\n7 ngày: ${line(tot7)}\n`;
+  out += "\nTheo ngày:\n" + days.slice().reverse().map((d) => `${ddmm(d)}: ${line(sm.account_daily[d])}`).join("\n");
+  const camps = (sm.campaigns || [])
+    .map((c) => ({ name: c.name, today: c.daily[last] || [0, 0, 0, 0], w: sum(Object.values(c.daily)) }))
+    .sort((a, b) => b.today[0] - a.today[0] || b.w[0] - a.w[0]);
+  if (camps.length)
+    out += "\n\nTheo campaign (hôm nay | 7 ngày):\n" +
+      camps.map((c) => `• ${c.name}\n  ${line(c.today)} | ${line(c.w)}`).join("\n");
+  out += "\n\nLưu ý: số hôm nay chưa trọn ngày, đơn/doanh thu có thể về trễ.";
+  return out;
+}
 
 function listText(state) {
   if (!state.items?.length) return `Không còn cảnh báo nào (dữ liệu đến ${state.date}).`;
@@ -164,7 +194,7 @@ function listText(state) {
   );
 }
 
-async function askClaude(env, text, state, acks, quoted) {
+async function askLLM(env, text, state, acks, quoted) {
   const system =
     "Bạn là trợ lý Facebook Ads của Huy (shop nến/tinh dầu Aroma). Bot đã gửi cảnh báo ad set/ad nên tắt, " +
     "đánh số #code. Huy trả lời trên Telegram. Hiểu ý Huy và trả về DUY NHẤT một JSON:\n" +
@@ -172,7 +202,8 @@ async function askClaude(env, text, state, acks, quoted) {
     '"acks": [{"code": số, "ad_id": "chỉ khi Huy muốn giữ đúng 1 ad cụ thể, không thì bỏ", "reason": "lý do Huy nêu", "until": "YYYY-MM-DD hoặc rỗng"}]}\n' +
     "Chỉ thêm vào acks khi Huy NÓI RÕ muốn giữ/không tắt/thôi nhắc. Không có lý do thì vẫn ghi, reason để rỗng. " +
     "Nếu Huy nói đã tắt thì acks rỗng, reply xác nhận lần chạy sau bot tự kiểm tra trên Meta. " +
-    "Câu hỏi về số liệu thì trả lời dựa trên dữ liệu bên dưới (daily_7d = [ngày, chi tiêu, đơn, doanh thu]); " +
+    "Câu hỏi về số liệu thì trả lời dựa trên dữ liệu bên dưới: alerts.summary là tổng quan toàn tài khoản và từng campaign 7 ngày " +
+    "(mỗi ngày = [chi tiêu, đơn, doanh thu, kết quả theo mục tiêu campaign]; ngày mới nhất chưa trọn ngày); items[].daily_7d = [ngày, chi tiêu, đơn, doanh thu] của ad set bị cảnh báo; " +
     "không có dữ liệu thì nói thẳng là không có, không bịa. Nếu Huy giữ một ad set ROAS rất thấp mà không có lý do rõ, " +
     "vẫn ghi nhận nhưng nhắc ngắn một câu về số tiền đang mất. Tiền là VND.";
   const ctx = {
@@ -181,22 +212,35 @@ async function askClaude(env, text, state, acks, quoted) {
     current_acks: acks,
     message_being_replied_to: quoted || null,
   };
-  const r = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "x-api-key": env.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      model: env.ANTHROPIC_MODEL || "claude-haiku-5-5",
+  const user = `DỮ LIỆU:\n${JSON.stringify(ctx)}\n\nTIN NHẮN CỦA HUY:\n${text}`;
+  let out;
+  if (env.ANTHROPIC_API_KEY) {
+    const r = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "x-api-key": env.ANTHROPIC_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        model: env.ANTHROPIC_MODEL || "claude-haiku-5-5",
+        max_tokens: 1200,
+        system,
+        messages: [{ role: "user", content: user }],
+      }),
+    });
+    if (!r.ok) throw new Error(`Claude API ${r.status}: ${await r.text()}`);
+    out = (await r.json()).content.map((c) => c.text || "").join("");
+  } else {
+    // Miễn phí: Cloudflare Workers AI (binding "AI" trong wrangler.toml), 10.000 neurons/ngày
+    const r = await env.AI.run(env.AI_MODEL || "@cf/meta/llama-3.3-70b-instruct-fp8-fast", {
+      messages: [{ role: "system", content: system + " Chỉ trả về JSON, không viết gì ngoài JSON." }, { role: "user", content: user }],
       max_tokens: 1200,
-      system,
-      messages: [{ role: "user", content: `DỮ LIỆU:\n${JSON.stringify(ctx)}\n\nTIN NHẮN CỦA HUY:\n${text}` }],
-    }),
-  });
-  if (!r.ok) throw new Error(`Claude API ${r.status}: ${await r.text()}`);
-  const out = (await r.json()).content.map((c) => c.text || "").join("");
+    });
+    const resp = r?.response;
+    if (resp && typeof resp === "object") return resp; // model đôi khi trả sẵn JSON đã parse
+    out = String(resp ?? "");
+  }
   const j = out.match(/\{[\s\S]*\}/);
   if (!j) return { reply: out.trim(), acks: [] };
   try {
@@ -226,7 +270,8 @@ async function handleUpdate(update, env) {
     const byCode = Object.fromEntries(items.map((it) => [it.code, it]));
     const q = quickParse(text);
 
-    if (q?.kind === "help") return reply(env, chatId, HELP, msg.message_id);
+    if (q?.kind === "help") return reply(env, chatId, help(env), msg.message_id);
+    if (q?.kind === "today") return reply(env, chatId, todayText(state), msg.message_id);
     if (q?.kind === "list") return reply(env, chatId, listText(state), msg.message_id);
     if (q?.kind === "off") {
       const found = q.codes.filter((c) => byCode[c]);
@@ -242,10 +287,10 @@ async function handleUpdate(update, env) {
     let plan; // {reply, acks:[{code, ad_id, reason, until}]}
     if (q?.kind === "keep") {
       plan = { acks: q.codes.map((c) => ({ code: c, reason: q.reason, until: q.until })) };
-    } else if (env.ANTHROPIC_API_KEY) {
-      plan = await askClaude(env, text, state, ackFile.acks || [], msg.reply_to_message?.text);
+    } else if (hasLLM(env)) {
+      plan = await askLLM(env, text, state, ackFile.acks || [], msg.reply_to_message?.text);
     } else {
-      return reply(env, chatId, HELP, msg.message_id);
+      return reply(env, chatId, "Câu hỏi tự do chưa bật (thiếu Workers AI hoặc ANTHROPIC_API_KEY). Hiện mình chỉ hiểu các lệnh:\n" + HELP_CMDS, msg.message_id);
     }
 
     const newAcks = [];
@@ -264,7 +309,7 @@ async function handleUpdate(update, env) {
         `✅ Đã ghi, bot thôi nhắc${untilTxt}:\n` + newAcks.map((a) => `• ${a.name} – ${a.reason}`).join("\n");
     }
     if (missing.length) out += `\n\nKhông thấy mã ${missing.map((c) => "#" + c).join(", ")} trong cảnh báo ngày ${state.date}.`;
-    await reply(env, chatId, out.trim() || "Mình chưa hiểu ý bạn.\n\n" + HELP, msg.message_id);
+    await reply(env, chatId, out.trim() || "Mình chưa hiểu ý bạn.\n\n" + help(env), msg.message_id);
   } catch (e) {
     console.error("handleUpdate", e);
     await reply(env, chatId, `Bot gặp lỗi, chưa ghi được gì: ${String(e.message || e).slice(0, 300)}`, msg.message_id);
@@ -293,9 +338,9 @@ export async function telegramSetup(request, rawEnv) {
     body: JSON.stringify({ url, secret_token: env.TG_WEBHOOK_SECRET, allowed_updates: ["message", "edited_message"] }),
   });
   const j = await r.json();
-  const ai = env.ANTHROPIC_API_KEY ? "có" : "chưa có (chỉ hiểu lệnh giữ/đã tắt/list)";
+  const ai = env.ANTHROPIC_API_KEY ? "Claude API" : env.AI ? "Cloudflare Workers AI (miễn phí)" : "chưa có (chỉ hiểu lệnh)";
   return new Response(
-    `${j.ok ? "✅ Đã đăng ký webhook" : "❌ Lỗi"}: ${url}\n${JSON.stringify(j)}\nClaude API: ${ai}`,
+    `${j.ok ? "✅ Đã đăng ký webhook" : "❌ Lỗi"}: ${url}\n${JSON.stringify(j)}\nHỏi tự do: ${ai}`,
     { headers: { "Content-Type": "text/plain; charset=utf-8" } }
   );
 }
