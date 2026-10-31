@@ -7,7 +7,7 @@ danh sách vì chỉ xét ad set/ad ACTIVE) HOẶC được ghi vào ads_alert_a
 lý do không tắt). Không có cảnh báo nào thì KHÔNG gửi tin.
 Thiếu TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID thì chỉ in ra log (dry-run), không lỗi.
 """
-import json, os, sys, datetime as dt, urllib.request, urllib.parse
+import json, os, sys, html, datetime as dt, urllib.request, urllib.parse
 from collections import defaultdict
 
 
@@ -28,8 +28,16 @@ def send(msg):
     if not (tok and chat):
         print("(Chưa có TELEGRAM_BOT_TOKEN/CHAT_ID -> chỉ in log)")
         return False
-    for i in range(0, len(msg), 3800):  # Telegram giới hạn 4096 ký tự/tin
-        body = urllib.parse.urlencode({"chat_id": chat, "text": msg[i:i + 3800], "disable_web_page_preview": "true"}).encode()
+    chunks, cur = [], ""
+    for part in msg.split("\n\n"):  # Telegram giới hạn 4096 ký tự/tin; cắt theo đoạn để không vỡ thẻ HTML
+        if cur and len(cur) + len(part) > 3800:
+            chunks.append(cur)
+            cur = ""
+        cur = f"{cur}\n\n{part}" if cur else part
+    chunks.append(cur)
+    for c in chunks:
+        body = urllib.parse.urlencode({"chat_id": chat, "text": c, "parse_mode": "HTML",
+                                       "disable_web_page_preview": "true"}).encode()
         try:
             urllib.request.urlopen(urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendMessage", data=body), timeout=20)
         except Exception as e:
@@ -48,7 +56,7 @@ def main():
         print("Không có ads_ads_daily, bỏ qua.")
         return
     last = max(r["date"] for r in ads)
-    today_vn = (dt.datetime.utcnow() + dt.timedelta(hours=7)).date().isoformat()
+    today_vn = (dt.datetime.now(dt.timezone.utc).replace(tzinfo=None) + dt.timedelta(hours=7)).date().isoformat()
     # Dữ liệu cũ quá 2 ngày -> báo Huy pipeline dừng (thay vì cảnh báo theo số liệu đã lỗi thời)
     if (dt.date.fromisoformat(today_vn) - dt.date.fromisoformat(last)).days > 2:
         m = (f"⚠️ Dữ liệu Facebook Ads dừng ở ngày {last} (hôm nay {today_vn}) nên bot không xét được cảnh báo. "
@@ -76,7 +84,7 @@ def main():
         for k in ("spend", "impressions", "clicks", "results", "revenue"):
             a[k] += r.get(k) or 0
 
-    alerts = []  # (key, text)
+    alerts = []  # (key, text) -- các rule phụ (đang tắt)
 
     def add(rule, ad_id, msg):
         if str(ad_id) in acked:
@@ -125,7 +133,8 @@ def main():
     # ---- Rule chính: cắt lỗ theo AD SET, kèm danh sách AD gây số xấu ----
     r = R.get("adset_stoploss", {})
     unknown_status = False
-    shown_w = W
+    shown_w, AD_W = W, W
+    items = []  # cảnh báo có cấu trúc để trình bày + để bot đọc phản hồi
     if r.get("enabled"):
         W2 = int(r.get("window_days", W))
         shown_w = W2
@@ -140,9 +149,13 @@ def main():
 
         aset = defaultdict(lambda: defaultdict(float))
         asname, ascamp = {}, {}
+        series = defaultdict(list)  # 7 ngày gần nhất theo ad set, để bot trả lời câu hỏi
+        st7 = (d_last - dt.timedelta(days=6)).isoformat()
         for x in data.get("ads_adsets_daily", []):
             asname.setdefault(x["adset_id"], x.get("adset_name", x["adset_id"]))
             ascamp.setdefault(x["adset_id"], x.get("campaign_id"))
+            if x["date"] >= st7 and (x.get("spend") or x.get("orders")):
+                series[x["adset_id"]].append([x["date"], round(x.get("spend") or 0), x.get("orders") or 0, round(x.get("revenue") or 0)])
             if x["date"] < st2:
                 continue
             if act_sets is not None and str(x["adset_id"]) not in act_sets:
@@ -169,10 +182,10 @@ def main():
             if str(ad_id) in acked:
                 continue
             sp = a["spend"]
-            if sp >= NO and a["orders"] == 0:
-                bad_ads[adset_of[ad_id]].append((ad_id, f"tiêu {vnd(sp)}, 0 đơn"))
-            elif sp > NO and a["revenue"] / sp < MR:
-                bad_ads[adset_of[ad_id]].append((ad_id, f"tiêu {vnd(sp)}, {a['orders']:.0f} đơn, ROAS {a['revenue'] / sp:.2f}"))
+            if (sp >= NO and a["orders"] == 0) or (sp > NO and a["revenue"] / sp < MR):
+                bad_ads[adset_of[ad_id]].append({
+                    "id": str(ad_id), "name": names[ad_id], "spend": sp, "orders": a["orders"],
+                    "roas": (a["revenue"] / sp) if sp else 0, "link": links.get(str(ad_id))})
 
         for sid in set(aset) | set(bad_ads):
             if act_sets is not None and str(sid) not in act_sets:
@@ -181,35 +194,93 @@ def main():
                 continue
             a = aset.get(sid) or defaultdict(float)
             sp = a["spend"]
-            verdict = None
-            if str(sid) not in acked:
-                if sp >= NO and a["orders"] == 0:
-                    verdict = f"TẮT AD SET: tiêu {vnd(sp)} / {W2} ngày, 0 đơn"
-                elif a["orders"] > 0 and sp >= KEEP and a["revenue"] / sp < MR:
-                    verdict = f"TẮT AD SET: tiêu {vnd(sp)}, {a['orders']:.0f} đơn, ROAS {a['revenue'] / sp:.2f} < {MR}"
-            culprits = bad_ads.get(sid, [])
-            if not verdict and not culprits:
+            reason = None
+            if sp >= NO and a["orders"] == 0:
+                reason = "0 đơn"
+            elif a["orders"] > 0 and sp >= KEEP and a["revenue"] / sp < MR:
+                reason = f"ROAS < {MR}".replace(".", ",")
+            culprits = sorted(bad_ads.get(sid, []), key=lambda b: -b["spend"])
+            if not reason and not culprits:
                 continue
-            head = (f"• Ad set {asname.get(sid, sid)} (campaign {cname2.get(ascamp.get(sid), '')})\n  "
-                    + (verdict or f"Ad set chưa vượt ngưỡng (tiêu {vnd(sp)}, {a['orders']:.0f} đơn) nhưng có ad xấu"))
-            lines = []
-            for ad_id, why in culprits:
-                link = links.get(str(ad_id))
-                lines.append(f"    - Ad {names[ad_id]}: {why}" + (f"\n      {link}" if link else ""))
-            if lines:
-                head += f"\n  Ad gây số xấu ({AD_W} ngày, cân nhắc tắt):\n" + "\n".join(lines)
-            alerts.append((f"{last}|adset|{sid}", head))
+            items.append({
+                "level": "off" if reason else "ad", "type": "adset", "id": str(sid),
+                "name": asname.get(sid, sid), "campaign": cname2.get(ascamp.get(sid), ""),
+                "spend": sp, "orders": a["orders"], "roas": (a["revenue"] / sp) if sp else 0,
+                "reason": reason, "ads": culprits, "daily_7d": sorted(series.get(sid, []))})
 
-    print(f"{len(alerts)} cảnh báo (dữ liệu đến {last}).")
-    if not alerts:
+    # Sắp xếp: cần tắt ad set trước, trong mỗi nhóm tiền tiêu nhiều nhất lên đầu; đánh số #1, #2...
+    items.sort(key=lambda it: (it["level"] != "off", -max(it["spend"], max((b["spend"] for b in it["ads"]), default=0))))
+    for i, it in enumerate(items, 1):
+        it["code"] = i
+
+    n = len(items) + len(alerts)
+    print(f"{n} cảnh báo (dữ liệu đến {last}).")
+    state = {"date": last, "window_days": shown_w, "ad_window_days": AD_W, "items": items,
+             "other": [t for _, t in alerts], "generated_at": today_vn}
+    with open("ads_alert_state.json", "w", encoding="utf-8") as f:
+        json.dump(state, f, ensure_ascii=False, indent=1)
+    if not n:
         return  # khung nào ổn hết thì không gửi
 
-    body = "\n".join(t for _, t in alerts)
-    note = "(Không lấy được trạng thái active từ Meta, nên danh sách có thể gồm cả ad set/ad đã tắt)\n" if unknown_status else ""
-    msg = (f"⚠️ Facebook Ads cần xem ({len(alerts)} cảnh báo, dữ liệu đến {last}, cửa sổ {shown_w} ngày)\n"
-           f"Tắt trên Meta hoặc nhắn Claude lý do không tắt để bot thôi nhắc.\n{note}\n{body}")
+    msg = render(items, [t for _, t in alerts], last, shown_w, AD_W, unknown_status)
     print(msg)
     send(msg)
+
+
+def money(x):
+    """Gọn cho điện thoại: 803k, 1,78tr."""
+    if x >= 1_000_000:
+        return f"{x / 1_000_000:.2f}".rstrip("0").rstrip(".").replace(".", ",") + "tr"
+    return f"{x / 1000:.0f}k"
+
+
+def h(s):
+    return html.escape(str(s), quote=False)
+
+
+def stats(sp, orders, roas):
+    s = f"{money(sp)} · {orders:.0f} đơn"
+    if orders > 0:
+        s += f" · ROAS {roas:.2f}".replace(".", ",")
+    return s
+
+
+def render(items, other, last, w, ad_w, unknown_status):
+    d = dt.date.fromisoformat(last).strftime("%d/%m")
+    off = [it for it in items if it["level"] == "off"]
+    adonly = [it for it in items if it["level"] == "ad"]
+    namecount = defaultdict(list)
+    for it in items:
+        namecount[(it["name"], it["campaign"])].append(it["code"])
+
+    out = [f"⚠️ <b>Facebook Ads cần xem</b>\nDữ liệu đến {d} · ad set xét {w} ngày, ad xét {ad_w} ngày"]
+    if off:
+        out.append(f"💸 {len(off)} ad set nên tắt: tiêu <b>{money(sum(i['spend'] for i in off))}</b>, "
+                   f"được {sum(i['orders'] for i in off):.0f} đơn")
+    if unknown_status:
+        out.append("<i>(Không lấy được trạng thái từ Meta, có thể lẫn ad set đã tắt)</i>")
+
+    def block(it):
+        dup = [c for c in namecount[(it["name"], it["campaign"])] if c != it["code"]]
+        lines = [f"<b>#{it['code']} {h(it['name'])}</b>" + (f"  ⚠️ trùng tên #{', #'.join(map(str, dup))}" if dup else ""),
+                 f"<i>{h(it['campaign'])}</i>"]
+        if it["level"] == "off":
+            lines.append(f"{stats(it['spend'], it['orders'], it['roas'])}  → <b>{h(it['reason'])}</b>")
+        else:
+            lines.append(f"Ad set còn ổn: {stats(it['spend'], it['orders'], it['roas'])}")
+        for b in it["ads"]:
+            nm = f'<a href="{h(b["link"])}">{h(b["name"])}</a>' if b.get("link") else h(b["name"])
+            lines.append(f"  ↳ Ad {nm}: {stats(b['spend'], b['orders'], b['roas'])}")
+        return "\n".join(lines)
+
+    if off:
+        out.append("🔴 <b>TẮT AD SET</b>\n\n" + "\n\n".join(block(i) for i in off))
+    if adonly:
+        out.append(f"🟡 <b>CHỈ TẮT AD</b> (số {ad_w} ngày)\n\n" + "\n\n".join(block(i) for i in adonly))
+    if other:
+        out.append("📌 <b>Khác</b>\n" + "\n".join(h(t) for t in other))
+    out.append("💬 <i>Trả lời tin này, VD: \"giữ #3 vì đang test tới 5/11\", \"đã tắt 1 2\", hoặc hỏi gì cũng được.</i>")
+    return "\n\n".join(out)
 
 
 if __name__ == "__main__":

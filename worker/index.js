@@ -12,6 +12,8 @@
 // Cloudflare dashboard (chọn worker > Settings > Variables and Secrets) -- KHÔNG hardcode,
 // KHÔNG commit vào git.
 
+import { telegramWebhook, telegramSetup } from "./telegram.js";
+
 const encoder = new TextEncoder();
 
 // So sánh chuỗi kiểu "timing-safe" (chống dò mật khẩu qua đo thời gian phản hồi).
@@ -36,7 +38,11 @@ function unauthorized() {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
+    // Webhook Telegram: tự xác thực bằng TG_WEBHOOK_SECRET, không qua mật khẩu dashboard.
+    const path = new URL(request.url).pathname;
+    if (path === "/tg-webhook" && request.method === "POST") return telegramWebhook(request, env, ctx);
+
     const expectedPassword = env.SITE_PASSWORD;
     const expectedUser = env.SITE_USER || "aroma";
 
@@ -71,6 +77,8 @@ export default {
     if (!timingSafeEqual(user, expectedUser) || !timingSafeEqual(pass, expectedPassword)) {
       return unauthorized();
     }
+
+    if (path === "/tg-setup") return telegramSetup(request, env);
 
     // Đăng nhập đúng -> phục vụ file tĩnh thật (index.html...) qua binding ASSETS.
     return env.ASSETS.fetch(request);
