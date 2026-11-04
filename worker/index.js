@@ -74,9 +74,22 @@ export default {
       return unauthorized();
     }
 
-    if (!timingSafeEqual(user, expectedUser) || !timingSafeEqual(pass, expectedPassword)) {
-      return unauthorized();
+    const isMain = timingSafeEqual(user, expectedUser) && timingSafeEqual(pass, expectedPassword);
+
+    // Tài khoản xét duyệt (Shopee Open Platform review): CHỈ thấy trang reviewer.html (chỉ có số Shopee
+    // Ads, đã lọc dữ liệu từ lúc build -- không COGS/gross margin/Facebook). Bật bằng 2 biến
+    // REVIEW_USER (mặc định "shopee_review") + REVIEW_PASSWORD; bỏ trống REVIEW_PASSWORD = tắt.
+    if (!isMain && env.REVIEW_PASSWORD) {
+      const reviewUser = env.REVIEW_USER || "shopee_review";
+      if (timingSafeEqual(user, reviewUser) && timingSafeEqual(pass, env.REVIEW_PASSWORD)) {
+        let res = await env.ASSETS.fetch(new Request(new URL("/reviewer", request.url), { method: "GET" }));
+        for (let i = 0; i < 3 && res.status >= 300 && res.status < 400 && res.headers.get("Location"); i++) {
+          res = await env.ASSETS.fetch(new Request(new URL(res.headers.get("Location"), request.url), { method: "GET" }));
+        }
+        return res;
+      }
     }
+    if (!isMain) return unauthorized();
 
     if (path === "/tg-setup") return telegramSetup(request, env);
 

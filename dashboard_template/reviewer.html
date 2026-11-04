@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aroma - Shopee Ads Dashboard</title>
+<style>
+ body{font-family:system-ui,Segoe UI,Arial,sans-serif;margin:0;background:#f6f7f9;color:#222}
+ header{background:#ee4d2d;color:#fff;padding:14px 24px;font-size:18px;font-weight:600}
+ main{padding:20px 24px;max-width:1300px;margin:auto}
+ .bar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+ input,select{padding:6px 8px;border:1px solid #ccc;border-radius:6px}
+ h2{margin:26px 0 8px;font-size:16px}
+ table{border-collapse:collapse;width:100%;background:#fff;border-radius:8px;overflow:hidden;font-size:13px}
+ th,td{padding:8px 10px;border-bottom:1px solid #eee;text-align:right;white-space:nowrap}
+ th:first-child,td:first-child{text-align:left}
+ th{background:#fafafa;cursor:pointer;user-select:none}
+ tr.total td{font-weight:700;background:#fff4f1}
+ .wrap{max-height:460px;overflow:auto;border-radius:8px}
+ .wrap th{position:sticky;top:0;z-index:2}
+ .wrap tr.total td{position:sticky;bottom:0;z-index:2}
+ .note{color:#666;font-size:12px;margin-top:6px}
+</style></head><body>
+<header>Aroma Dashboard &mdash; Shopee Ads (internal reporting)</header>
+<main>
+ <div class="bar">From <input type="date" id="from"> To <input type="date" id="to">
+  Shop <select id="shop"><option value="">All shops</option></select></div>
+ <h2>1. Shop comparison</h2><div class="wrap"><table id="t1"></table></div>
+ <div class="note">CIR Ads = ad spend / ad-attributed sales. CIR Total = ad spend / total shop sales.</div>
+ <h2>2. Daily</h2><div class="wrap"><table id="t2"></table></div>
+ <h2>3. Campaigns / ads</h2><div class="wrap"><table id="t3"></table></div>
+</main>
+<script>
+const DATA = __DATA__;
+const $ = id => document.getElementById(id);
+const fmt = n => Math.round(n||0).toLocaleString('en-US');
+const pct = (a,b) => b ? (a/b*100).toFixed(1)+'%' : '—';
+const shops = [...new Set(DATA.ads.map(r=>r.shop))].sort();
+shops.forEach(s => $('shop').insertAdjacentHTML('beforeend', `<option>${s}</option>`));
+const dates = DATA.ads.map(r=>r.date).concat(DATA.shop_sales.map(r=>r.date)).sort();
+$('from').value = dates[0]; $('to').value = dates[dates.length-1];
+const sortState = {};
+function inr(r){ return r.date>=$('from').value && r.date<=$('to').value && (!$('shop').value || r.shop===$('shop').value); }
+function table(id, cols, rows, totalRow){
+  const st = sortState[id] || {key:cols[0].k, dir:cols[0].k==='date'?-1:-1};
+  rows = rows.slice().sort((a,b)=> (typeof a[st.key]==='string' ? a[st.key].localeCompare(b[st.key]) : (a[st.key]||0)-(b[st.key]||0)) * st.dir);
+  const el = $(id);
+  el.innerHTML = '<thead><tr>'+cols.map(c=>`<th data-k="${c.k}">${c.l}</th>`).join('')+'</tr></thead><tbody>'+
+    rows.map(r=>'<tr>'+cols.map(c=>`<td>${c.f?c.f(r):r[c.k]}</td>`).join('')+'</tr>').join('')+
+    (totalRow?'<tr class="total">'+cols.map(c=>`<td>${c.f?c.f(totalRow):(totalRow[c.k]??'')}</td>`).join('')+'</tr>':'')+'</tbody>';
+  el.querySelectorAll('th').forEach(th=>th.onclick=()=>{const k=th.dataset.k; sortState[id]={key:k,dir:(sortState[id]&&sortState[id].key===k)?-sortState[id].dir:-1}; render();});
+}
+function agg(rows,key){const m={};rows.forEach(r=>{const k=r[key];const o=m[k]||(m[k]={[key]:k,spend:0,ads_rev:0,sales:0,orders:0});o.spend+=r.spend||0;o.ads_rev+=r.ads_rev||0;o.sales+=r.sales||0;o.orders+=r.orders||0;});return Object.values(m);}
+function tot(rows,label){const t={name:label,shop:label,date:label,spend:0,ads_rev:0,sales:0,orders:0};rows.forEach(r=>{t.spend+=r.spend;t.ads_rev+=r.ads_rev;t.sales+=r.sales;t.orders+=r.orders;});return t;}
+function render(){
+  const ads = DATA.ads.filter(inr), sales = DATA.shop_sales.filter(inr), camps = DATA.campaigns.filter(inr);
+  const merged = [...ads.map(r=>({...r,sales:0,orders:0})), ...sales.map(r=>({date:r.date,shop:r.shop,spend:0,ads_rev:0,sales:r.sales,orders:r.orders}))];
+  const common = [
+    {k:'spend',l:'Ad spend',f:r=>fmt(r.spend)},{k:'ads_rev',l:'Ad-attributed sales',f:r=>fmt(r.ads_rev)},
+    {k:'cir_ads',l:'CIR Ads',f:r=>pct(r.spend,r.ads_rev)},{k:'sales',l:'Total shop sales',f:r=>fmt(r.sales)},
+    {k:'cir_tot',l:'CIR Total',f:r=>pct(r.spend,r.sales)},{k:'orders',l:'Orders',f:r=>fmt(r.orders)}];
+  const addDerived = rs => rs.map(r=>({...r,cir_ads:r.ads_rev?r.spend/r.ads_rev:0,cir_tot:r.sales?r.spend/r.sales:0}));
+  table('t1',[{k:'shop',l:'Shop'},...common], addDerived(agg(merged,'shop')), tot(merged,'TOTAL'));
+  table('t2',[{k:'date',l:'Date'},...common], addDerived(agg(merged,'date')), tot(merged,'TOTAL'));
+  const cm = {};camps.forEach(r=>{const k=r.shop+'|'+r.name;const o=cm[k]||(cm[k]={name:r.name,shop:r.shop,spend:0,ads_rev:0});o.spend+=r.spend;o.ads_rev+=r.ads_rev;});
+  const cr = Object.values(cm).map(r=>({...r,cir_ads:r.ads_rev?r.spend/r.ads_rev:0}));
+  table('t3',[{k:'name',l:'Campaign / ad'},{k:'shop',l:'Shop'},{k:'spend',l:'Ad spend',f:r=>fmt(r.spend)},{k:'ads_rev',l:'Ad-attributed sales',f:r=>fmt(r.ads_rev)},{k:'cir_ads',l:'CIR Ads',f:r=>pct(r.spend,r.ads_rev)}], cr, tot(cr,'TOTAL'));
+}
+['from','to','shop'].forEach(i=>$(i).onchange=render); render();
+</script></body></html>

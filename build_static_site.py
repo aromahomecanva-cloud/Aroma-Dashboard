@@ -13,6 +13,41 @@ import os
 import sys
 
 
+def build_reviewer_page(data, out_path, template="dashboard_template/reviewer.html"):
+    """Trang CHỈ-SHOPEE-ADS cho tài khoản xét duyệt app Shopee Open Platform (REVIEW_USER trong
+    worker/index.js chỉ được phục vụ file này). Dữ liệu được LỌC Ở SERVER khi build -- chỉ nhúng
+    chi tiêu ads, doanh số ads, doanh thu shop và số đơn của Shopee; KHÔNG có COGS, gross margin,
+    phí, Facebook Ads, chi phí vận hành... nên view-source cũng không lộ."""
+    try:
+        with open(template, encoding="utf-8") as f:
+            html = f.read()
+    except FileNotFoundError:
+        print(f"WARNING: không thấy {template}, bỏ qua reviewer.html", file=sys.stderr)
+        return
+    ads = {}
+    for r in data.get("shopee_ads_daily", []):
+        k = (r["date"], r["shop_page"])
+        ads.setdefault(k, {"date": r["date"], "shop": r["shop_page"], "spend": 0.0, "ads_rev": 0.0})["spend"] += r.get("spend") or 0
+    for r in data.get("shopee_ads_revenue_daily", []):
+        k = (r["date"], r["shop_name"])
+        ads.setdefault(k, {"date": r["date"], "shop": r["shop_name"], "spend": 0.0, "ads_rev": 0.0})["ads_rev"] += r.get("ads_revenue") or 0
+    shop_sales = [
+        {"date": r["date"], "shop": r["shop_page"], "sales": r.get("gross_revenue") or 0, "orders": r.get("orders") or 0}
+        for r in data.get("daily", []) if r.get("channel") == "shopee" and r.get("shop_page")
+    ]
+    campaigns = [
+        {"date": r["date"], "shop": r["shop_name"], "name": r["campaign_name"],
+         "spend": r.get("spend") or 0, "ads_rev": r.get("ads_revenue") or 0}
+        for r in data.get("shopee_ads_campaign_daily", [])
+    ]
+    payload = {"ads": list(ads.values()), "shop_sales": shop_sales, "campaigns": campaigns}
+    html = html.replace("__DATA__", json.dumps(payload, ensure_ascii=False, separators=(",", ":")))
+    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Wrote {out_path} ({len(html) / 1024:,.0f} KiB) — trang Shopee Ads cho người xét duyệt.")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="data.json")
@@ -102,6 +137,8 @@ def main():
         f"Wrote {args.out} ({size_kb:,.0f} KiB). updated_at={updated_str}. "
         f"daily rows={len(daily)}, campaigns={len(campaigns)}, adsets={len(adsets)}."
     )
+
+    build_reviewer_page(data, os.path.join(os.path.dirname(args.out) or ".", "reviewer.html"))
 
     missing = data.get("shopee_ads_missing_dates")
     if missing:
