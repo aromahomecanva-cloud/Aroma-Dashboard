@@ -64,7 +64,8 @@ async function saveTokens(env, shopId, tok) {
 }
 
 export async function shopeeRoute(request, env, path) {
-  const pid = env.SHOPEE_PARTNER_ID, key = env.SHOPEE_PARTNER_KEY;
+  // trim(): khi dán secret hay dính khoảng trắng/xuống dòng đầu hoặc cuối (đã gặp: " 2052087")
+  const pid = (env.SHOPEE_PARTNER_ID || "").trim(), key = (env.SHOPEE_PARTNER_KEY || "").trim();
   if (!pid || !key) return html("Thiếu SHOPEE_PARTNER_ID / SHOPEE_PARTNER_KEY trong Variables and Secrets của Worker.", 503);
   const host = env.SHOPEE_HOST || "https://partner.shopeemobile.com";
   const origin = new URL(request.url).origin;
