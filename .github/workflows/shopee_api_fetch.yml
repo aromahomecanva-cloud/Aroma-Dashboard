@@ -1,0 +1,37 @@
+name: Shopee API fetch (thử)
+
+# Bấm tay: kéo chi tiêu/doanh số Shopee Ads theo ngày từ API vào shopee_ads_api_daily.json và in bảng đối chiếu với CSV.
+on:
+  workflow_dispatch:
+    inputs:
+      from_date:
+        description: 'Từ ngày (YYYY-MM-DD)'
+        default: '2026-08-01'
+
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r business_dashboard_requirements.txt
+      - name: Kéo dữ liệu Shopee Ads + đối chiếu CSV
+        run: python shopee_ads_api.py --from "${{ github.event.inputs.from_date }}" --compare
+        env:
+          SHOPEE_PARTNER_ID: ${{ secrets.SHOPEE_PARTNER_ID }}
+          SHOPEE_PARTNER_KEY: ${{ secrets.SHOPEE_PARTNER_KEY }}
+      - name: Lưu token mới + dữ liệu
+        if: always()
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add shopee_tokens.json shopee_ads_api_daily.json
+          git diff --staged --quiet || (git commit -m "Shopee API: cập nhật token + dữ liệu ads" && git pull --rebase origin main && git push)
