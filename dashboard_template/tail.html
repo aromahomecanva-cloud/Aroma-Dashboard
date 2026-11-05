@@ -1,6 +1,10 @@
     const allDates = [...new Set(dailyData.map(r => r.date))].sort();
     const minDate = allDates[0];
-    const maxDate = allDates[allDates.length - 1];
+    const dataMaxDate = allDates[allDates.length - 1];
+    // Hôm nay theo GIỜ VN (trình duyệt có thể ở múi giờ khác). Bộ lọc ngày cho phép chọn tới hôm nay
+    // kể cả khi chưa có đơn nào hôm nay, để có chip "Hôm nay" (số ads Shopee/Meta hôm nay là số tạm thời).
+    const todayVN = new Date(Date.now() + 7 * 3600 * 1000).toISOString().slice(0, 10);
+    const maxDate = todayVN > dataMaxDate ? todayVN : dataMaxDate;
     const allChannels = [...new Set(dailyData.map(r => r.channel))];
     const ECOM_CHANNELS = ['shopee', 'tiktokshop', 'lazada', 'web'];
     // 2 shop Shopee chính dùng cho section "Phân bổ ngân sách 2 shop" (tab E-com) -- Góc Hương
@@ -315,6 +319,11 @@
     function applyPreset(days) {
       activePreset = days === null ? 'all' : String(days);
       if (days === null) { dateFrom = minDate; dateTo = maxDate; }
+      else if (days === 'today') { dateFrom = dateTo = todayVN; }
+      else if (days === 'yesterday') {
+        const y = new Date(new Date(todayVN).getTime() - 86400000).toISOString().slice(0, 10);
+        dateFrom = dateTo = y;
+      }
       else {
         const to = new Date(maxDate);
         const from = new Date(to); from.setDate(from.getDate() - (days - 1));
@@ -451,7 +460,7 @@
     function renderDateChips() {
       const box = document.getElementById('dateChips');
       box.innerHTML = '';
-      const presets = [{d:7,l:'7 ngày'},{d:30,l:'30 ngày'},{d:90,l:'90 ngày'},{d:null,l:'Tất cả'}];
+      const presets = [{d:'today',l:'Hôm nay'},{d:'yesterday',l:'Hôm qua'},{d:7,l:'7 ngày'},{d:30,l:'30 ngày'},{d:90,l:'90 ngày'},{d:null,l:'Tất cả'}];
       presets.forEach(p => {
         const chip = document.createElement('div');
         chip.className = 'chip' + (activePreset === (p.d===null?'all':String(p.d)) ? ' active' : '');
