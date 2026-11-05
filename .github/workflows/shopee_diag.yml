@@ -1,0 +1,33 @@
+name: Shopee API diag
+
+# Bấm tay (Actions > Shopee API diag > Run workflow): thử gọi Shopee Open API cho các shop đã ủy quyền
+# và in kết quả ra log. Cần GitHub Secrets: SHOPEE_PARTNER_ID, SHOPEE_PARTNER_KEY (bản LIVE, không có khoảng trắng).
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: false
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Gọi thử Shopee API
+        run: python shopee_api_diag.py
+        env:
+          SHOPEE_PARTNER_ID: ${{ secrets.SHOPEE_PARTNER_ID }}
+          SHOPEE_PARTNER_KEY: ${{ secrets.SHOPEE_PARTNER_KEY }}
+      - name: Lưu token mới (nếu đã refresh)
+        run: |
+          git config user.name "dashboard-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add shopee_tokens.json
+          git diff --staged --quiet || (git commit -m "Shopee: cập nhật token sau refresh" && git pull --rebase origin main && git push)
