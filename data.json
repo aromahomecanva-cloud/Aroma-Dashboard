@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026-11-05T06:39:54.835041",
-  "total_ads_spend": 1577277344.0,
+  "updated_at": "2026-11-05T07:10:17.338589",
+  "total_ads_spend": 1577318789.0,
   "ads_note": "Ads spend giờ ĐÃ gán theo kênh facebook/instagram (suy ra từ tên campaign), phân bổ về shop/page theo tỷ lệ doanh thu — xem ads_spend_by_channel.",
   "ads_spend_by_channel": {
-    "facebook": 1547153509.0,
+    "facebook": 1547199010.0,
     "instagram": 19779664.0
   },
   "channels": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 14600,
-      "gross_revenue": 2348193099.0,
+      "orders": 14601,
+      "gross_revenue": 2348388099.0,
       "total_fee": 462687041.53,
       "revenue_recorded": 1437226197.0,
       "fee_breakdown": {
@@ -34,12 +34,12 @@
         "Phí hoa hồng Tiếp thị liên kết": 1826854.0,
         "Phí vận chuyển trả hàng (đơn giao không thành công)": 820200.0
       },
-      "net_revenue": 1885506057.47,
-      "cogs": 768623962.342,
-      "gross_margin_amount": 748436179.048,
-      "gross_margin_pct": 39.7,
-      "ads_spend": 368445916.08000004,
-      "net_profit_after_ads": 748436179.048
+      "net_revenue": 1885701057.47,
+      "cogs": 768651560.842,
+      "gross_margin_amount": 644153178.748,
+      "gross_margin_pct": 34.2,
+      "ads_spend": 472896317.88,
+      "net_profit_after_ads": 644153178.748
     },
     {
       "channel": "shopee",
@@ -70,10 +70,10 @@
       },
       "net_revenue": 1318905518.23,
       "cogs": 335630337.229,
-      "gross_margin_amount": 728504028.801,
-      "gross_margin_pct": 55.2,
-      "ads_spend": 254771152.20000002,
-      "net_profit_after_ads": 728504028.801
+      "gross_margin_amount": 671160417.921,
+      "gross_margin_pct": 50.9,
+      "ads_spend": 312114763.08,
+      "net_profit_after_ads": 671160417.921
     },
     {
       "channel": "facebook",
@@ -87,10 +87,10 @@
       },
       "net_revenue": 589790931.0,
       "cogs": 172761528.301,
-      "gross_margin_amount": -1130124106.301,
+      "gross_margin_amount": -1130169607.301,
       "gross_margin_pct": -191.6,
-      "ads_spend": 1547153509.0,
-      "net_profit_after_ads": -1130124106.301
+      "ads_spend": 1547199010.0,
+      "net_profit_after_ads": -1130169607.301
     },
     {
       "channel": "facebook",
@@ -235307,6 +235307,18 @@
     {
       "date": "2026-11-05",
       "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán White Gardenia",
+      "sku": "TDKT00192",
+      "quantity": 1.0,
+      "revenue": 235000.0,
+      "cogs": 27598.5,
+      "gross_margin_amount": 207401.5,
+      "gross_margin_pct": 88.3
+    },
+    {
+      "date": "2026-11-05",
+      "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Nến Thủy Tinh 100g Free Soul",
       "sku": "NETH00043",
@@ -263061,9 +263073,9 @@
       "fee_breakdown": {},
       "net_revenue": 5896401.0,
       "cogs": 1278152.2,
-      "gross_margin_amount": 4618248.8,
-      "gross_margin_pct": 78.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3190015.76,
+      "gross_margin_pct": 54.1,
+      "ads_spend": 1428233.04
     },
     {
       "date": "2026-09-30",
@@ -263076,9 +263088,9 @@
       "fee_breakdown": {},
       "net_revenue": 10156420.0,
       "cogs": 2226480.3,
-      "gross_margin_amount": 7929939.7,
-      "gross_margin_pct": 78.1,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5735601.1,
+      "gross_margin_pct": 56.5,
+      "ads_spend": 2194338.6
     },
     {
       "date": "2026-09-30",
@@ -263136,9 +263148,9 @@
       "fee_breakdown": {},
       "net_revenue": 8222828.0,
       "cogs": 2200535.42,
-      "gross_margin_amount": 6022292.58,
-      "gross_margin_pct": 73.2,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4345373.34,
+      "gross_margin_pct": 52.8,
+      "ads_spend": 1676919.2400000002
     },
     {
       "date": "2026-10-01",
@@ -263151,9 +263163,9 @@
       "fee_breakdown": {},
       "net_revenue": 11198600.0,
       "cogs": 2691819.4,
-      "gross_margin_amount": 8506780.6,
-      "gross_margin_pct": 76.0,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5857652.92,
+      "gross_margin_pct": 52.3,
+      "ads_spend": 2649127.68
     },
     {
       "date": "2026-10-02",
@@ -263196,9 +263208,9 @@
       "fee_breakdown": {},
       "net_revenue": 5488018.0,
       "cogs": 1027620.0,
-      "gross_margin_amount": 4460398.0,
-      "gross_margin_pct": 81.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3283466.92,
+      "gross_margin_pct": 59.8,
+      "ads_spend": 1176931.08
     },
     {
       "date": "2026-10-02",
@@ -263211,9 +263223,9 @@
       "fee_breakdown": {},
       "net_revenue": 11827280.0,
       "cogs": 2561395.4,
-      "gross_margin_amount": 9265884.6,
-      "gross_margin_pct": 78.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6763320.4799999995,
+      "gross_margin_pct": 57.2,
+      "ads_spend": 2502564.12
     },
     {
       "date": "2026-10-02",
@@ -263286,9 +263298,9 @@
       "fee_breakdown": {},
       "net_revenue": 3591633.0,
       "cogs": 847564.9,
-      "gross_margin_amount": 2744068.1,
-      "gross_margin_pct": 76.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 1864565.78,
+      "gross_margin_pct": 51.9,
+      "ads_spend": 879502.3200000001
     },
     {
       "date": "2026-10-03",
@@ -263301,9 +263313,9 @@
       "fee_breakdown": {},
       "net_revenue": 9706300.0,
       "cogs": 2092348.6,
-      "gross_margin_amount": 7613951.4,
-      "gross_margin_pct": 78.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5406573.960000001,
+      "gross_margin_pct": 55.7,
+      "ads_spend": 2207377.44
     },
     {
       "date": "2026-10-04",
@@ -263346,9 +263358,9 @@
       "fee_breakdown": {},
       "net_revenue": 3607500.0,
       "cogs": 911187.7,
-      "gross_margin_amount": 2696312.3,
-      "gross_margin_pct": 74.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 1857303.4999999998,
+      "gross_margin_pct": 51.5,
+      "ads_spend": 839008.8
     },
     {
       "date": "2026-10-04",
@@ -263361,9 +263373,9 @@
       "fee_breakdown": {},
       "net_revenue": 9363680.0,
       "cogs": 1992901.8,
-      "gross_margin_amount": 7370778.2,
-      "gross_margin_pct": 78.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5343226.16,
+      "gross_margin_pct": 57.1,
+      "ads_spend": 2027552.04
     },
     {
       "date": "2026-10-04",
@@ -263436,9 +263448,9 @@
       "fee_breakdown": {},
       "net_revenue": 5255103.0,
       "cogs": 1355511.258,
-      "gross_margin_amount": 3899591.742,
-      "gross_margin_pct": 74.2,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2523428.742,
+      "gross_margin_pct": 48.0,
+      "ads_spend": 1376163.0
     },
     {
       "date": "2026-10-05",
@@ -263451,9 +263463,9 @@
       "fee_breakdown": {},
       "net_revenue": 7819420.0,
       "cogs": 1593097.1,
-      "gross_margin_amount": 6226322.9,
-      "gross_margin_pct": 79.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4495316.18,
+      "gross_margin_pct": 57.5,
+      "ads_spend": 1731006.7200000002
     },
     {
       "date": "2026-10-05",
@@ -263496,9 +263508,9 @@
       "fee_breakdown": {},
       "net_revenue": 10541377.0,
       "cogs": 2605463.8,
-      "gross_margin_amount": 7935913.2,
-      "gross_margin_pct": 75.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5329494.12,
+      "gross_margin_pct": 50.6,
+      "ads_spend": 2606419.08
     },
     {
       "date": "2026-10-06",
@@ -263511,9 +263523,9 @@
       "fee_breakdown": {},
       "net_revenue": 11247460.0,
       "cogs": 2695853.8,
-      "gross_margin_amount": 8551606.2,
-      "gross_margin_pct": 76.0,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5670977.279999999,
+      "gross_margin_pct": 50.4,
+      "ads_spend": 2880628.9200000004
     },
     {
       "date": "2026-10-06",
@@ -263556,9 +263568,9 @@
       "fee_breakdown": {},
       "net_revenue": 10365697.0,
       "cogs": 2069530.3,
-      "gross_margin_amount": 8296166.7,
-      "gross_margin_pct": 80.0,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6173314.38,
+      "gross_margin_pct": 59.6,
+      "ads_spend": 2122852.3200000003
     },
     {
       "date": "2026-10-07",
@@ -263571,9 +263583,9 @@
       "fee_breakdown": {},
       "net_revenue": 7570020.0,
       "cogs": 1959188.9,
-      "gross_margin_amount": 5610831.1,
-      "gross_margin_pct": 74.1,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3935544.8199999994,
+      "gross_margin_pct": 52.0,
+      "ads_spend": 1675286.28
     },
     {
       "date": "2026-10-07",
@@ -263631,9 +263643,9 @@
       "fee_breakdown": {},
       "net_revenue": 5130942.0,
       "cogs": 1098125.4,
-      "gross_margin_amount": 4032816.6,
-      "gross_margin_pct": 78.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2526995.2800000003,
+      "gross_margin_pct": 49.3,
+      "ads_spend": 1505821.32
     },
     {
       "date": "2026-10-08",
@@ -263646,9 +263658,9 @@
       "fee_breakdown": {},
       "net_revenue": 9113300.0,
       "cogs": 2168714.3,
-      "gross_margin_amount": 6944585.7,
-      "gross_margin_pct": 76.2,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4837147.140000001,
+      "gross_margin_pct": 53.1,
+      "ads_spend": 2107438.56
     },
     {
       "date": "2026-10-08",
@@ -263691,9 +263703,9 @@
       "fee_breakdown": {},
       "net_revenue": 4770220.0,
       "cogs": 1048110.8,
-      "gross_margin_amount": 3722109.2,
-      "gross_margin_pct": 78.0,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2505928.76,
+      "gross_margin_pct": 52.5,
+      "ads_spend": 1216180.4400000002
     },
     {
       "date": "2026-10-09",
@@ -263706,9 +263718,9 @@
       "fee_breakdown": {},
       "net_revenue": 9141900.0,
       "cogs": 1957883.0,
-      "gross_margin_amount": 7184017.0,
-      "gross_margin_pct": 78.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5124340.359999999,
+      "gross_margin_pct": 56.1,
+      "ads_spend": 2059676.6400000001
     },
     {
       "date": "2026-10-10",
@@ -263796,9 +263808,9 @@
       "fee_breakdown": {},
       "net_revenue": 13749268.0,
       "cogs": 3518303.2,
-      "gross_margin_amount": 10230964.8,
-      "gross_margin_pct": 74.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 7140302.880000001,
+      "gross_margin_pct": 51.9,
+      "ads_spend": 3090661.9200000004
     },
     {
       "date": "2026-10-10",
@@ -263811,9 +263823,9 @@
       "fee_breakdown": {},
       "net_revenue": 24141160.0,
       "cogs": 5645128.0,
-      "gross_margin_amount": 18496032.0,
-      "gross_margin_pct": 76.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 13654187.879999999,
+      "gross_margin_pct": 56.6,
+      "ads_spend": 4841844.12
     },
     {
       "date": "2026-10-11",
@@ -263856,9 +263868,9 @@
       "fee_breakdown": {},
       "net_revenue": 6482641.0,
       "cogs": 1771844.658,
-      "gross_margin_amount": 4710796.342,
-      "gross_margin_pct": 72.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2916195.982,
+      "gross_margin_pct": 45.0,
+      "ads_spend": 1794600.36
     },
     {
       "date": "2026-10-11",
@@ -263871,9 +263883,9 @@
       "fee_breakdown": {},
       "net_revenue": 10037380.0,
       "cogs": 2652451.1,
-      "gross_margin_amount": 7384928.9,
-      "gross_margin_pct": 73.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4573662.98,
+      "gross_margin_pct": 45.6,
+      "ads_spend": 2811265.9200000004
     },
     {
       "date": "2026-10-11",
@@ -263976,9 +263988,9 @@
       "fee_breakdown": {},
       "net_revenue": 5795250.0,
       "cogs": 1291488.3,
-      "gross_margin_amount": 4503761.7,
-      "gross_margin_pct": 77.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3199898.22,
+      "gross_margin_pct": 55.2,
+      "ads_spend": 1303863.48
     },
     {
       "date": "2026-10-12",
@@ -263991,9 +264003,9 @@
       "fee_breakdown": {},
       "net_revenue": 15454220.0,
       "cogs": 3404137.1,
-      "gross_margin_amount": 12050082.9,
-      "gross_margin_pct": 78.0,
-      "ads_spend": 0.0
+      "gross_margin_amount": 8337818.34,
+      "gross_margin_pct": 54.0,
+      "ads_spend": 3712264.56
     },
     {
       "date": "2026-10-12",
@@ -264051,9 +264063,9 @@
       "fee_breakdown": {},
       "net_revenue": 8068290.0,
       "cogs": 1906368.3,
-      "gross_margin_amount": 6161921.7,
-      "gross_margin_pct": 76.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4464550.5,
+      "gross_margin_pct": 55.3,
+      "ads_spend": 1697371.2000000002
     },
     {
       "date": "2026-10-13",
@@ -264066,9 +264078,9 @@
       "fee_breakdown": {},
       "net_revenue": 9487080.0,
       "cogs": 2229599.3,
-      "gross_margin_amount": 7257480.7,
-      "gross_margin_pct": 76.5,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4811545.3,
+      "gross_margin_pct": 50.7,
+      "ads_spend": 2445935.4000000004
     },
     {
       "date": "2026-10-13",
@@ -264171,9 +264183,9 @@
       "fee_breakdown": {},
       "net_revenue": 13557100.0,
       "cogs": 4020664.9,
-      "gross_margin_amount": 9536435.1,
-      "gross_margin_pct": 70.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6252439.139999999,
+      "gross_margin_pct": 46.1,
+      "ads_spend": 3283995.9600000004
     },
     {
       "date": "2026-10-14",
@@ -264186,9 +264198,9 @@
       "fee_breakdown": {},
       "net_revenue": 8161560.0,
       "cogs": 1856514.5,
-      "gross_margin_amount": 6305045.5,
-      "gross_margin_pct": 77.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4387055.14,
+      "gross_margin_pct": 53.8,
+      "ads_spend": 1917990.36
     },
     {
       "date": "2026-10-15",
@@ -264231,9 +264243,9 @@
       "fee_breakdown": {},
       "net_revenue": 12622876.0,
       "cogs": 2979165.3,
-      "gross_margin_amount": 9643710.7,
-      "gross_margin_pct": 76.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6582664.539999999,
+      "gross_margin_pct": 52.1,
+      "ads_spend": 3061046.16
     },
     {
       "date": "2026-10-15",
@@ -264246,9 +264258,9 @@
       "fee_breakdown": {},
       "net_revenue": 17975760.0,
       "cogs": 4248822.5,
-      "gross_margin_amount": 13726937.5,
-      "gross_margin_pct": 76.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 9405971.98,
+      "gross_margin_pct": 52.3,
+      "ads_spend": 4320965.5200000005
     },
     {
       "date": "2026-10-16",
@@ -264276,9 +264288,9 @@
       "fee_breakdown": {},
       "net_revenue": 6606235.0,
       "cogs": 1497072.2,
-      "gross_margin_amount": 5109162.8,
-      "gross_margin_pct": 77.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3271193.96,
+      "gross_margin_pct": 49.5,
+      "ads_spend": 1837968.84
     },
     {
       "date": "2026-10-16",
@@ -264291,9 +264303,9 @@
       "fee_breakdown": {},
       "net_revenue": 14044318.0,
       "cogs": 3733020.458,
-      "gross_margin_amount": 10311297.542,
-      "gross_margin_pct": 73.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6839789.821999999,
+      "gross_margin_pct": 48.7,
+      "ads_spend": 3471507.72
     },
     {
       "date": "2026-10-16",
@@ -264351,9 +264363,9 @@
       "fee_breakdown": {},
       "net_revenue": 16984060.0,
       "cogs": 4275966.358,
-      "gross_margin_amount": 12708093.642,
-      "gross_margin_pct": 74.8,
-      "ads_spend": 0.0
+      "gross_margin_amount": 9868947.522,
+      "gross_margin_pct": 58.1,
+      "ads_spend": 2839146.12
     },
     {
       "date": "2026-10-17",
@@ -264366,9 +264378,9 @@
       "fee_breakdown": {},
       "net_revenue": 16595060.0,
       "cogs": 3743093.9,
-      "gross_margin_amount": 12851966.1,
-      "gross_margin_pct": 77.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 9338834.1,
+      "gross_margin_pct": 56.3,
+      "ads_spend": 3513132.0
     },
     {
       "date": "2026-10-17",
@@ -264471,9 +264483,9 @@
       "fee_breakdown": {},
       "net_revenue": 5252283.0,
       "cogs": 1216149.0,
-      "gross_margin_amount": 4036134.0,
-      "gross_margin_pct": 76.8,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2341787.88,
+      "gross_margin_pct": 44.6,
+      "ads_spend": 1694346.12
     },
     {
       "date": "2026-10-18",
@@ -264486,9 +264498,9 @@
       "fee_breakdown": {},
       "net_revenue": 11832500.0,
       "cogs": 3168211.0,
-      "gross_margin_amount": 8664289.0,
-      "gross_margin_pct": 73.2,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5797673.08,
+      "gross_margin_pct": 49.0,
+      "ads_spend": 2866615.9200000004
     },
     {
       "date": "2026-10-18",
@@ -264546,9 +264558,9 @@
       "fee_breakdown": {},
       "net_revenue": 10260280.0,
       "cogs": 2603932.72,
-      "gross_margin_amount": 7656347.279999999,
-      "gross_margin_pct": 74.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5176665.119999999,
+      "gross_margin_pct": 50.5,
+      "ads_spend": 2479682.16
     },
     {
       "date": "2026-10-19",
@@ -264561,9 +264573,9 @@
       "fee_breakdown": {},
       "net_revenue": 32255840.0,
       "cogs": 8514495.5,
-      "gross_margin_amount": 23741344.5,
-      "gross_margin_pct": 73.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 16268815.86,
+      "gross_margin_pct": 50.4,
+      "ads_spend": 7472528.640000001
     },
     {
       "date": "2026-10-19",
@@ -264621,9 +264633,9 @@
       "fee_breakdown": {},
       "net_revenue": 9461891.0,
       "cogs": 2975469.6,
-      "gross_margin_amount": 6486421.4,
-      "gross_margin_pct": 68.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4226171.48,
+      "gross_margin_pct": 44.7,
+      "ads_spend": 2260249.92
     },
     {
       "date": "2026-10-20",
@@ -264636,9 +264648,9 @@
       "fee_breakdown": {},
       "net_revenue": 26370400.0,
       "cogs": 7190925.8,
-      "gross_margin_amount": 19179474.2,
-      "gross_margin_pct": 72.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 13415161.04,
+      "gross_margin_pct": 50.9,
+      "ads_spend": 5764313.16
     },
     {
       "date": "2026-10-20",
@@ -264711,9 +264723,9 @@
       "fee_breakdown": {},
       "net_revenue": 12455957.0,
       "cogs": 3298213.5,
-      "gross_margin_amount": 9157743.5,
-      "gross_margin_pct": 73.5,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6795746.779999999,
+      "gross_margin_pct": 54.6,
+      "ads_spend": 2361996.72
     },
     {
       "date": "2026-10-21",
@@ -264726,9 +264738,9 @@
       "fee_breakdown": {},
       "net_revenue": 11766700.0,
       "cogs": 3107714.2,
-      "gross_margin_amount": 8658985.8,
-      "gross_margin_pct": 73.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5240600.040000001,
+      "gross_margin_pct": 44.5,
+      "ads_spend": 3418385.7600000002
     },
     {
       "date": "2026-10-22",
@@ -264786,9 +264798,9 @@
       "fee_breakdown": {},
       "net_revenue": 9964976.0,
       "cogs": 2841106.3,
-      "gross_margin_amount": 7123869.7,
-      "gross_margin_pct": 71.5,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5073996.22,
+      "gross_margin_pct": 50.9,
+      "ads_spend": 2049873.4800000002
     },
     {
       "date": "2026-10-22",
@@ -264801,9 +264813,9 @@
       "fee_breakdown": {},
       "net_revenue": 15756580.0,
       "cogs": 3896869.5,
-      "gross_margin_amount": 11859710.5,
-      "gross_margin_pct": 75.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 7984827.1,
+      "gross_margin_pct": 50.7,
+      "ads_spend": 3874883.4000000004
     },
     {
       "date": "2026-10-23",
@@ -264831,9 +264843,9 @@
       "fee_breakdown": {},
       "net_revenue": 6543416.0,
       "cogs": 1210020.7,
-      "gross_margin_amount": 5333395.3,
-      "gross_margin_pct": 81.5,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3787053.46,
+      "gross_margin_pct": 57.9,
+      "ads_spend": 1546341.84
     },
     {
       "date": "2026-10-23",
@@ -264846,9 +264858,9 @@
       "fee_breakdown": {},
       "net_revenue": 9006460.0,
       "cogs": 1973110.7,
-      "gross_margin_amount": 7033349.3,
-      "gross_margin_pct": 78.1,
-      "ads_spend": 0.0
+      "gross_margin_amount": 4679798.18,
+      "gross_margin_pct": 52.0,
+      "ads_spend": 2353551.12
     },
     {
       "date": "2026-10-24",
@@ -264906,9 +264918,9 @@
       "fee_breakdown": {},
       "net_revenue": 4345221.0,
       "cogs": 1203967.0,
-      "gross_margin_amount": 3141254.0,
-      "gross_margin_pct": 72.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2068016.96,
+      "gross_margin_pct": 47.6,
+      "ads_spend": 1073237.04
     },
     {
       "date": "2026-10-24",
@@ -264921,9 +264933,9 @@
       "fee_breakdown": {},
       "net_revenue": 7123040.0,
       "cogs": 1708889.2,
-      "gross_margin_amount": 5414150.8,
-      "gross_margin_pct": 76.0,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3762744.3999999994,
+      "gross_margin_pct": 52.8,
+      "ads_spend": 1651406.4000000001
     },
     {
       "date": "2026-10-24",
@@ -264966,9 +264978,9 @@
       "fee_breakdown": {},
       "net_revenue": 9448687.0,
       "cogs": 2513433.4,
-      "gross_margin_amount": 6935253.6,
-      "gross_margin_pct": 73.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5538936.72,
+      "gross_margin_pct": 58.6,
+      "ads_spend": 1396316.8800000001
     },
     {
       "date": "2026-10-25",
@@ -264981,9 +264993,9 @@
       "fee_breakdown": {},
       "net_revenue": 10958080.0,
       "cogs": 2348861.1,
-      "gross_margin_amount": 8609218.9,
-      "gross_margin_pct": 78.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6158746.42,
+      "gross_margin_pct": 56.2,
+      "ads_spend": 2450472.48
     },
     {
       "date": "2026-10-26",
@@ -265011,9 +265023,9 @@
       "fee_breakdown": {},
       "net_revenue": 5121614.0,
       "cogs": 1338438.258,
-      "gross_margin_amount": 3783175.742,
-      "gross_margin_pct": 73.9,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2290422.4220000003,
+      "gross_margin_pct": 44.7,
+      "ads_spend": 1492753.32
     },
     {
       "date": "2026-10-26",
@@ -265026,9 +265038,9 @@
       "fee_breakdown": {},
       "net_revenue": 9907020.0,
       "cogs": 2501453.4,
-      "gross_margin_amount": 7405566.6,
-      "gross_margin_pct": 74.8,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5034354.239999999,
+      "gross_margin_pct": 50.8,
+      "ads_spend": 2371212.3600000003
     },
     {
       "date": "2026-10-26",
@@ -265071,9 +265083,9 @@
       "fee_breakdown": {},
       "net_revenue": 4687791.0,
       "cogs": 902951.0,
-      "gross_margin_amount": 3784840.0,
-      "gross_margin_pct": 80.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2750589.88,
+      "gross_margin_pct": 58.7,
+      "ads_spend": 1034250.1200000001
     },
     {
       "date": "2026-10-27",
@@ -265086,9 +265098,9 @@
       "fee_breakdown": {},
       "net_revenue": 12073560.0,
       "cogs": 2705770.6,
-      "gross_margin_amount": 9367789.4,
-      "gross_margin_pct": 77.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6457101.92,
+      "gross_margin_pct": 53.5,
+      "ads_spend": 2910687.48
     },
     {
       "date": "2026-10-28",
@@ -265131,9 +265143,9 @@
       "fee_breakdown": {},
       "net_revenue": 5344434.0,
       "cogs": 1204570.658,
-      "gross_margin_amount": 4139863.342,
-      "gross_margin_pct": 77.5,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2938853.662,
+      "gross_margin_pct": 55.0,
+      "ads_spend": 1201009.6800000002
     },
     {
       "date": "2026-10-28",
@@ -265146,9 +265158,9 @@
       "fee_breakdown": {},
       "net_revenue": 10657480.0,
       "cogs": 2171504.0,
-      "gross_margin_amount": 8485976.0,
-      "gross_margin_pct": 79.6,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6196668.68,
+      "gross_margin_pct": 58.1,
+      "ads_spend": 2289307.3200000003
     },
     {
       "date": "2026-10-29",
@@ -265191,9 +265203,9 @@
       "fee_breakdown": {},
       "net_revenue": 3022008.0,
       "cogs": 622213.3,
-      "gross_margin_amount": 2399794.7,
-      "gross_margin_pct": 79.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 1515718.58,
+      "gross_margin_pct": 50.2,
+      "ads_spend": 884076.1200000001
     },
     {
       "date": "2026-10-29",
@@ -265206,9 +265218,9 @@
       "fee_breakdown": {},
       "net_revenue": 13193540.0,
       "cogs": 2904016.7,
-      "gross_margin_amount": 10289523.3,
-      "gross_margin_pct": 78.0,
-      "ads_spend": 0.0
+      "gross_margin_amount": 7332731.700000001,
+      "gross_margin_pct": 55.6,
+      "ads_spend": 2956791.6
     },
     {
       "date": "2026-10-30",
@@ -265251,9 +265263,9 @@
       "fee_breakdown": {},
       "net_revenue": 3954619.0,
       "cogs": 764017.7,
-      "gross_margin_amount": 3190601.3,
-      "gross_margin_pct": 80.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2390115.0199999996,
+      "gross_margin_pct": 60.4,
+      "ads_spend": 800486.28
     },
     {
       "date": "2026-10-30",
@@ -265266,9 +265278,9 @@
       "fee_breakdown": {},
       "net_revenue": 10098820.0,
       "cogs": 2233009.4,
-      "gross_margin_amount": 7865810.6,
-      "gross_margin_pct": 77.9,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5286433.64,
+      "gross_margin_pct": 52.3,
+      "ads_spend": 2579376.96
     },
     {
       "date": "2026-10-30",
@@ -265326,9 +265338,9 @@
       "fee_breakdown": {},
       "net_revenue": 2963901.0,
       "cogs": 550275.0,
-      "gross_margin_amount": 2413626.0,
-      "gross_margin_pct": 81.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 1829483.16,
+      "gross_margin_pct": 61.7,
+      "ads_spend": 584142.8400000001
     },
     {
       "date": "2026-10-31",
@@ -265341,9 +265353,9 @@
       "fee_breakdown": {},
       "net_revenue": 10104240.0,
       "cogs": 2041777.0,
-      "gross_margin_amount": 8062463.0,
-      "gross_margin_pct": 79.8,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5873319.199999999,
+      "gross_margin_pct": 58.1,
+      "ads_spend": 2189143.8000000003
     },
     {
       "date": "2026-11-01",
@@ -265386,9 +265398,9 @@
       "fee_breakdown": {},
       "net_revenue": 2839984.0,
       "cogs": 587884.1,
-      "gross_margin_amount": 2252099.9,
-      "gross_margin_pct": 79.3,
-      "ads_spend": 0.0
+      "gross_margin_amount": 1685959.5799999998,
+      "gross_margin_pct": 59.4,
+      "ads_spend": 566140.3200000001
     },
     {
       "date": "2026-11-01",
@@ -265401,9 +265413,9 @@
       "fee_breakdown": {},
       "net_revenue": 9510740.0,
       "cogs": 2147483.4,
-      "gross_margin_amount": 7363256.6,
-      "gross_margin_pct": 77.4,
-      "ads_spend": 0.0
+      "gross_margin_amount": 5172371.84,
+      "gross_margin_pct": 54.4,
+      "ads_spend": 2190884.7600000002
     },
     {
       "date": "2026-11-01",
@@ -265476,9 +265488,9 @@
       "fee_breakdown": {},
       "net_revenue": 4810409.0,
       "cogs": 1074917.8,
-      "gross_margin_amount": 3735491.2,
-      "gross_margin_pct": 77.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 2743593.2800000003,
+      "gross_margin_pct": 57.0,
+      "ads_spend": 991897.92
     },
     {
       "date": "2026-11-02",
@@ -265491,9 +265503,9 @@
       "fee_breakdown": {},
       "net_revenue": 7946840.0,
       "cogs": 1902407.8,
-      "gross_margin_amount": 6044432.2,
-      "gross_margin_pct": 76.1,
-      "ads_spend": 0.0
+      "gross_margin_amount": 3907186.72,
+      "gross_margin_pct": 49.2,
+      "ads_spend": 2137245.48
     },
     {
       "date": "2026-11-02",
@@ -265536,9 +265548,9 @@
       "fee_breakdown": {},
       "net_revenue": 2061910.0,
       "cogs": 665758.5,
-      "gross_margin_amount": 1396151.5,
-      "gross_margin_pct": 67.7,
-      "ads_spend": 0.0
+      "gross_margin_amount": 763871.98,
+      "gross_margin_pct": 37.0,
+      "ads_spend": 632279.52
     },
     {
       "date": "2026-11-03",
@@ -265551,9 +265563,9 @@
       "fee_breakdown": {},
       "net_revenue": 11713880.0,
       "cogs": 2404801.6,
-      "gross_margin_amount": 9309078.4,
-      "gross_margin_pct": 79.5,
-      "ads_spend": 0.0
+      "gross_margin_amount": 6680905.960000001,
+      "gross_margin_pct": 57.0,
+      "ads_spend": 2628172.44
     },
     {
       "date": "2026-11-04",
@@ -265611,9 +265623,9 @@
       "fee_breakdown": {},
       "net_revenue": 2200522.0,
       "cogs": 504934.3,
-      "gross_margin_amount": 1695587.7,
-      "gross_margin_pct": 77.1,
-      "ads_spend": 0.0
+      "gross_margin_amount": 1137741.7799999998,
+      "gross_margin_pct": 51.7,
+      "ads_spend": 557845.92
     },
     {
       "date": "2026-11-04",
@@ -265626,9 +265638,9 @@
       "fee_breakdown": {},
       "net_revenue": 14206940.0,
       "cogs": 3423181.6,
-      "gross_margin_amount": 10783758.4,
-      "gross_margin_pct": 75.9,
-      "ads_spend": 0.0
+      "gross_margin_amount": 7508238.28,
+      "gross_margin_pct": 52.8,
+      "ads_spend": 3275520.12
     },
     {
       "date": "2026-11-04",
@@ -265671,9 +265683,9 @@
       "fee_breakdown": {},
       "net_revenue": 0.0,
       "cogs": 0.0,
-      "gross_margin_amount": -396479.0,
+      "gross_margin_amount": -442740.0,
       "gross_margin_pct": 0.0,
-      "ads_spend": 396479.0
+      "ads_spend": 442740.0
     },
     {
       "date": "2026-11-05",
@@ -265694,15 +265706,15 @@
       "date": "2026-11-05",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 42,
-      "gross_revenue": 8034660.0,
+      "orders": 43,
+      "gross_revenue": 8229660.0,
       "total_fee": 0.0,
       "revenue_recorded": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 8034660.0,
-      "cogs": 2180690.0,
-      "gross_margin_amount": 5853970.0,
-      "gross_margin_pct": 72.9,
+      "net_revenue": 8229660.0,
+      "cogs": 2208288.5,
+      "gross_margin_amount": 6021371.5,
+      "gross_margin_pct": 73.2,
       "ads_spend": 0.0
     }
   ],
@@ -268669,7 +268681,7 @@
     },
     {
       "date": "2026-11-05",
-      "spend": 396479.0
+      "spend": 437924.0
     }
   ],
   "ads_daily_by_channel": [
@@ -272601,7 +272613,7 @@
     {
       "date": "2026-11-05",
       "channel": "facebook",
-      "spend": 396479.0
+      "spend": 442740.0
     }
   ],
   "ads_detail": {
@@ -306956,17 +306968,17 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 878387.0,
-        "impressions": 6511,
+        "spend": 879305.0,
+        "impressions": 6516,
         "clicks": 169,
-        "results": 5661.0,
+        "results": 5667.0,
         "orders": 1.0,
         "revenue": 655000.0,
-        "ctr": 2.6,
-        "cpc": 5197.56,
+        "ctr": 2.59,
+        "cpc": 5202.99,
         "cpa": 155.16,
-        "cost_per_order": 878387.0,
-        "roas": 0.75,
+        "cost_per_order": 879305.0,
+        "roas": 0.74,
         "purchase_roas_meta": 11.8,
         "actions_raw": []
       },
@@ -306978,16 +306990,16 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 10977036.0,
-        "impressions": 213008,
-        "clicks": 4344,
-        "results": 206334.0,
+        "spend": 10995619.0,
+        "impressions": 213221,
+        "clicks": 4352,
+        "results": 206473.0,
         "orders": 41.0,
         "revenue": 22725000.0,
         "ctr": 2.04,
-        "cpc": 2526.94,
-        "cpa": 53.2,
-        "cost_per_order": 267732.59,
+        "cpc": 2526.57,
+        "cpa": 53.25,
+        "cost_per_order": 268185.83,
         "roas": 2.07,
         "purchase_roas_meta": 4.25,
         "actions_raw": []
@@ -307000,16 +307012,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 355029.0,
-        "impressions": 2576,
+        "spend": 355730.0,
+        "impressions": 2584,
         "clicks": 53,
         "results": 265.0,
         "orders": 2.0,
         "revenue": 0.0,
-        "ctr": 2.06,
-        "cpc": 6698.66,
-        "cpa": 1339.73,
-        "cost_per_order": 177514.5,
+        "ctr": 2.05,
+        "cpc": 6711.89,
+        "cpa": 1342.38,
+        "cost_per_order": 177865.0,
         "roas": null,
         "purchase_roas_meta": null,
         "actions_raw": []
@@ -307022,16 +307034,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 11543460.0,
-        "impressions": 112867,
-        "clicks": 2012,
-        "results": 8153.0,
+        "spend": 11550879.0,
+        "impressions": 112910,
+        "clicks": 2013,
+        "results": 8159.0,
         "orders": 38.0,
         "revenue": 26770000.0,
         "ctr": 1.78,
-        "cpc": 5737.31,
-        "cpa": 1415.85,
-        "cost_per_order": 303775.26,
+        "cpc": 5738.14,
+        "cpa": 1415.72,
+        "cost_per_order": 303970.5,
         "roas": 2.32,
         "purchase_roas_meta": 5.19,
         "actions_raw": []
@@ -307044,17 +307056,17 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 545206.0,
-        "impressions": 4358,
+        "spend": 546223.0,
+        "impressions": 4376,
         "clicks": 103,
         "results": 666.0,
         "orders": 3.0,
         "revenue": 1955000.0,
-        "ctr": 2.36,
-        "cpc": 5293.26,
-        "cpa": 818.63,
-        "cost_per_order": 181735.33,
-        "roas": 3.59,
+        "ctr": 2.35,
+        "cpc": 5303.14,
+        "cpa": 820.15,
+        "cost_per_order": 182074.33,
+        "roas": 3.58,
         "purchase_roas_meta": 20.56,
         "actions_raw": []
       },
@@ -308980,16 +308992,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 2183519.0,
-        "impressions": 18179,
+        "spend": 2183581.0,
+        "impressions": 18180,
         "clicks": 384,
         "results": 850.0,
         "orders": 3.0,
         "revenue": 5036000.0,
         "ctr": 2.11,
-        "cpc": 5686.25,
-        "cpa": 2568.85,
-        "cost_per_order": 727839.67,
+        "cpc": 5686.41,
+        "cpa": 2568.92,
+        "cost_per_order": 727860.33,
         "roas": 2.31,
         "purchase_roas_meta": 16.16,
         "actions_raw": []
@@ -309244,16 +309256,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 3582830.0,
-        "impressions": 27905,
+        "spend": 3582900.0,
+        "impressions": 27906,
         "clicks": 488,
         "results": 2100.0,
         "orders": 10.0,
         "revenue": 5285000.0,
         "ctr": 1.75,
-        "cpc": 7341.86,
-        "cpa": 1706.11,
-        "cost_per_order": 358283.0,
+        "cpc": 7342.01,
+        "cpa": 1706.14,
+        "cost_per_order": 358290.0,
         "roas": 1.48,
         "purchase_roas_meta": 4.08,
         "actions_raw": []
@@ -309574,15 +309586,15 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 315479.0,
-        "impressions": 1905,
-        "clicks": 48,
-        "results": 147.0,
+        "spend": 321303.0,
+        "impressions": 1973,
+        "clicks": 49,
+        "results": 153.0,
         "orders": 0.0,
         "revenue": 0.0,
-        "ctr": 2.52,
-        "cpc": 6572.48,
-        "cpa": 2146.12,
+        "ctr": 2.48,
+        "cpc": 6557.2,
+        "cpa": 2100.02,
         "cost_per_order": null,
         "roas": null,
         "purchase_roas_meta": null,
@@ -310014,15 +310026,15 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 24006.0,
-        "impressions": 79,
+        "spend": 25078.0,
+        "impressions": 85,
         "clicks": 1,
-        "results": 10.0,
+        "results": 16.0,
         "orders": 0.0,
         "revenue": 0.0,
-        "ctr": 1.27,
-        "cpc": 24006.0,
-        "cpa": 2400.6,
+        "ctr": 1.18,
+        "cpc": 25078.0,
+        "cpa": 1567.38,
         "cost_per_order": null,
         "roas": null,
         "purchase_roas_meta": null,
@@ -311378,15 +311390,15 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 72790.0,
-        "impressions": 671,
+        "spend": 73825.0,
+        "impressions": 677,
         "clicks": 18,
-        "results": 687.0,
+        "results": 690.0,
         "orders": 0.0,
         "revenue": 0.0,
-        "ctr": 2.68,
-        "cpc": 4043.89,
-        "cpa": 105.95,
+        "ctr": 2.66,
+        "cpc": 4101.39,
+        "cpa": 106.99,
         "cost_per_order": null,
         "roas": null,
         "purchase_roas_meta": null,
@@ -311400,17 +311412,17 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 1470236.0,
-        "impressions": 33253,
-        "clicks": 1010,
-        "results": 38874.0,
+        "spend": 1477397.0,
+        "impressions": 33347,
+        "clicks": 1014,
+        "results": 38973.0,
         "orders": 4.0,
         "revenue": 1750000.0,
         "ctr": 3.04,
-        "cpc": 1455.68,
-        "cpa": 37.82,
-        "cost_per_order": 367559.0,
-        "roas": 1.19,
+        "cpc": 1457.0,
+        "cpa": 37.91,
+        "cost_per_order": 369349.25,
+        "roas": 1.18,
         "purchase_roas_meta": 3.81,
         "actions_raw": []
       },
@@ -311884,15 +311896,15 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 33485.0,
-        "impressions": 477,
+        "spend": 33548.0,
+        "impressions": 478,
         "clicks": 16,
-        "results": 449.0,
+        "results": 455.0,
         "orders": 0.0,
         "revenue": 0.0,
         "ctr": 3.35,
-        "cpc": 2092.81,
-        "cpa": 74.58,
+        "cpc": 2096.75,
+        "cpa": 73.73,
         "cost_per_order": null,
         "roas": null,
         "purchase_roas_meta": null,
@@ -311928,15 +311940,15 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 25208.0,
-        "impressions": 519,
+        "spend": 25215.0,
+        "impressions": 520,
         "clicks": 10,
         "results": 594.0,
         "orders": 0.0,
         "revenue": 0.0,
-        "ctr": 1.93,
-        "cpc": 2520.8,
-        "cpa": 42.44,
+        "ctr": 1.92,
+        "cpc": 2521.5,
+        "cpa": 42.45,
         "cost_per_order": null,
         "roas": null,
         "purchase_roas_meta": null,
@@ -311950,17 +311962,17 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 274847.0,
-        "impressions": 5130,
+        "spend": 275361.0,
+        "impressions": 5138,
         "clicks": 100,
-        "results": 5476.0,
+        "results": 5491.0,
         "orders": 1.0,
         "revenue": 645000.0,
         "ctr": 1.95,
-        "cpc": 2748.47,
-        "cpa": 50.19,
-        "cost_per_order": 274847.0,
-        "roas": 2.35,
+        "cpc": 2753.61,
+        "cpa": 50.15,
+        "cost_per_order": 275361.0,
+        "roas": 2.34,
         "purchase_roas_meta": 4.61,
         "actions_raw": []
       },
@@ -311972,15 +311984,15 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 108485.0,
-        "impressions": 2546,
-        "clicks": 67,
-        "results": 3101.0,
+        "spend": 109540.0,
+        "impressions": 2565,
+        "clicks": 68,
+        "results": 3113.0,
         "orders": 0.0,
         "revenue": 0.0,
-        "ctr": 2.63,
-        "cpc": 1619.18,
-        "cpa": 34.98,
+        "ctr": 2.65,
+        "cpc": 1610.88,
+        "cpa": 35.19,
         "cost_per_order": null,
         "roas": null,
         "purchase_roas_meta": null,
@@ -329360,16 +329372,16 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 11855423.0,
-        "impressions": 219519,
-        "clicks": 4513,
-        "results": 211995.0,
+        "spend": 11874924.0,
+        "impressions": 219737,
+        "clicks": 4521,
+        "results": 212140.0,
         "orders": 42.0,
         "revenue": 23380000.0,
         "ctr": 2.06,
-        "cpc": 2626.95,
-        "cpa": 55.92,
-        "cost_per_order": 282271.98,
+        "cpc": 2626.61,
+        "cpa": 55.98,
+        "cost_per_order": 282736.29,
         "roas": 1.97,
         "purchase_roas_meta": 4.81
       },
@@ -329379,16 +329391,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 14000021.0,
-        "impressions": 133073,
-        "clicks": 2399,
-        "results": 10044.0,
+        "spend": 14009158.0,
+        "impressions": 133142,
+        "clicks": 2400,
+        "results": 10050.0,
         "orders": 45.0,
         "revenue": 29370000.0,
         "ctr": 1.8,
-        "cpc": 5835.77,
-        "cpa": 1393.87,
-        "cost_per_order": 311111.58,
+        "cpc": 5837.15,
+        "cpa": 1393.95,
+        "cost_per_order": 311314.62,
         "roas": 2.1,
         "purchase_roas_meta": 5.97
       },
@@ -329607,16 +329619,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 6388729.0,
-        "impressions": 47162,
+        "spend": 6388791.0,
+        "impressions": 47163,
         "clicks": 1002,
         "results": 3027.0,
         "orders": 10.0,
         "revenue": 12606000.0,
         "ctr": 2.12,
-        "cpc": 6375.98,
-        "cpa": 2110.58,
-        "cost_per_order": 638872.9,
+        "cpc": 6376.04,
+        "cpa": 2110.6,
+        "cost_per_order": 638879.1,
         "roas": 1.97,
         "purchase_roas_meta": 13.09
       },
@@ -329664,16 +329676,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 4826443.0,
-        "impressions": 36183,
+        "spend": 4826513.0,
+        "impressions": 36184,
         "clicks": 636,
         "results": 2974.0,
         "orders": 16.0,
         "revenue": 6695000.0,
         "ctr": 1.76,
-        "cpc": 7588.75,
-        "cpa": 1622.88,
-        "cost_per_order": 301652.69,
+        "cpc": 7588.86,
+        "cpa": 1622.9,
+        "cost_per_order": 301657.06,
         "roas": 1.39,
         "purchase_roas_meta": 24.71
       },
@@ -329683,17 +329695,17 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 1292746.0,
-        "impressions": 7731,
-        "clicks": 138,
-        "results": 970.0,
+        "spend": 1299642.0,
+        "impressions": 7805,
+        "clicks": 139,
+        "results": 982.0,
         "orders": 3.0,
         "revenue": 1290000.0,
-        "ctr": 1.79,
-        "cpc": 9367.72,
-        "cpa": 1332.73,
-        "cost_per_order": 430915.33,
-        "roas": 1.0,
+        "ctr": 1.78,
+        "cpc": 9349.94,
+        "cpa": 1323.46,
+        "cost_per_order": 433214.0,
+        "roas": 0.99,
         "purchase_roas_meta": 80.79
       },
       {
@@ -329911,16 +329923,16 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 1543026.0,
-        "impressions": 33924,
-        "clicks": 1028,
-        "results": 39561.0,
+        "spend": 1551222.0,
+        "impressions": 34024,
+        "clicks": 1032,
+        "results": 39663.0,
         "orders": 4.0,
         "revenue": 1750000.0,
         "ctr": 3.03,
-        "cpc": 1501.0,
-        "cpa": 39.0,
-        "cost_per_order": 385756.5,
+        "cpc": 1503.12,
+        "cpa": 39.11,
+        "cost_per_order": 387805.5,
         "roas": 1.13,
         "purchase_roas_meta": 3.81
       },
@@ -330006,17 +330018,17 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 465684.0,
-        "impressions": 9109,
-        "clicks": 200,
-        "results": 10053.0,
+        "spend": 467323.0,
+        "impressions": 9138,
+        "clicks": 201,
+        "results": 10086.0,
         "orders": 1.0,
         "revenue": 645000.0,
         "ctr": 2.2,
-        "cpc": 2328.42,
-        "cpa": 46.32,
-        "cost_per_order": 465684.0,
-        "roas": 1.39,
+        "cpc": 2324.99,
+        "cpa": 46.33,
+        "cost_per_order": 467323.0,
+        "roas": 1.38,
         "purchase_roas_meta": 4.61
       }
     ],
@@ -330365,16 +330377,16 @@
         "campaign_id": "120247733836270135",
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
-        "spend": 81209295.0,
-        "impressions": 709469,
-        "clicks": 12025,
-        "results": 50953.0,
+        "spend": 81225460.0,
+        "impressions": 709614,
+        "clicks": 12027,
+        "results": 50971.0,
         "orders": 200.0,
         "revenue": 120403500.0,
         "ctr": 1.69,
-        "cpc": 6753.37,
-        "cpa": 1593.81,
-        "cost_per_order": 406046.47,
+        "cpc": 6753.59,
+        "cpa": 1593.56,
+        "cost_per_order": 406127.3,
         "roas": 1.48,
         "purchase_roas_meta": 11.28
       },
@@ -333833,16 +333845,16 @@
         "campaign_id": "120247804598230135",
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
-        "spend": 65338133.0,
-        "impressions": 1232966,
-        "clicks": 20557,
-        "results": 1048981.0,
+        "spend": 65367469.0,
+        "impressions": 1233313,
+        "clicks": 20570,
+        "results": 1049261.0,
         "orders": 176.0,
         "revenue": 94758035.0,
         "ctr": 1.67,
-        "cpc": 3178.39,
-        "cpa": 62.29,
-        "cost_per_order": 371239.39,
+        "cpc": 3177.81,
+        "cpa": 62.3,
+        "cost_per_order": 371406.07,
         "roas": 1.45,
         "purchase_roas_meta": 7.1
       },
@@ -378582,10 +378594,10 @@
         "campaign_name": "Engage_Opt Sale_ABO_27.07",
         "channel": "facebook",
         "date": "2026-11-05",
-        "spend": 253396.0,
-        "impressions": 1586,
-        "clicks": 31,
-        "results": 112.0,
+        "spend": 269561.0,
+        "impressions": 1731,
+        "clicks": 33,
+        "results": 130.0,
         "orders": 0.0,
         "revenue": 0.0
       },
@@ -378594,10 +378606,10 @@
         "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
         "channel": "facebook",
         "date": "2026-11-05",
-        "spend": 143083.0,
-        "impressions": 1787,
-        "clicks": 39,
-        "results": 1596.0,
+        "spend": 172419.0,
+        "impressions": 2134,
+        "clicks": 52,
+        "results": 1876.0,
         "orders": 0.0,
         "revenue": 0.0
       }
@@ -498620,10 +498632,10 @@
         "adset_name": "Mass – Copy",
         "campaign_id": "120247733836270135",
         "date": "2026-11-05",
-        "spend": 78516.0,
-        "impressions": 543,
-        "clicks": 14,
-        "results": 54.0,
+        "spend": 87653.0,
+        "impressions": 612,
+        "clicks": 15,
+        "results": 60.0,
         "orders": 0.0,
         "revenue": 0.0
       },
@@ -498632,8 +498644,8 @@
         "adset_name": "Mass – Top 2 – Copy",
         "campaign_id": "120247733836270135",
         "date": "2026-11-05",
-        "spend": 57445.0,
-        "impressions": 374,
+        "spend": 57507.0,
+        "impressions": 375,
         "clicks": 5,
         "results": 9.0,
         "orders": 0.0,
@@ -498644,8 +498656,8 @@
         "adset_name": "Mass – Copy 2",
         "campaign_id": "120247733836270135",
         "date": "2026-11-05",
-        "spend": 54853.0,
-        "impressions": 376,
+        "spend": 54923.0,
+        "impressions": 377,
         "clicks": 6,
         "results": 18.0,
         "orders": 0.0,
@@ -498656,10 +498668,10 @@
         "adset_name": "Mass – 30.10",
         "campaign_id": "120247804598230135",
         "date": "2026-11-05",
-        "spend": 29262.0,
-        "impressions": 465,
-        "clicks": 15,
-        "results": 429.0,
+        "spend": 37458.0,
+        "impressions": 565,
+        "clicks": 19,
+        "results": 531.0,
         "orders": 0.0,
         "revenue": 0.0
       },
@@ -498680,10 +498692,10 @@
         "adset_name": "Mass – 03.11",
         "campaign_id": "120247804598230135",
         "date": "2026-11-05",
-        "spend": 14739.0,
-        "impressions": 223,
-        "clicks": 5,
-        "results": 190.0,
+        "spend": 16378.0,
+        "impressions": 252,
+        "clicks": 6,
+        "results": 223.0,
         "orders": 0.0,
         "revenue": 0.0
       },
@@ -498692,10 +498704,10 @@
         "adset_name": "Mass – 24.08",
         "campaign_id": "120247804598230135",
         "date": "2026-11-05",
-        "spend": 87581.0,
-        "impressions": 903,
-        "clicks": 17,
-        "results": 796.0,
+        "spend": 107082.0,
+        "impressions": 1121,
+        "clicks": 25,
+        "results": 941.0,
         "orders": 0.0,
         "revenue": 0.0
       },
@@ -498704,10 +498716,10 @@
         "adset_name": "Mass – Copy 2",
         "campaign_id": "120247733836270135",
         "date": "2026-11-05",
-        "spend": 62582.0,
-        "impressions": 293,
-        "clicks": 6,
-        "results": 31.0,
+        "spend": 69478.0,
+        "impressions": 367,
+        "clicks": 7,
+        "results": 43.0,
         "orders": 0.0,
         "revenue": 0.0
       },
@@ -698158,8 +698170,8 @@
         "ad_name": "Thông Điệp Ẩn_Post Cưới",
         "adset_id": "120248549340240135",
         "date": "2026-11-05",
-        "spend": 7545.0,
-        "impressions": 38,
+        "spend": 8246.0,
+        "impressions": 46,
         "clicks": 2,
         "results": 3.0,
         "orders": 0,
@@ -698170,10 +698182,10 @@
         "ad_name": "Thông Điệp Ẩn_Feedback_Post 04.09",
         "adset_id": "120248549340240135",
         "date": "2026-11-05",
-        "spend": 53657.0,
-        "impressions": 425,
-        "clicks": 10,
-        "results": 39.0,
+        "spend": 61076.0,
+        "impressions": 468,
+        "clicks": 11,
+        "results": 45.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698182,8 +698194,8 @@
         "ad_name": "Thông Điệp Ẩn_Post_30.04.2026",
         "adset_id": "120248549340240135",
         "date": "2026-11-05",
-        "spend": 15278.0,
-        "impressions": 68,
+        "spend": 16295.0,
+        "impressions": 86,
         "clicks": 2,
         "results": 9.0,
         "orders": 0,
@@ -698254,8 +698266,8 @@
         "ad_name": "Thông Điệp Ẩn_Post_04.04.2026",
         "adset_id": "120248825132270135",
         "date": "2026-11-05",
-        "spend": 50933.0,
-        "impressions": 329,
+        "spend": 50995.0,
+        "impressions": 330,
         "clicks": 4,
         "results": 6.0,
         "orders": 0,
@@ -698314,8 +698326,8 @@
         "ad_name": "Thông Điệp Ẩn_Feedback_Post 04.09",
         "adset_id": "120248865038210135",
         "date": "2026-11-05",
-        "spend": 53725.0,
-        "impressions": 360,
+        "spend": 53795.0,
+        "impressions": 361,
         "clicks": 6,
         "results": 18.0,
         "orders": 0,
@@ -698338,10 +698350,10 @@
         "ad_name": "Thông Điệp Ẩn_Spotify_Reel_20.06 RM1",
         "adset_id": "120249366479290135",
         "date": "2026-11-05",
-        "spend": 4243.0,
-        "impressions": 32,
+        "spend": 5278.0,
+        "impressions": 38,
         "clicks": 1,
-        "results": 19.0,
+        "results": 22.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698350,10 +698362,10 @@
         "ad_name": "Thông Điệp Ẩn_Reel Baby Three 3 - H1",
         "adset_id": "120249366479290135",
         "date": "2026-11-05",
-        "spend": 25019.0,
-        "impressions": 433,
-        "clicks": 14,
-        "results": 410.0,
+        "spend": 32180.0,
+        "impressions": 527,
+        "clicks": 18,
+        "results": 509.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698386,10 +698398,10 @@
         "ad_name": "Thông Điệp Ẩn_Reel 22.09 - 2",
         "adset_id": "120249415867070135",
         "date": "2026-11-05",
-        "spend": 1163.0,
-        "impressions": 15,
+        "spend": 1226.0,
+        "impressions": 16,
         "clicks": 0,
-        "results": 0.0,
+        "results": 6.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698410,8 +698422,8 @@
         "ad_name": "Thông Điệp Ẩn_Reel 22.09 - 3",
         "adset_id": "120249415867070135",
         "date": "2026-11-05",
-        "spend": 1384.0,
-        "impressions": 8,
+        "spend": 1391.0,
+        "impressions": 9,
         "clicks": 0,
         "results": 13.0,
         "orders": 0,
@@ -698422,10 +698434,10 @@
         "ad_name": "Thông Điệp Ẩn_Reel 08.07",
         "adset_id": "120249415867070135",
         "date": "2026-11-05",
-        "spend": 6641.0,
-        "impressions": 94,
+        "spend": 7155.0,
+        "impressions": 102,
         "clicks": 0,
-        "results": 75.0,
+        "results": 90.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698434,10 +698446,10 @@
         "ad_name": "Thông Điệp Ẩn_Reel 22.09 - 4",
         "adset_id": "120249415867070135",
         "date": "2026-11-05",
-        "spend": 5173.0,
-        "impressions": 100,
-        "clicks": 5,
-        "results": 96.0,
+        "spend": 6228.0,
+        "impressions": 119,
+        "clicks": 6,
+        "results": 108.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698446,10 +698458,10 @@
         "ad_name": "Thông Điệp Ẩn_Reel Baby Three 3 - H1",
         "adset_id": "120248549152700135",
         "date": "2026-11-05",
-        "spend": 86769.0,
-        "impressions": 895,
-        "clicks": 17,
-        "results": 793.0,
+        "spend": 105352.0,
+        "impressions": 1108,
+        "clicks": 25,
+        "results": 932.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698458,10 +698470,10 @@
         "ad_name": "Thông Điệp Ẩn_Feedback_Post 04.09",
         "adset_id": "120248934657650135",
         "date": "2026-11-05",
-        "spend": 45903.0,
-        "impressions": 253,
-        "clicks": 6,
-        "results": 25.0,
+        "spend": 51727.0,
+        "impressions": 321,
+        "clicks": 7,
+        "results": 31.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698470,10 +698482,10 @@
         "ad_name": "Thông Điệp Ẩn_Spotify_Reel_20.06 RM1",
         "adset_id": "120248549152700135",
         "date": "2026-11-05",
-        "spend": 812.0,
-        "impressions": 8,
+        "spend": 1730.0,
+        "impressions": 13,
         "clicks": 0,
-        "results": 3.0,
+        "results": 9.0,
         "orders": 0,
         "revenue": 0
       },
@@ -698506,10 +698518,10 @@
         "ad_name": "Khắc_Post_24.07.2026 5",
         "adset_id": "120248934657650135",
         "date": "2026-11-05",
-        "spend": 16679.0,
-        "impressions": 40,
+        "spend": 17751.0,
+        "impressions": 46,
         "clicks": 0,
-        "results": 6.0,
+        "results": 12.0,
         "orders": 0,
         "revenue": 0
       }
@@ -743233,10 +743245,10 @@
       "campaign_name": "Engage_Opt Sale_ABO_27.07",
       "channel": "facebook",
       "date": "2026-11-05",
-      "spend": 253396.0,
-      "impressions": 1586,
-      "clicks": 31,
-      "results": 112.0,
+      "spend": 269561.0,
+      "impressions": 1731,
+      "clicks": 33,
+      "results": 130.0,
       "orders": 0.0,
       "revenue": 0.0
     },
@@ -743245,10 +743257,10 @@
       "campaign_name": "Engage_Opt Sale_ABO_30.07_Reel",
       "channel": "facebook",
       "date": "2026-11-05",
-      "spend": 143083.0,
-      "impressions": 1787,
-      "clicks": 39,
-      "results": 1596.0,
+      "spend": 172419.0,
+      "impressions": 2134,
+      "clicks": 52,
+      "results": 1876.0,
       "orders": 0.0,
       "revenue": 0.0
     }
@@ -863271,10 +863283,10 @@
       "adset_name": "Mass – Copy",
       "campaign_id": "120247733836270135",
       "date": "2026-11-05",
-      "spend": 78516.0,
-      "impressions": 543,
-      "clicks": 14,
-      "results": 54.0,
+      "spend": 87653.0,
+      "impressions": 612,
+      "clicks": 15,
+      "results": 60.0,
       "orders": 0.0,
       "revenue": 0.0
     },
@@ -863283,8 +863295,8 @@
       "adset_name": "Mass – Top 2 – Copy",
       "campaign_id": "120247733836270135",
       "date": "2026-11-05",
-      "spend": 57445.0,
-      "impressions": 374,
+      "spend": 57507.0,
+      "impressions": 375,
       "clicks": 5,
       "results": 9.0,
       "orders": 0.0,
@@ -863295,8 +863307,8 @@
       "adset_name": "Mass – Copy 2",
       "campaign_id": "120247733836270135",
       "date": "2026-11-05",
-      "spend": 54853.0,
-      "impressions": 376,
+      "spend": 54923.0,
+      "impressions": 377,
       "clicks": 6,
       "results": 18.0,
       "orders": 0.0,
@@ -863307,10 +863319,10 @@
       "adset_name": "Mass – 30.10",
       "campaign_id": "120247804598230135",
       "date": "2026-11-05",
-      "spend": 29262.0,
-      "impressions": 465,
-      "clicks": 15,
-      "results": 429.0,
+      "spend": 37458.0,
+      "impressions": 565,
+      "clicks": 19,
+      "results": 531.0,
       "orders": 0.0,
       "revenue": 0.0
     },
@@ -863331,10 +863343,10 @@
       "adset_name": "Mass – 03.11",
       "campaign_id": "120247804598230135",
       "date": "2026-11-05",
-      "spend": 14739.0,
-      "impressions": 223,
-      "clicks": 5,
-      "results": 190.0,
+      "spend": 16378.0,
+      "impressions": 252,
+      "clicks": 6,
+      "results": 223.0,
       "orders": 0.0,
       "revenue": 0.0
     },
@@ -863343,10 +863355,10 @@
       "adset_name": "Mass – 24.08",
       "campaign_id": "120247804598230135",
       "date": "2026-11-05",
-      "spend": 87581.0,
-      "impressions": 903,
-      "clicks": 17,
-      "results": 796.0,
+      "spend": 107082.0,
+      "impressions": 1121,
+      "clicks": 25,
+      "results": 941.0,
       "orders": 0.0,
       "revenue": 0.0
     },
@@ -863355,10 +863367,10 @@
       "adset_name": "Mass – Copy 2",
       "campaign_id": "120247733836270135",
       "date": "2026-11-05",
-      "spend": 62582.0,
-      "impressions": 293,
-      "clicks": 6,
-      "results": 31.0,
+      "spend": 69478.0,
+      "impressions": 367,
+      "clicks": 7,
+      "results": 43.0,
       "orders": 0.0,
       "revenue": 0.0
     },
@@ -1062809,8 +1062821,8 @@
       "ad_name": "Thông Điệp Ẩn_Post Cưới",
       "adset_id": "120248549340240135",
       "date": "2026-11-05",
-      "spend": 7545.0,
-      "impressions": 38,
+      "spend": 8246.0,
+      "impressions": 46,
       "clicks": 2,
       "results": 3.0,
       "orders": 0,
@@ -1062821,10 +1062833,10 @@
       "ad_name": "Thông Điệp Ẩn_Feedback_Post 04.09",
       "adset_id": "120248549340240135",
       "date": "2026-11-05",
-      "spend": 53657.0,
-      "impressions": 425,
-      "clicks": 10,
-      "results": 39.0,
+      "spend": 61076.0,
+      "impressions": 468,
+      "clicks": 11,
+      "results": 45.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1062833,8 +1062845,8 @@
       "ad_name": "Thông Điệp Ẩn_Post_30.04.2026",
       "adset_id": "120248549340240135",
       "date": "2026-11-05",
-      "spend": 15278.0,
-      "impressions": 68,
+      "spend": 16295.0,
+      "impressions": 86,
       "clicks": 2,
       "results": 9.0,
       "orders": 0,
@@ -1062905,8 +1062917,8 @@
       "ad_name": "Thông Điệp Ẩn_Post_04.04.2026",
       "adset_id": "120248825132270135",
       "date": "2026-11-05",
-      "spend": 50933.0,
-      "impressions": 329,
+      "spend": 50995.0,
+      "impressions": 330,
       "clicks": 4,
       "results": 6.0,
       "orders": 0,
@@ -1062965,8 +1062977,8 @@
       "ad_name": "Thông Điệp Ẩn_Feedback_Post 04.09",
       "adset_id": "120248865038210135",
       "date": "2026-11-05",
-      "spend": 53725.0,
-      "impressions": 360,
+      "spend": 53795.0,
+      "impressions": 361,
       "clicks": 6,
       "results": 18.0,
       "orders": 0,
@@ -1062989,10 +1063001,10 @@
       "ad_name": "Thông Điệp Ẩn_Spotify_Reel_20.06 RM1",
       "adset_id": "120249366479290135",
       "date": "2026-11-05",
-      "spend": 4243.0,
-      "impressions": 32,
+      "spend": 5278.0,
+      "impressions": 38,
       "clicks": 1,
-      "results": 19.0,
+      "results": 22.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063001,10 +1063013,10 @@
       "ad_name": "Thông Điệp Ẩn_Reel Baby Three 3 - H1",
       "adset_id": "120249366479290135",
       "date": "2026-11-05",
-      "spend": 25019.0,
-      "impressions": 433,
-      "clicks": 14,
-      "results": 410.0,
+      "spend": 32180.0,
+      "impressions": 527,
+      "clicks": 18,
+      "results": 509.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063037,10 +1063049,10 @@
       "ad_name": "Thông Điệp Ẩn_Reel 22.09 - 2",
       "adset_id": "120249415867070135",
       "date": "2026-11-05",
-      "spend": 1163.0,
-      "impressions": 15,
+      "spend": 1226.0,
+      "impressions": 16,
       "clicks": 0,
-      "results": 0.0,
+      "results": 6.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063061,8 +1063073,8 @@
       "ad_name": "Thông Điệp Ẩn_Reel 22.09 - 3",
       "adset_id": "120249415867070135",
       "date": "2026-11-05",
-      "spend": 1384.0,
-      "impressions": 8,
+      "spend": 1391.0,
+      "impressions": 9,
       "clicks": 0,
       "results": 13.0,
       "orders": 0,
@@ -1063073,10 +1063085,10 @@
       "ad_name": "Thông Điệp Ẩn_Reel 08.07",
       "adset_id": "120249415867070135",
       "date": "2026-11-05",
-      "spend": 6641.0,
-      "impressions": 94,
+      "spend": 7155.0,
+      "impressions": 102,
       "clicks": 0,
-      "results": 75.0,
+      "results": 90.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063085,10 +1063097,10 @@
       "ad_name": "Thông Điệp Ẩn_Reel 22.09 - 4",
       "adset_id": "120249415867070135",
       "date": "2026-11-05",
-      "spend": 5173.0,
-      "impressions": 100,
-      "clicks": 5,
-      "results": 96.0,
+      "spend": 6228.0,
+      "impressions": 119,
+      "clicks": 6,
+      "results": 108.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063097,10 +1063109,10 @@
       "ad_name": "Thông Điệp Ẩn_Reel Baby Three 3 - H1",
       "adset_id": "120248549152700135",
       "date": "2026-11-05",
-      "spend": 86769.0,
-      "impressions": 895,
-      "clicks": 17,
-      "results": 793.0,
+      "spend": 105352.0,
+      "impressions": 1108,
+      "clicks": 25,
+      "results": 932.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063109,10 +1063121,10 @@
       "ad_name": "Thông Điệp Ẩn_Feedback_Post 04.09",
       "adset_id": "120248934657650135",
       "date": "2026-11-05",
-      "spend": 45903.0,
-      "impressions": 253,
-      "clicks": 6,
-      "results": 25.0,
+      "spend": 51727.0,
+      "impressions": 321,
+      "clicks": 7,
+      "results": 31.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063121,10 +1063133,10 @@
       "ad_name": "Thông Điệp Ẩn_Spotify_Reel_20.06 RM1",
       "adset_id": "120248549152700135",
       "date": "2026-11-05",
-      "spend": 812.0,
-      "impressions": 8,
+      "spend": 1730.0,
+      "impressions": 13,
       "clicks": 0,
-      "results": 3.0,
+      "results": 9.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1063157,10 +1063169,10 @@
       "ad_name": "Khắc_Post_24.07.2026 5",
       "adset_id": "120248934657650135",
       "date": "2026-11-05",
-      "spend": 16679.0,
-      "impressions": 40,
+      "spend": 17751.0,
+      "impressions": 46,
       "clicks": 0,
-      "results": 6.0,
+      "results": 12.0,
       "orders": 0,
       "revenue": 0
     }
@@ -1066246,6 +1066258,222 @@
       "spend": 1959461.28
     },
     {
+      "date": "2026-09-30",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1428233.04
+    },
+    {
+      "date": "2026-10-01",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1676919.2400000002
+    },
+    {
+      "date": "2026-10-02",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1176931.08
+    },
+    {
+      "date": "2026-10-03",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 879502.3200000001
+    },
+    {
+      "date": "2026-10-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 839008.8
+    },
+    {
+      "date": "2026-10-05",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1376163.0
+    },
+    {
+      "date": "2026-10-06",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 2606419.08
+    },
+    {
+      "date": "2026-10-07",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 2122852.3200000003
+    },
+    {
+      "date": "2026-10-08",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1505821.32
+    },
+    {
+      "date": "2026-10-09",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1216180.4400000002
+    },
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 3090661.9200000004
+    },
+    {
+      "date": "2026-10-11",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1794600.36
+    },
+    {
+      "date": "2026-10-12",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1303863.48
+    },
+    {
+      "date": "2026-10-13",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1697371.2000000002
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 3283995.9600000004
+    },
+    {
+      "date": "2026-10-15",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 3061046.16
+    },
+    {
+      "date": "2026-10-16",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1837968.84
+    },
+    {
+      "date": "2026-10-17",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 2839146.12
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1694346.12
+    },
+    {
+      "date": "2026-10-19",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 2479682.16
+    },
+    {
+      "date": "2026-10-20",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 2260249.92
+    },
+    {
+      "date": "2026-10-21",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 2361996.72
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 2049873.4800000002
+    },
+    {
+      "date": "2026-10-23",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1546341.84
+    },
+    {
+      "date": "2026-10-24",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1073237.04
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1396316.8800000001
+    },
+    {
+      "date": "2026-10-26",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1492753.32
+    },
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1034250.1200000001
+    },
+    {
+      "date": "2026-10-28",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 1201009.6800000002
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 884076.1200000001
+    },
+    {
+      "date": "2026-10-30",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 800486.28
+    },
+    {
+      "date": "2026-10-31",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 584142.8400000001
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 566140.3200000001
+    },
+    {
+      "date": "2026-11-02",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 991897.92
+    },
+    {
+      "date": "2026-11-03",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 632279.52
+    },
+    {
+      "date": "2026-11-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "spend": 557845.92
+    },
+    {
       "date": "2026-04-01",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
@@ -1067336,18 +1067564,234 @@
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
       "spend": 1915152.12
+    },
+    {
+      "date": "2026-09-30",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2194338.6
+    },
+    {
+      "date": "2026-10-01",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2649127.68
+    },
+    {
+      "date": "2026-10-02",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2502564.12
+    },
+    {
+      "date": "2026-10-03",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2207377.44
+    },
+    {
+      "date": "2026-10-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2027552.04
+    },
+    {
+      "date": "2026-10-05",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 1731006.7200000002
+    },
+    {
+      "date": "2026-10-06",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2880628.9200000004
+    },
+    {
+      "date": "2026-10-07",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 1675286.28
+    },
+    {
+      "date": "2026-10-08",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2107438.56
+    },
+    {
+      "date": "2026-10-09",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2059676.6400000001
+    },
+    {
+      "date": "2026-10-10",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 4841844.12
+    },
+    {
+      "date": "2026-10-11",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2811265.9200000004
+    },
+    {
+      "date": "2026-10-12",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 3712264.56
+    },
+    {
+      "date": "2026-10-13",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2445935.4000000004
+    },
+    {
+      "date": "2026-10-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 1917990.36
+    },
+    {
+      "date": "2026-10-15",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 4320965.5200000005
+    },
+    {
+      "date": "2026-10-16",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 3471507.72
+    },
+    {
+      "date": "2026-10-17",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 3513132.0
+    },
+    {
+      "date": "2026-10-18",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2866615.9200000004
+    },
+    {
+      "date": "2026-10-19",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 7472528.640000001
+    },
+    {
+      "date": "2026-10-20",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 5764313.16
+    },
+    {
+      "date": "2026-10-21",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 3418385.7600000002
+    },
+    {
+      "date": "2026-10-22",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 3874883.4000000004
+    },
+    {
+      "date": "2026-10-23",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2353551.12
+    },
+    {
+      "date": "2026-10-24",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 1651406.4000000001
+    },
+    {
+      "date": "2026-10-25",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2450472.48
+    },
+    {
+      "date": "2026-10-26",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2371212.3600000003
+    },
+    {
+      "date": "2026-10-27",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2910687.48
+    },
+    {
+      "date": "2026-10-28",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2289307.3200000003
+    },
+    {
+      "date": "2026-10-29",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2956791.6
+    },
+    {
+      "date": "2026-10-30",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2579376.96
+    },
+    {
+      "date": "2026-10-31",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2189143.8000000003
+    },
+    {
+      "date": "2026-11-01",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2190884.7600000002
+    },
+    {
+      "date": "2026-11-02",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2137245.48
+    },
+    {
+      "date": "2026-11-03",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 2628172.44
+    },
+    {
+      "date": "2026-11-04",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "spend": 3275520.12
     }
   ],
   "shopee_ads_total_by_shop": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "spend": 254771152.20000002
+      "spend": 312114763.08
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "spend": 368445916.08000004
+      "spend": 472896317.88
     }
   ],
   "shopee_ads_revenue_daily": [
@@ -1068262,6 +1068706,186 @@
       "ads_revenue": 8941674.0
     },
     {
+      "date": "2026-09-30",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 5970341.0
+    },
+    {
+      "date": "2026-10-01",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 6918751.0
+    },
+    {
+      "date": "2026-10-02",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 4833410.0
+    },
+    {
+      "date": "2026-10-03",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 3748994.0
+    },
+    {
+      "date": "2026-10-04",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 3511180.0
+    },
+    {
+      "date": "2026-10-05",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 6078535.0
+    },
+    {
+      "date": "2026-10-06",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 11540176.0
+    },
+    {
+      "date": "2026-10-07",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 9623129.0
+    },
+    {
+      "date": "2026-10-08",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 5294391.0
+    },
+    {
+      "date": "2026-10-09",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 4687120.0
+    },
+    {
+      "date": "2026-10-10",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 14490807.0
+    },
+    {
+      "date": "2026-10-11",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 7461616.0
+    },
+    {
+      "date": "2026-10-12",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 5795250.0
+    },
+    {
+      "date": "2026-10-13",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 7142338.0
+    },
+    {
+      "date": "2026-10-14",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 16083391.0
+    },
+    {
+      "date": "2026-10-15",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 12108136.0
+    },
+    {
+      "date": "2026-10-16",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 7457953.0
+    },
+    {
+      "date": "2026-10-17",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 15085725.0
+    },
+    {
+      "date": "2026-10-18",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 5969713.0
+    },
+    {
+      "date": "2026-10-19",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 10573208.0
+    },
+    {
+      "date": "2026-10-20",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 11403351.0
+    },
+    {
+      "date": "2026-10-21",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 14188837.0
+    },
+    {
+      "date": "2026-10-22",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 10740891.0
+    },
+    {
+      "date": "2026-10-23",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 6499466.0
+    },
+    {
+      "date": "2026-10-24",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 3817523.0
+    },
+    {
+      "date": "2026-10-25",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 8094702.0
+    },
+    {
+      "date": "2026-10-26",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 5727853.0
+    },
+    {
+      "date": "2026-10-27",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 4214791.0
+    },
+    {
+      "date": "2026-10-28",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 5574434.0
+    },
+    {
+      "date": "2026-10-29",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 3022008.0
+    },
+    {
+      "date": "2026-10-30",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 3954619.0
+    },
+    {
+      "date": "2026-10-31",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 2559181.0
+    },
+    {
+      "date": "2026-11-01",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 2034744.0
+    },
+    {
+      "date": "2026-11-02",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 4905629.0
+    },
+    {
+      "date": "2026-11-03",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 2508310.0
+    },
+    {
+      "date": "2026-11-04",
+      "shop_name": "Aroma Story - Góc Hương Thơm",
+      "ads_revenue": 2179354.0
+    },
+    {
       "date": "2026-04-01",
       "shop_name": "Aroma Story - The Art Of Scent",
       "ads_revenue": 6634312.0
@@ -1069170,6 +1069794,186 @@
       "date": "2026-09-29",
       "shop_name": "Aroma Story - The Art Of Scent",
       "ads_revenue": 10160780.0
+    },
+    {
+      "date": "2026-09-30",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 10808060.0
+    },
+    {
+      "date": "2026-10-01",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 12397380.0
+    },
+    {
+      "date": "2026-10-02",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 12488280.0
+    },
+    {
+      "date": "2026-10-03",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 9834800.0
+    },
+    {
+      "date": "2026-10-04",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 9966506.0
+    },
+    {
+      "date": "2026-10-05",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 7569520.0
+    },
+    {
+      "date": "2026-10-06",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 13737360.0
+    },
+    {
+      "date": "2026-10-07",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 7825200.0
+    },
+    {
+      "date": "2026-10-08",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 9899800.0
+    },
+    {
+      "date": "2026-10-09",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 8535660.0
+    },
+    {
+      "date": "2026-10-10",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 23861911.0
+    },
+    {
+      "date": "2026-10-11",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 12550480.0
+    },
+    {
+      "date": "2026-10-12",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 16557500.0
+    },
+    {
+      "date": "2026-10-13",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 10774580.0
+    },
+    {
+      "date": "2026-10-14",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 8386160.0
+    },
+    {
+      "date": "2026-10-15",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 19408664.0
+    },
+    {
+      "date": "2026-10-16",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 16504078.0
+    },
+    {
+      "date": "2026-10-17",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 17261780.0
+    },
+    {
+      "date": "2026-10-18",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 13394440.0
+    },
+    {
+      "date": "2026-10-19",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 37023420.0
+    },
+    {
+      "date": "2026-10-20",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 29577976.0
+    },
+    {
+      "date": "2026-10-21",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 13821940.0
+    },
+    {
+      "date": "2026-10-22",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 18118700.0
+    },
+    {
+      "date": "2026-10-23",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 10264480.0
+    },
+    {
+      "date": "2026-10-24",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 7682140.0
+    },
+    {
+      "date": "2026-10-25",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 11276880.0
+    },
+    {
+      "date": "2026-10-26",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 11367220.0
+    },
+    {
+      "date": "2026-10-27",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 13058760.0
+    },
+    {
+      "date": "2026-10-28",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 11635580.0
+    },
+    {
+      "date": "2026-10-29",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 13885480.0
+    },
+    {
+      "date": "2026-10-30",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 10265420.0
+    },
+    {
+      "date": "2026-10-31",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 10159640.0
+    },
+    {
+      "date": "2026-11-01",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 9509880.0
+    },
+    {
+      "date": "2026-11-02",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 8745840.0
+    },
+    {
+      "date": "2026-11-03",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 12267780.0
+    },
+    {
+      "date": "2026-11-04",
+      "shop_name": "Aroma Story - The Art Of Scent",
+      "ads_revenue": 15281680.0
     }
   ],
   "shopee_ads_campaign_daily": [
@@ -1104442,81 +1105246,9 @@
   ],
   "shopee_ads_missing_dates": {
     "Aroma Story - Góc Hương Thơm": [
-      "2026-09-30",
-      "2026-10-01",
-      "2026-10-02",
-      "2026-10-03",
-      "2026-10-04",
-      "2026-10-05",
-      "2026-10-06",
-      "2026-10-07",
-      "2026-10-08",
-      "2026-10-09",
-      "2026-10-10",
-      "2026-10-11",
-      "2026-10-12",
-      "2026-10-13",
-      "2026-10-14",
-      "2026-10-15",
-      "2026-10-16",
-      "2026-10-17",
-      "2026-10-18",
-      "2026-10-19",
-      "2026-10-20",
-      "2026-10-21",
-      "2026-10-22",
-      "2026-10-23",
-      "2026-10-24",
-      "2026-10-25",
-      "2026-10-26",
-      "2026-10-27",
-      "2026-10-28",
-      "2026-10-29",
-      "2026-10-30",
-      "2026-10-31",
-      "2026-11-01",
-      "2026-11-02",
-      "2026-11-03",
-      "2026-11-04",
       "2026-11-05"
     ],
     "Aroma Story - The Art Of Scent": [
-      "2026-09-30",
-      "2026-10-01",
-      "2026-10-02",
-      "2026-10-03",
-      "2026-10-04",
-      "2026-10-05",
-      "2026-10-06",
-      "2026-10-07",
-      "2026-10-08",
-      "2026-10-09",
-      "2026-10-10",
-      "2026-10-11",
-      "2026-10-12",
-      "2026-10-13",
-      "2026-10-14",
-      "2026-10-15",
-      "2026-10-16",
-      "2026-10-17",
-      "2026-10-18",
-      "2026-10-19",
-      "2026-10-20",
-      "2026-10-21",
-      "2026-10-22",
-      "2026-10-23",
-      "2026-10-24",
-      "2026-10-25",
-      "2026-10-26",
-      "2026-10-27",
-      "2026-10-28",
-      "2026-10-29",
-      "2026-10-30",
-      "2026-10-31",
-      "2026-11-01",
-      "2026-11-02",
-      "2026-11-03",
-      "2026-11-04",
       "2026-11-05"
     ]
   },
@@ -1104580,7 +1105312,7 @@
     ]
   },
   "debug_fee_match": {
-    "total_orders_scanned": 23773,
+    "total_orders_scanned": 23774,
     "waybill_values_count": 11041,
     "son_values_count": 475,
     "top_matching_fields_for_waybill_mã_chứng_từ": [
@@ -1104820,12 +1105552,12 @@
     },
     "status_distribution_all_orders": {
       "status_distribution": {
-        "status='closed'": 23313,
-        "status='open'": 448,
+        "status='closed'": 23315,
+        "status='open'": 447,
         "status='cancelled'": 12
       },
       "financial_status_distribution": {
-        "financial_status='paid'": 18798,
+        "financial_status='paid'": 18799,
         "financial_status='refunded'": 2267,
         "financial_status='pending'": 2686,
         "financial_status='partially_paid'": 15,
