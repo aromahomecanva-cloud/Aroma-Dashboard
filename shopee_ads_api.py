@@ -16,6 +16,8 @@ PID = os.environ.get("SHOPEE_PARTNER_ID", "").strip()
 KEY = os.environ.get("SHOPEE_PARTNER_KEY", "").strip()
 TOK_FILE, OUT_FILE = "shopee_tokens.json", "shopee_ads_api_daily.json"
 CHUNK_DAYS = 14
+# Shop đã được ủy quyền nhưng KHÔNG kéo dữ liệu (Huy yêu cầu 05/11/2026; khi nào cần thì xóa khỏi danh sách này)
+EXCLUDED_SHOP_IDS = {1289495643}  # Tiệm Trà Nhà Quê - Since 2022
 
 
 def _sign(path, ts, access_token="", shop_id=""):
@@ -23,6 +25,19 @@ def _sign(path, ts, access_token="", shop_id=""):
 
 
 def shop_get(path, tok, shop_id, params=None):
+    """GET có ký; tự chờ + thử lại khi dính error_rate_limit (Shopee giới hạn khá chặt)."""
+    for attempt in range(6):
+        res = _shop_get_once(path, tok, shop_id, params)
+        if res.get("error") != "error_rate_limit":
+            time.sleep(1.2)
+            return res
+        wait = 10 * (attempt + 1)
+        print(f"  [rate limit] chờ {wait}s rồi thử lại ({attempt + 1}/6)")
+        time.sleep(wait)
+    return res
+
+
+def _shop_get_once(path, tok, shop_id, params=None):
     ts = int(time.time())
     q = {"partner_id": PID, "timestamp": ts, "access_token": tok, "shop_id": shop_id, "sign": _sign(path, ts, tok, shop_id)}
     q.update(params or {})
@@ -77,6 +92,8 @@ def main():
         for gid, t in data.get(group, {}).items():
             ensure_fresh(data, gid, t)
             for sid in (t.get("shop_id_list") or ([int(gid)] if group == "shops" else [])):
+                if sid in EXCLUDED_SHOP_IDS:
+                    continue
                 info = shop_get("/api/v2/shop/get_shop_info", t["access_token"], sid)
                 name = info.get("shop_name") or str(sid)
                 cur = d_from
@@ -93,9 +110,18 @@ def main():
                             "direct_gmv", "broad_gmv", "direct_item_sold", "broad_item_sold")}})
                     cur = end + dt.timedelta(days=1)
                 print(f"{name}: tổng {sum(1 for r in rows if r['shop_id'] == sid)} ngày")
-    json.dump({"updated_at": dt.datetime.utcnow().isoformat() + "Z", "rows": rows},
+    # GỘP với file cũ theo (shop_id, date) -- chạy incremental (vài ngày gần nhất) không làm mất lịch sử
+    try:
+        old = json.load(open(OUT_FILE, encoding="utf-8")).get("rows", [])
+    except Exception:
+        old = []
+    merged = {(r["shop_id"], r["date"]): r for r in old}
+    merged.update({(r["shop_id"], r["date"]): r for r in rows})
+    out_rows = sorted((r for r in merged.values() if r["shop_id"] not in EXCLUDED_SHOP_IDS),
+                      key=lambda r: (r["shop_id"], r["date"]))
+    json.dump({"updated_at": dt.datetime.utcnow().isoformat() + "Z", "rows": out_rows},
               open(OUT_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
-    print(f"Đã ghi {len(rows)} dòng vào {OUT_FILE}")
+    print(f"Đã ghi {len(out_rows)} dòng (mới lấy {len(rows)}) vào {OUT_FILE}")
 
     if a.compare:
         from business_dashboard_shopee_ads import load_shopee_ads_daily
