@@ -26,7 +26,8 @@ function html(body, status = 200) {
   });
 }
 
-async function saveTokens(env, shopId, tok) {
+async function saveTokens(env, group, id, tok) {
+  // group = "shops" (ủy quyền 1 shop) hoặc "merchants" (ủy quyền bằng main account, kèm shop_id_list)
   const repo = env.GITHUB_REPO || "aromahomecanva-cloud/Aroma-Dashboard";
   const url = `https://api.github.com/repos/${repo}/contents/shopee_tokens.json`;
   const headers = {
@@ -43,8 +44,10 @@ async function saveTokens(env, shopId, tok) {
     } else if (cur.status !== 404) {
       throw new Error(`GitHub đọc file lỗi ${cur.status}: ${await cur.text()}`);
     }
-    data.shops = data.shops || {};
-    data.shops[String(shopId)] = {
+    data[group] = data[group] || {};
+    data[group][String(id)] = {
+      ...(tok.shop_id_list ? { shop_id_list: tok.shop_id_list } : {}),
+      ...(tok.merchant_id_list ? { merchant_id_list: tok.merchant_id_list } : {}),
       refresh_token: tok.refresh_token,
       access_token: tok.access_token,
       access_expire_at: Math.floor(Date.now() / 1000) + (tok.expire_in || 14400),
@@ -53,7 +56,7 @@ async function saveTokens(env, shopId, tok) {
     const put = await fetch(url, {
       method: "PUT", headers,
       body: JSON.stringify({
-        message: `Shopee: lưu token cho shop ${shopId}`, branch: "main", sha,
+        message: `Shopee: lưu token (${group}) ${id}`, branch: "main", sha,
         content: btoa(JSON.stringify(data, null, 2)),
       }),
     });
@@ -80,24 +83,30 @@ export async function shopeeRoute(request, env, path) {
 
   // /shopee-callback
   const q = new URL(request.url).searchParams;
-  const code = q.get("code"), shopId = q.get("shop_id");
-  if (!code || !shopId) {
+  const code = q.get("code"), shopId = q.get("shop_id"), mainId = q.get("main_account_id");
+  if (!code || (!shopId && !mainId)) {
     return html(`Không thấy <code>code</code>/<code>shop_id</code> trên đường dẫn (nếu bạn ủy quyền bằng tài khoản chủ/merchant thì Shopee gửi <code>main_account_id</code> thay vì <code>shop_id</code>). Đường dẫn nhận được: <code>${new URL(request.url).search.replace(/</g, "&lt;")}</code>`, 400);
   }
   const apiPath = "/api/v2/auth/token/get", t = ts();
   const sign = await hmacHex(key, `${pid}${apiPath}${t}`);
   const r = await fetch(`${host}${apiPath}?partner_id=${pid}&timestamp=${t}&sign=${sign}`, {
     method: "POST", headers: { "content-type": "application/json" },
-    body: JSON.stringify({ code, shop_id: Number(shopId), partner_id: Number(pid) }),
+    body: JSON.stringify(mainId
+      ? { code, main_account_id: Number(mainId), partner_id: Number(pid) }
+      : { code, shop_id: Number(shopId), partner_id: Number(pid) }),
   });
   const tok = await r.json().catch(() => ({}));
   if (!r.ok || tok.error || !tok.refresh_token) {
     return html(`<b>Shopee từ chối đổi token.</b><br>HTTP ${r.status}<br><code>${JSON.stringify({ error: tok.error, message: tok.message, request_id: tok.request_id }).replace(/</g, "&lt;")}</code><br>Mã <code>code</code> chỉ dùng được 1 lần và hết hạn sau vài phút -- bấm lại <a href="/shopee-auth">/shopee-auth</a> để ủy quyền lại.`, 502);
   }
   try {
-    await saveTokens(env, shopId, tok);
+    await saveTokens(env, mainId ? "merchants" : "shops", mainId || shopId, tok);
   } catch (e) {
     return html(`Đổi token OK nhưng LƯU vào repo lỗi: <code>${String(e.message).replace(/</g, "&lt;")}</code>`, 500);
+  }
+  if (mainId) {
+    const list = (tok.shop_id_list || []).join(", ") || "(Shopee không trả danh sách)";
+    return html(`<h3>Đã ủy quyền xong bằng main account <code>${mainId}</code></h3>Các shop được cấp quyền: <code>${list}</code><br>Token đã lưu vào repo (<code>shopee_tokens.json</code>), không hiển thị ở đây.`);
   }
   return html(`<h3>Đã ủy quyền xong cho shop <code>${shopId}</code></h3>Token đã được lưu vào repo (<code>shopee_tokens.json</code>), không hiển thị ở đây. Muốn ủy quyền thêm shop khác: đăng xuất tài khoản Shopee của shop hiện tại rồi mở lại <a href="/shopee-auth">/shopee-auth</a>.`);
 }
