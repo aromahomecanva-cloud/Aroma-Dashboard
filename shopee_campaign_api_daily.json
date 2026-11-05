@@ -1,5 +1,5 @@
 {
-"updated_at": "2026-11-05T10:06:58.664040Z",
+"updated_at": "2026-11-05T17:17:22.389546Z",
 "rows": [
 {
 "date": "2026-10-26",
@@ -115,9 +115,20 @@
 "date": "2026-11-05",
 "shop_id": 434961385,
 "campaign_id": "187360200",
-"impression": 136,
-"clicks": 6,
-"expense": 1362,
+"impression": 236,
+"clicks": 9,
+"expense": 1751,
+"broad_gmv": 0,
+"broad_order": 0,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-06",
+"shop_id": 434961385,
+"campaign_id": "187360200",
+"impression": 2,
+"clicks": 0,
+"expense": 19,
 "broad_gmv": 0,
 "broad_order": 0,
 "broad_item_sold": 0
@@ -236,9 +247,9 @@
 "date": "2026-11-05",
 "shop_id": 434961385,
 "campaign_id": "193319396",
-"impression": 28,
+"impression": 42,
 "clicks": 1,
-"expense": 1950,
+"expense": 2117,
 "broad_gmv": 0,
 "broad_order": 0,
 "broad_item_sold": 0
@@ -357,11 +368,22 @@
 "date": "2026-11-05",
 "shop_id": 434961385,
 "campaign_id": "193319397",
-"impression": 212,
-"clicks": 4,
-"expense": 18220,
+"impression": 420,
+"clicks": 5,
+"expense": 25582,
 "broad_gmv": 99000,
 "broad_order": 1,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-06",
+"shop_id": 434961385,
+"campaign_id": "193319397",
+"impression": 8,
+"clicks": 0,
+"expense": 185,
+"broad_gmv": 0,
+"broad_order": 0,
 "broad_item_sold": 0
 },
 {
@@ -445,11 +467,22 @@
 "date": "2026-11-05",
 "shop_id": 434961385,
 "campaign_id": "198181306",
-"impression": 1029,
-"clicks": 29,
-"expense": 149835,
-"broad_gmv": 846144,
-"broad_order": 4,
+"impression": 1744,
+"clicks": 44,
+"expense": 258648,
+"broad_gmv": 1275804,
+"broad_order": 5,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-06",
+"shop_id": 434961385,
+"campaign_id": "198181306",
+"impression": 15,
+"clicks": 0,
+"expense": 610,
+"broad_gmv": 0,
+"broad_order": 0,
 "broad_item_sold": 0
 },
 {
@@ -531,6 +564,17 @@
 },
 {
 "date": "2026-11-04",
+"shop_id": 434961385,
+"campaign_id": "199204954",
+"impression": 2,
+"clicks": 0,
+"expense": 0,
+"broad_gmv": 0,
+"broad_order": 0,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-05",
 "shop_id": 434961385,
 "campaign_id": "199204954",
 "impression": 2,

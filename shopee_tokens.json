@@ -9,10 +9,10 @@
         1289495643
       ],
       "merchant_id_list": [],
-      "refresh_token": "774258514f4a63535a58504568676848",
-      "access_token": "70497a525678694a65505a5063737361",
-      "access_expire_at": 1793875325,
-      "saved_at": "2026-11-05T06:42:11.036Z"
+      "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAIowPOy1wYwu-Kv1QU4AUABSAM.rMByd5Bo-YwCVB0MmpsBGZSvKOQrkAQNnhCy8uqcmB4",
+      "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAEowPOy1wYw4PiIUjgBQAFIAw.7CxBsaus3LRxkHZrSIfdpkMSMD937Gt65lJQuRjIUsw",
+      "access_expire_at": 1793913344,
+      "saved_at": "2026-11-05T17:15:44.517890Z"
     }
   }
 }
