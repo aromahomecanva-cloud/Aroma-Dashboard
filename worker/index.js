@@ -13,6 +13,7 @@
 // KHÔNG commit vào git.
 
 import { telegramWebhook, telegramSetup } from "./telegram.js";
+import { shopeeRoute } from "./shopee.js";
 
 const encoder = new TextEncoder();
 
@@ -92,6 +93,7 @@ export default {
     if (!isMain) return unauthorized();
 
     if (path === "/tg-setup") return telegramSetup(request, env);
+    if (path === "/shopee-auth" || path === "/shopee-callback") return shopeeRoute(request, env, path);
 
     // Đăng nhập đúng -> phục vụ file tĩnh thật (index.html...) qua binding ASSETS.
     return env.ASSETS.fetch(request);
