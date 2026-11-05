@@ -494,7 +494,12 @@
         allChannels.map(ch => `<option value="${ch}">${label(ch)}</option>`).join('');
       chSel.value = prodChannel;
       const relevant = productBreakdown.filter(r => prodChannel === 'ALL' || r.channel === prodChannel);
-      const sps = [...new Set(relevant.map(r => r.shop_page || ''))];
+      // Danh sách shop/page của bảng sản phẩm (tab E-com): khi chọn "Tất cả kênh" hoặc "Shopee" chỉ liệt kê
+      // các shop SHOPEE hiện có (Huy yêu cầu 05/11/2026), không liệt kê các page Facebook/Instagram/tay.
+      // Chọn kênh khác (TikTok Shop, Lazada...) thì vẫn liệt kê shop của kênh đó như cũ.
+      const shopeeShopSet = new Set(productBreakdown.filter(r => r.channel === 'shopee' && r.shop_page).map(r => r.shop_page));
+      const onlyShopee = prodChannel === 'ALL' || prodChannel === 'shopee';
+      const sps = [...new Set(relevant.map(r => r.shop_page || ''))].filter(sp => !onlyShopee || shopeeShopSet.has(sp));
       spSel.innerHTML = '<option value="ALL">Tất cả shop/page</option>' +
         sps.map(sp => {
           const chsForSp = [...new Set(relevant.filter(r => (r.shop_page||'') === sp).map(r => r.channel))];
@@ -824,6 +829,48 @@
       renderSummaryBody(list, 'tableBody', expandedRows, renderOverviewTab);
     }
 
+    // ===== Shopee Ads — Chi tiết (tổng quan theo shop, từ Shopee Open API; yêu cầu Huy 05/11/2026) =====
+    // Dữ liệu shopeeAdsApiDaily: mỗi dòng = 1 shop x 1 ngày {date, shop_name, impression, clicks, broad_order,
+    // broad_gmv, broad_item_sold, expense...}. "Doanh số" = broad_gmv (khớp cột Doanh số trong CSV), "expense" là
+    // chi phí CHƯA VAT (khớp "Chi phí" của CSV/Seller Centre) -> thêm cột đã VAT (x1.08) cho khớp số tính ở dashboard.
+    const SHOPEE_ADS_VAT = 1.08;
+    function renderShopeeAdsOverview() {
+      const rows = (typeof shopeeAdsApiDaily !== 'undefined' ? shopeeAdsApiDaily : [])
+        .filter(r => r.date >= dateFrom && r.date <= dateTo
+          && (globalChannel === 'ALL' || globalChannel === 'shopee')
+          && (globalShopPage === 'ALL' || r.shop_name === globalShopPage));
+      const byShop = {};
+      rows.forEach(r => {
+        const b = byShop[r.shop_name] || (byShop[r.shop_name] = { shop: r.shop_name, imp: 0, clk: 0, ord: 0, items: 0, gmv: 0, exp: 0 });
+        b.imp += r.impression || 0; b.clk += r.clicks || 0; b.ord += r.broad_order || 0;
+        b.items += r.broad_item_sold || 0; b.gmv += r.broad_gmv || 0; b.exp += r.expense || 0;
+      });
+      const list = Object.values(byShop).filter(b => b.imp || b.exp).sort((a, b) => b.exp - a.exp);
+      const t = list.reduce((a, b) => ({ shop: 'TỔNG CỘNG', imp: a.imp + b.imp, clk: a.clk + b.clk, ord: a.ord + b.ord,
+        items: a.items + b.items, gmv: a.gmv + b.gmv, exp: a.exp + b.exp }), { imp: 0, clk: 0, ord: 0, items: 0, gmv: 0, exp: 0 });
+      const ctr = x => x.imp ? (x.clk / x.imp * 100).toFixed(2) + '%' : '—';
+      const roas = x => x.exp ? (x.gmv / x.exp).toFixed(2) : '—';
+      const cpo = x => x.ord ? fmt(Math.round(x.exp / x.ord)) + '₫' : '—';
+      const card = (l, v, sub) => `<div class="card"><div class="label">${l}</div><div class="value">${v}${sub ? ` <span class="fee-pct">${sub}</span>` : ''}</div></div>`;
+      document.getElementById('shopeeAdsOvCards').innerHTML = list.length ? [
+        card('Số lượt xem', fmt(t.imp)), card('Số lượt click', fmt(t.clk)), card('Tỉ lệ click', ctr(t)),
+        card('Đơn hàng', fmt(t.ord)), card('Sản phẩm đã bán', fmt(t.items)),
+        card('Doanh số (ads)', fmt(t.gmv) + '₫'),
+        card('Chi phí (chưa VAT)', fmt(t.exp) + '₫', '(đã VAT: ' + fmt(Math.round(t.exp * SHOPEE_ADS_VAT)) + '₫)'),
+        card('ROAS', roas(t)),
+      ].join('') : '';
+      const body = document.getElementById('shopeeAdsOvBody');
+      const row = (x, cls) => `<tr${cls ? ` class="${cls}"` : ''}><td>${x.shop}</td><td>${fmt(x.imp)}</td><td>${fmt(x.clk)}</td><td>${ctr(x)}</td>`
+        + `<td>${fmt(x.ord)}</td><td>${fmt(x.items)}</td><td>${fmt(x.gmv)}₫</td><td>${fmt(x.exp)}₫</td>`
+        + `<td>${fmt(Math.round(x.exp * SHOPEE_ADS_VAT))}₫</td><td>${roas(x)}</td><td>${cpo(x)}</td></tr>`;
+      body.innerHTML = list.length ? list.map(x => row(x)).join('') + row(t, 'grand-total-row')
+        : '<tr><td colspan="11" style="text-align:center;color:#999;">Không có dữ liệu Shopee Ads (API) trong khoảng đã chọn.</td></tr>';
+      const apiDates = (typeof shopeeAdsApiDaily !== 'undefined' ? shopeeAdsApiDaily : []).map(r => r.date).sort();
+      document.getElementById('shopeeAdsOvNote').textContent =
+        'Số liệu lấy trực tiếp từ Shopee Open API' + (apiDates.length ? ` (có từ ${apiDates[0]} đến ${apiDates[apiDates.length - 1]}; ngày hôm nay là số tạm thời)` : '')
+        + ', theo bộ lọc ngày và shop ở trên. Doanh số = tổng doanh số Shopee ghi nhận cho ads (broad); ROAS = Doanh số ÷ Chi phí chưa VAT.';
+    }
+
     function renderEcomTab() {
       renderTableHeader('ecomTableHeadRow', ecomSort, renderEcomTab);
       const list = getChannelSummary(ch => ECOM_CHANNELS.includes(ch), ecomSort);
@@ -831,6 +878,7 @@
       document.getElementById('ecomEmptyNote').style.display = list.length ? 'none' : 'block';
       renderSummaryBody(list, 'ecomTableBody', ecomExpandedRows, renderEcomTab);
       renderShopeeShopSection();
+      renderShopeeAdsOverview();
     }
 
     // ===== Shopee Ads: Phân bổ ngân sách 2 shop (4 view, yêu cầu Huy 25/09/2026) =====

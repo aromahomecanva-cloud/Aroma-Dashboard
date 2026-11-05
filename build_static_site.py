@@ -55,6 +55,7 @@ def main():
     ap.add_argument("--tail", default="dashboard_template/tail.html")
     ap.add_argument("--out", default="netlify_site/index.html")
     ap.add_argument("--overhead", default="monthly_overhead.json")
+    ap.add_argument("--shopee-api", default="shopee_ads_api_daily.json")
     args = ap.parse_args()
 
     try:
@@ -77,6 +78,14 @@ def main():
     except Exception as e:
         print(f"WARNING: failed to parse {args.overhead}: {e} -- bỏ qua, dashboard vẫn build bình thường.", file=sys.stderr)
         monthly_overhead = {}
+
+    # Shopee Ads theo ngày từ Open API (lượt xem, click, đơn, GMV, chi phí...) -- file riêng do
+    # shopee_ads_api.py ghi, KHÔNG nằm trong data.json. Thiếu file thì phần "Shopee Ads chi tiết" để trống.
+    try:
+        with open(args.shopee_api, encoding="utf-8") as f:
+            shopee_api_daily = json.load(f).get("rows", [])
+    except Exception:
+        shopee_api_daily = []
 
     daily = data.get("daily", [])
     ads_daily = data.get("ads_daily", [])
@@ -123,7 +132,8 @@ def main():
         f"    const adPostLinks = {j(ad_post_links)};\n"
         f"    const monthlyOverhead = {j(monthly_overhead)};\n"
         f"    const shopeeAdsRevenueDaily = {j(shopee_ads_revenue_daily)};\n"
-        f"    const shopeeAdsCampaignDaily = {j(shopee_ads_campaign_daily)};\n\n"
+        f"    const shopeeAdsCampaignDaily = {j(shopee_ads_campaign_daily)};\n"
+        f"    const shopeeAdsApiDaily = {j(shopee_api_daily)};\n\n"
     )
 
     full = head + "\n" + middle + tail

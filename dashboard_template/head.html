@@ -182,6 +182,19 @@
     </div>
     <div class="empty-note" id="ecomEmptyNote" style="display:none;">Không có kênh e-com nào trong khoảng đã chọn.</div>
 
+    <h2>Shopee Ads — Chi tiết</h2>
+    <div class="section-note" id="shopeeAdsOvNote">Số liệu lấy trực tiếp từ Shopee Open API (cập nhật mỗi lần pipeline chạy), theo bộ lọc ngày và shop ở trên.</div>
+    <div class="cards" id="shopeeAdsOvCards"></div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr>
+          <th>Shop</th><th>Lượt xem</th><th>Lượt click</th><th>Tỉ lệ click</th><th>Đơn hàng</th>
+          <th>SP đã bán</th><th>Doanh số (ads)</th><th>Chi phí (chưa VAT)</th><th>Chi phí (đã VAT)</th><th>ROAS</th><th>CP/đơn</th>
+        </tr></thead>
+        <tbody id="shopeeAdsOvBody"></tbody>
+      </table>
+    </div>
+
     <h2>Theo sản phẩm (trong khoảng thời gian / kênh / shop-page đã chọn)</h2>
     <div class="section-note">Sản phẩm được nhóm theo NHÓM NGÀNH HÀNG trước (dòng in đậm = tổng cả nhóm) — bấm vào TÊN NHÓM để mở/đóng chi tiết từng sản phẩm bên trong. Combo đã được ghép lại thành 1 dòng (xem badge COMBO) — không tách theo sản phẩm thành tố. Bảng này chạy theo khoảng thời gian chọn ở đầu trang. Bấm tiêu đề cột để sắp xếp (áp dụng cho cả thứ tự nhóm lẫn sản phẩm trong nhóm).</div>
     <div class="prod-filter-row">
