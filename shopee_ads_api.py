@@ -30,7 +30,8 @@ def shop_get(path, tok, shop_id, params=None):
     """GET có ký; tự chờ + thử lại khi dính error_rate_limit (Shopee giới hạn khá chặt)."""
     for attempt in range(6):
         res = _shop_get_once(path, tok, shop_id, params)
-        if res.get("error") != "error_rate_limit":
+        # có nhiều mã rate limit: error_rate_limit, ads_rate_limit_total_api... -> thử lại với mọi mã chứa "rate_limit"
+        if "rate_limit" not in str(res.get("error") or ""):
             time.sleep(1.2)
             return res
         wait = 10 * (attempt + 1)
