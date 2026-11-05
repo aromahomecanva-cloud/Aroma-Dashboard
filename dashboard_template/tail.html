@@ -905,11 +905,30 @@
         b.imp += r.impression || 0; b.clk += r.clicks || 0; b.ord += r.broad_order || 0;
         b.items += r.broad_item_sold || 0; b.gmv += r.broad_gmv || 0; b.exp += r.expense || 0;
       });
+      // "Các chiến dịch khác": phần chênh giữa số liệu CẢ SHOP (shopeeAdsApiDaily) và tổng các campaign liệt kê được -- chủ
+      // yếu là campaign dạng "Tối đa hóa doanh thu"/GMS mà API product-level chưa trả chi tiết (06/11/2026). Chỉ tính cho
+      // các ngày đã có dữ liệu campaign của shop đó (từ ngày sớm nhất trong shopeeCampaignApi.rows) để không thổi phồng ngày cũ.
+      const campMin = {};
+      api.rows.forEach(r => { const m = api.meta[r.campaign_id]; if (m && (!campMin[m.shop_name] || r.date < campMin[m.shop_name])) campMin[m.shop_name] = r.date; });
+      const shopTot = {};
+      (typeof shopeeAdsApiDaily !== 'undefined' ? shopeeAdsApiDaily : []).forEach(r => {
+        if (!campMin[r.shop_name] || r.date < campMin[r.shop_name] || r.date < dateFrom || r.date > dateTo) return;
+        if (!(globalChannel === 'ALL' || globalChannel === 'shopee') || !(globalShopPage === 'ALL' || r.shop_name === globalShopPage)) return;
+        const b = shopTot[r.shop_name] || (shopTot[r.shop_name] = { imp: 0, clk: 0, ord: 0, items: 0, gmv: 0, exp: 0 });
+        b.imp += r.impression || 0; b.clk += r.clicks || 0; b.ord += r.broad_order || 0;
+        b.items += r.broad_item_sold || 0; b.gmv += r.broad_gmv || 0; b.exp += r.expense || 0;
+      });
+      Object.keys(shopTot).forEach(shop => {
+        const c = { imp: 0, clk: 0, ord: 0, items: 0, gmv: 0, exp: 0 };
+        Object.values(by).filter(b => b.m.shop_name === shop).forEach(b => { for (const k in c) c[k] += b[k]; });
+        const o = {}; for (const k in c) o[k] = Math.max(0, shopTot[shop][k] - c[k]);
+        if (o.exp > 1000 || o.imp > 50) by['_other_' + shop] = { id: '_other_' + shop, other: true, m: { shop_name: shop, name: 'Các chiến dịch khác (chưa tách tên)' }, ...o };
+      });
       const fin = b => ({ ...b, name: b.m.name || b.id, shop: b.m.shop_name,
         ctr: b.imp ? b.clk / b.imp * 100 : 0, cr: b.clk ? b.ord / b.clk * 100 : 0,
         cpo: b.ord ? b.exp / b.ord : 0, roas: b.exp ? b.gmv / b.exp : 0 });
       let list = Object.values(by).filter(b => b.imp || b.exp).map(fin)
-        .filter(b => (stFilter === 'ALL' || b.m.status === stFilter) && (!q || String(b.name).toLowerCase().includes(q)));
+        .filter(b => b.other ? (stFilter === 'ALL' && !q) : ((stFilter === 'ALL' || b.m.status === stFilter) && (!q || String(b.name).toLowerCase().includes(q))));
       const k = shopeeCampSort.key, d = shopeeCampSort.dir;
       list.sort((a, b) => (typeof a[k] === 'string' ? a[k].localeCompare(b[k]) : (a[k] - b[k])) * d);
       const t = fin(list.reduce((a, b) => ({ m: {}, id: '', imp: a.imp + b.imp, clk: a.clk + b.clk, ord: a.ord + b.ord,
@@ -924,12 +943,12 @@
       });
       const kind = m => {
         const type = m.bidding === 'auto' ? (m.roas_target ? `Tối đa doanh thu · ROAS ${m.roas_target}` : 'Tự động') : 'Thủ công (từ khóa)';
-        const place = m.placement === 'search' ? 'Tìm kiếm' : (m.placement === 'discovery' ? 'Khám phá' : (m.placement || ''));
+        const place = m.placement === 'search' ? 'Tìm kiếm' : (m.placement === 'discovery' ? 'Khám phá' : (m.placement === 'all' ? 'Tất cả vị trí' : (m.placement || '')));
         return [type, place].filter(Boolean).join(' · ');
       };
       const cell = (b, total) => `<tr${total ? ' class="grand-total-row"' : ''}>`
         + `<td style="text-align:left;max-width:360px;white-space:normal;"><b>${b.name}</b>`
-        + (total ? '' : `<div class="fee-pct">${kind(b.m)}</div>${statusBadge(b.m.status)}`) + '</td>'
+        + (total ? '' : (b.other ? '<div class="fee-pct">Gồm campaign dạng Tối đa hóa doanh thu/GMS mà API chưa trả chi tiết, = số cả shop trừ các campaign ở trên</div>' : `<div class="fee-pct">${kind(b.m)}</div>${statusBadge(b.m.status)}`)) + '</td>'
         + `<td style="text-align:left;">${b.shop}</td><td>${fmt(b.imp)}</td><td>${fmt(b.clk)}</td><td>${b.ctr.toFixed(2)}%</td>`
         + `<td>${fmt(b.ord)}</td><td>${b.cr.toFixed(2)}%</td><td>${fmt(b.items)}</td><td>${b.ord ? fmt(Math.round(b.cpo)) + '₫' : '—'}</td>`
         + `<td>${fmt(b.exp)}₫</td><td>${fmt(b.gmv)}₫</td><td>${b.exp ? b.roas.toFixed(2) : '—'}</td></tr>`;
