@@ -225,8 +225,9 @@ def _load_api_daily(known_shops: set, csv_keys: set) -> pd.DataFrame:
     """Dòng theo (shop, ngày) lấy từ Shopee Open API (shopee_ads_api_daily.json, do shopee_ads_api.py
     ghi) cho những ngày CSV thủ công CHƯA có. Đã đối chiếu với CSV (05/11/2026): API "expense" ==
     cột "Chi phí" (trước VAT) tỉ lệ 1.0000, API "broad_gmv" == cột "Doanh số" -> dùng y hệt cách
-    tính của CSV (nhân VAT cho spend). Bỏ ngày HÔM NAY (giờ VN, số chưa chốt) và shop không có trong
-    CSV (VD Tiệm Trà Nhà Quê không thuộc dashboard). Không có campaign breakdown (API ngày không
+    tính của CSV (nhân VAT cho spend). GIỮ CẢ NGÀY HÔM NAY (số tạm thời, tới thời điểm lần chạy cuối
+    -- Huy yêu cầu 05/11/2026 để làm bot cảnh báo Shopee Ads; mỗi lần chạy ghi đè lại ngày hôm nay).
+    Bỏ shop không có trong CSV (VD Tiệm Trà Nhà Quê không thuộc dashboard). Không có campaign breakdown (API ngày không
     chia theo sản phẩm) -> cột campaigns để rỗng cho các ngày này."""
     cols = ["date", "shop_name", "spend", "spend_before_vat", "ads_revenue", "campaigns"]
     try:
@@ -234,11 +235,9 @@ def _load_api_daily(known_shops: set, csv_keys: set) -> pd.DataFrame:
         rows = _json.loads(API_DAILY_FILE.read_text(encoding="utf-8")).get("rows", [])
     except Exception:
         return pd.DataFrame(columns=cols)
-    import datetime as _dt
-    today_vn = (_dt.datetime.utcnow() + _dt.timedelta(hours=7)).date().isoformat()
     out = []
     for r in rows:
-        if r["shop_name"] not in known_shops or r["date"] >= today_vn or (r["shop_name"], r["date"]) in csv_keys:
+        if r["shop_name"] not in known_shops or (r["shop_name"], r["date"]) in csv_keys:
             continue
         before = float(r.get("expense") or 0)
         out.append({"date": r["date"], "shop_name": r["shop_name"], "spend": before * (1 + Config.SHOPEE_ADS_VAT_RATE),

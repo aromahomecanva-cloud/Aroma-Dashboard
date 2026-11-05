@@ -85,7 +85,9 @@ def main():
     if not PID or not KEY:
         sys.exit("Thiếu SHOPEE_PARTNER_ID/SHOPEE_PARTNER_KEY")
     d_from = dt.date.fromisoformat(a.d_from)
-    d_to = dt.date.fromisoformat(a.d_to) if a.d_to else dt.date.today()  # gồm cả hôm nay (số tạm thời)
+    # hôm nay theo GIỜ VN (runner GitHub chạy giờ UTC, tránh lệch ngày), gồm cả hôm nay (số tạm thời)
+    vn_today = (dt.datetime.utcnow() + dt.timedelta(hours=7)).date()
+    d_to = dt.date.fromisoformat(a.d_to) if a.d_to else vn_today
     data = json.load(open(TOK_FILE, encoding="utf-8"))
     rows = []
     for group in ("merchants", "shops"):
