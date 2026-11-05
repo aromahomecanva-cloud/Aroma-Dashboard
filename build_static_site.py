@@ -56,6 +56,8 @@ def main():
     ap.add_argument("--out", default="netlify_site/index.html")
     ap.add_argument("--overhead", default="monthly_overhead.json")
     ap.add_argument("--shopee-api", default="shopee_ads_api_daily.json")
+    ap.add_argument("--shopee-campaigns", default="shopee_campaigns.json")
+    ap.add_argument("--shopee-campaign-daily", default="shopee_campaign_api_daily.json")
     args = ap.parse_args()
 
     try:
@@ -86,6 +88,16 @@ def main():
             shopee_api_daily = json.load(f).get("rows", [])
     except Exception:
         shopee_api_daily = []
+
+    # Danh sách + hiệu suất theo ngày từng campaign Shopee Ads (bảng "Chi tiết campaign"); thiếu file -> bảng trống.
+    try:
+        with open(args.shopee_campaigns, encoding="utf-8") as f:
+            camp_meta = json.load(f)
+        with open(args.shopee_campaign_daily, encoding="utf-8") as f:
+            camp_rows = json.load(f).get("rows", [])
+    except Exception:
+        camp_meta, camp_rows = {}, []
+    shopee_campaign_api = {"meta": camp_meta, "rows": camp_rows}
 
     daily = data.get("daily", [])
     ads_daily = data.get("ads_daily", [])
@@ -133,7 +145,8 @@ def main():
         f"    const monthlyOverhead = {j(monthly_overhead)};\n"
         f"    const shopeeAdsRevenueDaily = {j(shopee_ads_revenue_daily)};\n"
         f"    const shopeeAdsCampaignDaily = {j(shopee_ads_campaign_daily)};\n"
-        f"    const shopeeAdsApiDaily = {j(shopee_api_daily)};\n\n"
+        f"    const shopeeAdsApiDaily = {j(shopee_api_daily)};\n"
+        f"    const shopeeCampaignApi = {j(shopee_campaign_api)};\n\n"
     )
 
     full = head + "\n" + middle + tail

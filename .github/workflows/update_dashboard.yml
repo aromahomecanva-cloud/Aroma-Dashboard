@@ -64,7 +64,7 @@ jobs:
       - name: Kéo Shopee Ads qua API (10 ngày gần nhất)
         # Bù các ngày CSV thủ công chưa có. Lỗi ở đây KHÔNG làm fail pipeline (vẫn dùng CSV).
         continue-on-error: true
-        run: python shopee_ads_api.py --from "$(date -u -d '10 days ago' +%Y-%m-%d)"
+        run: python shopee_ads_api.py --campaigns --from "$(date -u -d '10 days ago' +%Y-%m-%d)"
         env:
           SHOPEE_PARTNER_ID: ${{ secrets.SHOPEE_PARTNER_ID }}
           SHOPEE_PARTNER_KEY: ${{ secrets.SHOPEE_PARTNER_KEY }}
@@ -74,7 +74,7 @@ jobs:
         run: |
           git config user.name "dashboard-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add shopee_tokens.json shopee_ads_api_daily.json 2>/dev/null || true
+          git add shopee_tokens.json shopee_ads_api_daily.json shopee_campaigns.json shopee_campaign_api_daily.json 2>/dev/null || true
           git diff --staged --quiet || (git commit -m "Shopee API: token + dữ liệu ads" && git pull --rebase origin main && git push)
 
       - name: Fetch data + build data.json

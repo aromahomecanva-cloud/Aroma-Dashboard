@@ -15,6 +15,8 @@ HOST = os.environ.get("SHOPEE_HOST", "https://partner.shopeemobile.com")
 PID = os.environ.get("SHOPEE_PARTNER_ID", "").strip()
 KEY = os.environ.get("SHOPEE_PARTNER_KEY", "").strip()
 TOK_FILE, OUT_FILE = "shopee_tokens.json", "shopee_ads_api_daily.json"
+CAMP_META_FILE, CAMP_DAILY_FILE = "shopee_campaigns.json", "shopee_campaign_api_daily.json"
+BATCH = 50  # số campaign mỗi lần gọi setting_info / daily_performance
 CHUNK_DAYS = 14
 # Shop đã được ủy quyền nhưng KHÔNG kéo dữ liệu (Huy yêu cầu 05/11/2026; khi nào cần thì xóa khỏi danh sách này)
 EXCLUDED_SHOP_IDS = {1289495643}  # Tiệm Trà Nhà Quê - Since 2022
@@ -76,11 +78,96 @@ def ensure_fresh(data, gid, t):
 def d2s(d): return d.strftime("%d-%m-%Y")
 
 
+def _load(path, default):
+    try:
+        return json.load(open(path, encoding="utf-8"))
+    except Exception:
+        return default
+
+
+def fetch_campaigns(data, d_from, d_to):
+    """Danh sách campaign (tên/trạng thái/loại/ngân sách) + hiệu suất THEO NGÀY từng campaign của các shop.
+
+    - shopee_campaigns.json: {campaign_id: {shop_id, shop_name, name, status, bidding, placement, budget,
+      start, end, roas_target}} -- làm mới toàn bộ mỗi lần (trạng thái đổi liên tục).
+    - shopee_campaign_api_daily.json: {rows:[{date, shop_id, campaign_id, impression, clicks, expense, broad_gmv,
+      broad_order, broad_item_sold}]} -- chỉ lưu ngày có phát sinh; gộp theo (campaign_id, date), ghi đè khoảng
+      [d_from, d_to] của shop vừa xử lý. Chỉ hỏi hiệu suất campaign chưa kết thúc trước d_from (end=0 hoặc end>=d_from).
+    """
+    meta_all = _load(CAMP_META_FILE, {})
+    rows_all = _load(CAMP_DAILY_FILE, {}).get("rows", [])
+    since_ts = int(dt.datetime.combine(d_from, dt.time.min).timestamp()) - 86400
+    for gid, t in data.get("merchants", {}).items():
+        ensure_fresh(data, gid, t)
+        for sid in t.get("shop_id_list", []):
+            if sid in EXCLUDED_SHOP_IDS:
+                continue
+            name = shop_get("/api/v2/shop/get_shop_info", t["access_token"], sid).get("shop_name") or str(sid)
+            res = shop_get("/api/v2/ads/get_product_level_campaign_id_list", t["access_token"], sid, {"ad_type": "all"})
+            ids = [str(c["campaign_id"]) for c in (res.get("response") or {}).get("campaign_list", [])]
+            print(f"[campaign] {name}: {len(ids)} campaign")
+            if not ids:
+                print("  ", res.get("error"), res.get("message"))
+                continue
+            meta = {}
+            for i in range(0, len(ids), BATCH):
+                r = shop_get("/api/v2/ads/get_product_level_campaign_setting_info", t["access_token"], sid,
+                             {"info_type_list": "1,3", "campaign_id_list": ",".join(ids[i:i + BATCH])})
+                if r.get("error"):
+                    print(f"  [LỖI setting_info] {r.get('error')} {r.get('message')}")
+                for c in (r.get("response") or {}).get("campaign_list", []):
+                    ci = c.get("common_info") or {}
+                    dur = ci.get("campaign_duration") or {}
+                    ab = c.get("auto_bidding_info") or {}
+                    meta[str(c.get("campaign_id"))] = {
+                        "shop_id": sid, "shop_name": name, "name": ci.get("ad_name"), "ad_type": ci.get("ad_type"),
+                        "status": ci.get("campaign_status"), "bidding": ci.get("bidding_method"),
+                        "placement": ci.get("campaign_placement"), "budget": ci.get("campaign_budget"),
+                        "start": dur.get("start_time"), "end": dur.get("end_time"), "roas_target": ab.get("roas_target"),
+                    }
+            meta_all = {k: v for k, v in meta_all.items() if v.get("shop_id") != sid}
+            meta_all.update(meta)
+            cand = [c for c, m in meta.items() if not m.get("end") or m["end"] >= since_ts]
+            print(f"  setting_info: {len(meta)} campaign; hỏi hiệu suất {len(cand)} campaign chưa kết thúc từ {d_from}")
+            rows_all = [r for r in rows_all if not (r["shop_id"] == sid and d_from.isoformat() <= r["date"] <= d_to.isoformat())]
+            got = 0
+            for i in range(0, len(cand), BATCH):
+                batch = cand[i:i + BATCH]
+                cur = d_from
+                while cur <= d_to:
+                    end = min(cur + dt.timedelta(days=CHUNK_DAYS - 1), d_to)
+                    r = shop_get("/api/v2/ads/get_product_campaign_daily_performance", t["access_token"], sid,
+                                 {"start_date": d2s(cur), "end_date": d2s(end), "campaign_id_list": ",".join(batch)})
+                    if r.get("error"):
+                        print(f"  [LỖI daily_performance] {cur}->{end}: {r.get('error')} {r.get('message')}")
+                    lst = (r.get("response") or {}).get("campaign_list", [])
+                    for k, e in enumerate(lst):
+                        cid = str(e.get("campaign_id") or (batch[k] if len(lst) == len(batch) else ""))
+                        if not cid:
+                            continue
+                        for m in e.get("metrics_list", []):
+                            if not (m.get("impression") or m.get("expense")):
+                                continue
+                            rows_all.append({
+                                "date": dt.datetime.strptime(m["date"], "%d-%m-%Y").date().isoformat(), "shop_id": sid,
+                                "campaign_id": cid, **{f: m.get(f, 0) for f in (
+                                    "impression", "clicks", "expense", "broad_gmv", "broad_order", "broad_item_sold")}})
+                            got += 1
+                    cur = end + dt.timedelta(days=1)
+            print(f"  hiệu suất: {got} dòng campaign-ngày có phát sinh")
+    rows_all.sort(key=lambda r: (r["shop_id"], r["campaign_id"], r["date"]))
+    json.dump(meta_all, open(CAMP_META_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+    json.dump({"updated_at": dt.datetime.utcnow().isoformat() + "Z", "rows": rows_all},
+              open(CAMP_DAILY_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
+    print(f"Đã ghi {len(meta_all)} campaign vào {CAMP_META_FILE}, {len(rows_all)} dòng vào {CAMP_DAILY_FILE}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--from", dest="d_from", required=True)
     ap.add_argument("--to", dest="d_to", default=None)
     ap.add_argument("--compare", action="store_true")
+    ap.add_argument("--campaigns", action="store_true", help="kéo thêm danh sách + hiệu suất từng campaign")
     a = ap.parse_args()
     if not PID or not KEY:
         sys.exit("Thiếu SHOPEE_PARTNER_ID/SHOPEE_PARTNER_KEY")
@@ -124,6 +211,9 @@ def main():
     json.dump({"updated_at": dt.datetime.utcnow().isoformat() + "Z", "rows": out_rows},
               open(OUT_FILE, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
     print(f"Đã ghi {len(out_rows)} dòng (mới lấy {len(rows)}) vào {OUT_FILE}")
+
+    if a.campaigns:
+        fetch_campaigns(data, d_from, d_to)
 
     if a.compare:
         from business_dashboard_shopee_ads import load_shopee_ads_daily

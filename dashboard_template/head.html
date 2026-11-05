@@ -195,6 +195,26 @@
       </table>
     </div>
 
+    <h3>Chi tiết từng campaign</h3>
+    <div class="section-note" id="shopeeCampNote">Theo bộ lọc ngày và shop ở trên. Bấm tiêu đề cột để sắp xếp.</div>
+    <div class="prod-filter-row">
+      <select class="filter-select" id="shopeeCampStatusFilter">
+        <option value="ALL">Tất cả trạng thái</option>
+        <option value="ongoing">Đang diễn ra</option>
+        <option value="paused">Tạm dừng</option>
+        <option value="scheduled">Đã lên lịch</option>
+        <option value="ended">Đã kết thúc</option>
+        <option value="closed">Đã đóng</option>
+      </select>
+      <input type="text" id="shopeeCampSearch" class="filter-select" placeholder="Tìm tên chiến dịch..." style="min-width:240px;">
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr id="shopeeCampHeadRow"></tr></thead>
+        <tbody id="shopeeCampBody"></tbody>
+      </table>
+    </div>
+
     <h2>Theo sản phẩm (trong khoảng thời gian / kênh / shop-page đã chọn)</h2>
     <div class="section-note">Sản phẩm được nhóm theo NHÓM NGÀNH HÀNG trước (dòng in đậm = tổng cả nhóm) — bấm vào TÊN NHÓM để mở/đóng chi tiết từng sản phẩm bên trong. Combo đã được ghép lại thành 1 dòng (xem badge COMBO) — không tách theo sản phẩm thành tố. Bảng này chạy theo khoảng thời gian chọn ở đầu trang. Bấm tiêu đề cột để sắp xếp (áp dụng cho cả thứ tự nhóm lẫn sản phẩm trong nhóm).</div>
     <div class="prod-filter-row">

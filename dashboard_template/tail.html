@@ -871,6 +871,75 @@
         + ', theo bộ lọc ngày và shop ở trên. Doanh số = tổng doanh số Shopee ghi nhận cho ads (broad); ROAS = Doanh số ÷ Chi phí chưa VAT.';
     }
 
+    // ===== Shopee Ads — chi tiết từng campaign (API get_product_level_campaign_*, yêu cầu Huy 05/11/2026) =====
+    // shopeeCampaignApi = { meta: {campaign_id: {shop_name, name, status, bidding, placement, budget, roas_target...}},
+    //   rows: [{date, shop_id, campaign_id, impression, clicks, expense, broad_gmv, broad_order, broad_item_sold}] }
+    const CAMP_STATUS_LABEL = { ongoing: 'Đang diễn ra', paused: 'Tạm dừng', scheduled: 'Đã lên lịch', ended: 'Đã kết thúc', closed: 'Đã đóng' };
+    let shopeeCampSort = { key: 'exp', dir: -1 };
+    const SHOPEE_CAMP_COLS = [
+      { key: 'name', label: 'Thông tin chiến dịch', text: true }, { key: 'shop', label: 'Shop', text: true },
+      { key: 'imp', label: 'Lượt xem' }, { key: 'clk', label: 'Lượt click' }, { key: 'ctr', label: 'Tỉ lệ click' },
+      { key: 'ord', label: 'Lượt chuyển đổi' }, { key: 'cr', label: 'Tỉ lệ chuyển đổi' }, { key: 'items', label: 'SP đã bán' },
+      { key: 'cpo', label: 'Chi phí/chuyển đổi' }, { key: 'exp', label: 'Chi phí (chưa VAT)' },
+      { key: 'gmv', label: 'Doanh số' }, { key: 'roas', label: 'ROAS' },
+    ];
+    // Trạng thái campaign: chấm + chữ nhỏ có màu (xanh = đang chạy, cam = tạm dừng, xám = đã lên lịch, đỏ = đã kết thúc/đóng)
+    const CAMP_STATUS_COLOR = { ongoing: '#1a9d54', paused: '#e08a00', scheduled: '#6b7280', ended: '#d93025', closed: '#d93025' };
+    function statusBadge(st) {
+      if (!st) return '';
+      const c = CAMP_STATUS_COLOR[st] || '#6b7280';
+      return `<div style="font-size:11px;color:${c};font-weight:600;">● ${CAMP_STATUS_LABEL[st] || st}</div>`;
+    }
+
+    function renderShopeeCampaigns() {
+      const api = (typeof shopeeCampaignApi !== 'undefined') ? shopeeCampaignApi : { meta: {}, rows: [] };
+      const stFilter = document.getElementById('shopeeCampStatusFilter').value;
+      const q = (document.getElementById('shopeeCampSearch').value || '').trim().toLowerCase();
+      const by = {};
+      api.rows.forEach(r => {
+        if (r.date < dateFrom || r.date > dateTo) return;
+        const m = api.meta[r.campaign_id]; if (!m) return;
+        if (!(globalChannel === 'ALL' || globalChannel === 'shopee')) return;
+        if (!(globalShopPage === 'ALL' || m.shop_name === globalShopPage)) return;
+        const b = by[r.campaign_id] || (by[r.campaign_id] = { id: r.campaign_id, m, imp: 0, clk: 0, ord: 0, items: 0, gmv: 0, exp: 0 });
+        b.imp += r.impression || 0; b.clk += r.clicks || 0; b.ord += r.broad_order || 0;
+        b.items += r.broad_item_sold || 0; b.gmv += r.broad_gmv || 0; b.exp += r.expense || 0;
+      });
+      const fin = b => ({ ...b, name: b.m.name || b.id, shop: b.m.shop_name,
+        ctr: b.imp ? b.clk / b.imp * 100 : 0, cr: b.clk ? b.ord / b.clk * 100 : 0,
+        cpo: b.ord ? b.exp / b.ord : 0, roas: b.exp ? b.gmv / b.exp : 0 });
+      let list = Object.values(by).filter(b => b.imp || b.exp).map(fin)
+        .filter(b => (stFilter === 'ALL' || b.m.status === stFilter) && (!q || String(b.name).toLowerCase().includes(q)));
+      const k = shopeeCampSort.key, d = shopeeCampSort.dir;
+      list.sort((a, b) => (typeof a[k] === 'string' ? a[k].localeCompare(b[k]) : (a[k] - b[k])) * d);
+      const t = fin(list.reduce((a, b) => ({ m: {}, id: '', imp: a.imp + b.imp, clk: a.clk + b.clk, ord: a.ord + b.ord,
+        items: a.items + b.items, gmv: a.gmv + b.gmv, exp: a.exp + b.exp }), { imp: 0, clk: 0, ord: 0, items: 0, gmv: 0, exp: 0 }));
+      t.name = 'TỔNG CỘNG'; t.shop = '';
+      document.getElementById('shopeeCampHeadRow').innerHTML = SHOPEE_CAMP_COLS.map(c =>
+        `<th data-k="${c.key}" style="cursor:pointer;${c.text ? 'text-align:left;' : ''}">${c.label}${k === c.key ? (d < 0 ? ' ▼' : ' ▲') : ''}</th>`).join('');
+      document.querySelectorAll('#shopeeCampHeadRow th').forEach(th => th.onclick = () => {
+        const key = th.dataset.k;
+        shopeeCampSort = { key, dir: shopeeCampSort.key === key ? -shopeeCampSort.dir : -1 };
+        renderShopeeCampaigns();
+      });
+      const kind = m => {
+        const type = m.bidding === 'auto' ? (m.roas_target ? `Tối đa doanh thu · ROAS ${m.roas_target}` : 'Tự động') : 'Thủ công (từ khóa)';
+        const place = m.placement === 'search' ? 'Tìm kiếm' : (m.placement === 'discovery' ? 'Khám phá' : (m.placement || ''));
+        return [type, place].filter(Boolean).join(' · ');
+      };
+      const cell = (b, total) => `<tr${total ? ' class="grand-total-row"' : ''}>`
+        + `<td style="text-align:left;max-width:360px;white-space:normal;"><b>${b.name}</b>`
+        + (total ? '' : `<div class="fee-pct">${kind(b.m)}</div>${statusBadge(b.m.status)}`) + '</td>'
+        + `<td style="text-align:left;">${b.shop}</td><td>${fmt(b.imp)}</td><td>${fmt(b.clk)}</td><td>${b.ctr.toFixed(2)}%</td>`
+        + `<td>${fmt(b.ord)}</td><td>${b.cr.toFixed(2)}%</td><td>${fmt(b.items)}</td><td>${b.ord ? fmt(Math.round(b.cpo)) + '₫' : '—'}</td>`
+        + `<td>${fmt(b.exp)}₫</td><td>${fmt(b.gmv)}₫</td><td>${b.exp ? b.roas.toFixed(2) : '—'}</td></tr>`;
+      document.getElementById('shopeeCampBody').innerHTML = list.length
+        ? list.map(b => cell(b, false)).join('') + cell(t, true)
+        : '<tr><td colspan="12" style="text-align:center;color:#999;">Chưa có dữ liệu campaign trong khoảng đã chọn (chạy workflow Shopee API fetch để kéo dữ liệu).</td></tr>';
+      document.getElementById('shopeeCampNote').textContent =
+        `${list.length} campaign có phát sinh trong khoảng đã chọn. Lượt chuyển đổi = số đơn (broad); Tỉ lệ chuyển đổi = đơn ÷ click; Chi phí/chuyển đổi = Chi phí chưa VAT ÷ đơn. Bấm tiêu đề cột để sắp xếp.`;
+    }
+
     function renderEcomTab() {
       renderTableHeader('ecomTableHeadRow', ecomSort, renderEcomTab);
       const list = getChannelSummary(ch => ECOM_CHANNELS.includes(ch), ecomSort);
@@ -879,6 +948,7 @@
       renderSummaryBody(list, 'ecomTableBody', ecomExpandedRows, renderEcomTab);
       renderShopeeShopSection();
       renderShopeeAdsOverview();
+      renderShopeeCampaigns();
     }
 
     // ===== Shopee Ads: Phân bổ ngân sách 2 shop (4 view, yêu cầu Huy 25/09/2026) =====
@@ -1716,6 +1786,8 @@
     document.getElementById('dateTo').max = maxDate;
     document.getElementById('dateFrom').addEventListener('change', e => { dateFrom = e.target.value; activePreset = ''; renderAll(); });
     document.getElementById('dateTo').addEventListener('change', e => { dateTo = e.target.value; activePreset = ''; renderAll(); });
+    document.getElementById('shopeeCampStatusFilter').addEventListener('change', renderShopeeCampaigns);
+    document.getElementById('shopeeCampSearch').addEventListener('input', renderShopeeCampaigns);
     document.getElementById('showSummaryToggle').addEventListener('change', e => { showChannelSummary = e.target.checked; renderAll(); });
     document.getElementById('channelFilterSelect').addEventListener('change', e => { globalChannel = e.target.value; globalShopPage = 'ALL'; renderAll(); });
     document.getElementById('shopPageFilterSelect').addEventListener('change', e => { globalShopPage = e.target.value; renderAll(); });

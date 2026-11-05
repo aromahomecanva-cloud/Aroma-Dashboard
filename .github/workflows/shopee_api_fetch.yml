@@ -24,7 +24,7 @@ jobs:
           python-version: '3.11'
       - run: pip install -r business_dashboard_requirements.txt
       - name: Kéo dữ liệu Shopee Ads + đối chiếu CSV
-        run: python shopee_ads_api.py --from "${{ github.event.inputs.from_date }}" --compare
+        run: python shopee_ads_api.py --campaigns --from "${{ github.event.inputs.from_date }}" --compare
         env:
           SHOPEE_PARTNER_ID: ${{ secrets.SHOPEE_PARTNER_ID }}
           SHOPEE_PARTNER_KEY: ${{ secrets.SHOPEE_PARTNER_KEY }}
@@ -33,5 +33,5 @@ jobs:
         run: |
           git config user.name "dashboard-bot"
           git config user.email "bot@users.noreply.github.com"
-          git add shopee_tokens.json shopee_ads_api_daily.json
+          git add shopee_tokens.json shopee_ads_api_daily.json shopee_campaigns.json shopee_campaign_api_daily.json
           git diff --staged --quiet || (git commit -m "Shopee API: cập nhật token + dữ liệu ads" && git pull --rebase origin main && git push)
