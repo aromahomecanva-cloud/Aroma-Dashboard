@@ -1,5 +1,5 @@
 {
-"updated_at": "2026-11-05T08:45:50.039111Z",
+"updated_at": "2026-11-05T10:05:07.219709Z",
 "rows": [
 {
 "date": "2026-08-01",
@@ -1349,9 +1349,9 @@
 "date": "2026-11-05",
 "shop_id": 434961385,
 "shop_name": "Aroma Story - Góc Hương Thơm",
-"expense": 269939,
-"impression": 3505,
-"clicks": 109,
+"expense": 297827,
+"impression": 4028,
+"clicks": 117,
 "direct_order": 5,
 "broad_order": 6,
 "direct_gmv": 1258640,
@@ -2707,15 +2707,15 @@
 "date": "2026-11-05",
 "shop_id": 727941567,
 "shop_name": "Aroma Story - The Art Of Scent",
-"expense": 2068727,
-"impression": 22559,
-"clicks": 804,
-"direct_order": 47,
-"broad_order": 51,
-"direct_gmv": 11585400,
-"broad_gmv": 12396220,
-"direct_item_sold": 73,
-"broad_item_sold": 79
+"expense": 2361536,
+"impression": 25802,
+"clicks": 886,
+"direct_order": 49,
+"broad_order": 53,
+"direct_gmv": 11959400,
+"broad_gmv": 12770220,
+"direct_item_sold": 75,
+"broad_item_sold": 81
 },
 {
 "date": "2026-08-01",
