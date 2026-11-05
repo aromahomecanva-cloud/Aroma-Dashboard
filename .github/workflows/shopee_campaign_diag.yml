@@ -24,6 +24,11 @@ jobs:
         env:
           SHOPEE_PARTNER_ID: ${{ secrets.SHOPEE_PARTNER_ID }}
           SHOPEE_PARTNER_KEY: ${{ secrets.SHOPEE_PARTNER_KEY }}
+      - name: Gọi thử API GMS / shop-level
+        run: python shopee_gms_diag.py
+        env:
+          SHOPEE_PARTNER_ID: ${{ secrets.SHOPEE_PARTNER_ID }}
+          SHOPEE_PARTNER_KEY: ${{ secrets.SHOPEE_PARTNER_KEY }}
       - name: Lưu token mới (nếu đã refresh)
         if: always()
         run: |
