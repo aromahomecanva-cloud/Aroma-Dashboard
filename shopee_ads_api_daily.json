@@ -1,5 +1,5 @@
 {
-"updated_at": "2026-11-05T17:15:56.409524Z",
+"updated_at": "2026-11-06T02:25:35.972735Z",
 "rows": [
 {
 "date": "2026-08-01",
@@ -1363,15 +1363,15 @@
 "date": "2026-11-06",
 "shop_id": 434961385,
 "shop_name": "Aroma Story - Góc Hương Thơm",
-"expense": 1881,
-"impression": 88,
-"clicks": 2,
-"direct_order": 0,
-"broad_order": 0,
-"direct_gmv": 0,
-"broad_gmv": 0,
-"direct_item_sold": 0,
-"broad_item_sold": 0
+"expense": 365706,
+"impression": 2981,
+"clicks": 86,
+"direct_order": 6,
+"broad_order": 6,
+"direct_gmv": 2641300,
+"broad_gmv": 2641300,
+"direct_item_sold": 15,
+"broad_item_sold": 15
 },
 {
 "date": "2026-08-01",
