@@ -5,22 +5,13 @@
       "shop_id_list": [
         434961385,
         727941567,
-        1207848008,
-        1289495643
+        1207848008
       ],
       "merchant_id_list": [],
-      "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAIo-oG11wYw9rLOvAo4AUABSAM.JYg1LGrpp7JnlgrzK2oisX38S1xY24-FZedyRIulHZY",
-      "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAEo4_-01wYwidLvzgo4AUABSAM.tfBngilIsMOkn1cxiMijtPGFsihTUMEifLQNA87Kyrk",
-      "access_expire_at": 1793947683,
-      "saved_at": "2026-11-06T02:48:03.650132Z",
-      "shop_tokens": {
-        "434961385": {
-          "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAEo-oG11wYw-Kit1wI4AUABSAM.wD2kmGO8zYqU1fw7ykdGZ2u1Fd7E77jiKXtF86MsYTM",
-          "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAIo-oG11wYw9rLOvAo4AUABSAM.JYg1LGrpp7JnlgrzK2oisX38S1xY24-FZedyRIulHZY",
-          "access_expire_at": 1793947962,
-          "saved_at": "2026-11-06T02:52:42.916683Z"
-        }
-      }
+      "refresh_token": "5066577a504d4a6948776d456f706e6e",
+      "access_token": "56644c7373756b6545594a4c72445067",
+      "access_expire_at": 1793948247,
+      "saved_at": "2026-11-06T02:57:33.988Z"
     }
   }
 }
