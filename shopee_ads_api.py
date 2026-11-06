@@ -89,8 +89,11 @@ def shop_token(data, gid, t, sid):
     st = store.get(str(sid))
     if st and st["access_expire_at"] > time.time() + 600:
         return st["access_token"]
+    # Thứ tự thử: refresh_token riêng của shop (chuỗi đang chạy) -> refresh_token GỐC lấy lúc ủy quyền (t["refresh_token"],
+    # KHÔNG ghi đè -- mỗi shop cần khởi tạo chuỗi token riêng từ bản gốc; 06/11/2026: bản gốc từng bị ghi đè bằng token của
+    # shop đầu tiên nên các shop sau báo "refresh token or shop_id is wrong", phải ủy quyền lại).
     cands = []
-    for rt in [st and st.get("refresh_token")] + [v.get("refresh_token") for v in store.values()] + [t.get("refresh_token")]:
+    for rt in [st and st.get("refresh_token"), t.get("refresh_token")]:
         if rt and rt not in cands:
             cands.append(rt)
     for rt in cands:
@@ -99,9 +102,8 @@ def shop_token(data, gid, t, sid):
             store[str(sid)] = {"access_token": res["access_token"], "refresh_token": res.get("refresh_token", rt),
                                "access_expire_at": int(time.time()) + int(res.get("expire_in", 14400)),
                                "saved_at": dt.datetime.utcnow().isoformat() + "Z"}
-            t["refresh_token"] = res.get("refresh_token", rt)
             json.dump(data, open(TOK_FILE, "w", encoding="utf-8"), indent=2)
-            print(f"[refresh OK] shop {sid}")
+            print(f"[refresh OK] shop {sid} (bằng {'refresh_token riêng của shop' if st and rt == st.get('refresh_token') else 'refresh_token gốc'})")
             return res["access_token"]
         print(f"[refresh lỗi] shop {sid}: {res.get('error')} {res.get('message')}")
     print(f"[LỖI] không refresh được token cho shop {sid} -> cần ủy quyền lại qua /shopee-auth")
