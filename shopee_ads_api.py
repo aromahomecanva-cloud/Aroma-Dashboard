@@ -77,6 +77,37 @@ def ensure_fresh(data, gid, t, force=False):
     sys.exit("Không refresh được token Shopee -> cần ủy quyền lại qua /shopee-auth")
 
 
+def shop_token(data, gid, t, sid):
+    """access_token DÙNG ĐƯỢC CHO ĐÚNG shop `sid`.
+
+    Phát hiện 06/11/2026: sau lần refresh đầu tiên bằng shop_id, token trả về CHỈ dùng được cho shop đó (shop khác
+    báo invalid_acceess_token), còn refresh bằng merchant_id báo merchant_no_linked -> phải refresh TỪNG shop bằng
+    shop_id của nó. Token từng shop lưu ở t["shop_tokens"][shop_id] = {access_token, refresh_token, access_expire_at};
+    thử lần lượt các refresh_token đang có (của chính shop, của shop khác, của bản ghi gốc) cho tới khi shop nhận được
+    token. Ghi file NGAY sau mỗi lần refresh thành công (refresh_token cũ có thể bị vô hiệu)."""
+    store = t.setdefault("shop_tokens", {})
+    st = store.get(str(sid))
+    if st and st["access_expire_at"] > time.time() + 600:
+        return st["access_token"]
+    cands = []
+    for rt in [st and st.get("refresh_token")] + [v.get("refresh_token") for v in store.values()] + [t.get("refresh_token")]:
+        if rt and rt not in cands:
+            cands.append(rt)
+    for rt in cands:
+        res = refresh(rt, {"shop_id": int(sid)})
+        if res.get("access_token"):
+            store[str(sid)] = {"access_token": res["access_token"], "refresh_token": res.get("refresh_token", rt),
+                               "access_expire_at": int(time.time()) + int(res.get("expire_in", 14400)),
+                               "saved_at": dt.datetime.utcnow().isoformat() + "Z"}
+            t["refresh_token"] = res.get("refresh_token", rt)
+            json.dump(data, open(TOK_FILE, "w", encoding="utf-8"), indent=2)
+            print(f"[refresh OK] shop {sid}")
+            return res["access_token"]
+        print(f"[refresh lỗi] shop {sid}: {res.get('error')} {res.get('message')}")
+    print(f"[LỖI] không refresh được token cho shop {sid} -> cần ủy quyền lại qua /shopee-auth")
+    return None
+
+
 def d2s(d): return d.strftime("%d-%m-%Y")
 
 
@@ -100,12 +131,14 @@ def fetch_campaigns(data, d_from, d_to):
     rows_all = _load(CAMP_DAILY_FILE, {}).get("rows", [])
     since_ts = int(dt.datetime.combine(d_from, dt.time.min).timestamp()) - 86400
     for gid, t in data.get("merchants", {}).items():
-        ensure_fresh(data, gid, t)
         for sid in t.get("shop_id_list", []):
             if sid in EXCLUDED_SHOP_IDS:
                 continue
-            name = shop_get("/api/v2/shop/get_shop_info", t["access_token"], sid).get("shop_name") or str(sid)
-            res = shop_get("/api/v2/ads/get_product_level_campaign_id_list", t["access_token"], sid, {"ad_type": "all"})
+            tok = shop_token(data, gid, t, sid)
+            if not tok:
+                continue
+            name = shop_get("/api/v2/shop/get_shop_info", tok, sid).get("shop_name") or str(sid)
+            res = shop_get("/api/v2/ads/get_product_level_campaign_id_list", tok, sid, {"ad_type": "all"})
             ids = [str(c["campaign_id"]) for c in (res.get("response") or {}).get("campaign_list", [])]
             print(f"[campaign] {name}: {len(ids)} campaign")
             if not ids:
@@ -113,7 +146,7 @@ def fetch_campaigns(data, d_from, d_to):
                 continue
             meta = {}
             for i in range(0, len(ids), BATCH):
-                r = shop_get("/api/v2/ads/get_product_level_campaign_setting_info", t["access_token"], sid,
+                r = shop_get("/api/v2/ads/get_product_level_campaign_setting_info", tok, sid,
                              {"info_type_list": "1,3", "campaign_id_list": ",".join(ids[i:i + BATCH])})
                 if r.get("error"):
                     print(f"  [LỖI setting_info] {r.get('error')} {r.get('message')}")
@@ -138,7 +171,7 @@ def fetch_campaigns(data, d_from, d_to):
                 cur = d_from
                 while cur <= d_to:
                     end = min(cur + dt.timedelta(days=CHUNK_DAYS - 1), d_to)
-                    r = shop_get("/api/v2/ads/get_product_campaign_daily_performance", t["access_token"], sid,
+                    r = shop_get("/api/v2/ads/get_product_campaign_daily_performance", tok, sid,
                                  {"start_date": d2s(cur), "end_date": d2s(end), "campaign_id_list": ",".join(batch)})
                     if r.get("error"):
                         print(f"  [LỖI daily_performance] {cur}->{end}: {r.get('error')} {r.get('message')}")
@@ -181,16 +214,22 @@ def main():
     rows = []
     for group in ("merchants", "shops"):
         for gid, t in data.get(group, {}).items():
-            ensure_fresh(data, gid, t)
             for sid in (t.get("shop_id_list") or ([int(gid)] if group == "shops" else [])):
                 if sid in EXCLUDED_SHOP_IDS:
                     continue
-                info = shop_get("/api/v2/shop/get_shop_info", t["access_token"], sid)
+                if group == "merchants":
+                    tok = shop_token(data, gid, t, sid)
+                else:  # "shops": ủy quyền từng shop (token riêng của shop)
+                    ensure_fresh(data, gid, t)
+                    tok = t["access_token"]
+                if not tok:
+                    continue
+                info = shop_get("/api/v2/shop/get_shop_info", tok, sid)
                 name = info.get("shop_name") or str(sid)
                 cur = d_from
                 while cur <= d_to:
                     end = min(cur + dt.timedelta(days=CHUNK_DAYS - 1), d_to)
-                    res = shop_get("/api/v2/ads/get_all_cpc_ads_daily_performance", t["access_token"], sid,
+                    res = shop_get("/api/v2/ads/get_all_cpc_ads_daily_performance", tok, sid,
                                    {"start_date": d2s(cur), "end_date": d2s(end)})
                     if res.get("error"):
                         print(f"[LỖI] {name} {cur}->{end}: {res.get('error')} {res.get('message')}")
