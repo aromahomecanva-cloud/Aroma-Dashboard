@@ -922,7 +922,7 @@
         const c = { imp: 0, clk: 0, ord: 0, items: 0, gmv: 0, exp: 0 };
         Object.values(by).filter(b => b.m.shop_name === shop).forEach(b => { for (const k in c) c[k] += b[k]; });
         const o = {}; for (const k in c) o[k] = Math.max(0, shopTot[shop][k] - c[k]);
-        if (o.exp > 1000 || o.imp > 50) by['_other_' + shop] = { id: '_other_' + shop, other: true, m: { shop_name: shop, name: 'Các chiến dịch khác (chưa tách tên)' }, ...o };
+        if (o.exp > 1000 || o.imp > 50) by['_other_' + shop] = { id: '_other_' + shop, other: true, m: { shop_name: shop, name: 'Chiến dịch nhóm sản phẩm & khác (Shopee API chưa hỗ trợ)' }, ...o };
       });
       const fin = b => ({ ...b, name: b.m.name || b.id, shop: b.m.shop_name,
         ctr: b.imp ? b.clk / b.imp * 100 : 0, cr: b.clk ? b.ord / b.clk * 100 : 0,
@@ -948,7 +948,7 @@
       };
       const cell = (b, total) => `<tr${total ? ' class="grand-total-row"' : ''}>`
         + `<td style="text-align:left;max-width:360px;white-space:normal;"><b>${b.name}</b>`
-        + (total ? '' : (b.other ? '<div class="fee-pct">Gồm campaign dạng Tối đa hóa doanh thu/GMS mà API chưa trả chi tiết, = số cả shop trừ các campaign ở trên</div>' : `<div class="fee-pct">${kind(b.m)}</div>${statusBadge(b.m.status)}`)) + '</td>'
+        + (total ? '' : (b.other ? '<div class="fee-pct">Chiến dịch nhóm sản phẩm (Group Campaign): Shopee xác nhận chưa có API Open Platform nên không lấy được tên/chi tiết. Số liệu = số cả shop trừ các campaign liệt kê ở trên</div>' : `<div class="fee-pct">${kind(b.m)}</div>${statusBadge(b.m.status)}`)) + '</td>'
         + `<td style="text-align:left;">${b.shop}</td><td>${fmt(b.imp)}</td><td>${fmt(b.clk)}</td><td>${b.ctr.toFixed(2)}%</td>`
         + `<td>${fmt(b.ord)}</td><td>${b.cr.toFixed(2)}%</td><td>${fmt(b.items)}</td><td>${b.ord ? fmt(Math.round(b.cpo)) + '₫' : '—'}</td>`
         + `<td>${fmt(b.exp)}₫</td><td>${fmt(b.gmv)}₫</td><td>${b.exp ? b.roas.toFixed(2) : '—'}</td></tr>`;
