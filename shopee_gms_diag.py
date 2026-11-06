@@ -25,6 +25,14 @@ def main():
     data = json.load(open(S.TOK_FILE, encoding="utf-8"))
     t = data["merchants"][next(iter(data["merchants"]))]
     S.ensure_fresh(data, next(iter(data["merchants"])), t)
+    gid = next(iter(data["merchants"]))
+    print(f"token lưu lúc {t.get('saved_at')}, còn {(t['access_expire_at'] - time.time()) / 60:.0f} phút theo bản ghi")
+    # kiểm tra token còn dùng được không; Shopee báo invalid_acceess_token (đã gặp 06/11/2026 dù bản ghi còn hạn,
+    # có thể do token vừa bị lần chạy khác làm mới) -> ép refresh rồi dùng token mới
+    chk = S._shop_get_once("/api/v2/shop/get_shop_info", t["access_token"], SHOP_ID)
+    print("kiểm tra token:", chk.get("error") or "OK", chk.get("message") or "")
+    if chk.get("error"):
+        S.ensure_fresh(data, gid, t, force=True)
     tok = t["access_token"]
     end = (dt.datetime.utcnow() + dt.timedelta(hours=7)).date()
     dates = {"start_date": S.d2s(end - dt.timedelta(days=3)), "end_date": S.d2s(end)}

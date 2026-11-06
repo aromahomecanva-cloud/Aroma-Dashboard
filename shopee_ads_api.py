@@ -56,9 +56,10 @@ def refresh(refresh_token, ident):
     return r.json()
 
 
-def ensure_fresh(data, gid, t):
-    """Refresh nếu access_token còn < 10 phút. Thử lần lượt merchant_id rồi từng shop_id; ghi token mới vào data."""
-    if t["access_expire_at"] > time.time() + 600:
+def ensure_fresh(data, gid, t, force=False):
+    """Refresh nếu access_token còn < 10 phút (hoặc force=True khi Shopee báo token không hợp lệ). Thử lần lượt
+    merchant_id rồi từng shop_id; ghi token mới vào data."""
+    if not force and t["access_expire_at"] > time.time() + 600:
         return False
     tries = [{"merchant_id": int(m)} for m in (t.get("merchant_id_list") or [])] + [{"merchant_id": int(gid)}]
     tries += [{"shop_id": int(s)} for s in (t.get("shop_id_list") or [])]
