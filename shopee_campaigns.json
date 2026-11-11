@@ -15919,7 +15919,7 @@
 "status": "ongoing",
 "bidding": "auto",
 "placement": "all",
-"budget": 500000,
+"budget": 550000,
 "start": 1783357200,
 "end": 0,
 "roas_target": 6
@@ -15984,7 +15984,7 @@
 "status": "ongoing",
 "bidding": "auto",
 "placement": "all",
-"budget": 550000,
+"budget": 750000,
 "start": 1785258000,
 "end": 0,
 "roas_target": 6

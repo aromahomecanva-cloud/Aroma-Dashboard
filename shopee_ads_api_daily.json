@@ -1,5 +1,5 @@
 {
-"updated_at": "2026-11-10T16:55:17.748724Z",
+"updated_at": "2026-11-11T07:39:07.567527Z",
 "rows": [
 {
 "date": "2026-08-01",
@@ -1419,15 +1419,29 @@
 "date": "2026-11-10",
 "shop_id": 434961385,
 "shop_name": "Aroma Story - Góc Hương Thơm",
-"expense": 715361,
-"impression": 10820,
-"clicks": 289,
+"expense": 716767,
+"impression": 10880,
+"clicks": 292,
 "direct_order": 12,
 "broad_order": 12,
 "direct_gmv": 1863816,
 "broad_gmv": 1863816,
 "direct_item_sold": 12,
 "broad_item_sold": 12
+},
+{
+"date": "2026-11-11",
+"shop_id": 434961385,
+"shop_name": "Aroma Story - Góc Hương Thơm",
+"expense": 1469650,
+"impression": 11302,
+"clicks": 293,
+"direct_order": 30,
+"broad_order": 31,
+"direct_gmv": 7109963,
+"broad_gmv": 7399063,
+"direct_item_sold": 42,
+"broad_item_sold": 43
 },
 {
 "date": "2026-08-01",
@@ -2847,15 +2861,29 @@
 "date": "2026-11-10",
 "shop_id": 727941567,
 "shop_name": "Aroma Story - The Art Of Scent",
-"expense": 3131479,
-"impression": 45388,
-"clicks": 1479,
+"expense": 3137633,
+"impression": 45596,
+"clicks": 1482,
 "direct_order": 74,
 "broad_order": 82,
 "direct_gmv": 12972900,
 "broad_gmv": 14571720,
 "direct_item_sold": 86,
 "broad_item_sold": 99
+},
+{
+"date": "2026-11-11",
+"shop_id": 727941567,
+"shop_name": "Aroma Story - The Art Of Scent",
+"expense": 4013523,
+"impression": 31719,
+"clicks": 1043,
+"direct_order": 98,
+"broad_order": 110,
+"direct_gmv": 22067420,
+"broad_gmv": 24078200,
+"direct_item_sold": 145,
+"broad_item_sold": 158
 },
 {
 "date": "2026-08-01",
@@ -4273,6 +4301,20 @@
 },
 {
 "date": "2026-11-10",
+"shop_id": 1207848008,
+"shop_name": "Aroma Story | Perfume & Beauty",
+"expense": 0,
+"impression": 0,
+"clicks": 0,
+"direct_order": 0,
+"broad_order": 0,
+"direct_gmv": 0,
+"broad_gmv": 0,
+"direct_item_sold": 0,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-11",
 "shop_id": 1207848008,
 "shop_name": "Aroma Story | Perfume & Beauty",
 "expense": 0,
