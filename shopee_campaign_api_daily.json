@@ -1,5 +1,5 @@
 {
-"updated_at": "2026-11-11T07:41:01.906091Z",
+"updated_at": "2026-11-11T17:01:59.727458Z",
 "rows": [
 {
 "date": "2026-10-26",
@@ -181,9 +181,9 @@
 "date": "2026-11-11",
 "shop_id": 434961385,
 "campaign_id": "187360200",
-"impression": 257,
-"clicks": 11,
-"expense": 8299,
+"impression": 546,
+"clicks": 23,
+"expense": 17489,
 "broad_gmv": 0,
 "broad_order": 0,
 "broad_item_sold": 0
@@ -368,9 +368,9 @@
 "date": "2026-11-11",
 "shop_id": 434961385,
 "campaign_id": "193319396",
-"impression": 144,
+"impression": 305,
 "clicks": 4,
-"expense": 27397,
+"expense": 42657,
 "broad_gmv": 502504,
 "broad_order": 2,
 "broad_item_sold": 0
@@ -555,9 +555,9 @@
 "date": "2026-11-11",
 "shop_id": 434961385,
 "campaign_id": "193319397",
-"impression": 1290,
-"clicks": 33,
-"expense": 171806,
+"impression": 2416,
+"clicks": 53,
+"expense": 217151,
 "broad_gmv": 865800,
 "broad_order": 5,
 "broad_item_sold": 0
@@ -709,7 +709,7 @@
 "date": "2026-11-11",
 "shop_id": 434961385,
 "campaign_id": "198181306",
-"impression": 3,
+"impression": 6,
 "clicks": 1,
 "expense": 0,
 "broad_gmv": 312620,
@@ -841,11 +841,11 @@
 "date": "2026-11-11",
 "shop_id": 434961385,
 "campaign_id": "199204954",
-"impression": 2690,
-"clicks": 69,
-"expense": 488361,
-"broad_gmv": 2435500,
-"broad_order": 10,
+"impression": 3933,
+"clicks": 112,
+"expense": 950000,
+"broad_gmv": 4879498,
+"broad_order": 18,
 "broad_item_sold": 0
 },
 {
@@ -1050,11 +1050,11 @@
 "date": "2026-11-11",
 "shop_id": 727941567,
 "campaign_id": "193314939",
-"impression": 1213,
-"clicks": 46,
-"expense": 104328,
-"broad_gmv": 441420,
-"broad_order": 5,
+"impression": 2826,
+"clicks": 71,
+"expense": 187619,
+"broad_gmv": 940060,
+"broad_order": 9,
 "broad_item_sold": 0
 },
 {
@@ -1237,11 +1237,11 @@
 "date": "2026-11-11",
 "shop_id": 727941567,
 "campaign_id": "195109635",
-"impression": 4748,
-"clicks": 110,
-"expense": 539360,
-"broad_gmv": 3114020,
-"broad_order": 14,
+"impression": 6776,
+"clicks": 155,
+"expense": 650000,
+"broad_gmv": 3313020,
+"broad_order": 15,
 "broad_item_sold": 0
 },
 {
@@ -1300,6 +1300,17 @@
 "broad_item_sold": 0
 },
 {
+"date": "2026-11-11",
+"shop_id": 727941567,
+"campaign_id": "195573467",
+"impression": 2,
+"clicks": 0,
+"expense": 0,
+"broad_gmv": 199000,
+"broad_order": 1,
+"broad_item_sold": 0
+},
+{
 "date": "2026-11-08",
 "shop_id": 727941567,
 "campaign_id": "197859499",
@@ -1336,11 +1347,11 @@
 "date": "2026-11-11",
 "shop_id": 727941567,
 "campaign_id": "197859499",
-"impression": 5506,
-"clicks": 149,
-"expense": 684389,
-"broad_gmv": 3166200,
-"broad_order": 15,
+"impression": 7603,
+"clicks": 209,
+"expense": 950000,
+"broad_gmv": 5044600,
+"broad_order": 24,
 "broad_item_sold": 0
 },
 {
@@ -1523,7 +1534,7 @@
 "date": "2026-11-11",
 "shop_id": 727941567,
 "campaign_id": "198527315",
-"impression": 5,
+"impression": 9,
 "clicks": 0,
 "expense": 0,
 "broad_gmv": 714500,
