@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T07:34:17.315362",
+  "updated_at": "2026-11-14T15:45:39.106766",
   "total_ads_spend": 1589466412.0,
   "ads_note": "Ads spend giờ ĐÃ gán theo kênh facebook/instagram (suy ra từ tên campaign), phân bổ về shop/page theo tỷ lệ doanh thu — xem ads_spend_by_channel.",
   "ads_spend_by_channel": {
@@ -10,8 +10,8 @@
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 15292,
-      "gross_revenue": 2479698079.0,
+      "orders": 15314,
+      "gross_revenue": 2483678279.0,
       "total_fee": 462687041.53,
       "revenue_recorded": 1437226197.0,
       "fee_breakdown": {
@@ -34,18 +34,18 @@
         "Phí hoa hồng Tiếp thị liên kết": 1826854.0,
         "Phí vận chuyển trả hàng (đơn giao không thành công)": 820200.0
       },
-      "net_revenue": 2017011037.47,
-      "cogs": 798840651.442,
-      "gross_margin_amount": 711759709.0279999,
+      "net_revenue": 2020991237.47,
+      "cogs": 799664426.642,
+      "gross_margin_amount": 714096878.2280002,
       "gross_margin_pct": 35.3,
-      "ads_spend": 506410676.99999994,
-      "net_profit_after_ads": 711759709.0279999
+      "ads_spend": 507229932.59999996,
+      "net_profit_after_ads": 714096878.2280002
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 7511,
-      "gross_revenue": 1585250070.0,
+      "orders": 7514,
+      "gross_revenue": 1585403486.0,
       "total_fee": 229468115.77,
       "revenue_recorded": 950583763.0,
       "fee_breakdown": {
@@ -68,12 +68,12 @@
         "Phí hoa hồng Tiếp thị liên kết": 1474698.0,
         "Phí vận chuyển trả hàng (đơn giao không thành công)": 325100.0
       },
-      "net_revenue": 1355781954.23,
-      "cogs": 344467160.807,
-      "gross_margin_amount": 689637401.463,
-      "gross_margin_pct": 50.9,
-      "ads_spend": 321677391.96,
-      "net_profit_after_ads": 689637401.463
+      "net_revenue": 1355935370.23,
+      "cogs": 344705443.707,
+      "gross_margin_amount": 689276785.723,
+      "gross_margin_pct": 50.8,
+      "ads_spend": 321953140.8,
+      "net_profit_after_ads": 689276785.723
     },
     {
       "channel": "facebook",
@@ -129,8 +129,8 @@
     {
       "channel": "tiktokshop",
       "shop_page": "Aroma Story - Scented Shop",
-      "orders": 470,
-      "gross_revenue": 36987070.0,
+      "orders": 471,
+      "gross_revenue": 37162070.0,
       "total_fee": 8461947.4,
       "revenue_recorded": 22041870.0,
       "fee_breakdown": {
@@ -153,12 +153,12 @@
         "Chi phí khác": 10677.0,
         "Hoàn lại trợ giá từ Tiktok": 158264.0
       },
-      "net_revenue": 28525122.6,
-      "cogs": 15424893.0,
-      "gross_margin_amount": 13100229.600000001,
-      "gross_margin_pct": 45.9,
+      "net_revenue": 28700122.6,
+      "cogs": 15454697.0,
+      "gross_margin_amount": 13245425.600000001,
+      "gross_margin_pct": 46.2,
       "ads_spend": 0.0,
-      "net_profit_after_ads": 13100229.600000001
+      "net_profit_after_ads": 13245425.600000001
     },
     {
       "channel": "pos",
@@ -244082,10 +244082,10 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thuỷ Tinh 50g Little Forest - Gói Kèm Đế Gỗ, Thiệp, Túi Giấy Trắng Nhỏ",
       "sku": "PVN499",
-      "quantity": 4.0,
-      "revenue": 596000.0,
-      "cogs": 90888.0,
-      "gross_margin_amount": 505112.0,
+      "quantity": 8.0,
+      "revenue": 1192000.0,
+      "cogs": 181776.0,
+      "gross_margin_amount": 1010224.0,
       "gross_margin_pct": 84.8
     },
     {
@@ -244094,10 +244094,10 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Khuếch Tán Lemongrass",
       "sku": "TDKT00001",
-      "quantity": 3.0,
-      "revenue": 540000.0,
-      "cogs": 82816.79999999999,
-      "gross_margin_amount": 457183.2,
+      "quantity": 6.0,
+      "revenue": 1080000.0,
+      "cogs": 165633.59999999998,
+      "gross_margin_amount": 914366.4,
       "gross_margin_pct": 84.7
     },
     {
@@ -244106,11 +244106,47 @@
       "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Feeling 100g Thương - Gói Kèm Đế Gỗ, Thiệp, Túi Giấy Trắng Nhỏ",
       "sku": "PVN504",
+      "quantity": 4.0,
+      "revenue": 1026000.0,
+      "cogs": 154176.0,
+      "gross_margin_amount": 871824.0,
+      "gross_margin_pct": 85.0
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Xi Măng 200g Wild Forest",
+      "sku": "NETH00059",
+      "quantity": 2.0,
+      "revenue": 700000.0,
+      "cogs": 116758.0,
+      "gross_margin_amount": 583242.0,
+      "gross_margin_pct": 83.3
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán Lemongrass",
+      "sku": "TDKT00019",
+      "quantity": 2.0,
+      "revenue": 670000.0,
+      "cogs": 91068.6,
+      "gross_margin_amount": 578931.4,
+      "gross_margin_pct": 86.4
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Feeling 100g Hy Vọng - Gói Kèm Đế Gỗ, Thiệp, Túi Giấy Trắng Nhỏ",
+      "sku": "PVN509",
       "quantity": 2.0,
       "revenue": 518000.0,
-      "cogs": 77088.0,
-      "gross_margin_amount": 440912.0,
-      "gross_margin_pct": 85.1
+      "cogs": 73722.0,
+      "gross_margin_amount": 444278.0,
+      "gross_margin_pct": 85.8
     },
     {
       "date": "2026-11-14",
@@ -244140,6 +244176,18 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Combo Quà Tặng Set 6",
+      "sku": "CBQT00076",
+      "quantity": 1.0,
+      "revenue": 395000.0,
+      "cogs": 49598.1,
+      "gross_margin_amount": 345401.9,
+      "gross_margin_pct": 87.4
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Tinh Dầu Khuếch Tán Lemongrass",
       "sku": "TDKT00001",
       "quantity": 2.0,
@@ -244147,6 +244195,18 @@
       "cogs": 55211.2,
       "gross_margin_amount": 304788.8,
       "gross_margin_pct": 84.7
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Xi Măng 110g Glorious Days - Gói quà",
+      "sku": "NETH00102",
+      "quantity": 1.0,
+      "revenue": 300000.0,
+      "cogs": 85147.0,
+      "gross_margin_amount": 214853.0,
+      "gross_margin_pct": 71.6
     },
     {
       "date": "2026-11-14",
@@ -244163,14 +244223,50 @@
     {
       "date": "2026-11-14",
       "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Nến Feeling 100g Hy Vọng - Gói Kèm Đế Gỗ, Thiệp, Túi Giấy Trắng Nhỏ",
-      "sku": "PVN509",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nến Thủy Tinh 200g Ocean Wind",
+      "sku": "NETH00063",
       "quantity": 1.0,
-      "revenue": 259000.0,
-      "cogs": 36861.0,
-      "gross_margin_amount": 222139.0,
-      "gross_margin_pct": 85.8
+      "revenue": 295000.0,
+      "cogs": 66312.0,
+      "gross_margin_amount": 228688.0,
+      "gross_margin_pct": 77.5
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nến Thủy Tinh 200g Wooden Room",
+      "sku": "NETH00064",
+      "quantity": 1.0,
+      "revenue": 295000.0,
+      "cogs": 62422.0,
+      "gross_margin_amount": 232578.0,
+      "gross_margin_pct": 78.8
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Thiên Nhiên Oải Hương 10ml - EO",
+      "sku": "TDEO0015",
+      "quantity": 2.0,
+      "revenue": 278000.0,
+      "cogs": 43554.0,
+      "gross_margin_amount": 234446.0,
+      "gross_margin_pct": 84.3
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán Pear & Freesia",
+      "sku": "8936241240559",
+      "quantity": 1.0,
+      "revenue": 255000.0,
+      "cogs": 0.0,
+      "gross_margin_amount": 255000.0,
+      "gross_margin_pct": 100.0
     },
     {
       "date": "2026-11-14",
@@ -244224,6 +244320,78 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán After The Rain",
+      "sku": "TDKT00018",
+      "quantity": 1.0,
+      "revenue": 235000.0,
+      "cogs": 25145.7,
+      "gross_margin_amount": 209854.3,
+      "gross_margin_pct": 89.3
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Khuếch Tán True Grace",
+      "sku": "TDKT00010",
+      "quantity": 1.0,
+      "revenue": 235000.0,
+      "cogs": 31207.1,
+      "gross_margin_amount": 203792.9,
+      "gross_margin_pct": 86.7
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thuỷ Tinh 100g After The Rain",
+      "sku": "NETH00157",
+      "quantity": 1.0,
+      "revenue": 220000.0,
+      "cogs": 30126.0,
+      "gross_margin_amount": 189874.0,
+      "gross_margin_pct": 86.3
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thơm 100g Cozy Christmas",
+      "sku": "NETH90030",
+      "quantity": 1.0,
+      "revenue": 202344.0,
+      "cogs": 0.0,
+      "gross_margin_amount": 202344.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thơm 100g Warm Tobacco",
+      "sku": "NETH90020",
+      "quantity": 1.0,
+      "revenue": 202344.0,
+      "cogs": 0.0,
+      "gross_margin_amount": 202344.0,
+      "gross_margin_pct": 100.0
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Nến Thủy Tinh 100g Sunday Morning",
+      "sku": "NETH00044",
+      "quantity": 1.0,
+      "revenue": 200000.0,
+      "cogs": 33623.0,
+      "gross_margin_amount": 166377.0,
+      "gross_margin_pct": 83.2
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Nến Thủy Tinh 100g Romantic Night",
       "sku": "NETH00040",
       "quantity": 1.0,
@@ -244231,6 +244399,42 @@
       "cogs": 36246.0,
       "gross_margin_amount": 163754.0,
       "gross_margin_pct": 81.9
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Thiên Nhiên Cam 10ml - EO",
+      "sku": "TDEO0005",
+      "quantity": 2.0,
+      "revenue": 198000.0,
+      "cogs": 28446.0,
+      "gross_margin_amount": 169554.0,
+      "gross_margin_pct": 85.6
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Thiên Nhiên Sả Chanh 10ml - EO",
+      "sku": "TDEO0018",
+      "quantity": 2.0,
+      "revenue": 198000.0,
+      "cogs": 32488.0,
+      "gross_margin_amount": 165512.0,
+      "gross_margin_pct": 83.6
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - Góc Hương Thơm",
+      "product": "Tinh Dầu Khuếch Tán Rose Garden",
+      "sku": "TDKT00015",
+      "quantity": 1.0,
+      "revenue": 195000.0,
+      "cogs": 26327.8,
+      "gross_margin_amount": 168672.2,
+      "gross_margin_pct": 86.5
     },
     {
       "date": "2026-11-14",
@@ -244271,6 +244475,18 @@
     {
       "date": "2026-11-14",
       "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Combo Quà Tặng Set 1",
+      "sku": "CBQT00071",
+      "quantity": 1.0,
+      "revenue": 145000.0,
+      "cogs": 43691.0,
+      "gross_margin_amount": 101309.0,
+      "gross_margin_pct": 69.9
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
       "product": "Nước hoa tóc 10ml Sexy Roses",
       "sku": "NHTC00009",
@@ -244279,6 +244495,18 @@
       "cogs": 34000.0,
       "gross_margin_amount": 106000.0,
       "gross_margin_pct": 75.7
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Tinh Dầu Thiên Nhiên Bưởi 10ml - EO",
+      "sku": "TDEO0003",
+      "quantity": 1.0,
+      "revenue": 139000.0,
+      "cogs": 23160.0,
+      "gross_margin_amount": 115840.0,
+      "gross_margin_pct": 83.3
     },
     {
       "date": "2026-11-14",
@@ -244296,18 +244524,6 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Tinh Dầu Thiên Nhiên Oải Hương 10ml - EO",
-      "sku": "TDEO0015",
-      "quantity": 1.0,
-      "revenue": 139000.0,
-      "cogs": 21777.0,
-      "gross_margin_amount": 117223.0,
-      "gross_margin_pct": 84.3
-    },
-    {
-      "date": "2026-11-14",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Thiên Nhiên Trà Trắng 10ml - EO",
       "sku": "TDEO0020",
       "quantity": 1.0,
@@ -244315,6 +244531,18 @@
       "cogs": 23160.0,
       "gross_margin_amount": 115840.0,
       "gross_margin_pct": 83.3
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "shopee",
+      "shop_page": "Aroma Story - The Art Of Scent",
+      "product": "Nến Thủy Tinh 100g Holiday Dream - Gói Kèm Đế Gỗ, Thiệp, Túi Giấy Trắng Nhỏ",
+      "sku": "PVN514",
+      "quantity": 2.0,
+      "revenue": 113312.0,
+      "cogs": 22500.0,
+      "gross_margin_amount": 90812.0,
+      "gross_margin_pct": 80.1
     },
     {
       "date": "2026-11-14",
@@ -244344,18 +244572,6 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Tinh Dầu Thiên Nhiên Cam 10ml - EO",
-      "sku": "TDEO0005",
-      "quantity": 1.0,
-      "revenue": 99000.0,
-      "cogs": 14223.0,
-      "gross_margin_amount": 84777.0,
-      "gross_margin_pct": 85.6
-    },
-    {
-      "date": "2026-11-14",
-      "channel": "shopee",
-      "shop_page": "Aroma Story - The Art Of Scent",
       "product": "Tinh Dầu Thiên Nhiên Lily 10ml - EO",
       "sku": "TDEO0013",
       "quantity": 1.0,
@@ -244368,13 +244584,13 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "product": "Tinh Dầu Thiên Nhiên Sả Chanh 10ml - EO",
-      "sku": "TDEO0018",
+      "product": "Tinh Dầu Thiên Nhiên Quế 10ml - EO",
+      "sku": "TDEO0016",
       "quantity": 1.0,
       "revenue": 99000.0,
-      "cogs": 16244.0,
-      "gross_margin_amount": 82756.0,
-      "gross_margin_pct": 83.6
+      "cogs": 15074.0,
+      "gross_margin_amount": 83926.0,
+      "gross_margin_pct": 84.8
     },
     {
       "date": "2026-11-14",
@@ -244423,6 +244639,18 @@
       "cogs": 1000.0,
       "gross_margin_amount": 9000.0,
       "gross_margin_pct": 90.0
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "tiktokshop",
+      "shop_page": "Aroma Story - Scented Shop",
+      "product": "Nến Thủy Tinh 100g Free Soul",
+      "sku": "NETH00043",
+      "quantity": 1.0,
+      "revenue": 225000.0,
+      "cogs": 29804.0,
+      "gross_margin_amount": 195196.0,
+      "gross_margin_pct": 86.8
     }
   ],
   "daily": [
@@ -275201,31 +275429,46 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "orders": 11,
-      "gross_revenue": 1570659.0,
+      "orders": 14,
+      "gross_revenue": 1724075.0,
       "total_fee": 0.0,
       "revenue_recorded": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 1570659.0,
-      "cogs": 370160.1,
-      "gross_margin_amount": 961203.2999999999,
-      "gross_margin_pct": 61.2,
-      "ads_spend": 239295.6
+      "net_revenue": 1724075.0,
+      "cogs": 608443.0,
+      "gross_margin_amount": 600587.5599999999,
+      "gross_margin_pct": 34.8,
+      "ads_spend": 515044.44000000006
     },
     {
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "orders": 23,
-      "gross_revenue": 3405560.0,
+      "orders": 45,
+      "gross_revenue": 7385760.0,
       "total_fee": 0.0,
       "revenue_recorded": 0.0,
       "fee_breakdown": {},
-      "net_revenue": 3405560.0,
-      "cogs": 865394.8,
-      "gross_margin_amount": 1479493.9600000002,
-      "gross_margin_pct": 43.4,
-      "ads_spend": 1060671.24
+      "net_revenue": 7385760.0,
+      "cogs": 1689170.0,
+      "gross_margin_amount": 3816663.16,
+      "gross_margin_pct": 51.7,
+      "ads_spend": 1879926.84
+    },
+    {
+      "date": "2026-11-14",
+      "channel": "tiktokshop",
+      "shop_page": "Aroma Story - Scented Shop",
+      "orders": 1,
+      "gross_revenue": 175000.0,
+      "total_fee": 0.0,
+      "revenue_recorded": 0.0,
+      "fee_breakdown": {},
+      "net_revenue": 175000.0,
+      "cogs": 29804.0,
+      "gross_margin_amount": 145196.0,
+      "gross_margin_pct": 83.0,
+      "ads_spend": 0.0
     }
   ],
   "ads_daily": [
@@ -320997,12 +321240,12 @@
         "spend": 3469418.0,
         "impressions": 68516,
         "clicks": 1885,
-        "results": 74014.0,
+        "results": 74015.0,
         "orders": 9.0,
         "revenue": 3000000.0,
         "ctr": 2.75,
         "cpc": 1840.54,
-        "cpa": 46.88,
+        "cpa": 46.87,
         "cost_per_order": 385490.89,
         "roas": 0.86,
         "purchase_roas_meta": 3.03,
@@ -340520,7 +340763,7 @@
         "spend": 3830179.0,
         "impressions": 70464,
         "clicks": 1943,
-        "results": 75863.0,
+        "results": 75864.0,
         "orders": 12.0,
         "revenue": 4155000.0,
         "ctr": 2.76,
@@ -344613,7 +344856,7 @@
         "spend": 70499655.0,
         "impressions": 1303786,
         "clicks": 22166,
-        "results": 1114820.0,
+        "results": 1114821.0,
         "orders": 186.0,
         "revenue": 97163035.0,
         "ctr": 1.7,
@@ -389590,7 +389833,7 @@
         "spend": 0.0,
         "impressions": 0,
         "clicks": 0,
-        "results": 3.0,
+        "results": 4.0,
         "orders": 0.0,
         "revenue": 0.0
       }
@@ -510828,7 +511071,7 @@
         "spend": 0.0,
         "impressions": 0,
         "clicks": 0,
-        "results": 2.0,
+        "results": 3.0,
         "orders": 0.0,
         "revenue": 0.0
       },
@@ -714434,7 +714677,7 @@
         "spend": 0.0,
         "impressions": 0,
         "clicks": 0,
-        "results": 2.0,
+        "results": 3.0,
         "orders": 0,
         "revenue": 0
       },
@@ -759401,7 +759644,7 @@
       "spend": 0.0,
       "impressions": 0,
       "clicks": 0,
-      "results": 3.0,
+      "results": 4.0,
       "orders": 0.0,
       "revenue": 0.0
     }
@@ -880639,7 +880882,7 @@
       "spend": 0.0,
       "impressions": 0,
       "clicks": 0,
-      "results": 2.0,
+      "results": 3.0,
       "orders": 0.0,
       "revenue": 0.0
     },
@@ -1084245,7 +1084488,7 @@
       "spend": 0.0,
       "impressions": 0,
       "clicks": 0,
-      "results": 2.0,
+      "results": 3.0,
       "orders": 0,
       "revenue": 0
     },
@@ -1087649,7 +1087892,7 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "spend": 239295.6
+      "spend": 515044.44000000006
     },
     {
       "date": "2026-04-01",
@@ -1089017,19 +1089260,19 @@
       "date": "2026-11-14",
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "spend": 1060671.24
+      "spend": 1879926.84
     }
   ],
   "shopee_ads_total_by_shop": [
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - Góc Hương Thơm",
-      "spend": 321677391.96
+      "spend": 321953140.8
     },
     {
       "channel": "shopee",
       "shop_page": "Aroma Story - The Art Of Scent",
-      "spend": 506410676.99999994
+      "spend": 507229932.59999996
     }
   ],
   "shopee_ads_revenue_daily": [
@@ -1090171,7 +1090414,7 @@
     {
       "date": "2026-11-14",
       "shop_name": "Aroma Story - Góc Hương Thơm",
-      "ads_revenue": 1259579.0
+      "ads_revenue": 1731495.0
     },
     {
       "date": "2026-04-01",
@@ -1091311,7 +1091554,7 @@
     {
       "date": "2026-11-14",
       "shop_name": "Aroma Story - The Art Of Scent",
-      "ads_revenue": 3866560.0
+      "ads_revenue": 8186860.0
     }
   ],
   "shopee_ads_campaign_daily": [
@@ -1126646,7 +1126889,7 @@
     ]
   },
   "debug_fee_match": {
-    "total_orders_scanned": 24697,
+    "total_orders_scanned": 24723,
     "waybill_values_count": 11041,
     "son_values_count": 475,
     "top_matching_fields_for_waybill_mã_chứng_từ": [
@@ -1126698,11 +1126941,11 @@
     "top_matching_fields_for_SON_tham_chiếu": [
       [
         "total_weight",
-        4330
+        4336
       ],
       [
         "current_total_weight",
-        3610
+        3616
       ],
       [
         "shipping_address.ward_code",
@@ -1126722,7 +1126965,7 @@
       ],
       [
         "line_items[1].discount_allocations[0].amount",
-        324
+        325
       ],
       [
         "line_items[2].discount_allocations[0].amount",
@@ -1126886,18 +1127129,18 @@
     },
     "status_distribution_all_orders": {
       "status_distribution": {
-        "status='closed'": 24208,
-        "status='open'": 477,
+        "status='closed'": 24231,
+        "status='open'": 480,
         "status='cancelled'": 12
       },
       "financial_status_distribution": {
-        "financial_status='paid'": 19593,
-        "financial_status='refunded'": 2333,
-        "financial_status='pending'": 2749,
+        "financial_status='paid'": 19618,
+        "financial_status='refunded'": 2335,
+        "financial_status='pending'": 2748,
         "financial_status='partially_paid'": 14,
         "financial_status='partially_refunded'": 8
       },
-      "orders_with_cancelled_on_set": 4770
+      "orders_with_cancelled_on_set": 4772
     },
     "current_approach": {
       "label": "status_or_cancelled_on (hiện tại) | created_on_utc (hiện tại)",
