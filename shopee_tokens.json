@@ -14,22 +14,22 @@
       "saved_at": "2026-11-06T02:59:43.154Z",
       "shop_tokens": {
         "434961385": {
-          "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAEo4PX81wYw6ZDZggc4AUABSAM.PLXCpnvLYDpybGfdhzbwTQ4AITpsqhFys9FrCxPnRtk",
-          "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAIo4PX81wYwhrXMlQw4AUABSAM.x-lAKLcCYamHBqLp10oSachMuz6D-15xN9Z7vMjMyoE",
-          "access_expire_at": 1795126048,
-          "saved_at": "2026-11-19T18:07:28.160621Z"
+          "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAEo6oOA2AYwve7t3Ao4AUABSAM.bYuySYTFOA-RuUGFMPK-i0OkpU5WHrT7_XQmiFnr0Ao",
+          "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGOn3s88BIAIo6oOA2AYw0dmIBTgBQAFIAw.D6Px0mPyhkX2fWESZaz1aHCWSEz41m2Tb84XMpnSYcY",
+          "access_expire_at": 1795177002,
+          "saved_at": "2026-11-20T08:16:42.746921Z"
         },
         "727941567": {
-          "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGL-DjtsCIAEo5fX81wYw5rbVmgk4AUABSAM.sTde1Sy46TCryMSz404l07_8MITc7bza0pv9S8_hwaA",
-          "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGL-DjtsCIAIo5fX81wYw4MvquQs4AUABSAM.I_ddcduchA_b5x9Hqwm6X13FIqxv0fnf1_8fD3iq06M",
-          "access_expire_at": 1795126053,
-          "saved_at": "2026-11-19T18:07:33.299088Z"
+          "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGL-DjtsCIAEo74OA2AYwq5jrrw84AUABSAM.AfgDZsMzAzBiF4olDU80lfdOXbyi_JF9tnZsj6Oqr_8",
+          "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGL-DjtsCIAIo74OA2AYwwJLL6AU4AUABSAM.2JeB87yzpD1bCo4vHYVJ4RD6moe7GaRhcdsjYGBlTCw",
+          "access_expire_at": 1795177007,
+          "saved_at": "2026-11-20T08:16:47.193861Z"
         },
         "1207848008": {
-          "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGMiY-b8EIAEo6vX81wYwksO43QE4AUABSAM.hZtMlxaSYmWY75Mwvu2tkcSlaYytNEGkZolCM-ePr-o",
-          "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGMiY-b8EIAIo6vX81wYwptLc6gY4AUABSAM.6ZNvtL2NwtkI0GzY0MMcJChYV2LtyuXwOAJrQZQy1dY",
-          "access_expire_at": 1795126058,
-          "saved_at": "2026-11-19T18:07:38.320760Z"
+          "access_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGMiY-b8EIAEo84OA2AYw6-bTYTgBQAFIAw.bYoPMfN2E9aKZ0760FcBA1fymXAKlCq3vm8eElfwRco",
+          "refresh_token": "eyJhbGciOiJIUzI1NiJ9.CPeffRABGMiY-b8EIAIo84OA2AYw1-6w0w84AUABSAM.IG8PokgWZpiOrERTXUqFkTO5JNEwCVax5Me86IP0WkM",
+          "access_expire_at": 1795177011,
+          "saved_at": "2026-11-20T08:16:51.718402Z"
         }
       }
     }
