@@ -4,8 +4,8 @@
  "ad_window_days": 7,
  "items": [],
  "other": [],
- "generated_at": "2026-11-22",
- "updated_at": "2026-11-22T07:58:02.954018",
+ "generated_at": "2026-11-23",
+ "updated_at": "2026-11-22T17:05:03.388421",
  "summary": {
   "_cols": "[chi tiêu, đơn, doanh thu, kết quả theo mục tiêu campaign]",
   "account_daily": {
@@ -49,7 +49,7 @@
     0,
     0.0,
     0,
-    1
+    3
    ]
   },
   "campaigns": [
@@ -96,7 +96,7 @@
       0,
       0.0,
       0,
-      1
+      3
      ]
     }
    },
