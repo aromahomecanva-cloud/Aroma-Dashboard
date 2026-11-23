@@ -12461,10 +12461,10 @@
 "status": "ongoing",
 "bidding": "auto",
 "placement": "all",
-"budget": 450000,
+"budget": 550000,
 "start": 1786986000,
 "end": 0,
-"roas_target": 5.6
+"roas_target": 5
 },
 "17179695": {
 "shop_id": 727941567,
@@ -15919,7 +15919,7 @@
 "status": "ongoing",
 "bidding": "auto",
 "placement": "all",
-"budget": 600000,
+"budget": 400000,
 "start": 1783357200,
 "end": 0,
 "roas_target": 6
@@ -16049,10 +16049,10 @@
 "status": "ongoing",
 "bidding": "auto",
 "placement": "all",
-"budget": 800000,
+"budget": 500000,
 "start": 1787072400,
 "end": 0,
-"roas_target": 5.8
+"roas_target": 5.4
 },
 "201804335": {
 "shop_id": 727941567,
