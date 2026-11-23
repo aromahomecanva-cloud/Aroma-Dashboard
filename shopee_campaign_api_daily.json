@@ -1,5 +1,5 @@
 {
-"updated_at": "2026-11-22T17:02:19.225305Z",
+"updated_at": "2026-11-23T08:49:25.759358Z",
 "rows": [
 {
 "date": "2026-10-26",
@@ -304,7 +304,18 @@
 "campaign_id": "187360200",
 "impression": 216,
 "clicks": 5,
-"expense": 1510,
+"expense": 1511,
+"broad_gmv": 0,
+"broad_order": 0,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-23",
+"shop_id": 434961385,
+"campaign_id": "187360200",
+"impression": 99,
+"clicks": 2,
+"expense": 1152,
 "broad_gmv": 0,
 "broad_order": 0,
 "broad_item_sold": 0
@@ -618,6 +629,17 @@
 "broad_item_sold": 0
 },
 {
+"date": "2026-11-23",
+"shop_id": 434961385,
+"campaign_id": "193319396",
+"impression": 124,
+"clicks": 3,
+"expense": 2330,
+"broad_gmv": 0,
+"broad_order": 0,
+"broad_item_sold": 0
+},
+{
 "date": "2026-10-26",
 "shop_id": 434961385,
 "campaign_id": "193319397",
@@ -920,9 +942,20 @@
 "campaign_id": "193319397",
 "impression": 585,
 "clicks": 17,
-"expense": 53386,
+"expense": 53975,
 "broad_gmv": 232106,
 "broad_order": 2,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-23",
+"shop_id": 434961385,
+"campaign_id": "193319397",
+"impression": 316,
+"clicks": 3,
+"expense": 14167,
+"broad_gmv": 59000,
+"broad_order": 1,
 "broad_item_sold": 0
 },
 {
@@ -1152,6 +1185,17 @@
 "impression": 1177,
 "clicks": 27,
 "expense": 44087,
+"broad_gmv": 0,
+"broad_order": 0,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-23",
+"shop_id": 434961385,
+"campaign_id": "198181306",
+"impression": 5,
+"clicks": 0,
+"expense": 0,
 "broad_gmv": 0,
 "broad_order": 0,
 "broad_item_sold": 0
@@ -1404,9 +1448,20 @@
 "campaign_id": "199204954",
 "impression": 1257,
 "clicks": 42,
-"expense": 265608,
+"expense": 265738,
 "broad_gmv": 1187542,
 "broad_order": 4,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-23",
+"shop_id": 434961385,
+"campaign_id": "199204954",
+"impression": 1383,
+"clicks": 59,
+"expense": 313147,
+"broad_gmv": 2815968,
+"broad_order": 10,
 "broad_item_sold": 0
 },
 {
@@ -1745,9 +1800,20 @@
 "campaign_id": "193314939",
 "impression": 1583,
 "clicks": 58,
-"expense": 73392,
+"expense": 74361,
 "broad_gmv": 395000,
 "broad_order": 4,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-23",
+"shop_id": 727941567,
+"campaign_id": "193314939",
+"impression": 665,
+"clicks": 15,
+"expense": 53005,
+"broad_gmv": 267000,
+"broad_order": 3,
 "broad_item_sold": 0
 },
 {
@@ -2128,11 +2194,22 @@
 "date": "2026-11-22",
 "shop_id": 727941567,
 "campaign_id": "195109635",
-"impression": 10469,
+"impression": 10470,
 "clicks": 216,
-"expense": 506960,
+"expense": 510875,
 "broad_gmv": 2781000,
 "broad_order": 12,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-23",
+"shop_id": 727941567,
+"campaign_id": "195109635",
+"impression": 5481,
+"clicks": 144,
+"expense": 441206,
+"broad_gmv": 2389740,
+"broad_order": 13,
 "broad_item_sold": 0
 },
 {
@@ -2680,9 +2757,20 @@
 "campaign_id": "199280913",
 "impression": 1928,
 "clicks": 76,
-"expense": 512396,
+"expense": 512663,
 "broad_gmv": 2572200,
 "broad_order": 9,
+"broad_item_sold": 0
+},
+{
+"date": "2026-11-23",
+"shop_id": 727941567,
+"campaign_id": "199280913",
+"impression": 1270,
+"clicks": 55,
+"expense": 280582,
+"broad_gmv": 1488100,
+"broad_order": 7,
 "broad_item_sold": 0
 }
 ]
