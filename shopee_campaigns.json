@@ -12461,7 +12461,7 @@
 "status": "ongoing",
 "bidding": "auto",
 "placement": "all",
-"budget": 550000,
+"budget": 450000,
 "start": 1786986000,
 "end": 0,
 "roas_target": 5
