@@ -4,20 +4,20 @@
  "ad_window_days": 7,
  "items": [
   {
-   "level": "ad",
+   "level": "off",
    "type": "adset",
    "id": "120249366479290135",
    "name": "Mass – 30.10",
    "campaign": "Engage_Opt Sale_ABO_30.07_Reel",
-   "spend": 283431.0,
+   "spend": 451273.0,
    "orders": 0.0,
    "roas": 0.0,
-   "reason": null,
+   "reason": "0 đơn",
    "ads": [
     {
      "id": "120249366479310135",
      "name": "Thông Điệp Ẩn_Reel Baby Three 3 - H1",
-     "spend": 518658.0,
+     "spend": 662782.0,
      "orders": 0.0,
      "roas": 0.0,
      "link": "https://www.facebook.com/105691495053261/posts/956693796634834"
@@ -38,7 +38,7 @@
     ],
     [
      "2026-11-26",
-     283431,
+     451273,
      0,
      0
     ]
@@ -47,8 +47,8 @@
   }
  ],
  "other": [],
- "generated_at": "2026-11-26",
- "updated_at": "2026-11-26T09:22:29.486308",
+ "generated_at": "2026-11-27",
+ "updated_at": "2026-11-26T20:07:49.568102",
  "summary": {
   "_cols": "[chi tiêu, đơn, doanh thu, kết quả theo mục tiêu campaign]",
   "account_daily": {
@@ -83,10 +83,10 @@
     32
    ],
    "2026-11-26": [
-    882234,
+    1353300,
     2.0,
     1121000,
-    3333
+    6301
    ]
   },
   "campaigns": [
@@ -118,10 +118,10 @@
       29
      ],
      "2026-11-26": [
-      421278,
+      603027,
       2.0,
       1121000,
-      129
+      181
      ]
     }
    },
@@ -159,10 +159,10 @@
       3
      ],
      "2026-11-26": [
-      460956,
+      750273,
       0.0,
       0,
-      3204
+      6120
      ]
     }
    }
